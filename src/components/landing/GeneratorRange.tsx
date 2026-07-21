@@ -23,7 +23,7 @@ import cpcb250 from "@/assets/Brochure/200-250.pdf";
 import cpcb320 from "@/assets/Brochure/320-750.pdf";
 import cpcb750 from "@/assets/Brochure/750 kVA-1500 kVA.pdf";
 import Gase from "@/assets/Brochure/NEW CATELOG - GAS GENSET.pdf";
-import sential from "@/assets/Brochure/4.Kirloskar powergen_Sentinel series Genset.pdf"
+import sential from "@/assets/Brochure/4.Kirloskar powergen_Sentinel series Genset.pdf";
 
 // Animated Card component
 const Card = ({
@@ -38,11 +38,12 @@ const Card = ({
   brochureUrl: string;
 }) => {
   // Create a sanitized filename from the generator title
-  const downloadFileName = title
-    .replace('Kirloskar ', '')
-    .replace(/[^\w\s()-]/g, '')
-    .trim() + ' Brochure.pdf';
-  
+  const downloadFileName =
+    title
+      .replace("Kirloskar ", "")
+      .replace(/[^\w\s()-]/g, "")
+      .trim() + " Brochure.pdf";
+
   return (
     <motion.article
       className="overflow-hidden flex flex-col shadow bg-gray-900 rounded-lg border border-gray-800 h-[420px]"
@@ -89,15 +90,17 @@ const Card = ({
         >
           {title}
         </motion.h3>
-        <p className="text-sm text-muted-foreground mb-4 flex-1 line-clamp-3 h-[60px]">{caption}</p>
+        <p className="text-sm text-muted-foreground mb-4 flex-1 line-clamp-3 h-[60px]">
+          {caption}
+        </p>
         <div className="flex items-center gap-2 mt-auto">
           <motion.div
             whileHover={{ y: -3 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
             className="w-full"
           >
-            <a 
-              href={brochureUrl} 
+            <a
+              href={brochureUrl}
               download={downloadFileName}
               target="_blank"
               rel="noopener noreferrer"
@@ -108,7 +111,10 @@ const Card = ({
                 className="overflow-hidden group relative bg-[#2D6FBA] hover:bg-[#22548e] w-full"
                 variant="default"
               >
-                <motion.span initial={{ opacity: 1 }} whileHover={{ opacity: 0.9 }}>
+                <motion.span
+                  initial={{ opacity: 1 }}
+                  whileHover={{ opacity: 0.9 }}
+                >
                   Download Brochure
                 </motion.span>
                 <motion.div
@@ -139,7 +145,11 @@ const Card = ({
   );
 };
 
+import { useSectionData } from "@/store/useCMSStore";
+
 const GeneratorRange = () => {
+  const { data } = useSectionData<any>("home", "generatorRange");
+
   // Define generator types for filtering
   const filterTypes = [
     "All",
@@ -225,7 +235,7 @@ const GeneratorRange = () => {
     activeFilter === "All"
       ? generatorData
       : generatorData.filter((generator) =>
-          generator.categories.includes(activeFilter)
+          generator.categories.includes(activeFilter),
         );
 
   return (
@@ -293,9 +303,7 @@ const GeneratorRange = () => {
                 }}
                 whileHover={{
                   backgroundColor:
-                    activeFilter === type
-                      ? "#fff"
-                      : "rgba(255, 255, 255, 0.9)",
+                    activeFilter === type ? "#fff" : "rgba(255, 255, 255, 0.9)",
                   scale: 1.2,
                 }}
                 transition={{ duration: 0.3 }}
@@ -352,4 +360,3 @@ const GeneratorRange = () => {
 };
 
 export default GeneratorRange;
-

@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useSectionData } from "@/store/useCMSStore";
 
 // Updated with Cloudinary image links
-const galleryImages = [
+const defaultGalleryImages = [
   "https://res.cloudinary.com/dinhcaf2c/image/upload/v1755175177/gallery1_uhk3zd.png",
   "https://res.cloudinary.com/dinhcaf2c/image/upload/v1755175177/gallery2_ei3h9z.png",
   "https://res.cloudinary.com/dinhcaf2c/image/upload/v1755175176/gallery3_dcqffp.png",
@@ -11,18 +12,25 @@ const galleryImages = [
 ];
 
 const Gallery = () => {
+  const { data } = useSectionData<any>("home", "gallery");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const heading = data.sectionTitle || "Photo Gallery";
+  const subtitle =
+    data.sectionSubtitle ||
+    "Explore our installations, equipment, and team in action through these images";
+  const galleryImages =
+    Array.isArray(data.images) && data.images.length > 0
+      ? data.images.map((img: any) => (typeof img === "string" ? img : img.url))
+      : defaultGalleryImages;
 
   return (
     <section id="gallery" className="py-16">
       <div className="container mx-auto px-4 md:px-0">
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold">Photo Gallery</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">{heading}</h2>
           <div className="w-16 h-1 bg-blue-600 mx-auto mt-2 rounded"></div>
-          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-            Explore our installations, equipment, and team in action through these
-            images
-          </p>
+          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">{subtitle}</p>
         </div>
 
         {/* Gallery grid matching the exact layout in the screenshot */}

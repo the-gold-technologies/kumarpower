@@ -34,43 +34,60 @@ import gsap from "gsap";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
+import { useSectionData } from "@/store/useCMSStore";
 import dg1 from "@/assets/Products/7.5CPCB.jpeg";
 import dg2 from "@/assets/Products/82.5CPCB.jpeg";
 import dg200 from "@/assets/Products/200CPCB.jpeg";
 import dg3 from "@/assets/Products/25CPCB.jpeg";
 import dg4 from "@/assets/Products/320CPCB.jpeg";
 import dg5 from "@/assets/Products/750CPCB.jpeg";
-import Panel1 from "@/assets/Panel/Porcelin_clad_vaccum_circuit_breaker 1.png"
-import Panel2 from "@/assets/Products/Vacuum_circuit_breaker.png"
-import Panel3 from "@/assets/Panel/SF6_Circuit_breaker 1.png"
-import Panel4 from "@/assets/Panel/Unitised_package_substation 1.png"
-import Panel5 from "@/assets/Panel/Vacuum_circuit_breaker 2.png"
-import Panel6 from "@/assets/Panel/amf-panel-auto-synchronize-panels-24 1.png"
-import Panel7 from "@/assets/Panel/distribution_panel 1.png"
-import Panel8 from "@/assets/Panel/feeder-pillar2 1.png"
-import Servo1 from "@/assets/servo/servo1.png"
-import Servo2 from "@/assets/servo/servo2.png"
-import Trans1 from "@/assets/transformer/Trans1.png"
-import Trans2 from "@/assets/transformer/trans2.png"
-import Trans3 from "@/assets/transformer/trans3.png"
+import Panel1 from "@/assets/Panel/Porcelin_clad_vaccum_circuit_breaker 1.png";
+import Panel2 from "@/assets/Products/Vacuum_circuit_breaker.png";
+import Panel3 from "@/assets/Panel/SF6_Circuit_breaker 1.png";
+import Panel4 from "@/assets/Panel/Unitised_package_substation 1.png";
+import Panel5 from "@/assets/Panel/Vacuum_circuit_breaker 2.png";
+import Panel6 from "@/assets/Panel/amf-panel-auto-synchronize-panels-24 1.png";
+import Panel7 from "@/assets/Panel/distribution_panel 1.png";
+import Panel8 from "@/assets/Panel/feeder-pillar2 1.png";
+import Servo1 from "@/assets/servo/servo1.png";
+import Servo2 from "@/assets/servo/servo2.png";
+import Trans1 from "@/assets/transformer/Trans1.png";
+import Trans2 from "@/assets/transformer/trans2.png";
+import Trans3 from "@/assets/transformer/trans3.png";
 
-const PSCard = ({ title, desc, specs, img, brochureUrl, hideDownload = false }: { title: string; desc: string; specs: string[]; img: string; brochureUrl: string; hideDownload?: boolean }) => {
+const PSCard = ({
+  title,
+  desc,
+  specs,
+  img,
+  brochureUrl,
+  hideDownload = false,
+}: {
+  title: string;
+  desc: string;
+  specs: string[];
+  img: string;
+  brochureUrl: string;
+  hideDownload?: boolean;
+}) => {
   // Create a sanitized filename from the product title
-  const downloadFileName = title
-    .replace('Kirloskar ', '')
-    .replace(/[^\w\s()-]/g, '')
-    .trim() + ' Brochure.pdf';
+  const downloadFileName =
+    title
+      .replace("Kirloskar ", "")
+      .replace(/[^\w\s()-]/g, "")
+      .trim() + " Brochure.pdf";
 
   return (
-    <motion.article 
+    <motion.article
       className="bg-white rounded-lg overflow-hidden shadow-md flex flex-col"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.4 }}
-      whileHover={{ 
-        scale: 1.02, 
-        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" 
+      whileHover={{
+        scale: 1.02,
+        boxShadow:
+          "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
       }}
     >
       {/* Increased image container height and image height */}
@@ -85,7 +102,7 @@ const PSCard = ({ title, desc, specs, img, brochureUrl, hideDownload = false }: 
         />
       </div>
       <div className="p-6 flex flex-col flex-1">
-        <motion.h3 
+        <motion.h3
           className="text-xl font-bold mb-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -93,7 +110,7 @@ const PSCard = ({ title, desc, specs, img, brochureUrl, hideDownload = false }: 
         >
           {title}
         </motion.h3>
-        <motion.p 
+        <motion.p
           className="text-muted-foreground text-sm mb-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -103,19 +120,19 @@ const PSCard = ({ title, desc, specs, img, brochureUrl, hideDownload = false }: 
         </motion.p>
         <div className="space-y-2 mb-6">
           {specs.map((spec, index) => (
-            <motion.div 
-              key={spec} 
+            <motion.div
+              key={spec}
               className="flex items-center gap-2"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 + index * 0.1 }}
             >
-              <motion.span 
+              <motion.span
                 className="inline-flex items-center justify-center rounded-full bg-[#D6E8FA] h-5 w-5"
                 whileHover={{ scale: 1.2, backgroundColor: "#bfdbfe" }}
               >
-                <motion.span 
-                  className="h-2 w-2 rounded-full bg-[#2D6FBA]" 
+                <motion.span
+                  className="h-2 w-2 rounded-full bg-[#2D6FBA]"
                   whileHover={{ scale: 1.3 }}
                 />
               </motion.span>
@@ -130,8 +147,8 @@ const PSCard = ({ title, desc, specs, img, brochureUrl, hideDownload = false }: 
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               className="w-full"
             >
-              <a 
-                href={brochureUrl} 
+              <a
+                href={brochureUrl}
                 download={downloadFileName}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -166,19 +183,21 @@ const PSCard = ({ title, desc, specs, img, brochureUrl, hideDownload = false }: 
 const PowerSolutions = () => {
   const logoRef = useRef<HTMLDivElement>(null);
   const logoContainerRef = useRef<HTMLDivElement>(null);
-  const [activeCategory, setActiveCategory] = useState<string>("CPCB4+ Diesel Generator");
+  const [activeCategory, setActiveCategory] = useState<string>(
+    "CPCB4+ Diesel Generator",
+  );
 
   // Categories for the navigation tabs - CPCB4+ Diesel Generator first
   const categories = [
     "CPCB4+ Diesel Generator",
     "Optiprime Generators",
-    "Gas Generators", 
+    "Gas Generators",
     "Portable Generators",
     "Electrical Panels",
     "Servo Stabilizers",
     "Transformers",
   ];
-  
+
   // Category-specific product data
   const categoryProducts = {
     "Optiprime Generators": [
@@ -191,11 +210,11 @@ const PowerSolutions = () => {
           "3 Phase Output",
           "Fuel: Diesel",
           "Application: Industrial, Commercial",
-          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
         ],
         img: diesel,
-        brochureUrl: optiprime
-      }
+        brochureUrl: optiprime,
+      },
     ],
     "Gas Generators": [
       {
@@ -207,11 +226,11 @@ const PowerSolutions = () => {
           "Quiet Operation",
           "Fuel: Natural Gas, LPG",
           "Application: Industrial, Commercial, Residential",
-          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
         ],
         img: gas,
-        brochureUrl: Gase
-      }
+        brochureUrl: Gase,
+      },
     ],
     "Portable Generators": [
       {
@@ -222,11 +241,11 @@ const PowerSolutions = () => {
           "Lightweight Design",
           "Fuel: Portable, Diesel",
           "Application: Construction, Events, Residential",
-          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
         ],
         img: portable,
-        brochureUrl: sential
-      }
+        brochureUrl: sential,
+      },
     ],
     "CPCB4+ Diesel Generator": [
       {
@@ -239,10 +258,10 @@ const PowerSolutions = () => {
           "Cooling: Liquid",
           "Phase: Three Phase",
           "Application: Residential, Small Commercial",
-          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
         ],
         img: dg1,
-        brochureUrl: Cpcb
+        brochureUrl: Cpcb,
       },
       {
         title: "CPCB4+ Diesel Generators(25 kVA - 58.5 kVA)",
@@ -254,10 +273,10 @@ const PowerSolutions = () => {
           "Cooling: Liquid",
           "Phase: Three Phase",
           "Application: Industrial, Commercial",
-          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
         ],
         img: dg3,
-        brochureUrl: cpcb58
+        brochureUrl: cpcb58,
       },
       {
         title: "CPCB4+ Diesel Generators(82.5 kVA - 160 kVA)",
@@ -269,10 +288,10 @@ const PowerSolutions = () => {
           "Cooling: Liquid",
           "Phase: Three Phase",
           "Application: Industrial, Commercial",
-          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
         ],
         img: dg2,
-        brochureUrl: cpcb160
+        brochureUrl: cpcb160,
       },
       {
         title: "CPCB4+ Diesel Generators(200 kVA - 250 kVA)",
@@ -284,10 +303,10 @@ const PowerSolutions = () => {
           "Cooling: Liquid",
           "Phase: Three Phase",
           "Application: Industrial, Commercial",
-          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
         ],
         img: dg200,
-        brochureUrl: cpcb250
+        brochureUrl: cpcb250,
       },
       {
         title: "CPCB4+ Diesel Generators(320 kVA - 750 kVA)",
@@ -299,10 +318,10 @@ const PowerSolutions = () => {
           "Cooling: Liquid",
           "Phase: Three Phase",
           "Application: Large Industrial, Commercial",
-          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
         ],
         img: dg4,
-        brochureUrl: cpcb320
+        brochureUrl: cpcb320,
       },
       {
         title: "CPCB4+ Diesel Generators(750 kVA - 1500 kVA)",
@@ -314,11 +333,11 @@ const PowerSolutions = () => {
           "Cooling: Liquid",
           "Phase: Three Phase",
           "Application: Heavy Industrial, Commercial Complexes",
-          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
         ],
         img: dg5,
-        brochureUrl: cpcb750
-      }
+        brochureUrl: cpcb750,
+      },
     ],
     Inverters: [
       {
@@ -330,10 +349,10 @@ const PowerSolutions = () => {
           "LCD Display",
           "Application: Home",
           "Type: Pure Sine Wave",
-          "Features: Battery Management, LCD Display"
+          "Features: Battery Management, LCD Display",
         ],
         img: ups,
-        brochureUrl: sential // Default brochure for inverters
+        brochureUrl: sential, // Default brochure for inverters
       },
       {
         title: "Solar Inverters",
@@ -344,11 +363,11 @@ const PowerSolutions = () => {
           "Grid-tie Option",
           "Application: Solar, Commercial",
           "Type: Solar Hybrid",
-          "Features: MPPT, Mobile App"
+          "Features: MPPT, Mobile App",
         ],
         img: portable,
-        brochureUrl: sential // Default brochure for inverters
-      }
+        brochureUrl: sential, // Default brochure for inverters
+      },
     ],
     "Variable Frequency Drives (VFDs)": [
       {
@@ -360,10 +379,10 @@ const PowerSolutions = () => {
           "IP54 Protection",
           "Application: Manufacturing, Conveyors",
           "Control Type: Vector Control",
-          "Protection: IP54"
+          "Protection: IP54",
         ],
         img: gas,
-        brochureUrl: sential // Default brochure for VFDs
+        brochureUrl: sential, // Default brochure for VFDs
       },
       {
         title: "HVAC Drives",
@@ -374,159 +393,159 @@ const PowerSolutions = () => {
           "Energy Monitoring",
           "Application: HVAC, Pumps",
           "Control Type: Closed Loop",
-          "Protection: IP20"
+          "Protection: IP20",
         ],
         img: diesel,
-        brochureUrl: sential // Default brochure for VFDs
-      }
+        brochureUrl: sential, // Default brochure for VFDs
+      },
     ],
     "Electrical Panels": [
       {
-    title: "AMF Panels",
-    desc: "Automatic Mains Failure panels for seamless switching between mains and backup power supply, ensuring uninterrupted operation.",
-    specs: [
-      "Auto/Manual Operation",
-      "Engine Protection",
-      "Programmable Logic Control",
-      "Current Rating: 100-630A",
-      "Application: Synchronization & Backup Power",
-     "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
-    ],
-    img: Panel6,
-    brochureUrl: sential // Default brochure for panels
-  },
-  {
-    title: "Vacuum Circuit Breaker",
-    desc: "High-performance vacuum circuit breakers designed for medium voltage applications, ensuring safe and reliable power distribution.",
-    specs: [
-      "Voltage Rating: Up to 36kV",
-      "Interrupting Medium: Vacuum",
-      "Low Maintenance Design",
-      "Application: Industrial & Utility Systems",
-      "High Dielectric Strength",
-      "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
-    ],
-    img: Panel2,
-    brochureUrl: sential // Default brochure for panels
-  },
+        title: "AMF Panels",
+        desc: "Automatic Mains Failure panels for seamless switching between mains and backup power supply, ensuring uninterrupted operation.",
+        specs: [
+          "Auto/Manual Operation",
+          "Engine Protection",
+          "Programmable Logic Control",
+          "Current Rating: 100-630A",
+          "Application: Synchronization & Backup Power",
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
+        ],
+        img: Panel6,
+        brochureUrl: sential, // Default brochure for panels
+      },
+      {
+        title: "Vacuum Circuit Breaker",
+        desc: "High-performance vacuum circuit breakers designed for medium voltage applications, ensuring safe and reliable power distribution.",
+        specs: [
+          "Voltage Rating: Up to 36kV",
+          "Interrupting Medium: Vacuum",
+          "Low Maintenance Design",
+          "Application: Industrial & Utility Systems",
+          "High Dielectric Strength",
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
+        ],
+        img: Panel2,
+        brochureUrl: sential, // Default brochure for panels
+      },
 
-  {
-    title: "Distribution Boxes",
-    desc: "Sturdy and safe distribution boxes to manage and distribute electrical power efficiently for various installations.",
-    specs: [
-      "Voltage Rating: Up to 415V",
-      "Circuit Protection with MCB/ELCB",
-      "Compact & Robust Design",
-      "Application: Residential, Commercial & Industrial",
-      "Wall or Floor Mounted",
-      "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
-    ],
-    img: Panel7,
-    brochureUrl: sential // Default brochure for panels
-  },
-  {
-    title: "Feeder Pillars",
-    desc: "Robust outdoor electrical distribution pillars designed for safe and efficient power distribution in various environments.",
-    specs: [
-      "Voltage Rating: Up to 11kV",
-      "Weather Resistant Design",
-      "Anti-Corrosion Treatment",
-      "Application: Street Lighting, Industrial Estates, Housing Projects",
-      "IP54 Protection Rating",
-      "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
-    ],
-    img: Panel8,
-    brochureUrl: sential // Default brochure for panels
-  }
+      {
+        title: "Distribution Boxes",
+        desc: "Sturdy and safe distribution boxes to manage and distribute electrical power efficiently for various installations.",
+        specs: [
+          "Voltage Rating: Up to 415V",
+          "Circuit Protection with MCB/ELCB",
+          "Compact & Robust Design",
+          "Application: Residential, Commercial & Industrial",
+          "Wall or Floor Mounted",
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
+        ],
+        img: Panel7,
+        brochureUrl: sential, // Default brochure for panels
+      },
+      {
+        title: "Feeder Pillars",
+        desc: "Robust outdoor electrical distribution pillars designed for safe and efficient power distribution in various environments.",
+        specs: [
+          "Voltage Rating: Up to 11kV",
+          "Weather Resistant Design",
+          "Anti-Corrosion Treatment",
+          "Application: Street Lighting, Industrial Estates, Housing Projects",
+          "IP54 Protection Rating",
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
+        ],
+        img: Panel8,
+        brochureUrl: sential, // Default brochure for panels
+      },
     ],
     "Servo Stabilizers": [
       {
-    title: "Oil Cooled Servo Stabilizers",
-    desc: "Heavy-duty oil-cooled stabilizers designed for high-load applications, ensuring superior voltage regulation and thermal efficiency.",
-    specs: [
-      "Power Range: 5kVA - 5000kVA",
-      "Cooling: Oil Immersion",
-      "Voltage Accuracy: ±1%",
-      "Phase: Single/Three Phase",
-      "Application: Industrial Plants, HVAC Systems, Medical Equipment",
-      "Features: Digital Metering, Overload & Short Circuit Protection"
-    ],
-    img: Servo1,
-    brochureUrl: sential // Default brochure for servo stabilizers
-  },
-  {
-    title: "Air Cooled Servo Stabilizers",
-    desc: "Compact and efficient air-cooled stabilizers for commercial and IT infrastructure, offering reliable power protection.",
-    specs: [
-      "Power Range: 5kVA - 500kVA",
-      "Cooling: Natural/Forced Air",
-      "Voltage Accuracy: ±1%",
-      "Phase: Single/Three Phase",
-      "Application: Data Centers, Offices, Laboratories",
-      "Features: Digital Display, Fast Response, Overload Protection"
-    ],
-    img: Servo2,
-    brochureUrl: sential // Default brochure for servo stabilizers
-  }
+        title: "Oil Cooled Servo Stabilizers",
+        desc: "Heavy-duty oil-cooled stabilizers designed for high-load applications, ensuring superior voltage regulation and thermal efficiency.",
+        specs: [
+          "Power Range: 5kVA - 5000kVA",
+          "Cooling: Oil Immersion",
+          "Voltage Accuracy: ±1%",
+          "Phase: Single/Three Phase",
+          "Application: Industrial Plants, HVAC Systems, Medical Equipment",
+          "Features: Digital Metering, Overload & Short Circuit Protection",
+        ],
+        img: Servo1,
+        brochureUrl: sential, // Default brochure for servo stabilizers
+      },
+      {
+        title: "Air Cooled Servo Stabilizers",
+        desc: "Compact and efficient air-cooled stabilizers for commercial and IT infrastructure, offering reliable power protection.",
+        specs: [
+          "Power Range: 5kVA - 500kVA",
+          "Cooling: Natural/Forced Air",
+          "Voltage Accuracy: ±1%",
+          "Phase: Single/Three Phase",
+          "Application: Data Centers, Offices, Laboratories",
+          "Features: Digital Display, Fast Response, Overload Protection",
+        ],
+        img: Servo2,
+        brochureUrl: sential, // Default brochure for servo stabilizers
+      },
     ],
     Transformers: [
       {
-    title: "Distribution Transformers",
-    desc: "Reliable and efficient transformers designed for safe power distribution in commercial and industrial sectors.",
-    specs: [
-      "Capacity: 10kVA - 5000kVA",
-      "Type: Oil-Filled/Dry Type",
-      "Cooling: ONAN/ONAF",
-      "Phase: Three Phase",
-      "Application: Power Distribution, Utilities, Industries",
-      "Standards: IS 1180, IEC 60076"
+        title: "Distribution Transformers",
+        desc: "Reliable and efficient transformers designed for safe power distribution in commercial and industrial sectors.",
+        specs: [
+          "Capacity: 10kVA - 5000kVA",
+          "Type: Oil-Filled/Dry Type",
+          "Cooling: ONAN/ONAF",
+          "Phase: Three Phase",
+          "Application: Power Distribution, Utilities, Industries",
+          "Standards: IS 1180, IEC 60076",
+        ],
+        img: Trans1,
+        brochureUrl: sential, // Default brochure for transformers
+      },
+      {
+        title: "Power Transformers",
+        desc: "Heavy-duty power transformers designed for high voltage transmission with superior energy efficiency and performance.",
+        specs: [
+          "Capacity: 5MVA - 500MVA",
+          "Type: Oil-Immersed",
+          "Cooling: ONAF/OFWF",
+          "Phase: Three Phase",
+          "Application: Transmission, Generation Plants, Substations",
+          "Standards: IEC 60076, ANSI",
+        ],
+        img: Trans2,
+        brochureUrl: sential, // Default brochure for transformers
+      },
+      {
+        title: "Cast Resin Transformers",
+        desc: "Eco-friendly, low-maintenance dry-type transformers ideal for commercial and indoor installations.",
+        specs: [
+          "Capacity: 100kVA - 2500kVA",
+          "Type: Epoxy Resin Encapsulated",
+          "Cooling: Air Natural (AN)",
+          "Phase: Three Phase",
+          "Application: Indoor, Renewable, Commercial Buildings",
+          "Standards: IEC 60076-11",
+        ],
+        img: Trans3,
+        brochureUrl: sential, // Default brochure for transformers
+      },
+      {
+        title: "Unitized Package Substation",
+        desc: "Compact and factory-built substations designed for fast installation, providing safe and efficient power distribution.",
+        specs: [
+          "Voltage Rating: Up to 36kV",
+          "Integrated Transformer, Switchgear & Protection",
+          "Compact Outdoor Design",
+          "Plug-and-Play Setup",
+          "Application: Industrial, Commercial & Utility",
+          "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized",
+        ],
+        img: Panel4,
+        brochureUrl: sential, // Default brochure for transformers
+      },
     ],
-    img: Trans1,
-    brochureUrl: sential // Default brochure for transformers
-  },
-  {
-    title: "Power Transformers",
-    desc: "Heavy-duty power transformers designed for high voltage transmission with superior energy efficiency and performance.",
-    specs: [
-      "Capacity: 5MVA - 500MVA",
-      "Type: Oil-Immersed",
-      "Cooling: ONAF/OFWF",
-      "Phase: Three Phase",
-      "Application: Transmission, Generation Plants, Substations",
-      "Standards: IEC 60076, ANSI"
-    ],
-    img: Trans2,
-    brochureUrl: sential // Default brochure for transformers
-  },
-  {
-    title: "Cast Resin Transformers",
-    desc: "Eco-friendly, low-maintenance dry-type transformers ideal for commercial and indoor installations.",
-    specs: [
-      "Capacity: 100kVA - 2500kVA",
-      "Type: Epoxy Resin Encapsulated",
-      "Cooling: Air Natural (AN)",
-      "Phase: Three Phase",
-      "Application: Indoor, Renewable, Commercial Buildings",
-      "Standards: IEC 60076-11"
-    ],
-    img: Trans3,
-    brochureUrl: sential // Default brochure for transformers
-  },
-  {
-    title: "Unitized Package Substation",
-    desc: "Compact and factory-built substations designed for fast installation, providing safe and efficient power distribution.",
-    specs: [
-      "Voltage Rating: Up to 36kV",
-      "Integrated Transformer, Switchgear & Protection",
-      "Compact Outdoor Design",
-      "Plug-and-Play Setup",
-      "Application: Industrial, Commercial & Utility",
-      "Certification: ISO 9001, CPCB-4+, Kirloskar Authorized"
-    ],
-    img: Panel4,
-    brochureUrl: sential // Default brochure for transformers
-  }
-    ]
   };
 
   // Reset filters when category changes
@@ -539,7 +558,7 @@ const PowerSolutions = () => {
   return (
     <section id="solutions" className="py-0">
       {/* Hero Image Section moved to the top */}
-      <motion.div 
+      <motion.div
         className="w-full flex justify-center items-center py-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -555,9 +574,9 @@ const PowerSolutions = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         />
       </motion.div>
-      
+
       {/* Breadcrumb Navigation */}
-      <motion.div 
+      <motion.div
         className="bg-gray-50 border-b"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -565,15 +584,19 @@ const PowerSolutions = () => {
       >
         <div className="container mx-auto px-4 md:px-0 py-3">
           <div className="flex items-center text-sm">
-            <Link to="/" className="text-gray-500 hover:text-[#2D6FBA]">Home</Link>
+            <Link to="/" className="text-gray-500 hover:text-[#2D6FBA]">
+              Home
+            </Link>
             <span className="mx-2 text-gray-400">›</span>
-            <Link to="/products" className="text-gray-500 hover:text-[#2D6FBA]">Products</Link>
+            <Link to="/products" className="text-gray-500 hover:text-[#2D6FBA]">
+              Products
+            </Link>
           </div>
         </div>
       </motion.div>
-      
+
       {/* Section Title */}
-      <motion.div 
+      <motion.div
         className="container mx-auto px-4 md:px-0 py-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -587,7 +610,7 @@ const PowerSolutions = () => {
         >
           Power Solutions
         </motion.h2>
-        <motion.div 
+        <motion.div
           className="w-16 h-1 rounded mb-6"
           style={{ background: "#2D6FBA" }}
           initial={{ width: 0 }}
@@ -595,7 +618,7 @@ const PowerSolutions = () => {
           transition={{ delay: 0.8, duration: 0.5 }}
         ></motion.div>
       </motion.div>
-      
+
       {/* Category Navigation */}
       <div className="bg-gray-50 border-b mb-6">
         <div className="container mx-auto px-4 md:px-0 overflow-x-auto">
@@ -605,8 +628,8 @@ const PowerSolutions = () => {
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 className={`whitespace-nowrap py-2 px-1 border-b-2 transition-colors ${
-                  activeCategory === category 
-                    ? "border-[#2D6FBA] text-[#2D6FBA] font-medium" 
+                  activeCategory === category
+                    ? "border-[#2D6FBA] text-[#2D6FBA] font-medium"
                     : "border-transparent text-gray-600 hover:text-[#2D6FBA]"
                 }`}
                 initial={{ opacity: 0, y: -10 }}
@@ -621,18 +644,18 @@ const PowerSolutions = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Main content - remove grid and use full width */}
       <div className="container mx-auto px-4 md:px-0">
         {/* Content takes full width */}
-        <motion.div 
+        <motion.div
           className="w-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 1.0 }}
         >
           <AnimatePresence mode="wait">
-            <motion.div 
+            <motion.div
               key={activeCategory}
               className="grid md:grid-cols-3 gap-6"
               initial={{ opacity: 0 }}
@@ -640,7 +663,9 @@ const PowerSolutions = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              {categoryProducts[activeCategory as keyof typeof categoryProducts].map((product, idx) => (
+              {categoryProducts[
+                activeCategory as keyof typeof categoryProducts
+              ].map((product, idx) => (
                 <PSCard
                   key={`${activeCategory}-${idx}`}
                   title={product.title}
@@ -648,33 +673,43 @@ const PowerSolutions = () => {
                   specs={product.specs}
                   img={product.img}
                   brochureUrl={product.brochureUrl}
-                  hideDownload={["Electrical Panels", "Servo Stabilizers", "Transformers"].includes(activeCategory)}
+                  hideDownload={[
+                    "Electrical Panels",
+                    "Servo Stabilizers",
+                    "Transformers",
+                  ].includes(activeCategory)}
                 />
               ))}
             </motion.div>
           </AnimatePresence>
-          
+
           {/* Simplified empty state */}
-          {categoryProducts[activeCategory as keyof typeof categoryProducts].length === 0 && (
-            <motion.div 
+          {categoryProducts[activeCategory as keyof typeof categoryProducts]
+            .length === 0 && (
+            <motion.div
               className="flex flex-col items-center justify-center py-16"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4 }}
             >
-              <motion.svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="h-16 w-16 text-gray-300 mb-4" 
-                fill="none" 
-                viewBox="0 0 24 24" 
+              <motion.svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-16 w-16 text-gray-300 mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
                 stroke="currentColor"
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                />
               </motion.svg>
-              <motion.h3 
+              <motion.h3
                 className="text-xl font-medium text-gray-900 mb-2"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -682,7 +717,7 @@ const PowerSolutions = () => {
               >
                 No products available
               </motion.h3>
-              <motion.p 
+              <motion.p
                 className="text-gray-500"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -694,15 +729,15 @@ const PowerSolutions = () => {
           )}
         </motion.div>
       </div>
-      
+
       {/* Members of Associations Section */}
-      <motion.div 
+      <motion.div
         className="container mx-auto mt-10 md:mt-20 mb-10 px-4 md:px-0"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.5 }}
       >
-        <motion.div 
+        <motion.div
           className="text-center mb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -712,12 +747,13 @@ const PowerSolutions = () => {
             Members of Associations
           </h3>
           <p className="text-gray-600 mt-4 text-lg">
-            Certified and recognized by leading industry organizations for quality and excellence
+            Certified and recognized by leading industry organizations for
+            quality and excellence
           </p>
         </motion.div>
-        
+
         {/* Association logos sliding gallery */}
-        <motion.div 
+        <motion.div
           className="relative overflow-hidden bg-transparent p-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -726,7 +762,7 @@ const PowerSolutions = () => {
           <div className="relative overflow-hidden">
             <div className="logo-scroll flex items-center gap-12">
               {/* Original set of association member images */}
-              <motion.div 
+              <motion.div
                 className="flex-shrink-0 h-24 w-40 flex items-center justify-center p-3"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -737,8 +773,8 @@ const PowerSolutions = () => {
                   className="h-full w-full object-contain"
                 />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex-shrink-0 h-24 w-40 flex items-center justify-center p-3"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -749,8 +785,8 @@ const PowerSolutions = () => {
                   className="h-full w-full object-contain"
                 />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex-shrink-0 h-24 w-40 flex items-center justify-center p-3"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -761,8 +797,8 @@ const PowerSolutions = () => {
                   className="h-full w-full object-contain"
                 />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex-shrink-0 h-24 w-40 flex items-center justify-center p-3"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -773,8 +809,8 @@ const PowerSolutions = () => {
                   className="h-full w-full object-contain"
                 />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex-shrink-0 h-24 w-40 flex items-center justify-center p-3"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -785,8 +821,8 @@ const PowerSolutions = () => {
                   className="h-full w-full object-contain"
                 />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex-shrink-0 h-24 w-40 flex items-center justify-center p-3"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -799,7 +835,7 @@ const PowerSolutions = () => {
               </motion.div>
 
               {/* Duplicated set for seamless loop */}
-              <motion.div 
+              <motion.div
                 className="flex-shrink-0 h-24 w-40 flex items-center justify-center p-3"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -810,8 +846,8 @@ const PowerSolutions = () => {
                   className="h-full w-full object-contain"
                 />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex-shrink-0 h-24 w-40 flex items-center justify-center p-3"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -822,8 +858,8 @@ const PowerSolutions = () => {
                   className="h-full w-full object-contain"
                 />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex-shrink-0 h-24 w-40 flex items-center justify-center p-3"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -834,8 +870,8 @@ const PowerSolutions = () => {
                   className="h-full w-full object-contain"
                 />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex-shrink-0 h-24 w-40 flex items-center justify-center p-3"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -846,8 +882,8 @@ const PowerSolutions = () => {
                   className="h-full w-full object-contain"
                 />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex-shrink-0 h-24 w-40 flex items-center justify-center p-3"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -858,8 +894,8 @@ const PowerSolutions = () => {
                   className="h-full w-full object-contain"
                 />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex-shrink-0 h-24 w-40 flex items-center justify-center p-3"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -872,33 +908,34 @@ const PowerSolutions = () => {
               </motion.div>
             </div>
           </div>
-          
+
           {/* Gradient overlays for smooth edge effect */}
           <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
           <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-white to-transparent pointer-events-none"></div>
         </motion.div>
-        
+
         {/* Additional certification info */}
-        <motion.div 
+        <motion.div
           className="text-center mt-8 text-gray-600"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.3, duration: 0.5 }}
         >
           <p className="text-sm">
-            Our commitment to quality and excellence is recognized by industry-leading organizations
+            Our commitment to quality and excellence is recognized by
+            industry-leading organizations
           </p>
         </motion.div>
       </motion.div>
-      
+
       {/* Power in Action Section */}
-      <motion.div 
+      <motion.div
         className="container mx-auto mt-16 mb-12 px-4 md:px-0 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.8, duration: 0.6 }}
       >
-        <motion.h2 
+        <motion.h2
           className="text-3xl md:text-4xl font-bold"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -906,7 +943,7 @@ const PowerSolutions = () => {
         >
           Power in Action
         </motion.h2>
-        <motion.div 
+        <motion.div
           className="mx-auto w-24 h-1 bg-black mt-2"
           initial={{ width: 0 }}
           animate={{ width: 96 }}

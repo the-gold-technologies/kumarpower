@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useSectionData } from "@/store/useCMSStore";
 import trust from "@/assets/Seasons (1).png";
 import trust1 from "@/assets/SIS (1).png";
 import trust2 from "@/assets/Vistara 1 (1).png";
@@ -19,6 +20,8 @@ import companyProfile from "./profile.pdf"; // Import PDF file
 import BackgroundVideo from "../BackgroundVideo";
 
 const Hero = () => {
+  const { data } = useSectionData<any>("home", "hero");
+
   // Show overlay after scrolling more than 180px and keep it visible
   const [showOverlay, setShowOverlay] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -29,6 +32,44 @@ const Hero = () => {
     setMounted(true);
     return () => setMounted(false);
   }, []);
+
+  const heading1 = data.headingLine1 || "Trusted Kirloskar Generator Dealer";
+  const heading2 =
+    data.headingLine2 || "Certified Dealer for India’s Power Needs";
+  const subtitle =
+    data.descriptionDesktop ||
+    "Authorized Channel Distributor | ISO 9001:2015 | 500+ Enterprise Clients | 30+ Years of Uninterrupted Excellence";
+  const btn1Text = data.ctaPrimaryLabel || "Explore Power Solutions";
+  const btn1Url = data.ctaPrimaryUrl || "/products";
+  const btn2Text = data.ctaSecondaryLabel || "Download Profile";
+  const profilePdf = data.companyProfilePdf || companyProfile;
+  const trustedByLabel = data.trustedByLabel || "TRUSTED BY";
+
+  const defaultTrustLogos = [
+    { url: trust1, alt: "Tech Innovators" },
+    { url: trust2, alt: "EcoPower Solutions" },
+    { url: trust3, alt: "ManufacturePro" },
+    { url: trust4, alt: "LogiTrans" },
+    { url: ace, alt: "BuildMaster" },
+    { url: claroin, alt: "BuildMaster" },
+    { url: addidas, alt: "BuildMaster" },
+    { url: Comed, alt: "BuildMaster" },
+    { url: Dps, alt: "BuildMaster" },
+    { url: GEPL, alt: "BuildMaster" },
+    {
+      url: "https://res.cloudinary.com/dmhabztbf/image/upload/v1762928655/5d8a7ffc-390a-42d8-bee8-2a5c353e5d05_abj0u1.jpg",
+      alt: "Trusted Partner",
+    },
+    {
+      url: "https://res.cloudinary.com/dmhabztbf/image/upload/v1762928656/68724243-11f2-42ec-85dc-69c153744f3c_n1154o.jpg",
+      alt: "Trusted Client",
+    },
+  ];
+
+  const logoList =
+    Array.isArray(data.logos) && data.logos.length > 0
+      ? data.logos
+      : defaultTrustLogos;
 
   useEffect(() => {
     // Check if it's a mobile device
@@ -64,7 +105,10 @@ const Hero = () => {
     <section id="home" className="relative bg-black lg:bg-white">
       <div className="relative h-[50vh] md:h-[78vh] lg:h-[95vh] overflow-hidden rounded-xl z-1 border shadow-[var(--shadow-glow)]">
         {/* Background video with improved configuration to hide controls */}
-        <div className="absolute left-0 lg:top-0 -top-5 inset-0 w-full h-full md:w-[110vw] md:h-[150vh] lg:h-[110vh] z-0 md:top-[-45vh] md:translate-x-[-5%] md:translate-y-[-5%]" style={{ zIndex: 0 }}>
+        <div
+          className="absolute left-0 lg:top-0 -top-5 inset-0 w-full h-full md:w-[110vw] md:h-[150vh] lg:h-[110vh] z-0 md:top-[-45vh] md:translate-x-[-5%] md:translate-y-[-5%]"
+          style={{ zIndex: 0 }}
+        >
           {mounted && <BackgroundVideo />}
         </div>
 
@@ -85,49 +129,35 @@ const Hero = () => {
           <div className="absolute top-0 left-0 h-full w-full flex flex-col items-center justify-center z-20 p-4">
             <div className="backdrop-blur-xl border border-white/30 rounded-2xl p-4 md:p-8 lg:p-12 shadow-2xl w-full max-w-[90%] sm:max-w-xs md:max-w-lg lg:max-w-2xl flex flex-col items-center space-y-2 md:space-y-8">
               <h1 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-center leading-tight drop-shadow-lg">
-                Trusted Kirloskar Generator Dealer
+                {heading1}
                 <br />
-                Certified Dealer for India’s Power Needs
+                {heading2}
               </h1>
               <p className="text-white/90 text-center text-xs sm:text-sm md:text-lg font-medium">
-                <span className="hidden md:inline">
-                  Authorized Channel Distributor | ISO 9001:2015 | 500+
-                  Enterprise Clients | 30+ Years of Uninterrupted Excellence
-                </span>
-                <span className="md:hidden">
-                  Authorized Channel Distributor
-                  <br />
-                  ISO 9001:2015
-                  <br />
-                  500+ Enterprise Clients
-                  <br />
-                  30+ Years of Excellence
-                </span>
+                {subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-2 w-full justify-center">
                 <Button
                   onClick={() => {
-                    window.location.href = "/products";
+                    window.location.href = btn1Url;
                   }}
                   className="bg-[#2D6FBA] hover:bg-[#22548e] text-white font-semibold px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-lg w-full sm:w-auto text-sm md:text-base"
                 >
-                  Explore Power Solutions&nbsp;{" "}
-                  <span className="ml-1 md:ml-2">→</span>
+                  {btn1Text}&nbsp; <span className="ml-1 md:ml-2">→</span>
                 </Button>
                 <Button
                   variant="outline"
                   className="border border-white/30 text-white bg-white/10 hover:bg-white/20 hover:text-white font-semibold px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-lg w-full sm:w-auto flex items-center justify-center backdrop-blur text-sm md:text-base"
                   onClick={() => {
-                    // Create anchor element to trigger download
                     const link = document.createElement("a");
-                    link.href = companyProfile;
+                    link.href = profilePdf;
                     link.download = "Kumar Power - Company Profile.pdf";
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
                   }}
                 >
-                  Download Profile&nbsp;
+                  {btn2Text}&nbsp;
                   <Download size={16} className="ml-1 md:ml-2" />
                 </Button>
               </div>
@@ -135,127 +165,30 @@ const Hero = () => {
               {/* Trusted By Logos - with sliding animation */}
               <div className="mt-2 md:mt-6 flex flex-col items-center w-full">
                 <span className="text-white text-xs md:text-base font-semibold mb-1 tracking-wide">
-                  TRUSTED BY
+                  {trustedByLabel}
                 </span>
                 <div className="w-full overflow-hidden relative">
                   <div className="flex animate-marquee space-x-4 whitespace-nowrap">
-                    <img
-                      src={trust1}
-                      alt="Tech Innovators"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={trust2}
-                      alt="EcoPower Solutions"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={trust3}
-                      alt="ManufacturePro"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={trust4}
-                      alt="LogiTrans"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={ace}
-                      alt="BuildMaster"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={claroin}
-                      alt="BuildMaster"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={addidas}
-                      alt="BuildMaster"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={Comed}
-                      alt="BuildMaster"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={Dps}
-                      alt="BuildMaster"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={GEPL}
-                      alt="BuildMaster"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src="https://res.cloudinary.com/dmhabztbf/image/upload/v1762928655/5d8a7ffc-390a-42d8-bee8-2a5c353e5d05_abj0u1.jpg"
-                      alt="Trusted Partner"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src="https://res.cloudinary.com/dmhabztbf/image/upload/v1762928656/68724243-11f2-42ec-85dc-69c153744f3c_n1154o.jpg"
-                      alt="Trusted Client"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-
+                    {logoList.map((logo: any, idx: number) => (
+                      <img
+                        key={`logo-1-${idx}`}
+                        src={logo.url || logo}
+                        alt={logo.alt || `Trusted Partner ${idx + 1}`}
+                        className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow px-1"
+                      />
+                    ))}
                     {/* Duplicate set of logos for continuous animation */}
-                    <img
-                      src={trust1}
-                      alt="Tech Innovators"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={trust2}
-                      alt="EcoPower Solutions"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={trust3}
-                      alt="ManufacturePro"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={trust4}
-                      alt="LogiTrans"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={trust5}
-                      alt="BuildMaster"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={trust}
-                      alt="BuildMaster"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={trust6}
-                      alt="BuildMaster"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src={trust7}
-                      alt="BuildMaster"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src="https://res.cloudinary.com/dmhabztbf/image/upload/v1762928655/5d8a7ffc-390a-42d8-bee8-2a5c353e5d05_abj0u1.jpg"
-                      alt="Trusted Partner"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
-                    <img
-                      src="https://res.cloudinary.com/dmhabztbf/image/upload/v1762928656/68724243-11f2-42ec-85dc-69c153744f3c_n1154o.jpg"
-                      alt="Trusted Client"
-                      className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow"
-                    />
+                    {logoList.map((logo: any, idx: number) => (
+                      <img
+                        key={`logo-2-${idx}`}
+                        src={logo.url || logo}
+                        alt={logo.alt || `Trusted Partner ${idx + 1}`}
+                        className="h-8 sm:h-10 md:h-14 w-auto object-contain bg-white rounded shadow px-1"
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
-
-             
             </div>
           </div>
         )}

@@ -16,28 +16,27 @@ import SEO from "@/components/SEO";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-<SEO
+      <SEO
         title="Kirloskar Generator Dealer | Authorized Distributor in Delhi NCR"
         description="Looking for a reliable Kirloskar Generator dealer? Explore affordable prices, expert installation, 24/7 service support & high-efficiency DG sets. Call now for details."
-        
         canonical="https://www.kumarpower.com/"
       />
 
       <Header />
       <main>
         <Hero />
-      
+
         <About />
         <GeneratorRange />
         <CTASection />
         <PowerSolutions />
-        
+
         <UseCases />
         <Gallery />
         <Testimonials />
         <BlogSection />
-        
-      <Footer />
+
+        <Footer />
       </main>
     </div>
   );
