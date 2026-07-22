@@ -107,7 +107,7 @@ export function useSectionData<T>(
   const error = pageState?.error ?? null;
   const sectionContent = sectionType
     ? pageState?.sections?.[sectionType]
-    : pageState?.sections;
+    : (pageState?.sections?.[pageSlug] ?? pageState?.sections);
 
   const data = (
     sectionContent

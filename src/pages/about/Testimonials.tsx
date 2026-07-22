@@ -27,11 +27,13 @@ import Portfolio from "@/assets/Brochure/Portfolio.pdf";
 import SEO from "@/components/SEO";
 
 const Testimonials = () => {
-  const { data: rawCMSData } = useSectionData<any>("testimonials", "testimonials");
+  const { data: rawCMSData } = useSectionData<any>("testimonials");
   const cmsData = rawCMSData || {};
 
-  const heroHeading = cmsData.heroHeading || "POWERING INDIA'S SUCCESS STORIES";
-  const heroSubtitle = cmsData.heroSubtitle || "Testimonials from industry leaders";
+  const heroHeadingLine1 = cmsData.heroHeadingLine1 || "POWERING INDIA'S";
+  const heroHeadingLine2 = cmsData.heroHeadingLine2 || "SUCCESS STORIES";
+  const heroSubtitle =
+    cmsData.heroSubtitle || "Testimonials from industry leaders";
   const heroBgImage = cmsData.heroBgImage || testimonial;
 
   const defaultTestimonials = [
@@ -40,14 +42,16 @@ const Testimonials = () => {
       authorName: "Khushi Aggarwal",
       roleCompany: "Founder, Platter Me Crazy",
       logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1761902468/Screenshot_2025-10-31_144115_lybhem.png",
-      quote: "I, Khushi Aggarwal, Founder of Platter Me Crazy, a brand synonymous with culinary artistry and luxury dining experiences. We curate exquisite charcuterie boards and handcrafted artisanal foods that elevate every occasion into a memorable indulgence. Our signature creations include gourmet flavoured butters, silky-smooth hummus blends, and wholesome baked crisps, each crafted with uncompromising freshness and zero preservatives. Whether for intimate soirées, premium gifting, or grand corporate gatherings, we bring an unmatched blend of flavor, finesse and sophistication to the table.",
+      quote:
+        "I, Khushi Aggarwal, Founder of Platter Me Crazy, a brand synonymous with culinary artistry and luxury dining experiences. We curate exquisite charcuterie boards and handcrafted artisanal foods that elevate every occasion into a memorable indulgence. Our signature creations include gourmet flavoured butters, silky-smooth hummus blends, and wholesome baked crisps, each crafted with uncompromising freshness and zero preservatives. Whether for intimate soirées, premium gifting, or grand corporate gatherings, we bring an unmatched blend of flavor, finesse and sophistication to the table.",
     },
     {
       id: "test-2",
       authorName: "Kaustubh Jain",
       roleCompany: "TEAM Construction Chemicals (TEAMCC)",
       logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1761902466/Screenshot_2025-10-31_144303_wgqqaq.png",
-      quote: "I am Kaustubh Jain representing the category marble adhesives and coatings. At TEAMCC we specialise in high-performance epoxy adhesives, polyester adhesives, tile adhesives and marble coatings. I have had the pleasure of knowing Mr. Jasjot Singh, and I can confidently say he is a true professional in the generator industry. Representing the trusted Kirloskar brand, Jasjot ensures top-quality products backed by exceptional service. His deep knowledge of power solutions, combined with his commitment to delivering the right generator for every requirement, makes him a go-to expert.",
+      quote:
+        "I am Kaustubh Jain representing the category marble adhesives and coatings. At TEAMCC we specialise in high-performance epoxy adhesives, polyester adhesives, tile adhesives and marble coatings. I have had the pleasure of knowing Mr. Jasjot Singh, and I can confidently say he is a true professional in the generator industry. Representing the trusted Kirloskar brand, Jasjot ensures top-quality products backed by exceptional service. His deep knowledge of power solutions, combined with his commitment to delivering the right generator for every requirement, makes him a go-to expert.",
       dateText: "Kaustubh Jain / BNI Lakshay",
     },
     {
@@ -55,7 +59,8 @@ const Testimonials = () => {
       authorName: "Atul Jewellers",
       roleCompany: "Proprietor, New Delhi",
       logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1761902462/Screenshot_2025-10-31_144354_iiu1nu.png",
-      quote: "We at Atul Jewellers are engaged in retail & wholesale of precious gemstones, diamonds & fine jewellery for almost five decades. We are the only jewellery house in Delhi, with in-house state of art gem testing & diamond grading laboratory, and we also provide this facility to almost 500 retailers across Delhi NCR. I wish to record our appreciation and acknowledgement, for R.S. Kumar of Kumar Generator House, who has provided gensets for our new store at Defence Colony. Mr. Kumar and his team is extremely professional in their approach.",
+      quote:
+        "We at Atul Jewellers are engaged in retail & wholesale of precious gemstones, diamonds & fine jewellery for almost five decades. We are the only jewellery house in Delhi, with in-house state of art gem testing & diamond grading laboratory, and we also provide this facility to almost 500 retailers across Delhi NCR. I wish to record our appreciation and acknowledgement, for R.S. Kumar of Kumar Generator House, who has provided gensets for our new store at Defence Colony. Mr. Kumar and his team is extremely professional in their approach.",
       dateText: "Dated: 28th Dec. 2018",
     },
     {
@@ -63,7 +68,8 @@ const Testimonials = () => {
       authorName: "Brown Gold",
       roleCompany: "Bharat Anand, Director",
       logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1761902474/Gemini_Generated_Image_1je1r11je1r11je1_ksybnh.png",
-      quote: "We at Brown Gold are a team of young and dynamic interior designers. We would like to place on record our appreciation for Mr. R. S. Kumar of Kumar Generator House. We had taken their services for our 40 KVA Kirloskar generator & a small genset of 7 KVA. We would like to take this opportunity to thank you for providing excellent advice, excellent products & excellent service.",
+      quote:
+        "We at Brown Gold are a team of young and dynamic interior designers. We would like to place on record our appreciation for Mr. R. S. Kumar of Kumar Generator House. We had taken their services for our 40 KVA Kirloskar generator & a small genset of 7 KVA. We would like to take this opportunity to thank you for providing excellent advice, excellent products & excellent service.",
       dateText: "Bharat Anand, Director, Brown Gold",
     },
     {
@@ -71,14 +77,16 @@ const Testimonials = () => {
       authorName: "RENT IT BAE",
       roleCompany: "Luxury Fashion Rental Service",
       logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1761902462/Screenshot_2025-10-31_144806_gklejh.png",
-      quote: "RENT IT BAE is a luxury fashion rental service offering Ethnic, Western & Accessories from designer labels. We highly appreciate the fast and seamless service provided by your company. The installation of inverters for RENT IT BAE's South Delhi Flagship Store at Greater Kailash seemed a fluid task with your service.",
+      quote:
+        "RENT IT BAE is a luxury fashion rental service offering Ethnic, Western & Accessories from designer labels. We highly appreciate the fast and seamless service provided by your company. The installation of inverters for RENT IT BAE's South Delhi Flagship Store at Greater Kailash seemed a fluid task with your service.",
     },
     {
       id: "test-6",
       authorName: "K.K. Setia",
       roleCompany: "Olympus, Intown Realtors Pvt Ltd",
       logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1761902462/Screenshot_2025-10-31_145022_ffeb43.png",
-      quote: "I K.K. Setia, Director of Intown Realtors, have been in commercial Real Estate business for the last 18 years. I recently needed a generator for my Sector 18 office building and reached out to Mr. Manjot Singh Kumar. His team promptly inspected the site, provided a tailored solution, and even assisted with necessary approvals.",
+      quote:
+        "I K.K. Setia, Director of Intown Realtors, have been in commercial Real Estate business for the last 18 years. I recently needed a generator for my Sector 18 office building and reached out to Mr. Manjot Singh Kumar. His team promptly inspected the site, provided a tailored solution, and even assisted with necessary approvals.",
       dateText: "3rd March, 2025",
     },
     {
@@ -86,14 +94,16 @@ const Testimonials = () => {
       authorName: "Shivani Saini",
       roleCompany: "Owner, Anytime Fitness",
       logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1762064945/Screenshot_2025-11-02_115831_lgqzrn.png",
-      quote: "During the setting up of Anytime Fitness Sec 29, Gurugram, I got the reference of Mr Jasjot Singh of M/s Kumar Generator House. I write this testimonial to express my deep gratitude to Mr Jasjot Singh for guiding me towards the trusted Kirloskar Brand. The equipment is top notch and customer support has been outstanding.",
+      quote:
+        "During the setting up of Anytime Fitness Sec 29, Gurugram, I got the reference of Mr Jasjot Singh of M/s Kumar Generator House. I write this testimonial to express my deep gratitude to Mr Jasjot Singh for guiding me towards the trusted Kirloskar Brand. The equipment is top notch and customer support has been outstanding.",
       dateText: "26 Sep 25 / SCO Market, Sec 29, Gurugram",
     },
   ];
 
-  const testimonialsList = (Array.isArray(cmsData.testimonials) && cmsData.testimonials.length > 0)
-    ? cmsData.testimonials
-    : defaultTestimonials;
+  const testimonialsList =
+    Array.isArray(cmsData.testimonials) && cmsData.testimonials.length > 0
+      ? cmsData.testimonials
+      : defaultTestimonials;
 
   const defaultLogos = [
     { url: trust, alt: "Seasons" },
@@ -111,13 +121,16 @@ const Testimonials = () => {
     { url: ace, alt: "Ace Construction" },
     { url: claroin, alt: "Clarion" },
   ];
-  const clientLogos = (Array.isArray(cmsData.clientLogos) && cmsData.clientLogos.length > 0)
-    ? cmsData.clientLogos
-    : defaultLogos;
+  const clientLogos =
+    Array.isArray(cmsData.clientLogos) && cmsData.clientLogos.length > 0
+      ? cmsData.clientLogos
+      : defaultLogos;
 
-  const storiesTitle = cmsData.storiesTitle || cmsData.sectionTitle || "Client Success Stories";
+  const storiesTitle =
+    cmsData.storiesTitle || cmsData.sectionTitle || "Client Success Stories";
   const filterText = cmsData.filterText || "Filter by industry...";
-  const trustedTitle = cmsData.trustedTitle || "Trusted by India's Leading Organizations";
+  const trustedTitle =
+    cmsData.trustedTitle || "Trusted by India's Leading Organizations";
 
   const stat1Num = cmsData.stat1Num || "100+";
   const stat1Text = cmsData.stat1Text || "Video Testimonials";
@@ -126,9 +139,13 @@ const Testimonials = () => {
   const stat3Num = cmsData.stat3Num || "10000+";
   const stat3Text = cmsData.stat3Text || "Installations Nationwide";
 
-  const ctaTitle = cmsData.ctaTitle || "Ready to join India's most reliable power network?";
-  const ctaDesc = cmsData.ctaDesc || "From hospitals to data centers, from factories to airports — Kumar power delivers uninterrupted power solutions tailored to your needs.";
-  const ctaBtnText = cmsData.ctaBtnText || cmsData.ctaBtnLabel || "Request Consultation";
+  const ctaTitle =
+    cmsData.ctaTitle || "Ready to join India's most reliable power network?";
+  const ctaDesc =
+    cmsData.ctaDesc ||
+    "From hospitals to data centers, from factories to airports — Kumar power delivers uninterrupted power solutions tailored to your needs.";
+  const ctaBtnText =
+    cmsData.ctaBtnText || cmsData.ctaBtnLabel || "Request Consultation";
   const brochureBtnText = cmsData.brochureBtnText || "Download Brochure";
   const whatsappText = cmsData.whatsappText || "WhatsApp Support";
   const helplineLabel = cmsData.helplineLabel || "Helpline";
@@ -188,11 +205,11 @@ const Testimonials = () => {
           <div className="mb-6">
             <div className="border-l-4 border-[#2D6FBA] pl-4">
               <h2 className="text-4xl font-bold leading-tight">
-                {heroHeading}
+                {heroHeadingLine1}
+                <br />
+                {heroHeadingLine2}
               </h2>
-              <p className="mt-2 text-gray-200">
-                {heroSubtitle}
-              </p>
+              <p className="mt-2 text-gray-200">{heroSubtitle}</p>
             </div>
           </div>
         </div>
@@ -225,7 +242,10 @@ const Testimonials = () => {
           {/* Testimonial Grid - Dynamic CMS Testimonials */}
           <div className="grid md:grid-cols-2 gap-6">
             {testimonialsList.map((item: any, idx: number) => (
-              <div key={item.id || idx} className="border rounded-lg overflow-hidden">
+              <div
+                key={item.id || idx}
+                className="border rounded-lg overflow-hidden"
+              >
                 <div className="p-4">
                   <div className="flex items-center mb-4">
                     {item.logo && (
@@ -236,7 +256,9 @@ const Testimonials = () => {
                       />
                     )}
                     <div>
-                      <h4 className="font-semibold text-2xl">{item.authorName}</h4>
+                      <h4 className="font-semibold text-2xl">
+                        {item.authorName}
+                      </h4>
                       <p className="text-xs text-gray-600">
                         {item.roleCompany || item.role}
                       </p>
@@ -278,32 +300,28 @@ const Testimonials = () => {
 
           {/* Trusted By Section */}
           <div className="text-center mb-8">
-            <p className="text-2xl mb-6">
-              {trustedTitle}
-            </p>
+            <p className="text-2xl mb-6">{trustedTitle}</p>
             <div className="logos-container">
               <div className="logos-slide">
-                {clientLogos.concat(clientLogos).map((logoItem: any, idx: number) => (
-                  <div key={idx} className="logo-item">
-                    <img
-                      src={logoItem.url || logoItem}
-                      alt={logoItem.alt || "Trusted Client"}
-                      className="max-h-16 w-auto"
-                    />
-                  </div>
-                ))}
+                {clientLogos
+                  .concat(clientLogos)
+                  .map((logoItem: any, idx: number) => (
+                    <div key={idx} className="logo-item">
+                      <img
+                        src={logoItem.url || logoItem}
+                        alt={logoItem.alt || "Trusted Client"}
+                        className="max-h-16 w-auto"
+                      />
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
 
           {/* CTA Section */}
           <div className="text-center mt-16">
-            <h3 className="text-2xl font-bold mb-2">
-              {ctaTitle}
-            </h3>
-            <p className="text-sm max-w-2xl mx-auto mb-6">
-              {ctaDesc}
-            </p>
+            <h3 className="text-2xl font-bold mb-2">{ctaTitle}</h3>
+            <p className="text-sm max-w-2xl mx-auto mb-6">{ctaDesc}</p>
 
             <div className="flex flex-wrap justify-center gap-4">
               <button
@@ -353,7 +371,10 @@ const Testimonials = () => {
                 </div>
                 <span>{whatsappText}</span>
               </a>
-              <a href={`tel:${helplinePhone}`} className="flex items-center text-sm">
+              <a
+                href={`tel:${helplinePhone}`}
+                className="flex items-center text-sm"
+              >
                 <div className="bg-[#2D6FBA] h-8 w-8 rounded-full flex items-center justify-center mr-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -370,7 +391,9 @@ const Testimonials = () => {
                     />
                   </svg>
                 </div>
-                <span>{helplineLabel}: {helplinePhone}</span>
+                <span>
+                  {helplineLabel}: {helplinePhone}
+                </span>
               </a>
             </div>
           </div>
