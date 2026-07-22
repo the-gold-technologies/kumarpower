@@ -1,21 +1,6 @@
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
-import OurProfileImg from "@/assets/ourprofile1.png";
-import Welding from "@/assets/welding.png";
-import Contract from "@/assets/contract.png";
-import iso from "@/assets/Contact/iso.jpeg";
-import Nation from "@/assets/Nation.png";
-import rajvinder from "@/assets/rajvinder.png";
-import manjot from "@/assets/manjot.png";
-import jagjit from "@/assets/jagjit.png";
-import isoprof from "@/assets/iso profile.png";
-import kirlo from "@/assets/kirlosksar profile.png";
-import gen from "@/assets/Range5.png";
-import earth from "@/assets/earth.png";
-import certificate from "@/assets/Certificate 1.png";
-import certi from "@/assets/certi1.png";
-import isocerti from "@/assets/Testimonial/iso certificate.jpeg";
 import SEO from "@/components/SEO";
 import { useSectionData } from "@/store/useCMSStore";
 
@@ -29,145 +14,56 @@ const About = () => {
   const cta = pageData.cta || {};
 
   // Hero Section fields
-  const heroTitle = hero.title || "Know About Kumar Power";
-  const heroSubtitle =
-    hero.subtitle || "–Trusted Name in Power Solutions Industry";
-  const heroImage = hero.image || OurProfileImg;
-  const paragraph1 =
-    hero.paragraph1 ||
-    "Kumar Power is a premier Kirloskar-certified power partner with over 30+ years of excellence in providing comprehensive power solutions across India. Established in 1995, we have grown to become one of the most trusted names in power generation equipment and services.";
-  const paragraph2 =
-    hero.paragraph2 ||
-    "Our expertise spans across sales, installation, commissioning, and maintenance of diesel generators, ensuring uninterrupted power supply for critical operations, our expertise spans across SITC (Supply, Installation, Testing & Commissioning) and end-to-end power solutions..";
-  const paragraph3 =
-    hero.paragraph3 ||
-    "As an authorized dealer and service provider for Kirloskar Green generators, we bring the reliability and efficiency of world-class power solutions to our clients. Our team of certified engineers and technicians ensures that every installation meets the highest standards of performance and safety.";
-  const paragraph4 =
-    hero.paragraph4 ||
-    "With a customer-first approach and commitment to excellence, Kumar Power has successfully delivered over 10000+ power solutions across the country, building lasting relationships with our clients through exceptional service and support.";
+  const heroTitle = hero.title || "";
+  const heroSubtitle = hero.subtitle || "";
+  const heroImage = hero.image || "";
+  const paragraph1 = hero.paragraph1 || "";
+  const paragraph2 = hero.paragraph2 || "";
+  const paragraph3 = hero.paragraph3 || "";
+  const paragraph4 = hero.paragraph4 || "";
 
   // Story Section fields
-  const storyTitle = story.storyTitle || "Our Story";
-  const storySub =
-    story.storySub ||
-    "From humble beginnings to becoming India's premier power solutions provider, our journey has been defined by innovation, quality, and unwavering commitment to excellence.";
-  const defaultTimeline = [
-    {
-      year: "1995",
-      title: "Foundation",
-      description:
-        "Kumar Power was established with a vision to provide reliable power solutions to businesses across India.",
-      image: gen,
-    },
-    {
-      year: "2001",
-      title: "Kirloskar Partnership",
-      description:
-        "Became an authorized partner of Kirloskar, expanding our product range and technical capabilities.",
-      image: certificate,
-    },
-    {
-      year: "2012",
-      title: "ISO Certification",
-      description:
-        "Achieved ISO 9001:2015 certification, validating our commitment to quality management systems.",
-      image: iso,
-    },
-    {
-      year: "2020",
-      title: "Nationwide Expansion",
-      description:
-        "Expanded operations to all major cities in India with service centers and technical support teams.",
-      image: earth,
-    },
-  ];
+  const storyTitle = story.storyTitle || "";
+  const storySub = story.storySub || "";
+
   const timeline =
     Array.isArray(story.timeline) && story.timeline.length > 0
       ? story.timeline
-      : defaultTimeline;
+      : [];
 
   // Leadership Section fields
-  const teamTitle =
-    leadership.teamTitle || "Meet the Visionaries Behind the Power";
-  const defaultTeam = [
-    {
-      name: "RS KUMAR",
-      role: "(Founder)",
-      bio: "RS Kumar is the Founder of Kumar Generator House, a company he established with a vision to provide reliable and sustainable power solutions. With decades of industry experience,he has been the driving force behind the company's growth and success. His leadership is centered on innovation, customer satisfaction, and a commitment to excellence. Under his guidance, Kumar Generator House has become a trusted name in the industry, focused on empowering businesses and communities with top-quality solutions.",
-      image: rajvinder,
-    },
-    {
-      name: "MS KUMAR",
-      role: "(Director)",
-      bio: "MS Kumar is the director of Kumar Generator House, a company with a rich legacy of over 30 years in providing reliable power solutions. With a keen focus on growth, innovation, and sustainability, Manjot leads the company towards achieving excellence in every aspect of its operations. His leadership style emphasizes customer satisfaction, operational efficiency, and long-term business relationships, ensuring that Kumar Generator House remains a trusted name in the industry.",
-      image: manjot,
-    },
-    {
-      name: "JS KUMAR",
-      role: "(Director)",
-      bio: "JS Kumar is a director at Kumar Generator House, where he plays a pivotal role in overseeing business strategy, operations, and growth initiatives. With a focus on enhancing internal processes and fostering partnerships, He is committed to driving the company's expansion and ensuring the delivery of efficient, high-quality service to clients. His strategic approach and dedication to innovation continue to shape the company's success in the power solutions sector.",
-      image: jagjit,
-    },
-  ];
+  const teamTitle = leadership.teamTitle || "";
+
   const team =
     Array.isArray(leadership.team) && leadership.team.length > 0
       ? leadership.team
-      : defaultTeam;
+      : [];
 
   // Quality Section fields
-  const qualityTitle = quality.qualityTitle || "Our Commitment to Quality";
-  const defaultQualityCards = [
-    {
-      title: "Timely Delivery",
-      description:
-        "We understand the critical nature of power solutions and ensure on-time delivery and installation.",
-      path: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
-    },
-    {
-      title: "Expert Engineering",
-      description:
-        "Our team of qualified engineers ensures robust design and flawless implementation of all projects.",
-      path: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
-    },
-    {
-      title: "Business Continuity",
-      description:
-        "Our solutions are designed to provide uninterrupted power supply, ensuring your operations never stop.",
-      path: "M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2",
-    },
-  ];
+  const qualityTitle = quality.qualityTitle || "";
+
   const qualityCards =
     Array.isArray(quality.cards) && quality.cards.length > 0
       ? quality.cards
       : Array.isArray(quality.pillars) && quality.pillars.length > 0
         ? quality.pillars
-        : defaultQualityCards;
-  const policyTitle = quality.policyTitle || "Quality Policy Statement";
-  const policyStatement =
-    quality.policyStatement ||
-    "At Kumar Power, we are committed to delivering world-class power products and turnkey solutions that exceed customer expectations. Our robust design, meticulous manufacturing, and comprehensive testing ensure reliability and performance in every installation.";
-  const bullet1 =
-    quality.bullet1 || "ISO 9001:2015 certified quality management system";
-  const bullet2 =
-    quality.bullet2 || "Rigorous testing protocols for all equipment";
-  const bullet3 =
-    quality.bullet3 || "Continuous improvement through customer feedback";
-  const bullet4 =
-    quality.bullet4 || "Regular training and skill enhancement for our team";
-  const isoCertImg = quality.isoCertImg || iso;
-  const kirloskarCertImg =
-    quality.kirloskarCertImg ||
-    "https://res.cloudinary.com/dmhabztbf/image/upload/v1757064221/Screenshot_2025-06-02_at_12.44.43_PM_lxdedo_tuh3qm.png";
-  const isoCertTitle = quality.isoCertTitle || "ISO 9001:2015";
-  const kirloskarCertTitle = quality.kirloskarCertTitle || "Kirloskar Authorized";
+        : [];
+  const policyTitle = quality.policyTitle || "";
+  const policyStatement = quality.policyStatement || "";
+  const bullet1 = quality.bullet1 || "";
+  const bullet2 = quality.bullet2 || "";
+  const bullet3 = quality.bullet3 || "";
+  const bullet4 = quality.bullet4 || "";
+  const isoCertImg = quality.isoCertImg || "";
+  const kirloskarCertImg = quality.kirloskarCertImg || "";
+  const isoCertTitle = quality.isoCertTitle || "";
+  const kirloskarCertTitle = quality.kirloskarCertTitle || "";
 
   // CTA Section fields
-  const ctaTitle = cta.ctaTitle || "Ready to Power Your Business?";
-  const ctaDesc =
-    cta.ctaDesc ||
-    "Contact us today for a consultation and discover how Kumar Generator House can provide reliable power solutions tailored to your needs.";
-  const ctaBtnLabel = cta.ctaBtnLabel || "Get in Touch →";
-  const ctaBtnUrl = cta.ctaBtnUrl || "/contact";
+  const ctaTitle = cta.ctaTitle || "";
+  const ctaDesc = cta.ctaDesc || "";
+  const ctaBtnLabel = cta.ctaBtnLabel || "";
+  const ctaBtnUrl = cta.ctaBtnUrl || "";
 
   return (
     <>
@@ -235,17 +131,8 @@ const About = () => {
                   </div>
                   <div className={idx % 2 === 1 ? "md:order-1" : ""}>
                     <img
-                      src={
-                        item.image ||
-                        (idx === 0
-                          ? gen
-                          : idx === 1
-                            ? certificate
-                            : idx === 2
-                              ? iso
-                              : earth)
-                      }
-                      alt={item.title}
+                      src={item.image || ""}
+                      alt={item.title || ""}
                       className="w-full object-cover rounded-lg"
                     />
                   </div>
@@ -267,11 +154,8 @@ const About = () => {
                   className="bg-white rounded-xl shadow-lg flex flex-col items-center px-6 py-8 w-full border border-gray-200"
                 >
                   <img
-                    src={
-                      member.image ||
-                      (idx === 0 ? rajvinder : idx === 1 ? manjot : jagjit)
-                    }
-                    alt={member.name}
+                    src={member.image || ""}
+                    alt={member.name || ""}
                     className="h-[57vh] object-cover mb-4"
                   />
                   <h3 className="text-xl font-bold uppercase mb-1 text-center">

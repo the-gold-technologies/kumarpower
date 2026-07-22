@@ -1,7 +1,7 @@
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion"; // Import framer-motion
 import { useSectionData } from "@/store/useCMSStore";
 import gallery from "@/assets/Gallery1.png";
@@ -129,6 +129,8 @@ import award4 from "@/assets/award 4.png";
 import ps from "@/assets/ps2.png";
 import Portfolio from "@/assets/Brochure/PortfolioProfile.pdf";
 
+// Diwali Party images (all in 'events' category)
+
 // New award images from Cloudinary
 const award5 =
   "https://res.cloudinary.com/dmhabztbf/image/upload/v1763018711/gallery4_nwutsh_wg8ygw.png";
@@ -229,16 +231,240 @@ const SimpleImageGrid = ({ images }: { images: GalleryImage[] }) => {
   );
 };
 
+const fallbackGalleryImages: GalleryImage[] = [
+  // Award Ceremony images
+
+  { id: 3, src: award3, alt: "Industry Leadership Award", category: "Award" },
+  {
+    id: 4,
+    src: award4,
+    alt: "Best Power Solutions Provider",
+    category: "Award",
+  },
+  {
+    id: 5,
+    src: award5,
+    alt: "Kumar Power Industry Recognition",
+    category: "Award",
+  },
+  {
+    id: 6,
+    src: award6,
+    alt: "Kumar Power Achievement Award",
+    category: "Award",
+  },
+
+  // Diwali Party images (all in 'events' category)
+  { id: 101, src: diwali4, alt: "Diwali Party 4", category: "events" },
+  { id: 102, src: diwali5, alt: "Diwali Party 5", category: "events" },
+  { id: 103, src: diwali6, alt: "Diwali Party 6", category: "events" },
+  { id: 104, src: diwali7, alt: "Diwali Party 7", category: "events" },
+  { id: 106, src: diwali24, alt: "Diwali Party 24", category: "events" },
+  { id: 107, src: diwali28, alt: "Diwali Party 28", category: "events" },
+  { id: 108, src: diwali29, alt: "Diwali Party 29", category: "events" },
+  { id: 109, src: diwali30, alt: "Diwali Party 30", category: "events" },
+  { id: 110, src: diwali31, alt: "Diwali Party 31", category: "events" },
+  { id: 111, src: diwali32, alt: "Diwali Party 32", category: "events" },
+  { id: 112, src: diwali33, alt: "Diwali Party 33", category: "events" },
+  { id: 113, src: diwali53, alt: "Diwali Party 53", category: "events" },
+  { id: 114, src: diwali54, alt: "Diwali Party 54", category: "events" },
+  { id: 115, src: diwali55, alt: "Diwali Party 55", category: "events" },
+  { id: 116, src: diwali56, alt: "Diwali Party 56", category: "events" },
+  { id: 117, src: diwali57, alt: "Diwali Party 57", category: "events" },
+  { id: 118, src: diwali58, alt: "Diwali Party 58", category: "events" },
+  { id: 119, src: diwali59, alt: "Diwali Party 59", category: "events" },
+  { id: 120, src: diwali60, alt: "Diwali Party 60", category: "events" },
+  { id: 121, src: diwali61, alt: "Diwali Party 61", category: "events" },
+  { id: 122, src: diwali62, alt: "Diwali Party 62", category: "events" },
+  { id: 123, src: diwali63, alt: "Diwali Party 63", category: "events" },
+  { id: 124, src: diwali64, alt: "Diwali Party 64", category: "events" },
+  { id: 125, src: diwali65, alt: "Diwali Party 65", category: "events" },
+  { id: 126, src: diwali66, alt: "Diwali Party 66", category: "events" },
+  { id: 127, src: diwali85, alt: "Diwali Party 85", category: "events" },
+  { id: 128, src: diwali86, alt: "Diwali Party 86", category: "events" },
+  { id: 129, src: diwali87, alt: "Diwali Party 87", category: "events" },
+  { id: 130, src: diwali88, alt: "Diwali Party 88", category: "events" },
+  { id: 131, src: diwali89, alt: "Diwali Party 89", category: "events" },
+  { id: 132, src: diwali90, alt: "Diwali Party 90", category: "events" },
+  { id: 133, src: diwali91, alt: "Diwali Party 91", category: "events" },
+  { id: 134, src: diwali92, alt: "Diwali Party 92", category: "events" },
+  { id: 135, src: diwali93, alt: "Diwali Party 93", category: "events" },
+  { id: 136, src: diwali94, alt: "Diwali Party 94", category: "events" },
+  { id: 137, src: diwali95, alt: "Diwali Party 95", category: "events" },
+  { id: 138, src: diwali96, alt: "Diwali Party 96", category: "events" },
+  { id: 139, src: diwali97, alt: "Diwali Party 97", category: "events" },
+  { id: 140, src: diwali98, alt: "Diwali Party 98", category: "events" },
+  { id: 141, src: diwali99, alt: "Diwali Party 99", category: "events" },
+  { id: 142, src: diwali100, alt: "Diwali Party 100", category: "events" },
+  { id: 143, src: diwali105, alt: "Diwali Party 105", category: "events" },
+  // Installation images (all in 'installations' category)
+  // { id: 201, src: instal1, alt: "Installation 1", category: "installations" },
+  { id: 202, src: instal2, alt: "Installation 2", category: "installations" },
+  { id: 203, src: instal3, alt: "Installation 3", category: "installations" },
+  { id: 204, src: instal4, alt: "Installation 4", category: "installations" },
+  { id: 205, src: instal5, alt: "Installation 5", category: "installations" },
+  { id: 206, src: instal6, alt: "Installation 6", category: "installations" },
+  { id: 207, src: instal7, alt: "Installation 7", category: "installations" },
+  { id: 208, src: instal8, alt: "Installation 8", category: "installations" },
+  { id: 209, src: instal9, alt: "Installation 9", category: "installations" },
+  {
+    id: 210,
+    src: instal10,
+    alt: "Installation 10",
+    category: "installations",
+  },
+  {
+    id: 211,
+    src: instal11,
+    alt: "Installation 11",
+    category: "installations",
+  },
+  {
+    id: 213,
+    src: instal13,
+    alt: "Installation 13",
+    category: "installations",
+  },
+  {
+    id: 214,
+    src: instal14,
+    alt: "Installation 14",
+    category: "installations",
+  },
+  {
+    id: 215,
+    src: instal15,
+    alt: "Installation 15",
+    category: "installations",
+  },
+  {
+    id: 216,
+    src: instal16,
+    alt: "Installation 16",
+    category: "installations",
+  },
+  {
+    id: 217,
+    src: instal17,
+    alt: "Installation 17",
+    category: "installations",
+  },
+  {
+    id: 218,
+    src: instal18,
+    alt: "Installation 18",
+    category: "installations",
+  },
+  {
+    id: 219,
+    src: instal19,
+    alt: "Installation 19",
+    category: "installations",
+  },
+  {
+    id: 220,
+    src: instal20,
+    alt: "Installation 20",
+    category: "installations",
+  },
+  {
+    id: 221,
+    src: instal21,
+    alt: "Installation 21",
+    category: "installations",
+  },
+  {
+    id: 222,
+    src: instal22,
+    alt: "Installation 22",
+    category: "installations",
+  },
+  {
+    id: 223,
+    src: instal23,
+    alt: "Installation 23",
+    category: "installations",
+  },
+  {
+    id: 224,
+    src: instal24,
+    alt: "Installation 24",
+    category: "installations",
+  },
+  {
+    id: 225,
+    src: instal25,
+    alt: "Installation 25",
+    category: "installations",
+  },
+  {
+    id: 226,
+    src: instal26,
+    alt: "Installation 26",
+    category: "installations",
+  },
+  {
+    id: 227,
+    src: instal27,
+    alt: "Installation 27",
+    category: "installations",
+  },
+  {
+    id: 228,
+    src: instal28,
+    alt: "Installation 28",
+    category: "installations",
+  },
+];
+
+const fallbackStoryImages: GalleryImage[] = [
+  {
+    id: 9,
+    src: gal1,
+    alt: "Manufacturing facility",
+    category: "factory",
+  },
+  {
+    id: 10,
+    src: gal2,
+    alt: "NTPC Power Plant",
+    category: "installations",
+  },
+  {
+    id: 11,
+    src: gal3,
+    alt: "Cyclone Relief",
+    category: "on-site",
+  },
+  {
+    id: 12,
+    src: gal4,
+    alt: "Eco-Friendly Generators",
+    category: "events",
+  },
+];
+
 const PhotoGallery = () => {
   const { data: rawCMSData } = useSectionData<any>("photo-gallery");
   const cmsData = rawCMSData || {};
 
   const heroHeading =
-    cmsData.heroHeading || cmsData.title || "Explore Our Legacy in Action";
+    cmsData.hero?.heading || cmsData.heroHeading || cmsData.title || "";
   const heroSubtitle =
-    cmsData.heroSubtitle ||
-    cmsData.subtitle ||
-    "A visual showcase of our installations, innovations, and industrial excellence across India";
+    cmsData.hero?.subtitle || cmsData.heroSubtitle || cmsData.subtitle || "";
+  const heroImage = cmsData.hero?.bgImage || "";
+
+  const rawExpTitle = cmsData.experience?.title || "";
+  const expTitleParts = rawExpTitle.split(" ");
+  const experienceTitlePart1 = expTitleParts[0] || "";
+  const experienceTitlePart2 = expTitleParts.slice(1).join(" ");
+  const experienceDesc = cmsData.experience?.description || "";
+  const experienceBtn1Text = cmsData.experience?.btn1Label || "";
+  const experienceBtn1Link = cmsData.experience?.btn1Url || "";
+  const experienceBtn2Text = cmsData.experience?.btn2Label || "";
+  const experienceBtn2Link =
+    cmsData.experience?.btn2Url || cmsData.experience?.profilePdf || "";
+  const expImage = cmsData.experience?.bgImage || "";
 
   const [activeFilter, setActiveFilter] = useState("installations");
   const [searchQuery, setSearchQuery] = useState("");
@@ -246,7 +472,15 @@ const PhotoGallery = () => {
   const [filteredStoryImages, setFilteredStoryImages] = useState<
     GalleryImage[]
   >([]);
-  const [showAllImages, setShowAllImages] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(12);
+
+  const seeMoreLabel = cmsData.seeMoreLabel || "See More";
+  const emptyGalleryMessage =
+    cmsData.emptyGalleryMessage ||
+    "No gallery images found matching your filter criteria.";
+  const emptyGalleryBtnLabel =
+    cmsData.emptyGalleryBtnLabel || "Show Installation Images";
+  const showLessLabel = cmsData.showLessLabel || "Show Less";
 
   const filters = [
     { id: "installations", label: "Installations" },
@@ -254,222 +488,29 @@ const PhotoGallery = () => {
     { id: "Award", label: "Award Ceremony" },
   ];
 
-  const galleryImages: GalleryImage[] = [
-    // Award Ceremony images
+  const galleryImages: GalleryImage[] = useMemo(() => {
+    const cmsPhotos = Array.isArray(cmsData.photos) ? cmsData.photos : [];
+    // Filter out dummy 111-byte blank images from seed
+    const validCmsPhotos = cmsPhotos.filter(
+      (p) => !p.src || !p.src.includes("kaiglbifaeze81525a0m"),
+    );
 
-    { id: 3, src: award3, alt: "Industry Leadership Award", category: "Award" },
-    {
-      id: 4,
-      src: award4,
-      alt: "Best Power Solutions Provider",
-      category: "Award",
-    },
-    {
-      id: 5,
-      src: award5,
-      alt: "Kumar Power Industry Recognition",
-      category: "Award",
-    },
-    {
-      id: 6,
-      src: award6,
-      alt: "Kumar Power Achievement Award",
-      category: "Award",
-    },
-
-    // Diwali Party images (all in 'events' category)
-    { id: 101, src: diwali4, alt: "Diwali Party 4", category: "events" },
-    { id: 102, src: diwali5, alt: "Diwali Party 5", category: "events" },
-    { id: 103, src: diwali6, alt: "Diwali Party 6", category: "events" },
-    { id: 104, src: diwali7, alt: "Diwali Party 7", category: "events" },
-    { id: 106, src: diwali24, alt: "Diwali Party 24", category: "events" },
-    { id: 107, src: diwali28, alt: "Diwali Party 28", category: "events" },
-    { id: 108, src: diwali29, alt: "Diwali Party 29", category: "events" },
-    { id: 109, src: diwali30, alt: "Diwali Party 30", category: "events" },
-    { id: 110, src: diwali31, alt: "Diwali Party 31", category: "events" },
-    { id: 111, src: diwali32, alt: "Diwali Party 32", category: "events" },
-    { id: 112, src: diwali33, alt: "Diwali Party 33", category: "events" },
-    { id: 113, src: diwali53, alt: "Diwali Party 53", category: "events" },
-    { id: 114, src: diwali54, alt: "Diwali Party 54", category: "events" },
-    { id: 115, src: diwali55, alt: "Diwali Party 55", category: "events" },
-    { id: 116, src: diwali56, alt: "Diwali Party 56", category: "events" },
-    { id: 117, src: diwali57, alt: "Diwali Party 57", category: "events" },
-    { id: 118, src: diwali58, alt: "Diwali Party 58", category: "events" },
-    { id: 119, src: diwali59, alt: "Diwali Party 59", category: "events" },
-    { id: 120, src: diwali60, alt: "Diwali Party 60", category: "events" },
-    { id: 121, src: diwali61, alt: "Diwali Party 61", category: "events" },
-    { id: 122, src: diwali62, alt: "Diwali Party 62", category: "events" },
-    { id: 123, src: diwali63, alt: "Diwali Party 63", category: "events" },
-    { id: 124, src: diwali64, alt: "Diwali Party 64", category: "events" },
-    { id: 125, src: diwali65, alt: "Diwali Party 65", category: "events" },
-    { id: 126, src: diwali66, alt: "Diwali Party 66", category: "events" },
-    { id: 127, src: diwali85, alt: "Diwali Party 85", category: "events" },
-    { id: 128, src: diwali86, alt: "Diwali Party 86", category: "events" },
-    { id: 129, src: diwali87, alt: "Diwali Party 87", category: "events" },
-    { id: 130, src: diwali88, alt: "Diwali Party 88", category: "events" },
-    { id: 131, src: diwali89, alt: "Diwali Party 89", category: "events" },
-    { id: 132, src: diwali90, alt: "Diwali Party 90", category: "events" },
-    { id: 133, src: diwali91, alt: "Diwali Party 91", category: "events" },
-    { id: 134, src: diwali92, alt: "Diwali Party 92", category: "events" },
-    { id: 135, src: diwali93, alt: "Diwali Party 93", category: "events" },
-    { id: 136, src: diwali94, alt: "Diwali Party 94", category: "events" },
-    { id: 137, src: diwali95, alt: "Diwali Party 95", category: "events" },
-    { id: 138, src: diwali96, alt: "Diwali Party 96", category: "events" },
-    { id: 139, src: diwali97, alt: "Diwali Party 97", category: "events" },
-    { id: 140, src: diwali98, alt: "Diwali Party 98", category: "events" },
-    { id: 141, src: diwali99, alt: "Diwali Party 99", category: "events" },
-    { id: 142, src: diwali100, alt: "Diwali Party 100", category: "events" },
-    { id: 143, src: diwali105, alt: "Diwali Party 105", category: "events" },
-    // Installation images (all in 'installations' category)
-    // { id: 201, src: instal1, alt: "Installation 1", category: "installations" },
-    { id: 202, src: instal2, alt: "Installation 2", category: "installations" },
-    { id: 203, src: instal3, alt: "Installation 3", category: "installations" },
-    { id: 204, src: instal4, alt: "Installation 4", category: "installations" },
-    { id: 205, src: instal5, alt: "Installation 5", category: "installations" },
-    { id: 206, src: instal6, alt: "Installation 6", category: "installations" },
-    { id: 207, src: instal7, alt: "Installation 7", category: "installations" },
-    { id: 208, src: instal8, alt: "Installation 8", category: "installations" },
-    { id: 209, src: instal9, alt: "Installation 9", category: "installations" },
-    {
-      id: 210,
-      src: instal10,
-      alt: "Installation 10",
-      category: "installations",
-    },
-    {
-      id: 211,
-      src: instal11,
-      alt: "Installation 11",
-      category: "installations",
-    },
-    {
-      id: 213,
-      src: instal13,
-      alt: "Installation 13",
-      category: "installations",
-    },
-    {
-      id: 214,
-      src: instal14,
-      alt: "Installation 14",
-      category: "installations",
-    },
-    {
-      id: 215,
-      src: instal15,
-      alt: "Installation 15",
-      category: "installations",
-    },
-    {
-      id: 216,
-      src: instal16,
-      alt: "Installation 16",
-      category: "installations",
-    },
-    {
-      id: 217,
-      src: instal17,
-      alt: "Installation 17",
-      category: "installations",
-    },
-    {
-      id: 218,
-      src: instal18,
-      alt: "Installation 18",
-      category: "installations",
-    },
-    {
-      id: 219,
-      src: instal19,
-      alt: "Installation 19",
-      category: "installations",
-    },
-    {
-      id: 220,
-      src: instal20,
-      alt: "Installation 20",
-      category: "installations",
-    },
-    {
-      id: 221,
-      src: instal21,
-      alt: "Installation 21",
-      category: "installations",
-    },
-    {
-      id: 222,
-      src: instal22,
-      alt: "Installation 22",
-      category: "installations",
-    },
-    {
-      id: 223,
-      src: instal23,
-      alt: "Installation 23",
-      category: "installations",
-    },
-    {
-      id: 224,
-      src: instal24,
-      alt: "Installation 24",
-      category: "installations",
-    },
-    {
-      id: 225,
-      src: instal25,
-      alt: "Installation 25",
-      category: "installations",
-    },
-    {
-      id: 226,
-      src: instal26,
-      alt: "Installation 26",
-      category: "installations",
-    },
-    {
-      id: 227,
-      src: instal27,
-      alt: "Installation 27",
-      category: "installations",
-    },
-    {
-      id: 228,
-      src: instal28,
-      alt: "Installation 28",
-      category: "installations",
-    },
-  ];
-
-  const storyImages: GalleryImage[] = [
-    {
-      id: 9,
-      src: gal1,
-      alt: "Manufacturing facility",
-      category: "factory",
-    },
-    {
-      id: 10,
-      src: gal2,
-      alt: "NTPC Power Plant",
-      category: "installations",
-    },
-    {
-      id: 11,
-      src: gal3,
-      alt: "Cyclone Relief",
-      category: "on-site",
-    },
-    {
-      id: 12,
-      src: gal4,
-      alt: "Eco-Friendly Generators",
-      category: "events",
-    },
-  ];
+    // If CMS has very few photos (like the initial seed), append static ones so the gallery looks full!
+    // Always append static images to make the gallery look full (12+ images)
+    return [...validCmsPhotos, ...fallbackGalleryImages];
+    return validCmsPhotos;
+  }, [cmsData.photos]);
+  const storyImages: GalleryImage[] = useMemo(() => {
+    const cmsStory = Array.isArray(cmsData.storyImages)
+      ? cmsData.storyImages
+      : [];
+    return [...cmsStory, ...fallbackStoryImages];
+    return cmsStory;
+  }, [cmsData.storyImages]);
 
   // Filter images based on active filter and search query
   useEffect(() => {
-    setShowAllImages(false); // Reset see more on filter/search change
+    setVisibleCount(12); // Reset see more on filter/search change
     const filterImages = () => {
       let filtered = [...galleryImages];
       // Remove the "all" condition since we no longer have it
@@ -502,7 +543,7 @@ const PhotoGallery = () => {
       setFilteredStoryImages(filteredStories);
     };
     filterImages();
-  }, [activeFilter, searchQuery]);
+  }, [activeFilter, searchQuery, galleryImages, storyImages]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -526,7 +567,7 @@ const PhotoGallery = () => {
           </div>
         </div>
         <img
-          src={gallery}
+          src={heroImage}
           alt="Warehouse with yellow shelving"
           className="w-full h-[400px] object-cover"
         />
@@ -589,9 +630,7 @@ const PhotoGallery = () => {
                 exit={{ opacity: 0 }}
                 className="text-center py-20"
               >
-                <p className="text-white text-lg">
-                  No gallery images found matching your filter criteria.
-                </p>
+                <p className="text-white text-lg">{emptyGalleryMessage}</p>
                 <button
                   onClick={() => {
                     setActiveFilter("installations");
@@ -599,7 +638,7 @@ const PhotoGallery = () => {
                   }}
                   className="mt-4 px-4 py-2 bg-[#2D6FBA] text-white rounded-md hover:bg-[#22548e] transition-colors"
                 >
-                  Show Installation Images
+                  {emptyGalleryBtnLabel}
                 </button>
               </motion.div>
             ) : (
@@ -609,31 +648,24 @@ const PhotoGallery = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                <SimpleImageGrid
-                  images={
-                    showAllImages ? filteredImages : filteredImages.slice(0, 12)
-                  }
-                />
-                {filteredImages.length > 12 && !showAllImages && (
-                  <div className="flex justify-center mt-8">
+                <SimpleImageGrid images={filteredImages.slice(0, visibleCount)} />
+                <div className="flex justify-center items-center gap-4 mt-8">
+                  {filteredImages.length > visibleCount ? (
                     <button
                       className="px-6 py-2 bg-[#2D6FBA] text-white rounded hover:bg-[#22548e] transition-colors"
-                      onClick={() => setShowAllImages(true)}
+                      onClick={() => setVisibleCount(prev => prev + 12)}
                     >
-                      See More
+                      {seeMoreLabel}
                     </button>
-                  </div>
-                )}
-                {filteredImages.length > 12 && showAllImages && (
-                  <div className="flex justify-center mt-4">
+                  ) : visibleCount > 12 ? (
                     <button
                       className="px-6 py-2 bg-gray-200 text-black rounded hover:bg-gray-300 transition-colors"
-                      onClick={() => setShowAllImages(false)}
+                      onClick={() => setVisibleCount(12)}
                     >
-                      Show Less
+                      {showLessLabel}
                     </button>
-                  </div>
-                )}
+                  ) : null}
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -646,37 +678,42 @@ const PhotoGallery = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="flex flex-col justify-center">
               <h3 className="text-3xl font-bold mb-4">
-                Experience{" "}
-                <span className="text-blue-400">Power Excellence</span>
+                {experienceTitlePart1}{" "}
+                <span className="text-blue-400">{experienceTitlePart2}</span>
               </h3>
-              <p className="text-sm mb-6">
-                Ready to transform your power infrastructure with
-                industry-leading generator solutions? Our team of experts is
-                ready to guide you through every step.
-              </p>
+              <p className="text-sm mb-6">{experienceDesc}</p>
               <div className="flex flex-wrap gap-4">
-                <a
-                  href="/contact"
-                  className="bg-[#2D6FBA] text-white text-sm px-6 py-2 rounded hover:bg-[#22548e] transition-colors"
-                >
-                  Book Your Consultation →
-                </a>
-                <a
-                  href={Portfolio}
-                  download
-                  className="border border-white text-white text-sm px-6 py-2 rounded hover:bg-white hover:text-black transition-colors"
-                >
-                  Download Company Profile
-                </a>
+                {experienceBtn1Text && (
+                  <a
+                    href={experienceBtn1Link || "/contact"}
+                    className="bg-[#2D6FBA] text-white text-sm px-6 py-2 rounded hover:bg-[#22548e] transition-colors"
+                  >
+                    {experienceBtn1Text}
+                  </a>
+                )}
+                {experienceBtn2Text && (
+                  <a
+                    href={experienceBtn2Link || Portfolio}
+                    download={
+                      experienceBtn2Link === Portfolio ||
+                      experienceBtn2Link === ""
+                    }
+                    className="border border-white text-white text-sm px-6 py-2 rounded hover:bg-white hover:text-black transition-colors"
+                  >
+                    {experienceBtn2Text}
+                  </a>
+                )}
               </div>
             </div>
-            <div className="flex items-center justify-center">
-              <img
-                src={experienceImage}
-                alt="Kumar Power excellence showcase"
-                className="w-full h-auto max-h-[350px] rounded object-contain"
-              />
-            </div>
+            {expImage && (
+              <div className="flex items-center justify-center">
+                <img
+                  src={expImage}
+                  alt="Kumar Power excellence showcase"
+                  className="w-full h-auto max-h-[350px] rounded object-contain"
+                />
+              </div>
+            )}
           </div>
         </div>
       </section>

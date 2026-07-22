@@ -173,8 +173,8 @@ const GeneratorRange = () => {
         categories: g.category
           ? [g.category]
           : Array.isArray(g.categories)
-          ? g.categories
-          : [],
+            ? g.categories
+            : [],
         brochureUrl: (g.brochureUrl && g.brochureUrl.trim()) || "",
       }))
     : [];
@@ -186,11 +186,17 @@ const GeneratorRange = () => {
       : activeGenerators.filter((generator: any) =>
           generator.categories.some(
             (cat: string) =>
-              cat.toLowerCase().trim().includes(activeFilter.toLowerCase().trim()) ||
-              activeFilter.toLowerCase().trim().includes(cat.toLowerCase().trim()) ||
+              cat
+                .toLowerCase()
+                .trim()
+                .includes(activeFilter.toLowerCase().trim()) ||
+              activeFilter
+                .toLowerCase()
+                .trim()
+                .includes(cat.toLowerCase().trim()) ||
               cat.toLowerCase().replace(/s$/, "").trim() ===
-                activeFilter.toLowerCase().replace(/s$/, "").trim()
-          )
+                activeFilter.toLowerCase().replace(/s$/, "").trim(),
+          ),
         );
 
   return (

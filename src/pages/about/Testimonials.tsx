@@ -3,155 +3,47 @@ import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
 import { useState, useEffect } from "react";
 import { useSectionData } from "@/store/useCMSStore";
-import test1 from "@/assets/test1.png";
-import test2 from "@/assets/test2.png";
-import test3 from "@/assets/test3.png";
-import test4 from "@/assets/test4.png";
-
-import testimonial from "@/assets/Testimonial/testii.jpeg";
-import trust from "@/assets/Clients page/GMR Infra.jpg";
-import trust1 from "@/assets/SIS (1).png";
-import trust2 from "@/assets/Vistara 1 (1).png";
-import trust3 from "@/assets/Clients page/GMR Infra.jpg";
-import trust4 from "@/assets/Honeywell 1 (1).png";
-import trust5 from "@/assets/Kashyapi (2).png";
-import trust6 from "@/assets/Caritas (1).png";
-import trust7 from "@/assets/CEC (1).png";
-import ace from "@/assets/Clients page/AceConstruction.jpg";
-import claroin from "@/assets/Clients page/Clarion.png";
-import Comed from "@/assets/Clients page/Comed.png";
-import Dps from "@/assets/Clients page/DPS.jpg";
-import GEPL from "@/assets/Clients page/GEPL.jpg";
-import addidas from "@/assets/Clients page/Adidas.jpg";
-import Portfolio from "@/assets/Brochure/Portfolio.pdf";
 import SEO from "@/components/SEO";
 
 const Testimonials = () => {
   const { data: rawCMSData } = useSectionData<any>("testimonials");
   const cmsData = rawCMSData || {};
 
-  const heroHeadingLine1 = cmsData.heroHeadingLine1 || "POWERING INDIA'S";
-  const heroHeadingLine2 = cmsData.heroHeadingLine2 || "SUCCESS STORIES";
-  const heroSubtitle =
-    cmsData.heroSubtitle || "Testimonials from industry leaders";
-  const heroBgImage = cmsData.heroBgImage || testimonial;
-
-  const defaultTestimonials = [
-    {
-      id: "test-1",
-      authorName: "Khushi Aggarwal",
-      roleCompany: "Founder, Platter Me Crazy",
-      logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1761902468/Screenshot_2025-10-31_144115_lybhem.png",
-      quote:
-        "I, Khushi Aggarwal, Founder of Platter Me Crazy, a brand synonymous with culinary artistry and luxury dining experiences. We curate exquisite charcuterie boards and handcrafted artisanal foods that elevate every occasion into a memorable indulgence. Our signature creations include gourmet flavoured butters, silky-smooth hummus blends, and wholesome baked crisps, each crafted with uncompromising freshness and zero preservatives. Whether for intimate soirées, premium gifting, or grand corporate gatherings, we bring an unmatched blend of flavor, finesse and sophistication to the table.",
-    },
-    {
-      id: "test-2",
-      authorName: "Kaustubh Jain",
-      roleCompany: "TEAM Construction Chemicals (TEAMCC)",
-      logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1761902466/Screenshot_2025-10-31_144303_wgqqaq.png",
-      quote:
-        "I am Kaustubh Jain representing the category marble adhesives and coatings. At TEAMCC we specialise in high-performance epoxy adhesives, polyester adhesives, tile adhesives and marble coatings. I have had the pleasure of knowing Mr. Jasjot Singh, and I can confidently say he is a true professional in the generator industry. Representing the trusted Kirloskar brand, Jasjot ensures top-quality products backed by exceptional service. His deep knowledge of power solutions, combined with his commitment to delivering the right generator for every requirement, makes him a go-to expert.",
-      dateText: "Kaustubh Jain / BNI Lakshay",
-    },
-    {
-      id: "test-3",
-      authorName: "Atul Jewellers",
-      roleCompany: "Proprietor, New Delhi",
-      logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1761902462/Screenshot_2025-10-31_144354_iiu1nu.png",
-      quote:
-        "We at Atul Jewellers are engaged in retail & wholesale of precious gemstones, diamonds & fine jewellery for almost five decades. We are the only jewellery house in Delhi, with in-house state of art gem testing & diamond grading laboratory, and we also provide this facility to almost 500 retailers across Delhi NCR. I wish to record our appreciation and acknowledgement, for R.S. Kumar of Kumar Generator House, who has provided gensets for our new store at Defence Colony. Mr. Kumar and his team is extremely professional in their approach.",
-      dateText: "Dated: 28th Dec. 2018",
-    },
-    {
-      id: "test-4",
-      authorName: "Brown Gold",
-      roleCompany: "Bharat Anand, Director",
-      logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1761902474/Gemini_Generated_Image_1je1r11je1r11je1_ksybnh.png",
-      quote:
-        "We at Brown Gold are a team of young and dynamic interior designers. We would like to place on record our appreciation for Mr. R. S. Kumar of Kumar Generator House. We had taken their services for our 40 KVA Kirloskar generator & a small genset of 7 KVA. We would like to take this opportunity to thank you for providing excellent advice, excellent products & excellent service.",
-      dateText: "Bharat Anand, Director, Brown Gold",
-    },
-    {
-      id: "test-5",
-      authorName: "RENT IT BAE",
-      roleCompany: "Luxury Fashion Rental Service",
-      logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1761902462/Screenshot_2025-10-31_144806_gklejh.png",
-      quote:
-        "RENT IT BAE is a luxury fashion rental service offering Ethnic, Western & Accessories from designer labels. We highly appreciate the fast and seamless service provided by your company. The installation of inverters for RENT IT BAE's South Delhi Flagship Store at Greater Kailash seemed a fluid task with your service.",
-    },
-    {
-      id: "test-6",
-      authorName: "K.K. Setia",
-      roleCompany: "Olympus, Intown Realtors Pvt Ltd",
-      logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1761902462/Screenshot_2025-10-31_145022_ffeb43.png",
-      quote:
-        "I K.K. Setia, Director of Intown Realtors, have been in commercial Real Estate business for the last 18 years. I recently needed a generator for my Sector 18 office building and reached out to Mr. Manjot Singh Kumar. His team promptly inspected the site, provided a tailored solution, and even assisted with necessary approvals.",
-      dateText: "3rd March, 2025",
-    },
-    {
-      id: "test-7",
-      authorName: "Shivani Saini",
-      roleCompany: "Owner, Anytime Fitness",
-      logo: "https://res.cloudinary.com/dmhabztbf/image/upload/v1762064945/Screenshot_2025-11-02_115831_lgqzrn.png",
-      quote:
-        "During the setting up of Anytime Fitness Sec 29, Gurugram, I got the reference of Mr Jasjot Singh of M/s Kumar Generator House. I write this testimonial to express my deep gratitude to Mr Jasjot Singh for guiding me towards the trusted Kirloskar Brand. The equipment is top notch and customer support has been outstanding.",
-      dateText: "26 Sep 25 / SCO Market, Sec 29, Gurugram",
-    },
-  ];
+  const heroHeadingLine1 = cmsData.heroHeadingLine1 || "";
+  const heroHeadingLine2 = cmsData.heroHeadingLine2 || "";
+  const heroSubtitle = cmsData.heroSubtitle || "";
+  const heroBgImage = cmsData.heroBgImage || "";
 
   const testimonialsList =
     Array.isArray(cmsData.testimonials) && cmsData.testimonials.length > 0
       ? cmsData.testimonials
-      : defaultTestimonials;
+      : [];
 
-  const defaultLogos = [
-    { url: trust, alt: "Seasons" },
-    { url: trust1, alt: "SIS" },
-    { url: trust2, alt: "Vistara" },
-    { url: trust3, alt: "GMR" },
-    { url: trust4, alt: "Honeywell" },
-    { url: trust5, alt: "Kashyapi" },
-    { url: trust6, alt: "Caritas" },
-    { url: trust7, alt: "CEC" },
-    { url: addidas, alt: "Adidas" },
-    { url: GEPL, alt: "GEPL" },
-    { url: Dps, alt: "DPS" },
-    { url: Comed, alt: "Comed" },
-    { url: ace, alt: "Ace Construction" },
-    { url: claroin, alt: "Clarion" },
-  ];
   const clientLogos =
     Array.isArray(cmsData.clientLogos) && cmsData.clientLogos.length > 0
       ? cmsData.clientLogos
-      : defaultLogos;
+      : [];
 
-  const storiesTitle =
-    cmsData.storiesTitle || cmsData.sectionTitle || "Client Success Stories";
-  const filterText = cmsData.filterText || "Filter by industry...";
-  const trustedTitle =
-    cmsData.trustedTitle || "Trusted by India's Leading Organizations";
+  const storiesTitle = cmsData.storiesTitle || cmsData.sectionTitle || "";
+  const filterText = cmsData.filterText || "";
+  const trustedTitle = cmsData.trustedTitle || "";
 
-  const stat1Num = cmsData.stat1Num || "100+";
-  const stat1Text = cmsData.stat1Text || "Video Testimonials";
-  const stat2Num = cmsData.stat2Num || "25+";
-  const stat2Text = cmsData.stat2Text || "Industries Served";
-  const stat3Num = cmsData.stat3Num || "10000+";
-  const stat3Text = cmsData.stat3Text || "Installations Nationwide";
+  const stat1Num = cmsData.stat1Num || "";
+  const stat1Text = cmsData.stat1Text || "";
+  const stat2Num = cmsData.stat2Num || "";
+  const stat2Text = cmsData.stat2Text || "";
+  const stat3Num = cmsData.stat3Num || "";
+  const stat3Text = cmsData.stat3Text || "";
 
-  const ctaTitle =
-    cmsData.ctaTitle || "Ready to join India's most reliable power network?";
-  const ctaDesc =
-    cmsData.ctaDesc ||
-    "From hospitals to data centers, from factories to airports — Kumar power delivers uninterrupted power solutions tailored to your needs.";
-  const ctaBtnText =
-    cmsData.ctaBtnText || cmsData.ctaBtnLabel || "Request Consultation";
-  const brochureBtnText = cmsData.brochureBtnText || "Download Brochure";
-  const whatsappText = cmsData.whatsappText || "WhatsApp Support";
-  const helplineLabel = cmsData.helplineLabel || "Helpline";
+  const ctaTitle = cmsData.ctaTitle || "";
+  const ctaDesc = cmsData.ctaDesc || "";
+  const ctaBtnText = cmsData.ctaBtnText || cmsData.ctaBtnLabel || "";
+  const brochureBtnText = cmsData.brochureBtnText || "";
+  const whatsappText = cmsData.whatsappText || "";
+  const helplineLabel = cmsData.helplineLabel || "";
   const whatsappPhone = cmsData.whatsappPhone || "+919773877796";
   const helplinePhone = cmsData.helplinePhone || "01140191273";
-  const brochurePdf = cmsData.brochurePdf || Portfolio;
+  const brochurePdf = cmsData.brochurePdf || "";
   return (
     <div className="min-h-screen bg-background">
       <style>{`

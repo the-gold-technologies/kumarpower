@@ -2,16 +2,17 @@ import { useSectionData } from "@/store/useCMSStore";
 
 const UseCases = () => {
   const { data: homeData } = useSectionData<any>("home");
-  const data = homeData?.useCases || {};
+  const data = homeData?.useCases || homeData?.["use-cases"] || {};
 
   const line1 = data.headingLine1 || "";
   const line2 = data.headingLine2 || "";
   const note = data.footerQuote || data.footerNote || "";
-  const items = Array.isArray(data.cases) && data.cases.length > 0
-    ? data.cases
-    : Array.isArray(data.items) && data.items.length > 0
-    ? data.items
-    : [];
+  const items =
+    Array.isArray(data.cases) && data.cases.length > 0
+      ? data.cases
+      : Array.isArray(data.items) && data.items.length > 0
+        ? data.items
+        : [];
 
   return (
     <section className="py-24 bg-black text-white">

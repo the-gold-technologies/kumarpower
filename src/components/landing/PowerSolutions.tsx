@@ -354,7 +354,7 @@ const PowerSolutions = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 1.0 }}
         >
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             <motion.div
               key={activeCategory}
               className="grid md:grid-cols-3 gap-6"
