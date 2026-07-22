@@ -1,7 +1,8 @@
 import { useSectionData } from "@/store/useCMSStore";
 
 const UseCases = () => {
-  const { data } = useSectionData<any>("home", "useCases");
+  const { data: homeData } = useSectionData<any>("home");
+  const data = homeData?.useCases || {};
 
   const line1 = data.headingLine1 || "Power Solutions";
   const line2 = data.headingLine2 || "for Metro Cities";

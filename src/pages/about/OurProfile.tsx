@@ -158,6 +158,8 @@ const About = () => {
   const kirloskarCertImg =
     quality.kirloskarCertImg ||
     "https://res.cloudinary.com/dmhabztbf/image/upload/v1757064221/Screenshot_2025-06-02_at_12.44.43_PM_lxdedo_tuh3qm.png";
+  const isoCertTitle = quality.isoCertTitle || "ISO 9001:2015";
+  const kirloskarCertTitle = quality.kirloskarCertTitle || "Kirloskar Authorized";
 
   // CTA Section fields
   const ctaTitle = cta.ctaTitle || "Ready to Power Your Business?";
@@ -423,21 +425,21 @@ const About = () => {
                   <div className="border border-black rounded-lg flex flex-col items-center justify-center w-[160px] h-[200px] bg-white">
                     <img
                       src={isoCertImg}
-                      alt="ISO 9001:2015"
+                      alt={isoCertTitle}
                       className="h-24 w-24 object-contain mt-6 mb-2 rounded"
                     />
                     <div className="text-sm font-medium text-gray-800 mt-2 mb-2">
-                      ISO 9001:2015
+                      {isoCertTitle}
                     </div>
                   </div>
                   <div className="border border-black p-2 rounded-lg flex flex-col items-center justify-center w-[160px] h-[200px] bg-white">
                     <img
                       src={kirloskarCertImg}
-                      alt="Kirloskar Authorized"
+                      alt={kirloskarCertTitle}
                       className="h-24 w-24 object-contain mt-6 mb-2"
                     />
                     <div className="text-sm font-medium text-gray-800 mt-2 mb-2">
-                      Kirloskar Authorized
+                      {kirloskarCertTitle}
                     </div>
                   </div>
                 </div>

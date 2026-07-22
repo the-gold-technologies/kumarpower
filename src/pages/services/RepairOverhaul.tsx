@@ -10,10 +10,20 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from '@/components/ui/badge';
 import SEO from '@/components/SEO';
+import { useSectionData } from "@/store/useCMSStore";
 
 import asset2 from "@/assets/Kumar Assets/new750.png"
 
 const RepairOverhaulService = () => {
+  const { data: rawCMSData } = useSectionData<any>("repair-overhaul");
+  const cmsData = rawCMSData || {};
+
+  const heroHeading = cmsData.heroHeading || "Repair & Overhaul Services";
+  const heroSub = cmsData.heroSub || "Professional restoration and renewal of power systems for optimal performance and reliability";
+
+  const introTitle = cmsData.introTitle || "Expert Generator Repair & Overhaul Services";
+  const introDesc1 = cmsData.introDesc1 || "From emergency repairs to complete system rebuilds, Kumar Power's certified technicians possess the expertise to diagnose and resolve complex mechanical and electrical issues.";
+
   // Repair services
   const repairServices = [
     {
@@ -131,14 +141,6 @@ const RepairOverhaulService = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      {/* <SEOJsonLD
-        title="Generator Repair & Overhaul Services | Kumar Power"
-        description="Professional repair, maintenance, and overhaul services for generators and power equipment. Fast emergency repairs and comprehensive rebuilding services."
-        url="https://kumarpower.com/services/repair-overhaul"
-        imageUrl="https://kumarpower.com/images/repair-service.jpg"
-      /> */}
-
-
       <SEO
         title="Repair & Overhaul Services - Kumar Power"
         description="From emergency repairs to rebuilds, Kumar Power’s certified technicians diagnose and fix equipment issues, minimizing downtime and extending service life."
@@ -152,9 +154,9 @@ const RepairOverhaulService = () => {
         <div className="bg-black py-12 md:py-16">
           <div className="container mx-auto text-center px-4">
             <Badge className="mb-4 bg-custom-blue text-white hover:bg-[#225488]">Expert Services</Badge>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Repair & Overhaul Services</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">{heroHeading}</h1>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-              Professional restoration and renewal of power systems for optimal performance and reliability
+              {heroSub}
             </p>
             <Button asChild size="lg" className="bg-custom-blue hover:bg-[#225488]">
               <Link to="/contact">Request Emergency Service</Link>
@@ -174,12 +176,10 @@ const RepairOverhaulService = () => {
                   </div>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Expert Generator Repair & Overhaul Services
+                  {introTitle}
                 </h2>
                 <p className="text-lg text-muted-foreground mb-6">
-                  From emergency repairs to complete system rebuilds, Kumar Power's certified technicians
-                  have the expertise to diagnose and resolve any issue with your power generation equipment,
-                  minimizing downtime and extending service life.
+                  {introDesc1}
                 </p>
                 <p className="text-lg text-muted-foreground mb-8">
                   We use only genuine parts and industry-leading techniques to restore your equipment to

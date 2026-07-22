@@ -66,8 +66,19 @@ import gasBrochure from "@/assets/Brochure/NEW CATELOG - GAS GENSET.pdf";
 import petrolBrochure from "@/assets/Brochure/4.Kirloskar powergen_Sentinel series Genset.pdf";
 import Direction76 from "@/assets/Brochure/Direction76.pdf";
 import { Helmet } from "react-helmet-async";
+import { useSectionData } from "@/store/useCMSStore";
 
 const Products = () => {
+  const { data: rawCMSData } = useSectionData<any>("panels");
+  const cmsData = rawCMSData || {};
+
+  const heroHeadingPart1 = cmsData.heroHeadingPart1 || "Electrical Control Panels -";
+  const heroHeadingPart2 = cmsData.heroHeadingPart2 || "Kumar Power";
+  const heroSub = cmsData.heroSub || "We offer a comprehensive range of electrical panels designed for power distribution, control, and protection across industrial and commercial installations.";
+  const heroBg = cmsData.heroBg || hero;
+
+  const sectionTitle = cmsData.sectionTitle || "Electrical Panels";
+  const sectionDesc = cmsData.sectionDesc || "Browse our complete range of electrical control, AMF, and distribution panels.";
   const [selectedCategory, setSelectedCategory] = useState<string>("diesel");
   const [sortBy, setSortBy] = useState<string>("popularity");
   const [powerRange, setPowerRange] = useState<string>("all");
@@ -313,8 +324,7 @@ const Products = () => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              // backgroundImage: "url('/src/assets/FRAME.png')",
-              backgroundImage: `url(${hero})`,
+              backgroundImage: `url(${heroBg})`,
               filter: "brightness(0.5)",
             }}
           ></div>
@@ -322,12 +332,10 @@ const Products = () => {
 
           <div className="relative max-w-7xl mx-auto px-4 h-full flex flex-col items-center justify-center text-center">
             <h1 className="text-2xl md:text-5xl font-bold">
-              Electrical Control Panels - Kumar Power
+              {heroHeadingPart1} <span className="text-[#2D6FBA]">{heroHeadingPart2}</span>
             </h1>
             <p className="text-sm sm:text-base md:text-lg mt-2 max-w-2xl">
-              We offer a comprehensive range of electrical panels designed for
-              power distribution, control, and protection across industrial and
-              commercial installations.
+              {heroSub}
             </p>
           </div>
         </div>
@@ -343,11 +351,10 @@ const Products = () => {
             <div className="flex-1">
               <div className="mb-6">
                 <h2 className="text-xl font-bold text-white">
-                  Electrical Panel
+                  {sectionTitle}
                 </h2>
                 <p className="text-gray-400 mt-1 text-sm">
-                  Browse our complete range of generators, panels, stabilizers
-                  and transformers.
+                  {sectionDesc}
                 </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">

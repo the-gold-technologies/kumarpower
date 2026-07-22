@@ -51,6 +51,12 @@ const OurClients = () => {
     "For over three decades, Kumar Generator House has been the trusted power partner for India's most demanding institutions.";
   const esteemedTitle = cmsData.esteemedTitle || "Our Esteemed Clients";
 
+  const prestigiousTitle =
+    cmsData.prestigiousTitle || "Our Prestigious Clients";
+  const prestigiousDesc =
+    cmsData.prestigiousDesc ||
+    "We are proud to partner with industry leaders across various sectors, providing exceptional power solutions.";
+
   const [activeTab, setActiveTab] = useState("industries");
   const [counts, setCounts] = useState({
     clients: 0,
@@ -66,9 +72,11 @@ const OurClients = () => {
     if (animationStarted.current && !resetAnimation) return;
 
     const finalNumbers = {
-      clients: 500,
-      years: 30,
-      installations: 10000,
+      clients: cmsData.clientsCount ? parseInt(cmsData.clientsCount) : 500,
+      years: cmsData.yearsCount ? parseInt(cmsData.yearsCount) : 30,
+      installations: cmsData.installationsCount
+        ? parseInt(cmsData.installationsCount)
+        : 10000,
     };
 
     // Reset counts to 0 for a fresh animation if requested
@@ -1221,11 +1229,10 @@ const OurClients = () => {
       <section className="bg-[#3B4255] text-white py-16">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl font-bold text-center mb-2">
-            Our Prestigious Clients
+            {prestigiousTitle}
           </h2>
           <p className="text-sm text-center max-w-2xl mx-auto mb-8">
-            We are proud to partner with industry leaders across various
-            sectors, providing exceptional power solutions.
+            {prestigiousDesc}
           </p>
 
           {/* Industry Category Tabs */}

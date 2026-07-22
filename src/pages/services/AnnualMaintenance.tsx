@@ -21,9 +21,21 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+import { useSectionData } from "@/store/useCMSStore";
+
 import asset1 from "@/assets/Kumar Assets/mrg Green 160kVA-.png";
 
 const AnnualMaintenanceService = () => {
+  const { data: rawCMSData } = useSectionData<any>("annual-maintenance");
+  const cmsData = rawCMSData || {};
+
+  const heroHeadingPart1 = cmsData.heroHeadingPart1 || "ANNUAL MAINTENANCE CONTRACTS";
+  const heroTitle = cmsData.heroTitle || "Preventive Care for Uninterrupted Power";
+  const heroSub = cmsData.heroSub || "Ensure maximum uptime and equipment longevity with our comprehensive maintenance solutions";
+
+  const introTitlePart1 = cmsData.introTitlePart1 || "Keep Your Power Systems Running at";
+  const introTitlePart2 = cmsData.introTitlePart2 || "Peak Efficiency";
+  const introDesc1 = cmsData.introDesc1 || "Our Annual Maintenance Contracts (AMC) provide scheduled preventive maintenance, prompt repairs, and emergency support to ensure your power generation equipment operates reliably year-round.";
   // FAQ items
   const faqItems = [
     {
@@ -85,7 +97,7 @@ const AnnualMaintenanceService = () => {
                 style={{ color: "#2D6FBA" }}
                 className="text-xl md:text-3xl font-semibold tracking-wide"
               >
-                ANNUAL MAINTENANCE CONTRACTS
+                {heroHeadingPart1}
               </span>
               <span
                 style={{ backgroundColor: "#2D6FBA" }}
@@ -93,11 +105,10 @@ const AnnualMaintenanceService = () => {
               />
             </div>
             <h1 className="text-3xl md:text-5xl font-bold mb-4 text-white">
-              Preventive Care for Uninterrupted Power
+              {heroTitle}
             </h1>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-              Ensure maximum uptime and equipment longevity with our
-              comprehensive maintenance solutions
+              {heroSub}
             </p>
             <Button
               asChild
@@ -116,14 +127,11 @@ const AnnualMaintenanceService = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Keep Your Power Systems Running at{" "}
-                  <span style={{ color: "#2D6FBA" }}>Peak Efficiency</span>
+                  {introTitlePart1}{" "}
+                  <span style={{ color: "#2D6FBA" }}>{introTitlePart2}</span>
                 </h2>
                 <p className="text-lg text-gray-700 mb-6">
-                  Our Annual Maintenance Contracts (AMC) provide scheduled
-                  preventive maintenance, prompt repairs, and emergency support
-                  to ensure your power generation equipment operates reliably
-                  year-round.
+                  {introDesc1}
                 </p>
                 <p className="text-lg text-gray-700 mb-8">
                   With Kumar Power's expert technicians and genuine Kirloskar

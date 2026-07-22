@@ -148,7 +148,8 @@ const Card = ({
 import { useSectionData } from "@/store/useCMSStore";
 
 const GeneratorRange = () => {
-  const { data } = useSectionData<any>("home", "generatorRange");
+  const { data: homeData } = useSectionData<any>("home");
+  const data = homeData?.generatorRange || homeData?.["generator-range"] || {};
 
   // Define generator types for filtering
   const filterTypes = [
@@ -230,11 +231,42 @@ const GeneratorRange = () => {
     },
   ];
 
+  const sectionTitle = data?.sectionTitle || "Explore Our Generator Range";
+  const sectionDesc =
+    data?.sectionDesc ||
+    "Kirloskar-certified systems tailored for industrial, commercial, and backup applications. Download brochures for detailed specifications.";
+
+  const cmsCards = data?.generators || data?.cards;
+  const activeGenerators =
+    Array.isArray(cmsCards) && cmsCards.length > 0
+      ? cmsCards.map((g: any, idx: number) => ({
+          title:
+            g.title ||
+            g.name ||
+            generatorData[idx % generatorData.length].title,
+          img:
+            (g.image && g.image.trim()) ||
+            (g.img && g.img.trim()) ||
+            generatorData[idx % generatorData.length].img,
+          caption:
+            g.caption ||
+            g.description ||
+            generatorData[idx % generatorData.length].caption,
+          categories: g.category
+            ? [g.category]
+            : g.categories ||
+              generatorData[idx % generatorData.length].categories,
+          brochureUrl:
+            (g.brochureUrl && g.brochureUrl.trim()) ||
+            generatorData[idx % generatorData.length].brochureUrl,
+        }))
+      : generatorData;
+
   // Filter generators based on the active filter
   const filteredGenerators =
     activeFilter === "All"
-      ? generatorData
-      : generatorData.filter((generator) =>
+      ? activeGenerators
+      : activeGenerators.filter((generator: any) =>
           generator.categories.includes(activeFilter),
         );
 
@@ -253,7 +285,7 @@ const GeneratorRange = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <h2 className="text-2xl md:text-5xl font-extralight tracking-tighter mb-2">
-            Explore Our Generator Range
+            {sectionTitle}
             <motion.div
               className="h-1 w-24"
               style={{ background: "#2D6FBA" }}
@@ -262,10 +294,7 @@ const GeneratorRange = () => {
               transition={{ delay: 0.8, duration: 0.8 }}
             />
           </h2>
-          <p className="text-white mt-6 mb-8">
-            Kirloskar-certified systems tailored for industrial, commercial, and
-            backup applications. Download brochures for detailed specifications.
-          </p>
+          <p className="text-white mt-6 mb-8">{sectionDesc}</p>
         </motion.div>
 
         {/* Interactive filter buttons */}

@@ -4,7 +4,8 @@ import need from "@/assets/need assistance.png";
 import { useSectionData } from "@/store/useCMSStore";
 
 const CTASection = () => {
-  const { data } = useSectionData<any>("home", "cta");
+  const { data: homeData } = useSectionData<any>("home");
+  const data = homeData?.cta || {};
 
   const title = data.title || "Need Expert Assistance?";
   const btn1Text = data.primaryBtnLabel || "Talk to an Expert";

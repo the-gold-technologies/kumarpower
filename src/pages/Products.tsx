@@ -66,8 +66,30 @@ import gasBrochure from "@/assets/Brochure/NEW CATELOG - GAS GENSET.pdf";
 import petrolBrochure from "@/assets/Brochure/4.Kirloskar powergen_Sentinel series Genset.pdf";
 import Direction76 from "@/assets/Brochure/Direction76.pdf";
 import SEO from "@/components/SEO";
+import { useSectionData } from "@/store/useCMSStore";
 
 const Products = () => {
+  const { data: rawCMSData } = useSectionData<any>("products");
+  const cmsData = rawCMSData || {};
+
+  const heroHeadingPart1 = cmsData.heroHeadingPart1 || "Powering Progress,";
+  const heroHeadingPart2 = cmsData.heroHeadingPart2 || "One Generator at a Time";
+  const heroSub = cmsData.heroSub || "Explore our full range of Kirloskar-certified diesel generators, trusted across India's most demanding industries.";
+  const heroBg = cmsData.heroBg || hero;
+  const btn1Text = cmsData.btn1Text || "Request a Quote";
+  const btn1Url = cmsData.btn1Url || "/contact";
+  const btn2Text = cmsData.btn2Text || "Download Product Catalogue";
+  const btn2Url = cmsData.btn2Url || Portfolio;
+
+  const sectionTitle = cmsData.sectionTitle || "ALL Products";
+  const sectionDesc = cmsData.sectionDesc || "We offer a complete range of power and electrical solutions including Kirloskar Diesel Generators, Kirloskar Gas Generators, Kirloskar Portable Generators, Electrical Panels, Servo Voltage Stabilizers, and Transformers, engineered for reliable performance across residential, commercial, and industrial applications.";
+
+  const certTitle = cmsData.certTitle || "Certified Excellence";
+  const helpTitle = cmsData.helpTitle || "Need Help Choosing the Right Electrical Solution?";
+  const helpSub = cmsData.helpSub || "Our team of experts will help you select the perfect solution based on your industry and budget.";
+  const helpBtnText = cmsData.helpBtnText || "Talk to an Expert";
+  const whyChooseTitle = cmsData.whyChooseTitle || "Why Choose Kirloskar Generators?";
+
   const [selectedCategory, setSelectedCategory] = useState<string>("diesel");
   const [sortBy, setSortBy] = useState<string>("popularity");
   const [powerRange, setPowerRange] = useState<string>("all");
@@ -368,19 +390,17 @@ const Products = () => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              // backgroundImage: "url('/src/assets/FRAME.png')",
-              backgroundImage: `url(${hero})`,
+              backgroundImage: `url(${heroBg})`,
               filter: "brightness(0.5)",
             }}
           ></div>
           <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-90"></div>
           <div className="relative max-w-7xl mx-auto px-4 py-10 md:py-24 flex flex-col gap-4 h-full justify-center">
             <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold max-w-2xl">
-              Powering Progress, One Generator at a Time
+              {heroHeadingPart1} <span className="text-[#2D6FBA]">{heroHeadingPart2}</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl max-w-2xl">
-              Explore our full range of Kirloskar-certified diesel generators,
-              trusted across India's most demanding industries.
+              {heroSub}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 w-full max-w-xs sm:max-w-none">
               <Button
@@ -388,15 +408,15 @@ const Products = () => {
                 variant="default"
                 className="bg-[#2D6FBA] hover:bg-[#225488] w-full sm:w-auto"
               >
-                <Link to="/contact">Request a Quote</Link>
+                <Link to={btn1Url}>{btn1Text}</Link>
               </Button>
-              <a href={Portfolio} download>
+              <a href={btn2Url} download>
                 <Button
                   size="lg"
                   variant="outline"
                   className="bg-transparent border-white text-white hover:bg-white/10 w-full sm:w-auto"
                 >
-                  Download Product Catalogue
+                  {btn2Text}
                 </Button>
               </a>
             </div>
@@ -409,19 +429,23 @@ const Products = () => {
             {/* Products Grid */}
             <div className="flex-1">
               <div className="mb-5">
-                <h2 className="text-xl font-bold text-white">ALL Products</h2>
+                <h2 className="text-xl font-bold text-white">{sectionTitle}</h2>
                 <p className="text-gray-400 mt-1 text-sm">
-                  We offer a complete range of power and electrical solutions
-                  including Kirloskar Diesel Generators, Kirloskar Gas
-                  Generators, Kirloskar Portable Generators, Electrical Panels,
-                  Servo Voltage Stabilizers, and Transformers, engineered for
-                  reliable performance across residential, commercial, and
-                  industrial applications.
+                  {sectionDesc}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-                {ALLProductCategories.map((product) => (
+                {(Array.isArray(cmsData.categories) && cmsData.categories.length > 0
+                  ? cmsData.categories.map((cat: any, idx: number) => {
+                      const defaultImages = [DG1, range2, port, optiprime, panel6, servo1, trans1];
+                      return {
+                        ...cat,
+                        image: (cat.image && cat.image.trim()) || defaultImages[idx % defaultImages.length] || DG1,
+                      };
+                    })
+                  : ALLProductCategories
+                ).map((product: any) => (
                   <Card
                     key={product.id}
                     className="overflow-hidden border border-gray-700 rounded-md bg-gray-800 hover:bg-gray-750"
@@ -570,7 +594,7 @@ const Products = () => {
         <section className="bg-[#E5E7EB] text-gray-800 py-8 sm:py-12">
           <div className="max-w-7xl mx-auto px-2 sm:px-4">
             <h2 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-10">
-              Why Choose Kirloskar Generators?
+              {whyChooseTitle}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -711,7 +735,7 @@ const Products = () => {
         <section className="bg-black text-white py-8 sm:py-12">
           <div className="max-w-7xl mx-auto px-2 sm:px-4">
             <h2 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8">
-              Certified Excellence
+              {certTitle}
             </h2>
 
             <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-14">
@@ -756,11 +780,10 @@ const Products = () => {
         <section className="py-8 sm:py-12 bg-[#AAAAAA]">
           <div className="max-w-4xl mx-auto px-2 sm:px-4 text-center">
             <h2 className="text-xl sm:text-2xl font-bold mb-2 text-gray-800">
-              Need Help Choosing the Right Electrical Solution?
+              {helpTitle}
             </h2>
             <p className="text-xs sm:text-sm text-black mb-6">
-              Our team of experts will help you select the perfect solution
-              based on your industry and budget.
+              {helpSub}
             </p>
             <div className="flex w-full items-center justify-center">
               <Button
@@ -785,7 +808,7 @@ const Products = () => {
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                   />
                 </svg>
-                Talk to an Expert
+                {helpBtnText}
               </Button>
             </div>
           </div>

@@ -20,7 +20,8 @@ import companyProfile from "./profile.pdf"; // Import PDF file
 import BackgroundVideo from "../BackgroundVideo";
 
 const Hero = () => {
-  const { data } = useSectionData<any>("home", "hero");
+  const { data: homeData } = useSectionData<any>("home");
+  const data = homeData?.hero || {};
 
   // Show overlay after scrolling more than 180px and keep it visible
   const [showOverlay, setShowOverlay] = useState(false);

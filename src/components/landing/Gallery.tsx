@@ -12,7 +12,8 @@ const defaultGalleryImages = [
 ];
 
 const Gallery = () => {
-  const { data } = useSectionData<any>("home", "gallery");
+  const { data: homeData } = useSectionData<any>("home");
+  const data = homeData?.gallery || {};
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const heading = data.sectionTitle || "Photo Gallery";

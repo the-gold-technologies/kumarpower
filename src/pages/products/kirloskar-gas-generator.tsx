@@ -66,8 +66,27 @@ import gasBrochure from "@/assets/Brochure/NEW CATELOG - GAS GENSET.pdf";
 import petrolBrochure from "@/assets/Brochure/4.Kirloskar powergen_Sentinel series Genset.pdf";
 import Direction76 from "@/assets/Brochure/Direction76.pdf";
 import { Helmet } from "react-helmet-async";
+import { useSectionData } from "@/store/useCMSStore";
 
 const Products = () => {
+  const { data: rawCMSData } = useSectionData<any>("kirloskar-gas-generator");
+  const cmsData = rawCMSData || {};
+
+  const heroHeadingPart1 =
+    cmsData.heroHeadingPart1 || "Kirloskar Gas Generators";
+  const heroHeadingPart2 = cmsData.heroHeadingPart2 || "Dealer in Delhi";
+  const heroSub =
+    cmsData.heroSub ||
+    "Kirloskar Oil Engines Ltd (KOEL) offers a range of gas-powered generator sets (gensets) designed to provide reliable and efficient power solutions across various applications.";
+  const heroBg = cmsData.heroBg || hero;
+
+  const sectionTitle = cmsData.sectionTitle || "Gas Generators";
+  const sectionDesc = cmsData.sectionDesc || "Eco-friendly and efficient, our gas generators provide clean power with lower emissions and reduced operating costs.";
+
+  const certTitle = cmsData.certTitle || "Certified Excellence";
+  const helpTitle = cmsData.helpTitle || "Need Help Choosing the Right Electrical Solution?";
+  const helpSub = cmsData.helpSub || "Our team of experts will help you select the perfect solution based on your industry and budget.";
+  const helpBtnText = cmsData.helpBtnText || "Talk to an Expert";
   const [showSpecsModal, setShowSpecsModal] = useState(false);
   const [selectedProductForSpecs, setSelectedProductForSpecs] = useState(null);
 
@@ -143,9 +162,7 @@ const Products = () => {
     <>
       <Header />
       <Helmet>
-        <title>
-          Kirloskar Gas Generators Dealer in Delhi | Kumar Power
-        </title>
+        <title>Kirloskar Gas Generators Dealer in Delhi | Kumar Power</title>
 
         <meta
           name="description"
@@ -153,7 +170,9 @@ const Products = () => {
         />
 
         <link
-          rel="canonical" href="https://www.kumarpower.com/products/kirloskar-gas-generator" />
+          rel="canonical"
+          href="https://www.kumarpower.com/products/kirloskar-gas-generator"
+        />
       </Helmet>
 
       <main className="bg-black min-h-screen">
@@ -162,7 +181,7 @@ const Products = () => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `url(${hero})`,
+              backgroundImage: `url(${heroBg})`,
               filter: "brightness(0.5)",
             }}
           />
@@ -170,12 +189,11 @@ const Products = () => {
 
           <div className="relative max-w-7xl mx-auto px-4 h-full flex flex-col items-center justify-center text-center">
             <h1 className="text-2xl md:text-5xl font-bold">
-              Kirloskar Gas Generators Dealer in Delhi
+              {heroHeadingPart1}{" "}
+              <span className="text-[#2D6FBA]">{heroHeadingPart2}</span>
             </h1>
             <p className="text-sm sm:text-base md:text-lg mt-2 max-w-2xl">
-              Kirloskar Oil Engines Ltd (KOEL) offers a range of gas-powered
-              generator sets (gensets) designed to provide reliable and
-              efficient power solutions across various applications.
+              {heroSub}
             </p>
           </div>
         </div>
@@ -183,16 +201,25 @@ const Products = () => {
         {/* Products Section */}
         <div className="max-w-7xl mx-auto px-4 pb-20">
           <div className="mb-6">
-            <h2 className="text-xl font-bold text-white">Gas Generators</h2>
-            <p className="text-gray-400 mt-1 text-sm">
-              Eco-friendly and efficient, our gas generators provide clean power
-              with lower emissions and reduced operating costs.
-            </p>
+            <h2 className="text-xl font-bold text-white">{sectionTitle}</h2>
+            <p className="text-gray-400 mt-1 text-sm">{sectionDesc}</p>
           </div>
 
           {/* Product Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {gasGenerators.map((product) => (
+            {(Array.isArray(cmsData.gensets) && cmsData.gensets.length > 0
+              ? cmsData.gensets.map((g: any, idx: number) => {
+                  const defaultImages = [range2, range3, range4, range5];
+                  return {
+                    ...g,
+                    image:
+                      (g.image && g.image.trim()) ||
+                      defaultImages[idx % defaultImages.length] ||
+                      range2,
+                  };
+                })
+              : gasGenerators
+            ).map((product: any) => (
               <Card
                 key={product.id}
                 className="overflow-hidden border border-gray-700 rounded-md bg-gray-800 hover:bg-gray-750"
@@ -398,7 +425,7 @@ const Products = () => {
         <section className="bg-black text-white py-8 sm:py-12">
           <div className="max-w-7xl mx-auto px-2 sm:px-4">
             <h2 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8">
-              Certified Excellence
+              {certTitle}
             </h2>
 
             <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-14">
@@ -443,11 +470,10 @@ const Products = () => {
         <section className="py-8 sm:py-12 bg-[#AAAAAA]">
           <div className="max-w-4xl mx-auto px-2 sm:px-4 text-center">
             <h2 className="text-xl sm:text-2xl font-bold mb-2 text-gray-800">
-              Need Help Choosing the Right Electrical Solution?
+              {helpTitle}
             </h2>
             <p className="text-xs sm:text-sm text-black mb-6">
-              Our team of experts will help you select the perfect solution
-              based on your industry and budget.
+              {helpSub}
             </p>
             <div className="flex w-full items-center justify-center">
               <Button
@@ -472,7 +498,7 @@ const Products = () => {
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                   />
                 </svg>
-                Talk to an Expert
+                {helpBtnText}
               </Button>
             </div>
           </div>
@@ -519,79 +545,79 @@ const Products = () => {
                 {["diesel", "gas", "portable", "optiprime"].includes(
                   selectedProductForSpecs.category,
                 ) && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="flex items-center gap-1 w-full sm:w-auto"
-                    >
-                      <Download className="w-4 h-4" />
-                      <a
-                        href={
-                          selectedProductForSpecs.category === "diesel"
-                            ? selectedProductForSpecs.range.includes("7.5") ||
-                              selectedProductForSpecs.range.includes("7.5 - 20")
-                              ? cpcb7To20
-                              : selectedProductForSpecs.range.includes("58") ||
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="flex items-center gap-1 w-full sm:w-auto"
+                  >
+                    <Download className="w-4 h-4" />
+                    <a
+                      href={
+                        selectedProductForSpecs.category === "diesel"
+                          ? selectedProductForSpecs.range.includes("7.5") ||
+                            selectedProductForSpecs.range.includes("7.5 - 20")
+                            ? cpcb7To20
+                            : selectedProductForSpecs.range.includes("58") ||
                                 selectedProductForSpecs.range.includes(
                                   "25 - 58.5",
                                 )
-                                ? cpcb25To58
-                                : selectedProductForSpecs.range.includes(
-                                  "82.5",
-                                ) ||
+                              ? cpcb25To58
+                              : selectedProductForSpecs.range.includes(
+                                    "82.5",
+                                  ) ||
                                   selectedProductForSpecs.range.includes(
                                     "82.5 - 160",
                                   )
-                                  ? cpcb82To160
-                                  : selectedProductForSpecs.range.includes(
-                                    "250",
-                                  ) ||
+                                ? cpcb82To160
+                                : selectedProductForSpecs.range.includes(
+                                      "250",
+                                    ) ||
                                     selectedProductForSpecs.range.includes(
                                       "200 - 250",
                                     ) ||
                                     selectedProductForSpecs.id.includes(
                                       "200 kVA to 250 kVA",
                                     )
-                                    ? cpcb200To250
-                                    : selectedProductForSpecs.range.includes(
-                                      "320",
-                                    ) ||
+                                  ? cpcb200To250
+                                  : selectedProductForSpecs.range.includes(
+                                        "320",
+                                      ) ||
                                       selectedProductForSpecs.range.includes(
                                         "320 - 750",
                                       )
-                                      ? cpcb320To750
-                                      : selectedProductForSpecs.range.includes(
-                                        "750",
-                                      ) ||
+                                    ? cpcb320To750
+                                    : selectedProductForSpecs.range.includes(
+                                          "750",
+                                        ) ||
                                         selectedProductForSpecs.range.includes(
                                           "750 - 1500",
                                         )
-                                        ? cpcb750To1500
-                                        : Brochure
-                            : selectedProductForSpecs.category === "gas"
-                              ? gasBrochure
-                              : selectedProductForSpecs.category === "portable"
-                                ? petrolBrochure
-                                : selectedProductForSpecs.category === "optiprime"
-                                  ? optiprimeBrochure
-                                  : Brochure
-                        }
-                        download={
-                          selectedProductForSpecs.category === "diesel"
-                            ? `Kirloskar ${selectedProductForSpecs.range} Diesel Generator Brochure.pdf`
-                            : selectedProductForSpecs.category === "gas"
-                              ? "Kirloskar Gas Generator Brochure.pdf"
-                              : selectedProductForSpecs.category === "portable"
-                                ? "Kirloskar Portable Generator Brochure.pdf"
-                                : selectedProductForSpecs.category === "optiprime"
-                                  ? "Kirloskar Optiprime Generator Brochure.pdf"
-                                  : "Generator Brochure.pdf"
-                        }
-                      >
-                        Brochure
-                      </a>
-                    </Button>
-                  )}
+                                      ? cpcb750To1500
+                                      : Brochure
+                          : selectedProductForSpecs.category === "gas"
+                            ? gasBrochure
+                            : selectedProductForSpecs.category === "portable"
+                              ? petrolBrochure
+                              : selectedProductForSpecs.category === "optiprime"
+                                ? optiprimeBrochure
+                                : Brochure
+                      }
+                      download={
+                        selectedProductForSpecs.category === "diesel"
+                          ? `Kirloskar ${selectedProductForSpecs.range} Diesel Generator Brochure.pdf`
+                          : selectedProductForSpecs.category === "gas"
+                            ? "Kirloskar Gas Generator Brochure.pdf"
+                            : selectedProductForSpecs.category === "portable"
+                              ? "Kirloskar Portable Generator Brochure.pdf"
+                              : selectedProductForSpecs.category === "optiprime"
+                                ? "Kirloskar Optiprime Generator Brochure.pdf"
+                                : "Generator Brochure.pdf"
+                      }
+                    >
+                      Brochure
+                    </a>
+                  </Button>
+                )}
               </div>
             </>
           )}

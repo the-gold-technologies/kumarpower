@@ -5,7 +5,8 @@ import three from "@/assets/Gallery/Threee.png";
 import { useSectionData } from "@/store/useCMSStore";
 
 const About = () => {
-  const { data } = useSectionData<any>("home", "about");
+  const { data: homeData } = useSectionData<any>("home");
+  const data = homeData?.about || {};
 
   const heading1 = data.bannerTitle || "ABOUT KUMAR POWER";
   const heading2 = data.bannerSubtitle || "Powering Progress.";

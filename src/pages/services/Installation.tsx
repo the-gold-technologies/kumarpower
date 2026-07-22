@@ -13,6 +13,9 @@ import { Badge } from '@/components/ui/badge';
 import range5 from "@/assets/Range5.png"
 
 
+import SEO from "@/components/SEO";
+import { useSectionData } from "@/store/useCMSStore";
+
 import instal2 from '@/assets/Installation/instal2.png'
 import instal3 from '@/assets/Installation/instal3.png'
 import instal4 from '@/assets/Installation/instal4.png'
@@ -40,9 +43,16 @@ import instal25 from '@/assets/Installation/instal25.png'
 import instal26 from '@/assets/Installation/instal26.png'
 import instal27 from '@/assets/Installation/instal27.png'
 import heroinstal from "@/assets/heroinstalll.jpeg"
-import SEO from '@/components/SEO';
 
 const InstallationService = () => {
+  const { data: rawCMSData } = useSectionData<any>("installation");
+  const cmsData = rawCMSData || {};
+
+  const heroHeading = cmsData.heroHeading || "Installation & Commissioning";
+  const heroSub = cmsData.heroSub || "Expert power system installation and commissioning services for optimal performance, reliability, and compliance.";
+
+  const introTitle = cmsData.introTitle || "Professional Power System Installation";
+  const introDesc1 = cmsData.introDesc1 || "Kumar Power delivers end-to-end installation and commissioning services for all types of power generation equipment, ensuring your systems operate at peak efficiency from day one.";
   // Professional Installation products (27 images)
   const installationProducts = [
 
@@ -179,9 +189,9 @@ const InstallationService = () => {
         <div className="bg-black py-8 md:py-16" style={{ backgroundImage: `url(${heroinstal})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center' }}>
           <div className="container mx-auto text-center px-4 bg-black/50 backdrop-blur-sm py-12 md:py-16">
             <Badge className="mb-4 bg-custom-blue text-white hover:bg-[#225488]">Professional Services</Badge>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Installation & Commissioning</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">{heroHeading}</h1>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-              Expert power system installation and commissioning services for optimal performance, reliability, and compliance.
+              {heroSub}
             </p>
             <Button asChild size="lg" className="bg-custom-blue hover:bg-[#225488]">
               <Link to="/contact">Schedule a Consultation</Link>
@@ -201,11 +211,10 @@ const InstallationService = () => {
                   </div>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Professional Power System Installation
+                  {introTitle}
                 </h2>
                 <p className="text-lg text-muted-foreground mb-6">
-                  Kumar Power delivers end-to-end installation and commissioning services for all types of
-                  power generation equipment, ensuring your systems operate at peak efficiency from day one.
+                  {introDesc1}
                 </p>
                 <p className="text-lg text-muted-foreground mb-8">
                   Our certified technicians handle everything from site assessment and planning to final

@@ -10,7 +10,8 @@ import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 import { useSectionData } from "@/store/useCMSStore";
 
 const Footer = () => {
-  const { data } = useSectionData<any>("home", "footer");
+  const { data: homeData } = useSectionData<any>("home");
+  const data = homeData?.footer || {};
   const [showGeneratorDropdown, setShowGeneratorDropdown] = useState(false);
 
   useSmoothScroll();

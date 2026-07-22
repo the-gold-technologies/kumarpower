@@ -9,8 +9,8 @@ const Submissions = () => {
 
   useEffect(() => {
     // Check if user is already logged in (using sessionStorage)
-    const authStatus = sessionStorage.getItem('isAuthenticated');
-    if (authStatus === 'true') {
+    const authStatus = sessionStorage.getItem("isAuthenticated");
+    if (authStatus === "true") {
       setIsAuthenticated(true);
     }
   }, []);
@@ -22,7 +22,9 @@ const Submissions = () => {
       try {
         // Fetch contact submissions
         // const contactRes = await fetch("http://localhost:5000/api/contact");
-        const contactRes = await fetch("https://kumar-power.onrender.com/api/contact");
+        const contactRes = await fetch(
+          "https://kumar-power.onrender.com/api/contact",
+        );
         if (!contactRes.ok) {
           throw new Error(`Contact API error: ${contactRes.status}`);
         }
@@ -31,7 +33,9 @@ const Submissions = () => {
 
         // Fetch resume submissions
         // const resumeRes = await fetch("http://localhost:5000/api/resume");
-        const resumeRes = await fetch("https://kumar-power.onrender.com/api/resume");
+        const resumeRes = await fetch(
+          "https://kumar-power.onrender.com/api/resume",
+        );
         if (!resumeRes.ok) {
           throw new Error(`Resume API error: ${resumeRes.status}`);
         }
@@ -50,12 +54,12 @@ const Submissions = () => {
 
   const handleLogin = () => {
     setIsAuthenticated(true);
-    sessionStorage.setItem('isAuthenticated', 'true');
+    sessionStorage.setItem("isAuthenticated", "true");
   };
 
   const handleLogout = () => {
     setIsAuthenticated(false);
-    sessionStorage.removeItem('isAuthenticated');
+    sessionStorage.removeItem("isAuthenticated");
   };
 
   if (!isAuthenticated) {
@@ -95,7 +99,7 @@ const Submissions = () => {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-            > 
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -132,19 +136,13 @@ const Submissions = () => {
               <tbody>
                 {contacts.length === 0 ? (
                   <tr>
-                    <td
-                      colSpan={6}
-                      className="text-center py-6 text-gray-400"
-                    >
+                    <td colSpan={6} className="text-center py-6 text-gray-400">
                       No contact submissions found.
                     </td>
                   </tr>
                 ) : (
                   contacts.map((c) => (
-                    <tr
-                      key={c._id}
-                      className="hover:bg-[#2D6FBA]/5 transition"
-                    >
+                    <tr key={c._id} className="hover:bg-[#2D6FBA]/5 transition">
                       <td className="p-3 border">{c.name}</td>
                       <td className="p-3 border">{c.email}</td>
                       <td className="p-3 border">{c.phone}</td>
@@ -207,19 +205,13 @@ const Submissions = () => {
               <tbody>
                 {resumes.length === 0 ? (
                   <tr>
-                    <td
-                      colSpan={5}
-                      className="text-center py-6 text-gray-400"
-                    >
+                    <td colSpan={5} className="text-center py-6 text-gray-400">
                       No resume submissions found.
                     </td>
                   </tr>
                 ) : (
                   resumes.map((r) => (
-                    <tr
-                      key={r._id}
-                      className="hover:bg-[#2D6FBA]/5 transition"
-                    >
+                    <tr key={r._id} className="hover:bg-[#2D6FBA]/5 transition">
                       <td className="p-3 border">{r.fullName}</td>
                       <td className="p-3 border">{r.email}</td>
                       <td className="p-3 border">{r.phone}</td>

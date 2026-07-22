@@ -9,9 +9,19 @@ import { Card } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import SEO from '@/components/SEO';
+import { useSectionData } from "@/store/useCMSStore";
 
 import asset3 from "@/assets/Kumar Assets/20240820_left side 2.8 with 5.5 kVA.png"
 const EmergencySupportService = () => {
+  const { data: rawCMSData } = useSectionData<any>("emergency-support");
+  const cmsData = rawCMSData || {};
+
+  const heroHeading = cmsData.heroHeading || "24/7 Emergency Support";
+  const heroSub = cmsData.heroSub || "Rapid response solutions for power emergencies when every minute counts";
+
+  const introTitle = cmsData.introTitle || "Reliable Emergency Support When You Need It Most";
+  const introDesc1 = cmsData.introDesc1 || "Power outages and equipment failures don't follow a schedule. That's why Kumar Power's emergency response team is available 24 hours a day, 7 days a week, 365 days a year to ensure your operations can continue without disruption.";
+
   // Emergency service benefits
   const serviceBenefits = [
     {
@@ -138,9 +148,9 @@ const EmergencySupportService = () => {
         <div className="bg-black py-12 md:py-16">
           <div className="container mx-auto text-center px-4">
             <Badge className="mb-4 bg-custom-blue text-white hover:bg-[#225488]">Critical Response</Badge>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">24/7 Emergency Support</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">{heroHeading}</h1>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-              Rapid response solutions for power emergencies when every minute counts
+              {heroSub}
             </p>
             <Button asChild size="lg" className="bg-custom-blue hover:bg-[#225488]">
               <a href="tel:+919773851767" className="flex items-center gap-2">
@@ -162,12 +172,10 @@ const EmergencySupportService = () => {
                   </div>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Reliable Emergency Support When You Need It Most
+                  {introTitle}
                 </h2>
                 <p className="text-lg text-muted-foreground mb-6">
-                  Power outages and equipment failures don't follow a schedule. That's why Kumar Power's
-                  emergency response team is available 24 hours a day, 7 days a week, 365 days a year to
-                  ensure your operations can continue without disruption.
+                  {introDesc1}
                 </p>
                 <p className="text-lg text-muted-foreground mb-8">
                   Our rapid response teams are strategically positioned across India to provide fast,
