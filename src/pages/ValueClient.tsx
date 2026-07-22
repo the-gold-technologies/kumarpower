@@ -40,71 +40,83 @@ import afcons from '@/assets/Clients page/Afcons.png'
 import comed from '@/assets/Clients page/Comed.png'
 import kashyapi from '@/assets/Clients page/Kashyapi.png'
 import SEO from '@/components/SEO';
-
-
+import { useSectionData } from '@/store/useCMSStore';
 
 const ValueClient = () => {
-  // Group logos by industry sectors
-  const industrialClients = [
-    { name: "NCC Limited", logo: ncc },
-    { name: "KEC", logo: kec },
-    { name: "Honeywell", logo: honeywell },
-    { name: "S&P Infra", logo: snp },
-    { name: "Afcons", logo: afcons },
-    { name: "Comed", logo: comed },
-    { name: "Kashyapi", logo: kashyapi },
-    { name: "GMR Infra", logo: gmr },
-    { name: "vistara", logo: vistara },
-    { name: "addidas", logo: addidas },
-    { name: "daikin", logo: daikin },
-    { name: "nccltd", logo: nccltd },
-    { name: "guru", logo: guru },
-    { name: "britishpaints", logo: britishpaints },
-    { name: "vikas", logo: vikas },
-    { name: "gepl", logo: gepl }
+  const { data: rawCMSData } = useSectionData<any>("our-clients");
+  const cmsData = rawCMSData || {};
 
-  ];
+  const heroHeading = cmsData.heroHeading || "Our Valued Clients";
+  const heroSub = cmsData.heroSub || "Trusted by leading organizations across India for reliable power generation solutions.";
 
-  const constructionClients = [
-    { name: "NBCC", logo: nbcc },
-    { name: "Ace Construction", logo: ace },
-    { name: "CEC", logo: cec },
-    { name: "OJC", logo: ojc },
-    { name: "Sikka", logo: sikki }
-  ];
+  const industrialClients = Array.isArray(cmsData.industrialClients) && cmsData.industrialClients.length > 0
+    ? cmsData.industrialClients
+    : [
+        { name: "NCC Limited", logo: ncc },
+        { name: "KEC", logo: kec },
+        { name: "Honeywell", logo: honeywell },
+        { name: "S&P Infra", logo: snp },
+        { name: "Afcons", logo: afcons },
+        { name: "Comed", logo: comed },
+        { name: "Kashyapi", logo: kashyapi },
+        { name: "GMR Infra", logo: gmr },
+        { name: "vistara", logo: vistara },
+        { name: "addidas", logo: addidas },
+        { name: "daikin", logo: daikin },
+        { name: "nccltd", logo: nccltd },
+        { name: "guru", logo: guru },
+        { name: "britishpaints", logo: britishpaints },
+        { name: "vikas", logo: vikas },
+        { name: "gepl", logo: gepl }
+      ];
 
-  const hospitalityClients = [
-    { name: "Mapple", logo: mapple },
-    { name: "Seasons", logo: seasons },
-    { name: "Clarion", logo: clarion }
-  ];
+  const constructionClients = Array.isArray(cmsData.constructionClients) && cmsData.constructionClients.length > 0
+    ? cmsData.constructionClients
+    : [
+        { name: "NBCC", logo: nbcc },
+        { name: "Ace Construction", logo: ace },
+        { name: "CEC", logo: cec },
+        { name: "OJC", logo: ojc },
+        { name: "Sikka", logo: sikki }
+      ];
 
-  const governmentClients = [
-    { name: "Air India", logo: airindia },
-    { name: "IGNOU", logo: ignou },
-    { name: "Rai Foundation", logo: rai },
-    { name: "Military Engineer Services", logo: mes },
-    { name: "National Disaster", logo: nationaldisas }
-  ];
+  const hospitalityClients = Array.isArray(cmsData.hospitalityClients) && cmsData.hospitalityClients.length > 0
+    ? cmsData.hospitalityClients
+    : [
+        { name: "Mapple", logo: mapple },
+        { name: "Seasons", logo: seasons },
+        { name: "Clarion", logo: clarion }
+      ];
 
-  // Testimonials from clients
-  const testimonials = [
-    {
-      quote: "Kumar Power's expertise in power solutions has been instrumental in ensuring our operations run smoothly with zero downtime. Their installation team was professional and efficient.",
-      author: "Operations Director",
-      company: "Adani Group"
-    },
-    {
-      quote: "We've been working with Kumar Power for over 5 years, and their reliable service and technical knowledge continue to exceed our expectations.",
-      author: "Facility Manager",
-      company: "Apollo Hospitals"
-    },
-    {
-      quote: "The installation team at Kumar Power handled our complex power requirements with expertise. Their attention to detail and commitment to quality is commendable.",
-      author: "Project Head",
-      company: "NBCC Limited"
-    }
-  ];
+  const governmentClients = Array.isArray(cmsData.governmentClients) && cmsData.governmentClients.length > 0
+    ? cmsData.governmentClients
+    : [
+        { name: "Air India", logo: airindia },
+        { name: "IGNOU", logo: ignou },
+        { name: "Rai Foundation", logo: rai },
+        { name: "Military Engineer Services", logo: mes },
+        { name: "National Disaster", logo: nationaldisas }
+      ];
+
+  const testimonials = Array.isArray(cmsData.testimonials) && cmsData.testimonials.length > 0
+    ? cmsData.testimonials
+    : [
+        {
+          quote: "Kumar Power's expertise in power solutions has been instrumental in ensuring our operations run smoothly with zero downtime. Their installation team was professional and efficient.",
+          author: "Operations Director",
+          company: "Adani Group"
+        },
+        {
+          quote: "We've been working with Kumar Power for over 5 years, and their reliable service and technical knowledge continue to exceed our expectations.",
+          author: "Facility Manager",
+          company: "Apollo Hospitals"
+        },
+        {
+          quote: "The installation team at Kumar Power handled our complex power requirements with expertise. Their attention to detail and commitment to quality is commendable.",
+          author: "Project Head",
+          company: "NBCC Limited"
+        }
+      ];
 
   return (
     <div className="min-h-screen bg-background">

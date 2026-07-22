@@ -34,43 +34,17 @@ const Hero = () => {
     return () => setMounted(false);
   }, []);
 
-  const heading1 = data.headingLine1 || "Trusted Kirloskar Generator Dealer";
-  const heading2 =
-    data.headingLine2 || "Certified Dealer for India’s Power Needs";
-  const subtitle =
-    data.descriptionDesktop ||
-    "Authorized Channel Distributor | ISO 9001:2015 | 500+ Enterprise Clients | 30+ Years of Uninterrupted Excellence";
-  const btn1Text = data.ctaPrimaryLabel || "Explore Power Solutions";
-  const btn1Url = data.ctaPrimaryUrl || "/products";
-  const btn2Text = data.ctaSecondaryLabel || "Download Profile";
-  const profilePdf = data.companyProfilePdf || companyProfile;
-  const trustedByLabel = data.trustedByLabel || "TRUSTED BY";
+  const heading1 = data.headingLine1 || "";
+  const heading2 = data.headingLine2 || "";
+  const subtitle = data.descriptionDesktop || "";
+  const btn1Text = data.ctaPrimaryLabel || "";
+  const btn1Url = data.ctaPrimaryUrl || "";
+  const btn2Text = data.ctaSecondaryLabel || "";
+  const profilePdf = data.companyProfilePdf || "";
+  const trustedByLabel = data.trustedByLabel || "";
+  const bgVideo = data.backgroundVideo || "";
 
-  const defaultTrustLogos = [
-    { url: trust1, alt: "Tech Innovators" },
-    { url: trust2, alt: "EcoPower Solutions" },
-    { url: trust3, alt: "ManufacturePro" },
-    { url: trust4, alt: "LogiTrans" },
-    { url: ace, alt: "BuildMaster" },
-    { url: claroin, alt: "BuildMaster" },
-    { url: addidas, alt: "BuildMaster" },
-    { url: Comed, alt: "BuildMaster" },
-    { url: Dps, alt: "BuildMaster" },
-    { url: GEPL, alt: "BuildMaster" },
-    {
-      url: "https://res.cloudinary.com/dmhabztbf/image/upload/v1762928655/5d8a7ffc-390a-42d8-bee8-2a5c353e5d05_abj0u1.jpg",
-      alt: "Trusted Partner",
-    },
-    {
-      url: "https://res.cloudinary.com/dmhabztbf/image/upload/v1762928656/68724243-11f2-42ec-85dc-69c153744f3c_n1154o.jpg",
-      alt: "Trusted Client",
-    },
-  ];
-
-  const logoList =
-    Array.isArray(data.logos) && data.logos.length > 0
-      ? data.logos
-      : defaultTrustLogos;
+  const logoList = Array.isArray(data.logos) ? data.logos : [];
 
   useEffect(() => {
     // Check if it's a mobile device
@@ -105,12 +79,21 @@ const Hero = () => {
   return (
     <section id="home" className="relative bg-black lg:bg-white">
       <div className="relative h-[50vh] md:h-[78vh] lg:h-[95vh] overflow-hidden rounded-xl z-1 border shadow-[var(--shadow-glow)]">
-        {/* Background video with improved configuration to hide controls */}
+        {/* Background video from CMS */}
         <div
           className="absolute left-0 lg:top-0 -top-5 inset-0 w-full h-full md:w-[110vw] md:h-[150vh] lg:h-[110vh] z-0 md:top-[-45vh] md:translate-x-[-5%] md:translate-y-[-5%]"
           style={{ zIndex: 0 }}
         >
-          {mounted && <BackgroundVideo />}
+          {mounted && bgVideo && (
+            <video
+              src={bgVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          )}
         </div>
 
         {/* Reduced overlay opacity for mobile to maintain video visibility - ensure it doesn't block video controls */}

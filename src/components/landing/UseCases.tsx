@@ -4,42 +4,14 @@ const UseCases = () => {
   const { data: homeData } = useSectionData<any>("home");
   const data = homeData?.useCases || {};
 
-  const line1 = data.headingLine1 || "Power Solutions";
-  const line2 = data.headingLine2 || "for Metro Cities";
-  const defaultItems = [
-    {
-      title: "Power Outages and Load Shedding",
-      text: "Despite robust infrastructure, metro areas still experience power outages caused by high demand, technical issues, maintenance work, grid failures, natural disasters, and peak-demand overload. Generators provide a reliable backup power source to maintain continuity during these interruptions. Kirloskar generators ensure an uninterrupted power supply, enabling homes, offices, and businesses to operate smoothly.",
-    },
-    {
-      title: "High-Demand Areas",
-      text: "Metro cities are hubs for businesses, industries, commercial buildings, hospitals, malls, data centers, and IT companies—all of which require continuous power to avoid operational disruptions. Kirloskar generators offer a dependable solution, minimizing downtime and preventing losses by maintaining essential services during power fluctuations.",
-    },
-    {
-      title: "Dependability for Events and Functions",
-      text: "Generators are essential for events such as weddings, concerts, public gatherings, construction projects, and outdoor activities where access to the power grid may be limited. In these situations, a stable power supply is crucial for lighting, sound systems, and equipment. Kirloskar generators ensure smooth operations, particularly for outdoor or temporary venues.",
-    },
-    {
-      title: "Backup for Critical Appliances",
-      text: "Households often need generators to keep essential appliances running during outages, such as refrigerators, medical equipment, air conditioners, and security systems. This helps maintain safety and convenience during unexpected power cuts.",
-    },
-    {
-      title: "Increased Usage During Monsoon Season",
-      text: "Heavy rains and storms frequently disrupt power lines in metro cities, resulting in power outages. Generators help reduce the impact of these disruptions on both businesses and homes, providing a stable power solution during the monsoon months.",
-    },
-    {
-      title: "Urbanization and Infrastructure Stress",
-      text: "Rapid urbanization places stress on existing power grids, occasionally leading to shortages or planned outages. Additionally, large-scale construction projects require a stable electricity supply to power tools and machinery, which may not always be accessible on-site. Generators are vital in supporting these urban growth needs, ensuring continuous development.",
-    },
-  ];
-
-  const note =
-    data.footerNote ||
-    "Kirloskar generators, with their reliable performance and versatility, are well-suited to meet the unique demands of metro city environments.";
-  const items =
-    Array.isArray(data.cases) && data.cases.length > 0
-      ? data.cases
-      : defaultItems;
+  const line1 = data.headingLine1 || "";
+  const line2 = data.headingLine2 || "";
+  const note = data.footerQuote || data.footerNote || "";
+  const items = Array.isArray(data.cases) && data.cases.length > 0
+    ? data.cases
+    : Array.isArray(data.items) && data.items.length > 0
+    ? data.items
+    : [];
 
   return (
     <section className="py-24 bg-black text-white">

@@ -161,113 +161,36 @@ const GeneratorRange = () => {
   ];
   const [activeFilter, setActiveFilter] = useState("All");
 
-  // Define data with categories for filtering
-  const generatorData = [
-    {
-      title: "Kirloskar Optiprime Generator (125 – 6600 kVA)",
-      img: diesel,
-      caption:
-        "High-output Kirloskar Optiprime engineered for mission-critical facilities.",
-      categories: ["Optiprime"],
-      brochureUrl: optiprime,
-    },
-    {
-      title: "Kirloskar Gas Generator (15 – 250 kVA)",
-      img: gas,
-      caption:
-        "Clean, efficient power for commercial and industrial applications.",
-      categories: ["Gas Generators"],
-      brochureUrl: Gase,
-    },
-    {
-      title: "Kirloskar CPCB4+ Diesel Generator (7.5 – 20 kVA)",
-      img: dG1,
-      caption: "Portable power for events, remote sites, and emergency backup.",
-      categories: ["CPCB4+ Diesel Generators"],
-      brochureUrl: Cpcb,
-    },
-    {
-      title: "Kirloskar CPCB4+ Diesel Generator (25 – 58.5 kVA)",
-      img: dG3,
-      caption: "Balanced performance for medium-scale industrial needs.",
-      categories: ["CPCB4+ Diesel Generators"],
-      brochureUrl: cpcb58,
-    },
-    {
-      title: "Kirloskar CPCB4+ Diesel Generator (82.5 – 160 kVA)",
-      img: dG2,
-      caption: "Scalable solutions with robust service network coverage.",
-      categories: ["CPCB4+ Diesel Generators"],
-      brochureUrl: cpcb160,
-    },
-    {
-      title: "Kirloskar CPCB4+ Diesel Generator (200 – 250 kVA)",
-      img: portable,
-      caption: "Versatile DG sets for plants, campuses, and commercial towers.",
-      categories: ["CPCB4+ Diesel Generators"],
-      brochureUrl: cpcb250,
-    },
-    {
-      title: "Kirloskar CPCB4+ Diesel Generator (320 – 750 kVA)",
-      img: DG320,
-      caption: "Durable, high-efficiency backup for industries and campuses.",
-      categories: ["CPCB4+ Diesel Generators"],
-      brochureUrl: cpcb320,
-    },
-    {
-      title: "Kirloskar CPCB4+ Diesel Generator (750 – 1500 kVA)",
-      img: dG5,
-      caption: "Low-emission, reliable diesel generator for versatile use.",
-      categories: ["CPCB4+ Diesel Generators"],
-      brochureUrl: cpcb750,
-    },
-    {
-      title: "Kirloskar Portable Generator (2.1 – 5 kVA)",
-      img: portable1,
-      caption:
-        "Compact portable power for small-scale events, sites, and emergency use.",
-      categories: ["Portable Generators"],
-      brochureUrl: sential,
-    },
-  ];
+  const sectionTitle = data?.sectionTitle || "";
+  const sectionDesc = data?.sectionDesc || "";
 
-  const sectionTitle = data?.sectionTitle || "Explore Our Generator Range";
-  const sectionDesc =
-    data?.sectionDesc ||
-    "Kirloskar-certified systems tailored for industrial, commercial, and backup applications. Download brochures for detailed specifications.";
-
-  const cmsCards = data?.generators || data?.cards;
-  const activeGenerators =
-    Array.isArray(cmsCards) && cmsCards.length > 0
-      ? cmsCards.map((g: any, idx: number) => ({
-          title:
-            g.title ||
-            g.name ||
-            generatorData[idx % generatorData.length].title,
-          img:
-            (g.image && g.image.trim()) ||
-            (g.img && g.img.trim()) ||
-            generatorData[idx % generatorData.length].img,
-          caption:
-            g.caption ||
-            g.description ||
-            generatorData[idx % generatorData.length].caption,
-          categories: g.category
-            ? [g.category]
-            : g.categories ||
-              generatorData[idx % generatorData.length].categories,
-          brochureUrl:
-            (g.brochureUrl && g.brochureUrl.trim()) ||
-            generatorData[idx % generatorData.length].brochureUrl,
-        }))
-      : generatorData;
+  const cmsCards = data?.generators || data?.cards || [];
+  const activeGenerators = Array.isArray(cmsCards)
+    ? cmsCards.map((g: any) => ({
+        title: g.title || g.name || "",
+        img: (g.image && g.image.trim()) || (g.img && g.img.trim()) || "",
+        caption: g.caption || g.description || "",
+        categories: g.category
+          ? [g.category]
+          : Array.isArray(g.categories)
+          ? g.categories
+          : [],
+        brochureUrl: (g.brochureUrl && g.brochureUrl.trim()) || "",
+      }))
+    : [];
 
   // Filter generators based on the active filter
   const filteredGenerators =
     activeFilter === "All"
       ? activeGenerators
       : activeGenerators.filter((generator: any) =>
-          generator.categories.includes(activeFilter),
+          generator.categories.some(
+            (cat: string) =>
+              cat.toLowerCase().trim().includes(activeFilter.toLowerCase().trim()) ||
+              activeFilter.toLowerCase().trim().includes(cat.toLowerCase().trim()) ||
+              cat.toLowerCase().replace(/s$/, "").trim() ===
+                activeFilter.toLowerCase().replace(/s$/, "").trim()
+          )
         );
 
   return (

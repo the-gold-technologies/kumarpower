@@ -11,7 +11,8 @@ import { motion } from "framer-motion";
 import companyProfile from "./profile.pdf";
 
 import { Link } from "react-router-dom";
-import kirloskargenerator from "@/assets/BlogImages/kirloskar-genrator.png"
+import kirloskargenerator from "@/assets/BlogImages/kirloskar-genrator.png";
+import { useSectionData } from "@/store/useCMSStore";
 
 interface BlogPost {
   id: number;
@@ -186,6 +187,19 @@ const BlogCard = ({
 );
 
 const BlogSection = () => {
+  const { data: rawData } = useSectionData<any>("blogs");
+  const cmsData = rawData?.["blog-detail"] || rawData || {};
+
+  const displayBlogs = (Array.isArray(cmsData.blogs)
+    ? cmsData.blogs
+    : Array.isArray(cmsData.articles)
+    ? cmsData.articles
+    : []
+  ).slice(0, 3);
+
+  const sectionTitle = cmsData.title || "";
+  const sectionSub = cmsData.heroSub || cmsData.subtitle || "";
+
   return (
     <motion.section
       id="blogs"
@@ -211,7 +225,7 @@ const BlogSection = () => {
             duration: 0.6
           }}
         >
-          Blogs
+          {sectionTitle}
         </motion.h2>
 
         <motion.p
@@ -226,7 +240,7 @@ const BlogSection = () => {
             duration: 0.6
           }}
         >
-          Explore expert articles, case studies, and latest trends in industrial power solutions.
+          {sectionSub}
         </motion.p>
 
         <motion.div
@@ -241,10 +255,16 @@ const BlogSection = () => {
             duration: 0.6
           }}
         >
-          {blogPosts.map((blog, index) => (
+          {displayBlogs.map((blog: any, index: number) => (
             <BlogCard
-              key={blog.id}
-              blog={blog}
+              key={blog.id || blog.slug || index}
+              blog={{
+                id: blog.id || index + 1,
+                slug: blog.slug || "",
+                title: blog.title || "",
+                img: blog.img || blog.image || myBlogFeatureImage3,
+                summary: blog.summary || blog.description || ""
+              }}
               index={index}
             />
           ))}
@@ -253,64 +273,42 @@ const BlogSection = () => {
       </div>
 
       {/* CTA SECTION */}
-
       <div className="mt-16 md:mt-24 bg-white">
-
         <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-
           <div className="flex-1 md:pr-10">
-
             <h3 className="text-2xl md:text-3xl font-bold text-black mb-4 text-left">
-              Call To Action
+              {cmsData.ctaTitle || ""}
             </h3>
-
             <p className="text-gray-800 text-base md:text-lg mb-0 max-w-xl text-left">
-              Have questions or need more information? We're here to help!
+              {cmsData.ctaDescription || ""}
             </p>
-
           </div>
-
           <div className="flex flex-col gap-4 w-full md:w-[320px] md:mr-10 mt-8 md:mt-0">
-
             <button
               onClick={() => {
-                window.location.href = "/contact";
+                window.location.href = cmsData.ctaPrimaryUrl || "";
               }}
-
               type="button"
-
               className="bg-black hover:bg-gray-900 text-white font-medium px-6 py-3 rounded-md transition-colors w-full"
             >
-              Enquire Now
+              {cmsData.ctaPrimaryLabel || ""}
             </button>
-
             <button
               onClick={() => {
                 const link = document.createElement("a");
-
-                link.href = companyProfile;
-
-                link.download =
-                  "Kumar Power - Company Profile.pdf";
-
+                link.href = cmsData.companyProfilePdf || "";
+                link.download = "Kumar Power - Company Profile.pdf";
                 document.body.appendChild(link);
-
                 link.click();
-
                 document.body.removeChild(link);
               }}
-
               type="button"
-
               className="bg-white border border-gray-400 text-black font-medium px-6 py-3 rounded-md transition-colors w-full"
             >
-              Download Our Company Profile
+              {cmsData.ctaSecondaryLabel || ""}
             </button>
-
           </div>
-
         </div>
-
       </div>
 
     </motion.section>

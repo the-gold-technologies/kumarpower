@@ -16,26 +16,18 @@ const Footer = () => {
 
   useSmoothScroll();
 
-  const aboutBio =
-    data.aboutBio ||
-    "Kumar Power is certified ISO 9001:2015 Company & have emerged as the leading Power Solution Providers. Being an authorized Channel Partner of Kirloskar Oil Engines Limited, Kumar Power is committed to provide quality power solutions.";
-  const address =
-    data.address || "904, Westend Mall, Janakpuri, New Delhi 110058";
-  const mainPhone = data.mainPhone || "+91 97738 51767";
-  const supportPhone = data.supportPhone || "+91 97738 77796";
-  const landline = data.landline || "011-46701273";
-  const salesEmail = data.salesEmail || "sales@kumarpower.com";
-  const supportEmail = data.supportEmail || "support@kumarpower.com";
-  const accountsEmail = data.accountsEmail || "accounts@kumarpower.com";
-  const facebookUrl =
-    data.facebookUrl || "https://www.facebook.com/kumargenerator/";
-  const instagramUrl =
-    data.instagramUrl || "https://www.instagram.com/Kumarpowerlimitless";
-  const linkedinUrl =
-    data.linkedinUrl ||
-    "https://www.linkedin.com/company/kumar-generator-house---india/";
-  const copyrightText =
-    data.copyrightText || "© 2026 Kumar Power. All rights reserved.";
+  const aboutBio = data.aboutBio || "";
+  const address = data.address || "";
+  const mainPhone = data.mainPhone || "";
+  const supportPhone = data.supportPhone || "";
+  const landline = data.landline || "";
+  const salesEmail = data.salesEmail || "";
+  const supportEmail = data.supportEmail || "";
+  const accountsEmail = data.accountsEmail || "";
+  const facebookUrl = data.facebookUrl || "";
+  const instagramUrl = data.instagramUrl || "";
+  const linkedinUrl = data.linkedinUrl || "";
+  const copyrightText = data.copyrightText || "";
 
   return (
     <>

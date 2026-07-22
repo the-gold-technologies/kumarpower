@@ -8,27 +8,22 @@ const About = () => {
   const { data: homeData } = useSectionData<any>("home");
   const data = homeData?.about || {};
 
-  const heading1 = data.bannerTitle || "ABOUT KUMAR POWER";
-  const heading2 = data.bannerSubtitle || "Powering Progress.";
-  const titleLine1 = data.mainHeadingLine1 || "Engineering India's";
-  const titleLine2 = data.mainHeadingLine2 || "Energy Backbone.";
-  const description =
-    data.description ||
-    "For over 30+ years, Kumar Power has engineered uninterrupted power across India's industries, infrastructure, and institutions. With Kirloskar certification and ISO 9001:2015 accreditation, we serve 500+ enterprise clients with unmatched reliability and scale.";
-  const feature1 = data.feature1 || "Kirloskar Authorized Distributor";
-  const feature2 = data.feature2 || "24/7 Service Infrastructure";
-  const feature3 = data.feature3 || "500+ Enterprise Clients";
-  const feature4 = data.feature4 || "ISO 9001:2015 Accredited";
-  const image = data.teamImage || three;
-  const btnText = data.ctaLabel || "Explore Our Legacy";
-  const btnUrl = data.ctaUrl || "/about/OurProfile";
+  const heading1 = data.bannerTitle || "";
+  const heading2 = data.bannerSubtitle || "";
+  const titleLine1 = data.mainHeadingLine1 || "";
+  const titleLine2 = data.mainHeadingLine2 || "";
+  const description = data.description || "";
+  const feature1 = data.feature1 || "";
+  const feature2 = data.feature2 || "";
+  const feature3 = data.feature3 || "";
+  const feature4 = data.feature4 || "";
+  const image = data.teamImage || "";
+  const btnText = data.ctaLabel || "";
+  const btnUrl = data.ctaUrl || "";
 
-  const features = [
-    { label: feature1 },
-    { label: feature2 },
-    { label: feature3 },
-    { label: feature4 },
-  ];
+  const features = [feature1, feature2, feature3, feature4]
+    .filter(Boolean)
+    .map((label) => ({ label }));
 
   return (
     <>

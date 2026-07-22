@@ -1,29 +1,16 @@
 import { useState } from "react";
 import { useSectionData } from "@/store/useCMSStore";
 
-// Updated with Cloudinary image links
-const defaultGalleryImages = [
-  "https://res.cloudinary.com/dinhcaf2c/image/upload/v1755175177/gallery1_uhk3zd.png",
-  "https://res.cloudinary.com/dinhcaf2c/image/upload/v1755175177/gallery2_ei3h9z.png",
-  "https://res.cloudinary.com/dinhcaf2c/image/upload/v1755175176/gallery3_dcqffp.png",
-  "https://res.cloudinary.com/dinhcaf2c/image/upload/v1755175202/gallery4_nwutsh.png",
-  "https://res.cloudinary.com/dinhcaf2c/image/upload/v1755175196/gallery5_zlyhc4.png",
-  "https://res.cloudinary.com/dinhcaf2c/image/upload/v1755175198/gallery6_ulastu.png",
-];
-
 const Gallery = () => {
   const { data: homeData } = useSectionData<any>("home");
   const data = homeData?.gallery || {};
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const heading = data.sectionTitle || "Photo Gallery";
-  const subtitle =
-    data.sectionSubtitle ||
-    "Explore our installations, equipment, and team in action through these images";
-  const galleryImages =
-    Array.isArray(data.images) && data.images.length > 0
-      ? data.images.map((img: any) => (typeof img === "string" ? img : img.url))
-      : defaultGalleryImages;
+  const heading = data.sectionTitle || data.title || "";
+  const subtitle = data.sectionSubtitle || data.subtitle || "";
+  const galleryImages = Array.isArray(data.images)
+    ? data.images.map((img: any) => (typeof img === "string" ? img : img.url || img.src || ""))
+    : [];
 
   return (
     <section id="gallery" className="py-16">

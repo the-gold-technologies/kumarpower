@@ -7,11 +7,12 @@ const CTASection = () => {
   const { data: homeData } = useSectionData<any>("home");
   const data = homeData?.cta || {};
 
-  const title = data.title || "Need Expert Assistance?";
-  const btn1Text = data.primaryBtnLabel || "Talk to an Expert";
-  const btn1Url = data.primaryBtnUrl || "/contact";
-  const btn2Text = data.whatsappBtnLabel || "Connect on WhatsApp";
-  const whatsappNumber = data.whatsappNumber || "919773851767";
+  const title = data.title || "";
+  const btn1Text = data.primaryBtnLabel || "";
+  const btn1Url = data.primaryBtnUrl || "";
+  const btn2Text = data.whatsappBtnLabel || "";
+  const whatsappNumber = data.whatsappNumber || "";
+  const bgImage = data.backgroundImage || "";
 
   const openWhatsApp = () => {
     window.open(`https://wa.me/${whatsappNumber}`, "_blank");
@@ -22,7 +23,7 @@ const CTASection = () => {
       {/* Background image with overlay */}
       <div
         className="absolute inset-0 bg-contain bg-center z-0"
-        style={{ backgroundImage: `url(${need})` }}
+        style={{ backgroundImage: `url(${bgImage})` }}
       ></div>
 
       <div className="container mx-auto flex flex-col items-start text-left relative z-10 px-4 md:px-6 lg:px-8">
