@@ -73,22 +73,40 @@ const Products = () => {
     "kirloskar-diesel-generator",
   );
   const cmsData = rawCMSData || {};
+  const { data: productsRawCMSData } = useSectionData<any>("products");
+  const productsCMSData = productsRawCMSData || {};
 
-  const heroHeadingPart1 =
-    cmsData.heroHeadingPart1 || "Kirloskar Diesel Generators";
-  const heroHeadingPart2 = cmsData.heroHeadingPart2 || "Dealer in Delhi";
-  const heroSub =
-    cmsData.heroSub ||
-    "Explore Kirloskar Diesel Generators at Kumar Power for reliable backup and prime power solutions. Ideal for industrial and commercial applications in the required power range.";
+  const heroHeadingPart1 = cmsData.heroHeadingPart1 || "";
+  const heroHeadingPart2 = cmsData.heroHeadingPart2 || "";
+  const heroSub = cmsData.heroSub || "";
   const heroBg = cmsData.heroBg || hero;
 
-  const sectionTitle = cmsData.sectionTitle || "CPCB4+ Diesel Generators";
-  const sectionDesc = cmsData.sectionDesc || "Kirloskar's range of diesel generators are designed for maximum performance and reliability. Our generators meet the latest CPCB norms and are built for Indian conditions.";
+  const sectionTitle = cmsData.sectionTitle || "";
+  const sectionDesc = cmsData.sectionDesc || "";
 
-  const certTitle = cmsData.certTitle || "Certified Excellence";
-  const helpTitle = cmsData.helpTitle || "Need Help Choosing the Right Electrical Solution?";
-  const helpSub = cmsData.helpSub || "Our team of experts will help you select the perfect solution based on your industry and budget.";
-  const helpBtnText = cmsData.helpBtnText || "Talk to an Expert";
+  const whyChooseTitle = productsCMSData.whyChooseTitle || "";
+  const certTitle = productsCMSData.certTitle || "";
+  const helpTitle = productsCMSData.helpTitle || "";
+  const helpSub = productsCMSData.helpSub || "";
+  const helpBtnText = productsCMSData.helpBtnText || "";
+
+  const whyChooseCard1Title = productsCMSData.whyChooseCard1Title || "";
+  const whyChooseCard1Desc = productsCMSData.whyChooseCard1Desc || "";
+  const whyChooseCard2Title = productsCMSData.whyChooseCard2Title || "";
+  const whyChooseCard2Desc = productsCMSData.whyChooseCard2Desc || "";
+  const whyChooseCard3Title = productsCMSData.whyChooseCard3Title || "";
+  const whyChooseCard3Desc = productsCMSData.whyChooseCard3Desc || "";
+  const whyChooseCard4Title = productsCMSData.whyChooseCard4Title || "";
+  const whyChooseCard4Desc = productsCMSData.whyChooseCard4Desc || "";
+  const whyChooseCard5Title = productsCMSData.whyChooseCard5Title || "";
+  const whyChooseCard5Desc = productsCMSData.whyChooseCard5Desc || "";
+  const whyChooseCard6Title = productsCMSData.whyChooseCard6Title || "";
+  const whyChooseCard6Desc = productsCMSData.whyChooseCard6Desc || "";
+
+  const cert1Title = productsCMSData.cert1Title || "";
+  const cert2Title = productsCMSData.cert2Title || "";
+  const cert3Title = productsCMSData.cert3Title || "";
+
   const [showSpecsModal, setShowSpecsModal] = useState(false);
   const [selectedProductForSpecs, setSelectedProductForSpecs] = useState(null);
 
@@ -141,104 +159,7 @@ const Products = () => {
 
   // ✅ सभी products एक साथ
 
-  const dieselGenerators = [
-    {
-      id: "7.5 kVA to 20 kVA",
-      name: "7.5 kVA to 20 kVA Diesel generators",
-      image: DG1,
-      fuelType: "Diesel",
-      cpcbNorm: "CPCB-IV+",
-      cooling: "Liquid",
-      phase: "Three Phase",
-      ratingCount: 153,
-      rating: 4.8,
-      range: "7.5 kVA to 20 kVA",
-      category: "diesel",
-      description:
-        "Our range of diesel generators are designed for maximum performance and reliability. Our generators meet the latest CPCB norms and are built for Indian conditions.",
-      technicalSpecs: `Engineered specifically for compact power needs, this range utilizes the robust Kirloskar R550 series engines, known for their naturally aspirated design and reliable G2 class mechanical governing. These units are optimized for low-load operations, consuming approximately 2-3 Liters per hour at 75% load, making them highly economical. The silent canopy design ensures noise levels remain below 75 dBA at 1 meter, making these generators the ideal choice for small retail shops, clinics, residential backup, and small offices where silence is as important as power.`,
-    },
-    {
-      id: "25 kVA to 58.5 kVA",
-      name: "25 kVA to 58.5 kVA Diesel generators",
-      image: DG3,
-      fuelType: "Diesel",
-      cpcbNorm: "CPCB-IV+",
-      cooling: "Liquid",
-      phase: "Three Phase",
-      ratingCount: 132,
-      rating: 4.9,
-      range: "25 kVA to 58.5 kVA",
-      category: "diesel",
-      description:
-        "Our range of diesel generators are designed for maximum performance and reliability. Our generators meet the latest CPCB norms and are built for Indian conditions.",
-      technicalSpecs: `These mid-range workhorses are built for stability and endurance, powered by Kirloskar's liquid-cooled 3R1040 and 4R1040 series engines equipped with heavy-duty radiators. The system integrates advanced anti-vibration mounts to ensure smooth operation and minimal structural stress. Featuring a brushless, single-bearing alternator with IP23 protection and managed by the KG545 Digital Controller, these units offer comprehensive remote monitoring capabilities. They are perfectly suited for restaurants, commercial complexes, and small manufacturing units requiring consistent uptime.`,
-    },
-    {
-      id: "82.5 kVA to 160 kVA",
-      name: "82.5 kVA to 160 kVA Diesel generators",
-      image: range6,
-      fuelType: "Diesel",
-      cpcbNorm: "CPCB-IV+",
-      cooling: "Liquid",
-      phase: "Three Phase",
-      ratingCount: 118,
-      rating: 4.8,
-      range: "82.5 kVA to 160 kVA",
-      category: "diesel",
-      description:
-        "Our range of diesel generators are designed for maximum performance and reliability. Our generators meet the latest CPCB norms and are built for Indian conditions.",
-      technicalSpecs: `Designed for industrial-grade performance, this range utilizes 4 and 6 cylinder inline turbocharged and intercooled engines to handle demanding loads. With G3 Class electronic governing, these generators provide precise frequency regulation and excellent sudden load acceptance, capable of handling 100% block loading. The fuel tanks are sized for 8-10 hours of continuous running, ensuring uninterrupted workflow. These are the preferred power solution for construction sites, medium-scale industries, hospitals, and hotels where power quality cannot be compromised.`,
-    },
-    {
-      id: "200 kVA to 250 kVA",
-      name: "200 kVA to 250 kVA Diesel Generators",
-      image: range1,
-      fuelType: "Diesel",
-      cpcbNorm: "CPCB-IV+",
-      cooling: "Liquid",
-      phase: "Three Phase",
-      ratingCount: 178,
-      rating: 4.7,
-      range: "200 - 250 kVA",
-      category: "diesel",
-      description:
-        "Our range of diesel generators are designed for maximum performance and reliability. Our generators meet the latest CPCB norms and are built for Indian conditions.",
-      technicalSpecs: `This series features high-performance Kirloskar DV Series engines (with V-Type configuration options) that deliver robust power for critical infrastructure. They offer best-in-class fluid efficiency, optimizing both fuel and DEF consumption to lower operational costs. Controlled by an advanced ECU for precise engine management and diagnostics, these units include comprehensive safety protections against Over-speed, Low Lube Oil Pressure (LLOP), and High Water Temperature. They are engineered for large commercial hubs, infrastructure projects, and data centers.`,
-    },
-    {
-      id: "320 kVA to 750 kVA ",
-      name: "320 kVA - 750 kVA Diesel Generators",
-      image: range360,
-      fuelType: "Diesel",
-      cpcbNorm: "CPCB-IV+",
-      cooling: "Liquid",
-      phase: "Three Phase",
-      ratingCount: 96,
-      rating: 4.9,
-      range: "320 - 750 kVA",
-      category: "diesel",
-      description:
-        "Our range of diesel generators are designed for maximum performance and reliability. Our generators meet the latest CPCB norms and are built for Indian conditions.",
-      technicalSpecs: `These heavy-duty powerhouses are designed for 24/7 continuous operations in harsh environments, powered by SL90 and DV Series turbocharged after-cooled engines. The system allows for easy paralleling and synchronization with the grid or other DG sets to create flexible power plants. With GSM/GPRS-enabled controllers for remote monitoring and long service intervals of 500 hours, these generators significantly reduce Opex. They are the standard for heavy engineering industries, malls, mining operations, and large-scale real estate developments.`,
-    },
-    {
-      id: "750-1500kva",
-      name: "750 kVA - 1500 kVA Diesel Generators",
-      image: DG5,
-      fuelType: "Diesel",
-      cpcbNorm: "CPCB-IV+",
-      cooling: "Liquid",
-      phase: "Three Phase",
-      ratingCount: 86,
-      rating: 4.9,
-      range: "750 - 1500 kVA",
-      category: "diesel",
-      description:
-        "Our range of diesel generators are designed for maximum performance and reliability. Our generators meet the latest CPCB norms and are built for Indian conditions.",
-      technicalSpecs: `Representing the ultimate in power solutions, this range features the legendary K-Series and DV-Series engines known for massive power density within a compact footprint. They utilize full authority electronic engine management systems for peak performance and can be configured with heavy-duty remote radiator options for specialized installations. Designed for absolute reliability in continuous duty cycles, these generators power critical national assets including power plants, mega-infrastructure projects, international airports, and hyperscale data centers.`,
-    },
-  ];
+  const dieselGenerators = cmsData.gensets || [];
 
   return (
     <>
@@ -372,7 +293,7 @@ const Products = () => {
         <section className="bg-[#E5E7EB] text-gray-800 py-8 sm:py-12">
           <div className="max-w-7xl mx-auto px-2 sm:px-4">
             <h2 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-10">
-              Why Choose Kirloskar Generators?
+              {whyChooseTitle}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -389,13 +310,8 @@ const Products = () => {
                     <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">
-                  Unmatched Reliability
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Engineered for 24/7 operation with redundant systems and
-                  fail-safe mechanisms.
-                </p>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard1Title}</h3>
+                <p className="text-sm text-gray-600">{whyChooseCard1Desc}</p>
               </div>
 
               {/* Fuel Efficiency */}
@@ -411,13 +327,8 @@ const Products = () => {
                     <path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">
-                  Fuel Efficiency
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Advanced engine technology delivers optimal fuel consumption
-                  and lower operating costs.
-                </p>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard2Title}</h3>
+                <p className="text-sm text-gray-600">{whyChooseCard2Desc}</p>
               </div>
 
               {/* Rapid Response */}
@@ -434,11 +345,8 @@ const Products = () => {
                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">Rapid Response</h3>
-                <p className="text-sm text-gray-600">
-                  Quick start capability ensures minimal downtime during power
-                  outages.
-                </p>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard3Title}</h3>
+                <p className="text-sm text-gray-600">{whyChooseCard3Desc}</p>
               </div>
 
               {/* Low Noise Operation */}
@@ -455,13 +363,8 @@ const Products = () => {
                     <path d="M10.002 4.646a.5.5 0 0 1 .707 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.707-.708L11.293 7 10.002 5.707a.5.5 0 0 1 0-.708zm-6.293 0a.5.5 0 0 0-.707 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .707-.708L1.707 7l2.001-1.293a.5.5 0 0 0 0-.708z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">
-                  Low Noise Operation
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Acoustic engineering reduces noise levels for urban and
-                  sensitive environments.
-                </p>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard4Title}</h3>
+                <p className="text-sm text-gray-600">{whyChooseCard4Desc}</p>
               </div>
 
               {/* Easy Maintenance */}
@@ -477,13 +380,8 @@ const Products = () => {
                     <path d="M8.932.727c-.243-.97-1.62-.97-1.864 0l-.071.286a.96.96 0 0 1-1.622.434l-.205-.211c-.695-.719-1.888-.03-1.613.931l.08.284a.96.96 0 0 1-1.186 1.187l-.284-.081c-.96-.275-1.65.918-.931 1.613l.211.205a.96.96 0 0 1-.434 1.622l-.286.071c-.97.243-.97 1.62 0 1.864l.286.071a.96.96 0 0 1 .434 1.622l-.211.205c-.719.695-.03 1.888.931 1.613l.284-.08a.96.96 0 0 1 1.187 1.187l-.081.283c-.275.96.918 1.65 1.613.931l.205-.211a.96.96 0 0 1 1.622.434l.071.286c.243.97 1.62.97 1.864 0l.071-.286a.96.96 0 0 1 1.622-.434l.205.211c.695.719 1.888.03 1.613-.931l-.08-.284a.96.96 0 0 1 1.187-1.187l.283.081c.96.275 1.65-.918.931-1.613l-.211-.205a.96.96 0 0 1 .434-1.622l.286-.071c.97-.243.97-1.62 0-1.864l-.286-.071a.96.96 0 0 1-.434-1.622l.211-.205c.719-.695.03-1.888-.931-1.613l-.284.08a.96.96 0 0 1-1.187-1.186l.081-.284c.275-.96-.918-1.65-1.613-.931l-.205.211a.96.96 0 0 1-1.622-.434L8.932.727zM8 12.997a4.998 4.998 0 1 1 0-9.995 4.998 4.998 0 0 1 0 9.996z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">
-                  Easy Maintenance
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Modular design with accessible components simplifies service
-                  and maintenance.
-                </p>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard5Title}</h3>
+                <p className="text-sm text-gray-600">{whyChooseCard5Desc}</p>
               </div>
 
               {/* Smart Controls */}
@@ -499,11 +397,8 @@ const Products = () => {
                     <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">Smart Controls</h3>
-                <p className="text-sm text-gray-600">
-                  Advanced digital interfaces with remote monitoring and
-                  diagnostic capabilities.
-                </p>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard6Title}</h3>
+                <p className="text-sm text-gray-600">{whyChooseCard6Desc}</p>
               </div>
             </div>
           </div>
@@ -524,9 +419,7 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300">
-                  ISO 9001:2015
-                </p>
+                <p className="font-medium text-sm text-gray-300">{cert1Title}</p>
               </div>
 
               <div className="text-center">
@@ -536,7 +429,7 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300">CPCB-IV+</p>
+                <p className="font-medium text-sm text-gray-300">{cert2Title}</p>
               </div>
 
               <div className="text-center">
@@ -546,9 +439,7 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300">
-                  Kirloskar Authorized
-                </p>
+                <p className="font-medium text-sm text-gray-300">{cert3Title}</p>
               </div>
             </div>
           </div>

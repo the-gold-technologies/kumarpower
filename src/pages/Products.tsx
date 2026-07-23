@@ -72,23 +72,49 @@ const Products = () => {
   const { data: rawCMSData } = useSectionData<any>("products");
   const cmsData = rawCMSData || {};
 
-  const heroHeadingPart1 = cmsData.heroHeadingPart1 || "Powering Progress,";
-  const heroHeadingPart2 = cmsData.heroHeadingPart2 || "One Generator at a Time";
-  const heroSub = cmsData.heroSub || "Explore our full range of Kirloskar-certified diesel generators, trusted across India's most demanding industries.";
+  const heroHeadingPart1 = cmsData.heroHeadingPart1 || "";
+  const heroHeadingPart2 = cmsData.heroHeadingPart2 || "";
+  const heroSub = cmsData.heroSub || "";
   const heroBg = cmsData.heroBg || hero;
-  const btn1Text = cmsData.btn1Text || "Request a Quote";
-  const btn1Url = cmsData.btn1Url || "/contact";
-  const btn2Text = cmsData.btn2Text || "Download Product Catalogue";
+  const btn1Text = cmsData.btn1Text || "";
+  const btn1Url = cmsData.btn1Url || "";
+  const btn2Text = cmsData.btn2Text || "";
   const btn2Url = cmsData.btn2Url || Portfolio;
 
-  const sectionTitle = cmsData.sectionTitle || "ALL Products";
-  const sectionDesc = cmsData.sectionDesc || "We offer a complete range of power and electrical solutions including Kirloskar Diesel Generators, Kirloskar Gas Generators, Kirloskar Portable Generators, Electrical Panels, Servo Voltage Stabilizers, and Transformers, engineered for reliable performance across residential, commercial, and industrial applications.";
+  const sectionTitle = cmsData.sectionTitle || "";
+  const sectionDesc = cmsData.sectionDesc || "";
 
-  const certTitle = cmsData.certTitle || "Certified Excellence";
-  const helpTitle = cmsData.helpTitle || "Need Help Choosing the Right Electrical Solution?";
-  const helpSub = cmsData.helpSub || "Our team of experts will help you select the perfect solution based on your industry and budget.";
-  const helpBtnText = cmsData.helpBtnText || "Talk to an Expert";
-  const whyChooseTitle = cmsData.whyChooseTitle || "Why Choose Kirloskar Generators?";
+  const certTitle = cmsData.certTitle || "";
+  const helpTitle = cmsData.helpTitle || "";
+  const helpSub = cmsData.helpSub || "";
+  const helpBtnText = cmsData.helpBtnText || "";
+  const whyChooseTitle = cmsData.whyChooseTitle || "";
+
+    const stickyTextPart1 = cmsData.stickyTextPart1 || "";
+  const stickyTextPart2 = cmsData.stickyTextPart2 || "";
+  const downloadBtn1Label = cmsData.downloadBtn1Label || "";
+  const downloadBtn1Url = cmsData.downloadBtn1Url || "";
+  const downloadBtn2Label = cmsData.downloadBtn2Label || "";
+  const downloadBtn2Url = cmsData.downloadBtn2Url || "";
+  const talkBtnLabel = cmsData.talkBtnLabel || "";
+  const requestBtnLabel = cmsData.requestBtnLabel || "";
+
+  const whyChooseCard1Title = cmsData.whyChooseCard1Title || "";
+  const whyChooseCard1Desc = cmsData.whyChooseCard1Desc || "";
+  const whyChooseCard2Title = cmsData.whyChooseCard2Title || "";
+  const whyChooseCard2Desc = cmsData.whyChooseCard2Desc || "";
+  const whyChooseCard3Title = cmsData.whyChooseCard3Title || "";
+  const whyChooseCard3Desc = cmsData.whyChooseCard3Desc || "";
+  const whyChooseCard4Title = cmsData.whyChooseCard4Title || "";
+  const whyChooseCard4Desc = cmsData.whyChooseCard4Desc || "";
+  const whyChooseCard5Title = cmsData.whyChooseCard5Title || "";
+  const whyChooseCard5Desc = cmsData.whyChooseCard5Desc || "";
+  const whyChooseCard6Title = cmsData.whyChooseCard6Title || "";
+  const whyChooseCard6Desc = cmsData.whyChooseCard6Desc || "";
+
+  const cert1Title = cmsData.cert1Title || "";
+  const cert2Title = cmsData.cert2Title || "";
+  const cert3Title = cmsData.cert3Title || "";
 
   const [selectedCategory, setSelectedCategory] = useState<string>("diesel");
   const [sortBy, setSortBy] = useState<string>("popularity");
@@ -175,7 +201,7 @@ const Products = () => {
   };
 
   // Define generator products based on the images
-  const ALLProductCategories = [
+  const fallbackProductCategories = [
     {
       id: "7.5 kVA to 20 kVA",
       name: "Kirloskar Diesel generators",
@@ -296,6 +322,8 @@ const Products = () => {
       productLink: "/products/transformers",
     },
   ];
+  
+  const ALLProductCategories = Array.isArray(cmsData.categories) ? cmsData.categories : [];
 
   // Filter products based on selected category
   const getDisplayProducts = () => {
@@ -436,16 +464,7 @@ const Products = () => {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-                {(Array.isArray(cmsData.categories) && cmsData.categories.length > 0
-                  ? cmsData.categories.map((cat: any, idx: number) => {
-                      const defaultImages = [DG1, range2, port, optiprime, panel6, servo1, trans1];
-                      return {
-                        ...cat,
-                        image: (cat.image && cat.image.trim()) || defaultImages[idx % defaultImages.length] || DG1,
-                      };
-                    })
-                  : ALLProductCategories
-                ).map((product: any) => (
+                {ALLProductCategories.map((product: any) => (
                   <Card
                     key={product.id}
                     className="overflow-hidden border border-gray-700 rounded-md bg-gray-800 hover:bg-gray-750"
@@ -482,14 +501,14 @@ const Products = () => {
           {/* Kumar Power Info */}
           <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between text-xs text-gray-400 pt-3 gap-2">
             <div>
-              <span className="font-medium text-[#2D6FBA]">Kumar Power:</span>{" "}
-              India's Most Trusted Kirloskar-Certified Generator Brand!
+              <span className="font-medium text-[#2D6FBA]">{stickyTextPart1}</span>{" "}
+              {stickyTextPart2}
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 mt-2 sm:mt-0">
               {/* Download Button */}
 
               {/* New Bharat Rajpat Button */}
-              <a href={bharat} download="Bharat rajptar .pdf">
+              <a href={downloadBtn1Url} download>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -510,11 +529,11 @@ const Products = () => {
                     <polyline points="7 10 12 15 17 10" />
                     <line x1="12" y1="15" x2="12" y2="3" />
                   </svg>
-                  Download Bharat Rajptar
+                  {downloadBtn1Label}
                 </Button>
               </a>
 
-              <a href={Direction76} download="Direction76.pdf">
+              <a href={downloadBtn2Url} download>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -535,7 +554,7 @@ const Products = () => {
                     <polyline points="7 10 12 15 17 10" />
                     <line x1="12" y1="15" x2="12" y2="3" />
                   </svg>
-                  Download Direction 76
+                  {downloadBtn2Label}
                 </Button>
               </a>
 
@@ -561,7 +580,7 @@ const Products = () => {
                 >
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                 </svg>
-                Talk to Power Expert
+                {talkBtnLabel}
               </Button>
 
               {/* Request Quote Button */}
@@ -584,7 +603,7 @@ const Products = () => {
                   <line x1="12" y1="5" x2="12" y2="19" />
                   <line x1="5" y1="12" x2="19" y2="12" />
                 </svg>
-                <Link to="/contact">Request Quote</Link>
+                <Link to="/contact">{requestBtnLabel}</Link>
               </Button>
             </div>
           </div>
@@ -598,7 +617,7 @@ const Products = () => {
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {/* Unmatched Reliability */}
+              {/* {whyChooseCard1Title} */}
               <div className="bg-white p-6 rounded-md shadow-sm">
                 <div className="mb-4" style={{ color: "#2D6FBA" }}>
                   <svg
@@ -612,15 +631,14 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">
-                  Unmatched Reliability
+                  {whyChooseCard1Title}
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Engineered for 24/7 operation with redundant systems and
-                  fail-safe mechanisms.
+                  {whyChooseCard1Desc}
                 </p>
               </div>
 
-              {/* Fuel Efficiency */}
+              {/* {whyChooseCard2Title} */}
               <div className="bg-white p-6 rounded-md shadow-sm">
                 <div className="mb-4" style={{ color: "#2D6FBA" }}>
                   <svg
@@ -634,15 +652,14 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">
-                  Fuel Efficiency
+                  {whyChooseCard2Title}
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Advanced engine technology delivers optimal fuel consumption
-                  and lower operating costs.
+                  {whyChooseCard2Desc}
                 </p>
               </div>
 
-              {/* Rapid Response */}
+              {/* {whyChooseCard3Title} */}
               <div className="bg-white p-6 rounded-md shadow-sm">
                 <div className="mb-4" style={{ color: "#2D6FBA" }}>
                   <svg
@@ -656,14 +673,13 @@ const Products = () => {
                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">Rapid Response</h3>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard3Title}</h3>
                 <p className="text-sm text-gray-600">
-                  Quick start capability ensures minimal downtime during power
-                  outages.
+                  {whyChooseCard3Desc}
                 </p>
               </div>
 
-              {/* Low Noise Operation */}
+              {/* {whyChooseCard4Title} */}
               <div className="bg-white p-6 rounded-md shadow-sm">
                 <div className="mb-4" style={{ color: "#2D6FBA" }}>
                   <svg
@@ -678,15 +694,14 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">
-                  Low Noise Operation
+                  {whyChooseCard4Title}
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Acoustic engineering reduces noise levels for urban and
-                  sensitive environments.
+                  {whyChooseCard4Desc}
                 </p>
               </div>
 
-              {/* Easy Maintenance */}
+              {/* {whyChooseCard5Title} */}
               <div className="bg-white p-6 rounded-md shadow-sm">
                 <div className="mb-4" style={{ color: "#2D6FBA" }}>
                   <svg
@@ -700,15 +715,14 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">
-                  Easy Maintenance
+                  {whyChooseCard5Title}
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Modular design with accessible components simplifies service
-                  and maintenance.
+                  {whyChooseCard5Desc}
                 </p>
               </div>
 
-              {/* Smart Controls */}
+              {/* {whyChooseCard6Title} */}
               <div className="bg-white p-6 rounded-md shadow-sm">
                 <div className="mb-4" style={{ color: "#2D6FBA" }}>
                   <svg
@@ -721,10 +735,9 @@ const Products = () => {
                     <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">Smart Controls</h3>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard6Title}</h3>
                 <p className="text-sm text-gray-600">
-                  Advanced digital interfaces with remote monitoring and
-                  diagnostic capabilities.
+                  {whyChooseCard6Desc}
                 </p>
               </div>
             </div>
@@ -746,9 +759,7 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300">
-                  ISO 9001:2015
-                </p>
+                <p className="font-medium text-sm text-gray-300">{cert1Title}</p>
               </div>
 
               <div className="text-center">
@@ -758,7 +769,7 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300">CPCB-IV+</p>
+                <p className="font-medium text-sm text-gray-300">{cert2Title}</p>
               </div>
 
               <div className="text-center">
@@ -768,9 +779,7 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300">
-                  Kirloskar Authorized
-                </p>
+                <p className="font-medium text-sm text-gray-300">{cert3Title}</p>
               </div>
             </div>
           </div>

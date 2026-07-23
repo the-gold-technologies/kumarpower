@@ -71,14 +71,41 @@ import { useSectionData } from "@/store/useCMSStore";
 const Products = () => {
   const { data: rawCMSData } = useSectionData<any>("transformers");
   const cmsData = rawCMSData || {};
+  const { data: productsRawCMSData } = useSectionData<any>("products");
+  const productsCMSData = productsRawCMSData || {};
 
-  const heroHeadingPart1 = cmsData.heroHeadingPart1 || "Transformers Dealer in Delhi -";
-  const heroHeadingPart2 = cmsData.heroHeadingPart2 || "Kumar Power";
-  const heroSub = cmsData.heroSub || "At Kumar Power, we offer a diverse range of transformers designed to meet various industrial and commercial needs.";
+  const heroHeadingPart1 = cmsData.heroHeadingPart1 || "";
+  const heroHeadingPart2 = cmsData.heroHeadingPart2 || "";
+  const heroSub = cmsData.heroSub || "";
   const heroBg = cmsData.heroBg || hero;
 
-  const sectionTitle = cmsData.sectionTitle || "Transformers";
-  const sectionDesc = cmsData.sectionDesc || "Durable and efficient transformers designed for various industrial and commercial applications.";
+  const sectionTitle = cmsData.sectionTitle || "";
+  const sectionDesc = cmsData.sectionDesc || "";
+
+  const whyChooseCard1Title = productsCMSData.whyChooseCard1Title || "";
+  const whyChooseCard1Desc = productsCMSData.whyChooseCard1Desc || "";
+  const whyChooseCard2Title = productsCMSData.whyChooseCard2Title || "";
+  const whyChooseCard2Desc = productsCMSData.whyChooseCard2Desc || "";
+  const whyChooseCard3Title = productsCMSData.whyChooseCard3Title || "";
+  const whyChooseCard3Desc = productsCMSData.whyChooseCard3Desc || "";
+  const whyChooseCard4Title = productsCMSData.whyChooseCard4Title || "";
+  const whyChooseCard4Desc = productsCMSData.whyChooseCard4Desc || "";
+  const whyChooseCard5Title = productsCMSData.whyChooseCard5Title || "";
+  const whyChooseCard5Desc = productsCMSData.whyChooseCard5Desc || "";
+  const whyChooseCard6Title = productsCMSData.whyChooseCard6Title || "";
+  const whyChooseCard6Desc = productsCMSData.whyChooseCard6Desc || "";
+
+  const cert1Title = productsCMSData.cert1Title || "";
+  const cert2Title = productsCMSData.cert2Title || "";
+  const cert3Title = productsCMSData.cert3Title || "";
+
+  const whyChooseTitle = productsCMSData.whyChooseTitle || "";
+  const certTitle = productsCMSData.certTitle || "";
+  const helpTitle = productsCMSData.helpTitle || "";
+  const helpSub = productsCMSData.helpSub || "";
+  const helpBtnText = productsCMSData.helpBtnText || "";
+
+
   const [showSpecsModal, setShowSpecsModal] = useState(false);
   const [selectedProductForSpecs, setSelectedProductForSpecs] = useState(null);
 
@@ -131,72 +158,7 @@ const Products = () => {
 
   // ✅ सभी products एक साथ
 
-  const transformers = [
-    {
-      id: "distribution-transformer",
-      name: "Distribution Transformers",
-      image: trans1,
-      fuelType: "N/A",
-      cpcbNorm: "N/A",
-      cooling: "Oil/Dry",
-      phase: "Three Phase",
-      ratingCount: 88,
-      rating: 4.8,
-      range: "100-2500 kVA",
-      category: "transformers",
-      description:
-        "Durable and efficient transformers designed for various industrial and commercial applications.",
-      technicalSpecs: `These reliable step-down transformers are crafted for utility and industrial use, featuring a core made from CRGO (Cold Rolled Grain Oriented) silicon steel laminations to minimize losses. The windings are constructed from high-quality Electrolytic Copper or Aluminum with robust paper insulation. Utilizing ONAN (Oil Natural Air Natural) cooling and complying with IS 1180 energy efficiency levels, they include an off-circuit tap changer, allowing for precise voltage adjustments to match network requirements.`,
-    },
-    {
-      id: "power-transformer",
-      name: "Power Transformers",
-      image: trans2,
-      fuelType: "N/A",
-      cpcbNorm: "N/A",
-      cooling: "Oil",
-      phase: "Three Phase",
-      ratingCount: 76,
-      rating: 4.9,
-      range: "1-10 MVA",
-      category: "transformers",
-      description:
-        "Durable and efficient transformers designed for various industrial and commercial applications.",
-      technicalSpecs: `Built for high-capacity transmission and receiving stations, these power transformers are available in capacities up to 10 MVA. They are housed in robust welded steel tanks equipped with radiators for efficient cooling. The units come standard with essential protective accessories including Buchholz relays, Magnetic Oil Level Gauges (MOG), and Winding Temperature Indicators (WTI). Fully type-tested for impulse and short circuit withstand capacity, they ensure stability and reliability in major power grids.`,
-    },
-    {
-      id: "Cast Resin Transformers",
-      name: "Cast Resin Transformers",
-      image: trans3,
-      fuelType: "N/A",
-      cpcbNorm: "N/A",
-      cooling: "Oil",
-      phase: "Three Phase",
-      ratingCount: 76,
-      rating: 4.9,
-      range: "1-10 MVA",
-      category: "transformers",
-      description:
-        "Durable and efficient transformers designed for various industrial and commercial applications.",
-      technicalSpecs: `These Dry-type Cast Resin Transformers (CRT) are the premier choice for fire-safe applications. The coils are encapsulated in epoxy resin cast under vacuum (Class F/H insulation), making the unit self-extinguishing, non-explosive, and highly fire-resistant. Being virtually maintenance-free with no oil to check or leak, they offer significant operational advantages. They are specifically designed for indoor installations in high-risk areas such as malls, hospitals, commercial basements, and residential towers.`,
-    },
-    {
-      id: "Unitized Package Substation",
-      name: "Unitized Package Substation",
-      image: panel4,
-      fuelType: "N/A",
-      cpcbNorm: "N/A",
-      cooling: "Oil/Dry",
-      phase: "Three Phase",
-      ratingCount: 98,
-      rating: 4.6,
-      range: "500-5000 kVA",
-      category: "transformers",
-      description:
-        "Complete electrical substation solution with integrated transformer, switchgear, and protection systems.",
-      technicalSpecs: `The Unitized Package Substation (USS) is a compact, space-saving solution that seamlessly integrates a Ring Main Unit (RMU), a Transformer, and a Low Voltage (LV) panel into a single enclosure. Designed as a ready-to-install "plug-and-play" unit, it drastically reduces installation time and complexity. The compartmentalized design ensures maximum operator safety by isolating high-voltage components. With an aesthetic that blends well with urban architecture, it is the ideal choice for modern infrastructure projects.`,
-    },
-  ];
+  const transformers = cmsData.transformers || [];
 
   return (
     <>
@@ -324,7 +286,7 @@ const Products = () => {
         <section className="bg-[#E5E7EB] text-gray-800 py-8 sm:py-12">
           <div className="max-w-7xl mx-auto px-2 sm:px-4">
             <h2 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-10">
-              Why Choose Kumar Power?
+              {whyChooseTitle}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -341,13 +303,8 @@ const Products = () => {
                     <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">
-                  Unmatched Reliability
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Engineered for 24/7 operation with redundant systems and
-                  fail-safe mechanisms.
-                </p>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard1Title}</h3>
+                <p className="text-sm text-gray-600">{whyChooseCard1Desc}</p>
               </div>
 
               {/* Fuel Efficiency */}
@@ -363,13 +320,8 @@ const Products = () => {
                     <path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">
-                  Fuel Efficiency
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Advanced engine technology delivers optimal fuel consumption
-                  and lower operating costs.
-                </p>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard2Title}</h3>
+                <p className="text-sm text-gray-600">{whyChooseCard2Desc}</p>
               </div>
 
               {/* Rapid Response */}
@@ -386,11 +338,8 @@ const Products = () => {
                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">Rapid Response</h3>
-                <p className="text-sm text-gray-600">
-                  Quick start capability ensures minimal downtime during power
-                  outages.
-                </p>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard3Title}</h3>
+                <p className="text-sm text-gray-600">{whyChooseCard3Desc}</p>
               </div>
 
               {/* Low Noise Operation */}
@@ -407,13 +356,8 @@ const Products = () => {
                     <path d="M10.002 4.646a.5.5 0 0 1 .707 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.707-.708L11.293 7 10.002 5.707a.5.5 0 0 1 0-.708zm-6.293 0a.5.5 0 0 0-.707 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .707-.708L1.707 7l2.001-1.293a.5.5 0 0 0 0-.708z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">
-                  Low Noise Operation
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Acoustic engineering reduces noise levels for urban and
-                  sensitive environments.
-                </p>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard4Title}</h3>
+                <p className="text-sm text-gray-600">{whyChooseCard4Desc}</p>
               </div>
 
               {/* Easy Maintenance */}
@@ -429,13 +373,8 @@ const Products = () => {
                     <path d="M8.932.727c-.243-.97-1.62-.97-1.864 0l-.071.286a.96.96 0 0 1-1.622.434l-.205-.211c-.695-.719-1.888-.03-1.613.931l.08.284a.96.96 0 0 1-1.186 1.187l-.284-.081c-.96-.275-1.65.918-.931 1.613l.211.205a.96.96 0 0 1-.434 1.622l-.286.071c-.97.243-.97 1.62 0 1.864l.286.071a.96.96 0 0 1 .434 1.622l-.211.205c-.719.695-.03 1.888.931 1.613l.284-.08a.96.96 0 0 1 1.187 1.187l-.081.283c-.275.96.918 1.65 1.613.931l.205-.211a.96.96 0 0 1 1.622.434l.071.286c.243.97 1.62.97 1.864 0l.071-.286a.96.96 0 0 1 1.622-.434l.205.211c.695.719 1.888.03 1.613-.931l-.08-.284a.96.96 0 0 1 1.187-1.187l.283.081c.96.275 1.65-.918.931-1.613l-.211-.205a.96.96 0 0 1 .434-1.622l.286-.071c.97-.243.97-1.62 0-1.864l-.286-.071a.96.96 0 0 1-.434-1.622l.211-.205c.719-.695.03-1.888-.931-1.613l-.284.08a.96.96 0 0 1-1.187-1.186l.081-.284c.275-.96-.918-1.65-1.613-.931l-.205.211a.96.96 0 0 1-1.622-.434L8.932.727zM8 12.997a4.998 4.998 0 1 1 0-9.995 4.998 4.998 0 0 1 0 9.996z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">
-                  Easy Maintenance
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Modular design with accessible components simplifies service
-                  and maintenance.
-                </p>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard5Title}</h3>
+                <p className="text-sm text-gray-600">{whyChooseCard5Desc}</p>
               </div>
 
               {/* Smart Controls */}
@@ -451,11 +390,8 @@ const Products = () => {
                     <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">Smart Controls</h3>
-                <p className="text-sm text-gray-600">
-                  Advanced digital interfaces with remote monitoring and
-                  diagnostic capabilities.
-                </p>
+                <h3 className="text-base font-semibold mb-1">{whyChooseCard6Title}</h3>
+                <p className="text-sm text-gray-600">{whyChooseCard6Desc}</p>
               </div>
             </div>
           </div>
@@ -465,7 +401,7 @@ const Products = () => {
         <section className="bg-black text-white py-8 sm:py-12">
           <div className="max-w-7xl mx-auto px-2 sm:px-4">
             <h2 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8">
-              Certified Excellence
+              {certTitle}
             </h2>
 
             <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-14">
@@ -476,9 +412,7 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300">
-                  ISO 9001:2015
-                </p>
+                <p className="font-medium text-sm text-gray-300">{cert1Title}</p>
               </div>
 
               <div className="text-center">
@@ -488,7 +422,7 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300">CPCB-IV+</p>
+                <p className="font-medium text-sm text-gray-300">{cert2Title}</p>
               </div>
 
               <div className="text-center">
@@ -498,9 +432,7 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300">
-                  Kirloskar Authorized
-                </p>
+                <p className="font-medium text-sm text-gray-300">{cert3Title}</p>
               </div>
             </div>
           </div>
@@ -510,11 +442,10 @@ const Products = () => {
         <section className="py-8 sm:py-12 bg-[#AAAAAA]">
           <div className="max-w-4xl mx-auto px-2 sm:px-4 text-center">
             <h2 className="text-xl sm:text-2xl font-bold mb-2 text-gray-800">
-              Need Help Choosing the Right Electrical Solution?
+              {helpTitle}
             </h2>
             <p className="text-xs sm:text-sm text-black mb-6">
-              Our team of experts will help you select the perfect solution
-              based on your industry and budget.
+              {helpSub}
             </p>
             <div className="flex w-full items-center justify-center">
               <Button
@@ -538,9 +469,7 @@ const Products = () => {
                     strokeWidth={2}
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                   />
-                </svg>
-                Talk to an Expert
-              </Button>
+                </svg>{helpBtnText}</Button>
             </div>
           </div>
         </section>

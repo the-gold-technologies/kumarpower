@@ -71,22 +71,40 @@ import { useSectionData } from "@/store/useCMSStore";
 const Products = () => {
   const { data: rawCMSData } = useSectionData<any>("kirloskar-gas-generator");
   const cmsData = rawCMSData || {};
+  const { data: productsRawCMSData } = useSectionData<any>("products");
+  const productsCMSData = productsRawCMSData || {};
 
-  const heroHeadingPart1 =
-    cmsData.heroHeadingPart1 || "Kirloskar Gas Generators";
-  const heroHeadingPart2 = cmsData.heroHeadingPart2 || "Dealer in Delhi";
-  const heroSub =
-    cmsData.heroSub ||
-    "Kirloskar Oil Engines Ltd (KOEL) offers a range of gas-powered generator sets (gensets) designed to provide reliable and efficient power solutions across various applications.";
-  const heroBg = cmsData.heroBg || hero;
+  const heroHeadingPart1 = cmsData.heroHeadingPart1 || "";
+  const heroHeadingPart2 = cmsData.heroHeadingPart2 || "";
+  const heroSub = cmsData.heroSub || "";
+  const heroBg = cmsData.heroBg || "";
 
-  const sectionTitle = cmsData.sectionTitle || "Gas Generators";
-  const sectionDesc = cmsData.sectionDesc || "Eco-friendly and efficient, our gas generators provide clean power with lower emissions and reduced operating costs.";
+  const sectionTitle = cmsData.sectionTitle || "";
+  const sectionDesc = cmsData.sectionDesc || "";
 
-  const certTitle = cmsData.certTitle || "Certified Excellence";
-  const helpTitle = cmsData.helpTitle || "Need Help Choosing the Right Electrical Solution?";
-  const helpSub = cmsData.helpSub || "Our team of experts will help you select the perfect solution based on your industry and budget.";
-  const helpBtnText = cmsData.helpBtnText || "Talk to an Expert";
+  const whyChooseTitle = productsCMSData.whyChooseTitle || "";
+  const certTitle = productsCMSData.certTitle || "";
+  const helpTitle = productsCMSData.helpTitle || "";
+  const helpSub = productsCMSData.helpSub || "";
+  const helpBtnText = productsCMSData.helpBtnText || "";
+
+  const whyChooseCard1Title = productsCMSData.whyChooseCard1Title || "";
+  const whyChooseCard1Desc = productsCMSData.whyChooseCard1Desc || "";
+  const whyChooseCard2Title = productsCMSData.whyChooseCard2Title || "";
+  const whyChooseCard2Desc = productsCMSData.whyChooseCard2Desc || "";
+  const whyChooseCard3Title = productsCMSData.whyChooseCard3Title || "";
+  const whyChooseCard3Desc = productsCMSData.whyChooseCard3Desc || "";
+  const whyChooseCard4Title = productsCMSData.whyChooseCard4Title || "";
+  const whyChooseCard4Desc = productsCMSData.whyChooseCard4Desc || "";
+  const whyChooseCard5Title = productsCMSData.whyChooseCard5Title || "";
+  const whyChooseCard5Desc = productsCMSData.whyChooseCard5Desc || "";
+  const whyChooseCard6Title = productsCMSData.whyChooseCard6Title || "";
+  const whyChooseCard6Desc = productsCMSData.whyChooseCard6Desc || "";
+
+  const cert1Title = productsCMSData.cert1Title || "";
+  const cert2Title = productsCMSData.cert2Title || "";
+  const cert3Title = productsCMSData.cert3Title || "";
+
   const [showSpecsModal, setShowSpecsModal] = useState(false);
   const [selectedProductForSpecs, setSelectedProductForSpecs] = useState(null);
 
@@ -139,24 +157,7 @@ const Products = () => {
 
   // ✅ सभी products एक साथ
 
-  const gasGenerators = [
-    {
-      id: "15 kVA to 250 kVA",
-      name: "15 kVA to 250 kVA Gas Generators",
-      image: range2,
-      fuelType: "Natural Gas/CNG",
-      cpcbNorm: "CPCB-IV+",
-      cooling: "Liquid",
-      phase: "Single/Three Phase",
-      ratingCount: 145,
-      rating: 4.6,
-      range: "15 kVA to 250 kVA",
-      category: "gas",
-      description:
-        "Eco-friendly and efficient, our gas generators provide clean power with lower emissions and reduced operating costs.",
-      technicalSpecs: `Utilizing state-of-the-art gas engine technology, this range offers a greener footprint with extremely low NOx and PM emissions that exceed CPCB norms. The engines employ stoichiometric combustion to ensure high thermal efficiency, resulting in operating costs that are 40-50% lower than comparable diesel gensets. With inherent fuel flexibility (compatible with Natural Gas, CNG, and LPG) and a quieter combustion process, these generators are ideal for urban areas with strict pollution norms, green buildings, and cost-conscious businesses.`,
-    },
-  ];
+  const gasGenerators = cmsData.gensets || [];
 
   return (
     <>
@@ -284,7 +285,7 @@ const Products = () => {
         <section className="bg-[#E5E7EB] text-gray-800 py-8 sm:py-12">
           <div className="max-w-7xl mx-auto px-2 sm:px-4">
             <h2 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-10">
-              Why Choose Kirloskar Generators?
+              {whyChooseTitle}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -302,12 +303,9 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">
-                  Unmatched Reliability
+                  {whyChooseCard1Title}
                 </h3>
-                <p className="text-sm text-gray-600">
-                  Engineered for 24/7 operation with redundant systems and
-                  fail-safe mechanisms.
-                </p>
+                <p className="text-sm text-gray-600">{whyChooseCard1Desc}</p>
               </div>
 
               {/* Fuel Efficiency */}
@@ -324,12 +322,9 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">
-                  Fuel Efficiency
+                  {whyChooseCard2Title}
                 </h3>
-                <p className="text-sm text-gray-600">
-                  Advanced engine technology delivers optimal fuel consumption
-                  and lower operating costs.
-                </p>
+                <p className="text-sm text-gray-600">{whyChooseCard2Desc}</p>
               </div>
 
               {/* Rapid Response */}
@@ -346,11 +341,10 @@ const Products = () => {
                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">Rapid Response</h3>
-                <p className="text-sm text-gray-600">
-                  Quick start capability ensures minimal downtime during power
-                  outages.
-                </p>
+                <h3 className="text-base font-semibold mb-1">
+                  {whyChooseCard3Title}
+                </h3>
+                <p className="text-sm text-gray-600">{whyChooseCard3Desc}</p>
               </div>
 
               {/* Low Noise Operation */}
@@ -368,12 +362,9 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">
-                  Low Noise Operation
+                  {whyChooseCard4Title}
                 </h3>
-                <p className="text-sm text-gray-600">
-                  Acoustic engineering reduces noise levels for urban and
-                  sensitive environments.
-                </p>
+                <p className="text-sm text-gray-600">{whyChooseCard4Desc}</p>
               </div>
 
               {/* Easy Maintenance */}
@@ -390,12 +381,9 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">
-                  Easy Maintenance
+                  {whyChooseCard5Title}
                 </h3>
-                <p className="text-sm text-gray-600">
-                  Modular design with accessible components simplifies service
-                  and maintenance.
-                </p>
+                <p className="text-sm text-gray-600">{whyChooseCard5Desc}</p>
               </div>
 
               {/* Smart Controls */}
@@ -411,11 +399,10 @@ const Products = () => {
                     <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">Smart Controls</h3>
-                <p className="text-sm text-gray-600">
-                  Advanced digital interfaces with remote monitoring and
-                  diagnostic capabilities.
-                </p>
+                <h3 className="text-base font-semibold mb-1">
+                  {whyChooseCard6Title}
+                </h3>
+                <p className="text-sm text-gray-600">{whyChooseCard6Desc}</p>
               </div>
             </div>
           </div>
@@ -437,7 +424,7 @@ const Products = () => {
                   />
                 </div>
                 <p className="font-medium text-sm text-gray-300">
-                  ISO 9001:2015
+                  {cert1Title}
                 </p>
               </div>
 
@@ -448,7 +435,9 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300">CPCB-IV+</p>
+                <p className="font-medium text-sm text-gray-300">
+                  {cert2Title}
+                </p>
               </div>
 
               <div className="text-center">
@@ -459,7 +448,7 @@ const Products = () => {
                   />
                 </div>
                 <p className="font-medium text-sm text-gray-300">
-                  Kirloskar Authorized
+                  {cert3Title}
                 </p>
               </div>
             </div>
@@ -472,9 +461,7 @@ const Products = () => {
             <h2 className="text-xl sm:text-2xl font-bold mb-2 text-gray-800">
               {helpTitle}
             </h2>
-            <p className="text-xs sm:text-sm text-black mb-6">
-              {helpSub}
-            </p>
+            <p className="text-xs sm:text-sm text-black mb-6">{helpSub}</p>
             <div className="flex w-full items-center justify-center">
               <Button
                 onClick={() => {
