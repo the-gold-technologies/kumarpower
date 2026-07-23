@@ -147,13 +147,13 @@ const EmergencySupportService = () => {
         {/* Hero Banner */}
         <div className="bg-black py-12 md:py-16">
           <div className="container mx-auto text-center px-4">
-            <Badge className="mb-4 bg-custom-blue text-white hover:bg-[#225488]">Critical Response</Badge>
+            <Badge className="mb-4 bg-custom-blue text-white hover:bg-[#225488]">{cmsData.heroTagline || "Critical Response"}</Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">{heroHeading}</h1>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
               {heroSub}
             </p>
             <Button asChild size="lg" className="bg-custom-blue hover:bg-[#225488]">
-              <a href="tel:+919773851767" className="flex items-center gap-2">
+              <a href={`tel:${cmsData.emergencyPhone || "+919773851767"}`} className="flex items-center gap-2">
                 <PhoneCall size={20} /> Emergency Hotline
               </a>
             </Button>
@@ -168,7 +168,7 @@ const EmergencySupportService = () => {
                 <div className="inline-block mb-4">
                   <div className="flex items-center">
                     <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
-                    <span className="text-custom-blue font-semibold tracking-wider">EMERGENCY RESPONSE</span>
+                    <span className="text-custom-blue font-semibold tracking-wider">{cmsData.introTagline || "EMERGENCY RESPONSE"}</span>
                   </div>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -184,7 +184,7 @@ const EmergencySupportService = () => {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button asChild size="lg" className="bg-custom-blue hover:bg-[#225488]">
-                    <a href="tel:+919773851767" className="flex items-center gap-2">
+                    <a href={`tel:${cmsData.emergencyPhone || "+919773851767"}`} className="flex items-center gap-2">
                       <PhoneCall size={20} /> Emergency Hotline
                     </a>
                   </Button>
