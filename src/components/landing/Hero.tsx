@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -18,7 +19,6 @@ import GEPL from "@/assets/Clients page/GEPL.jpg";
 import addidas from "@/assets/Clients page/Adidas.jpg";
 import companyProfile from "./profile.pdf"; // Import PDF file
 import BackgroundVideo from "../BackgroundVideo";
-
 const Hero = () => {
   const { data: homeData } = useSectionData<any>("home");
   const data = homeData?.hero || {};
@@ -118,7 +118,7 @@ const Hero = () => {
                 {heading2}
               </h1>
               <p className="text-white/90 text-center text-xs sm:text-sm md:text-lg font-medium">
-                {subtitle}
+                <LinkText text={subtitle} linkClassName="text-white underline font-bold" />
               </p>
               <div className="flex flex-col sm:flex-row gap-2 w-full justify-center">
                 <Button

@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -79,9 +80,7 @@ const RepairOverhaulService = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               {heroHeading}
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-              {heroSub}
-            </p>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             <Button
               asChild
               size="lg"
@@ -106,12 +105,8 @@ const RepairOverhaulService = () => {
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
                   {introTitle}
                 </h2>
-                <p className="text-lg text-muted-foreground mb-6">
-                  {introDesc1}
-                </p>
-                <p className="text-lg text-muted-foreground mb-8">
-                  {cmsData.introDesc2}
-                </p>
+                <p className="text-lg text-muted-foreground mb-6"><LinkText text={introDesc1} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <p className="text-lg text-muted-foreground mb-8"><LinkText text={cmsData.introDesc2} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 <div className="flex flex-wrap gap-4">
                   <Button
                     asChild
@@ -160,9 +155,7 @@ const RepairOverhaulService = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {cmsData.diffHeading}
               </h2>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-                {cmsData.diffDesc}
-              </p>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto"><LinkText text={cmsData.diffDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
 
             <div className="max-w-4xl mx-auto">
@@ -186,9 +179,7 @@ const RepairOverhaulService = () => {
                     <h3 className="text-2xl font-bold mb-4 text-blue-400">
                       {cmsData.repairTabTitle}
                     </h3>
-                    <p className="mb-6 text-gray-300">
-                      {cmsData.repairTabDesc1}
-                    </p>
+                    <p className="mb-6 text-gray-300"><LinkText text={cmsData.repairTabDesc1} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                     <ul className="space-y-3 mb-6">
                       {(cmsData.repairScenarios || []).map((item: string, idx: number) => (
                         <li key={idx} className="flex items-start gap-3">
@@ -197,9 +188,7 @@ const RepairOverhaulService = () => {
                         </li>
                       ))}
                     </ul>
-                    <p className="text-gray-300">
-                      {cmsData.repairTabDesc2}
-                    </p>
+                    <p className="text-gray-300"><LinkText text={cmsData.repairTabDesc2} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                   </Card>
                 </TabsContent>
                 <TabsContent value="overhaul" className="mt-6">
@@ -207,9 +196,7 @@ const RepairOverhaulService = () => {
                     <h3 className="text-2xl font-bold mb-4 text-blue-400">
                       {cmsData.overhaulTabTitle}
                     </h3>
-                    <p className="mb-6 text-gray-300">
-                      {cmsData.overhaulTabDesc1}
-                    </p>
+                    <p className="mb-6 text-gray-300"><LinkText text={cmsData.overhaulTabDesc1} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                     <ul className="space-y-3 mb-6">
                       {(cmsData.overhaulScenarios || []).map((item: string, idx: number) => (
                         <li key={idx} className="flex items-start gap-3">
@@ -218,9 +205,7 @@ const RepairOverhaulService = () => {
                         </li>
                       ))}
                     </ul>
-                    <p className="text-gray-300">
-                      {cmsData.overhaulTabDesc2}
-                    </p>
+                    <p className="text-gray-300"><LinkText text={cmsData.overhaulTabDesc2} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                   </Card>
                 </TabsContent>
               </Tabs>
@@ -242,9 +227,7 @@ const RepairOverhaulService = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {cmsData.servicesHeading}
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                {cmsData.servicesDesc}
-              </p>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto"><LinkText text={cmsData.servicesDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -258,9 +241,7 @@ const RepairOverhaulService = () => {
                       {typeof service.icon === 'string' ? renderIcon(service.icon, "h-10 w-10 text-[#2D6FBA]") : React.cloneElement(service.icon as React.ReactElement, { className: "h-10 w-10 text-[#2D6FBA]" })}
                     </div>
                     <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-                    <p className="text-muted-foreground mb-6">
-                      {service.description}
-                    </p>
+                    <p className="text-muted-foreground mb-6"><LinkText text={service.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                     <ul className="space-y-3">
                       {service.features.map((feature, i) => (
                         <li key={i} className="flex items-start gap-3">
@@ -292,9 +273,7 @@ const RepairOverhaulService = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {cmsData.benefitsHeading}
               </h2>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-                {cmsData.benefitsDesc}
-              </p>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto"><LinkText text={cmsData.benefitsDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -307,7 +286,7 @@ const RepairOverhaulService = () => {
                   <h3 className="text-xl font-bold mb-3 text-blue-400">
                     {benefit.title}
                   </h3>
-                  <p className="text-gray-300">{benefit.description}</p>
+                  <p className="text-gray-300"><LinkText text={benefit.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 </div>
               ))}
             </div>
@@ -340,10 +319,8 @@ const RepairOverhaulService = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {cmsData.processHeading}
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                {cmsData.processDesc ||
-                  "A systematic approach to efficiently diagnose and resolve power system issues"}
-              </p>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto"><LinkText text={cmsData.processDesc ||
+                  "A systematic approach to efficiently diagnose and resolve power system issues"} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
 
             <div className="max-w-4xl mx-auto">
@@ -361,9 +338,7 @@ const RepairOverhaulService = () => {
                       <h3 className="text-2xl font-bold mb-3 text-[#2D6FBA]">
                         {step.title}
                       </h3>
-                      <p className="text-muted-foreground mb-4">
-                        {step.description}
-                      </p>
+                      <p className="text-muted-foreground mb-4"><LinkText text={step.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                       <ul className="space-y-2">
                         {step.features &&
                           step.features.map(
@@ -402,9 +377,7 @@ const RepairOverhaulService = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {cmsData.faqHeading}
               </h2>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-                {cmsData.faqDesc}
-              </p>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto"><LinkText text={cmsData.faqDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
 
             <div className="max-w-4xl mx-auto">
@@ -435,9 +408,7 @@ const RepairOverhaulService = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 {cmsData.helpTitle}
               </h2>
-              <p className="text-lg md:text-xl mb-10 text-gray-200">
-                {cmsData.helpSub}
-              </p>
+              <p className="text-lg md:text-xl mb-10 text-gray-200"><LinkText text={cmsData.helpSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
               <div className="flex flex-wrap gap-4 justify-center">
                 {/* Primary Button */}
                 <Button

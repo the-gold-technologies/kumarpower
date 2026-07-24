@@ -1,9 +1,9 @@
+import { LinkText } from "@/components/ui/LinkText";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import teamImg from "@/assets/gallery-networking.jpg";
 import { Button } from "@/components/ui/button";
 import three from "@/assets/Gallery/Threee.png";
 import { useSectionData } from "@/store/useCMSStore";
-
 const About = () => {
   const { data: homeData } = useSectionData<any>("home");
   const data = homeData?.about || {};
@@ -51,7 +51,7 @@ const About = () => {
               <br />
               {titleLine2}
             </h2>
-            <p className="mb-6 text-base md:text-lg">{description}</p>
+            <p className="mb-6 text-base md:text-lg"><LinkText text={description} linkClassName="text-[#2D6FBA] hover:underline font-semibold" /></p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-10 mb-8">
               {features.map((f) => (
                 <div key={f.label} className="flex items-center gap-4">

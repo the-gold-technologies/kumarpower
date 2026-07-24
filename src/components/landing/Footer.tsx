@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import { useState } from "react";
 import {
   ChevronDown,
@@ -38,7 +39,7 @@ const Footer = () => {
             {/* About */}
             <div className="space-y-3">
               <h4 className="font-bold text-white text-lg">Kumar Power</h4>
-              <p className="text-sm text-white/80">{aboutBio}</p>
+              <p className="text-sm text-white/80"><LinkText text={aboutBio} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
 
             {/* Our Products */}
@@ -296,7 +297,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="border-t border-white/10 py-4 sm:py-6 text-xs text-white/60 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p>{copyrightText}</p>
+            <p><LinkText text={copyrightText} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
           </div>
         </div>
       </footer>

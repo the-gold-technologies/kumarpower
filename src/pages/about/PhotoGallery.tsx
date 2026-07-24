@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
@@ -563,7 +564,7 @@ const PhotoGallery = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-2">
               {heroHeading}
             </h1>
-            <p className="text-white text-lg">{heroSubtitle}</p>
+            <p className="text-white text-lg"><LinkText text={heroSubtitle} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
           </div>
         </div>
         <img
@@ -630,7 +631,7 @@ const PhotoGallery = () => {
                 exit={{ opacity: 0 }}
                 className="text-center py-20"
               >
-                <p className="text-white text-lg">{emptyGalleryMessage}</p>
+                <p className="text-white text-lg"><LinkText text={emptyGalleryMessage} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 <button
                   onClick={() => {
                     setActiveFilter("installations");
@@ -681,7 +682,7 @@ const PhotoGallery = () => {
                 {experienceTitlePart1}{" "}
                 <span className="text-blue-400">{experienceTitlePart2}</span>
               </h3>
-              <p className="text-sm mb-6">{experienceDesc}</p>
+              <p className="text-sm mb-6"><LinkText text={experienceDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
               <div className="flex flex-wrap gap-4">
                 {experienceBtn1Text && (
                   <a

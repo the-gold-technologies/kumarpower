@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -107,9 +108,7 @@ const AnnualMaintenanceService = () => {
             <h1 className="text-3xl md:text-5xl font-bold mb-4 text-white">
               {heroTitle}
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-              {heroSub}
-            </p>
+            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             <Button
               asChild
               size="lg"
@@ -130,9 +129,7 @@ const AnnualMaintenanceService = () => {
                   {introTitlePart1}{" "}
                   <span style={{ color: "#2D6FBA" }}>{introTitlePart2}</span>
                 </h2>
-                <p className="text-lg text-gray-700 mb-6">
-                  {introDesc1}
-                </p>
+                <p className="text-lg text-gray-700 mb-6"><LinkText text={introDesc1} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 <p className="text-lg text-gray-700 mb-8">
                   With Kumar Power's expert technicians and genuine Kirloskar
                   parts, you can minimize downtime, extend equipment life, and
@@ -263,7 +260,7 @@ const AnnualMaintenanceService = () => {
                   <h3 className="text-xl font-bold mb-3 text-white">
                     {item.title}
                   </h3>
-                  <p className="text-gray-300">{item.description}</p>
+                  <p className="text-gray-300"><LinkText text={item.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 </Card>
               ))}
             </div>
@@ -342,9 +339,7 @@ const AnnualMaintenanceService = () => {
                       >
                         {item.title}
                       </h3>
-                      <p className="text-gray-300 text-lg">
-                        {item.description}
-                      </p>
+                      <p className="text-gray-300 text-lg"><LinkText text={item.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                     </div>
                   ))}
                 </div>

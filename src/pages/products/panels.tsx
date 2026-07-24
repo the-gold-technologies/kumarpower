@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/landing/Header";
@@ -296,9 +297,7 @@ const Products = () => {
             <h1 className="text-2xl md:text-5xl font-bold">
               {heroHeadingPart1} <span className="text-[#2D6FBA]">{heroHeadingPart2}</span>
             </h1>
-            <p className="text-sm sm:text-base md:text-lg mt-2 max-w-2xl">
-              {heroSub}
-            </p>
+            <p className="text-sm sm:text-base md:text-lg mt-2 max-w-2xl"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
           </div>
         </div>
 
@@ -315,9 +314,7 @@ const Products = () => {
                 <h2 className="text-xl font-bold text-white">
                   {sectionTitle}
                 </h2>
-                <p className="text-gray-400 mt-1 text-sm">
-                  {sectionDesc}
-                </p>
+                <p className="text-gray-400 mt-1 text-sm"><LinkText text={sectionDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                 {electricalPanels.map((product) => (
@@ -535,7 +532,7 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">{whyChooseCard1Title}</h3>
-                <p className="text-sm text-gray-600">{whyChooseCard1Desc}</p>
+                <p className="text-sm text-gray-600"><LinkText text={whyChooseCard1Desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
               </div>
 
               {/* Fuel Efficiency */}
@@ -552,7 +549,7 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">{whyChooseCard2Title}</h3>
-                <p className="text-sm text-gray-600">{whyChooseCard2Desc}</p>
+                <p className="text-sm text-gray-600"><LinkText text={whyChooseCard2Desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
               </div>
 
               {/* Rapid Response */}
@@ -570,7 +567,7 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">{whyChooseCard3Title}</h3>
-                <p className="text-sm text-gray-600">{whyChooseCard3Desc}</p>
+                <p className="text-sm text-gray-600"><LinkText text={whyChooseCard3Desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
               </div>
 
               {/* Low Noise Operation */}
@@ -588,7 +585,7 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">{whyChooseCard4Title}</h3>
-                <p className="text-sm text-gray-600">{whyChooseCard4Desc}</p>
+                <p className="text-sm text-gray-600"><LinkText text={whyChooseCard4Desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
               </div>
 
               {/* Easy Maintenance */}
@@ -605,7 +602,7 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">{whyChooseCard5Title}</h3>
-                <p className="text-sm text-gray-600">{whyChooseCard5Desc}</p>
+                <p className="text-sm text-gray-600"><LinkText text={whyChooseCard5Desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
               </div>
 
               {/* Smart Controls */}
@@ -622,7 +619,7 @@ const Products = () => {
                   </svg>
                 </div>
                 <h3 className="text-base font-semibold mb-1">{whyChooseCard6Title}</h3>
-                <p className="text-sm text-gray-600">{whyChooseCard6Desc}</p>
+                <p className="text-sm text-gray-600"><LinkText text={whyChooseCard6Desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
               </div>
             </div>
           </div>
@@ -643,7 +640,7 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300">{cert1Title}</p>
+                <p className="font-medium text-sm text-gray-300"><LinkText text={cert1Title} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
               </div>
 
               <div className="text-center">
@@ -653,7 +650,7 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300">{cert2Title}</p>
+                <p className="font-medium text-sm text-gray-300"><LinkText text={cert2Title} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
               </div>
 
               <div className="text-center">
@@ -663,7 +660,7 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300">{cert3Title}</p>
+                <p className="font-medium text-sm text-gray-300"><LinkText text={cert3Title} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
               </div>
             </div>
           </div>
@@ -675,9 +672,7 @@ const Products = () => {
             <h2 className="text-xl sm:text-2xl font-bold mb-2 text-gray-800">
               {helpTitle}
             </h2>
-            <p className="text-xs sm:text-sm text-black mb-6">
-              {helpSub}
-            </p>
+            <p className="text-xs sm:text-sm text-black mb-6"><LinkText text={helpSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             <div className="flex w-full items-center justify-center">
               <Button
                 onClick={() => {
@@ -716,8 +711,8 @@ const Products = () => {
                   {selectedProductForSpecs.name} Specifications
                 </DialogTitle>
                 <DialogDescription className="text-gray-500">
-                  {selectedProductForSpecs.description}
-                </DialogDescription>
+<LinkText text={selectedProductForSpecs.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" />
+</DialogDescription>
               </DialogHeader>
 
               {/* Technical Specifications Section */}
@@ -728,7 +723,7 @@ const Products = () => {
                 <div className="bg-gray-50 rounded-md p-4 text-sm">
                   {/* We now use the specific technicalSpecs data from the product object instead of generic category blocks */}
                   <div className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
-                    {selectedProductForSpecs.technicalSpecs}
+                    <LinkText text={selectedProductForSpecs.technicalSpecs} linkClassName="text-[#2D6FBA] hover:underline font-bold" />
                   </div>
                 </div>
               </div>

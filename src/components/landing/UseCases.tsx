@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import { useSectionData } from "@/store/useCMSStore";
 
 const UseCases = () => {
@@ -33,9 +34,7 @@ const UseCases = () => {
                 <h3 className="text-lg md:text-xl font-semibold mb-1">
                   {it.title}
                 </h3>
-                <p className="text-gray-300 text-sm leading-relaxed mb-2">
-                  {it.text}
-                </p>
+                <p className="text-gray-300 text-sm leading-relaxed mb-2"><LinkText text={it.text} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 <button className="text-[#2D6FBA] text-sm hover:text-[#22548e] p-0 m-0 cursor-pointer">
                   LEARN MORE
                 </button>
@@ -43,7 +42,7 @@ const UseCases = () => {
             ))}
           </div>
           <div className="mt-4">
-            <p className="text-gray-400 italic text-xs md:text-sm">{note}</p>
+            <p className="text-gray-400 italic text-xs md:text-sm"><LinkText text={note} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -128,9 +129,7 @@ const InstallationService = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               {heroHeading}
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-              {heroSub}
-            </p>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             <Button
               asChild
               size="lg"
@@ -157,12 +156,8 @@ const InstallationService = () => {
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
                   {introTitle}
                 </h2>
-                <p className="text-lg text-muted-foreground mb-6">
-                  {introDesc1}
-                </p>
-                <p className="text-lg text-muted-foreground mb-8">
-                  {introDesc2}
-                </p>
+                <p className="text-lg text-muted-foreground mb-6"><LinkText text={introDesc1} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <p className="text-lg text-muted-foreground mb-8"><LinkText text={introDesc2} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 <div className="flex flex-wrap gap-4">
                   <Button
                     asChild
@@ -208,9 +203,7 @@ const InstallationService = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {cmsData.processHeading || ""}
               </h2>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-                {cmsData.processDesc || ""}
-              </p>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto"><LinkText text={cmsData.processDesc || ""} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
 
             <div className="max-w-4xl mx-auto">
@@ -231,7 +224,7 @@ const InstallationService = () => {
                       <h3 className="text-2xl font-bold mb-3 text-[#2D6FBA]">
                         {step.title}
                       </h3>
-                      <p className="text-gray-300 mb-4">{step.description}</p>
+                      <p className="text-gray-300 mb-4"><LinkText text={step.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                       <ul className="space-y-2">
                         {step.bullet1 && (
                           <li className="flex items-start gap-3">
@@ -270,9 +263,7 @@ const InstallationService = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {cmsData.portfolioHeading || ""}
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-                {cmsData.portfolioDesc || ""}
-              </p>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8"><LinkText text={cmsData.portfolioDesc || ""} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -318,9 +309,7 @@ const InstallationService = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {cmsData.faqHeading || ""}
               </h2>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-                {cmsData.faqDesc || ""}
-              </p>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto"><LinkText text={cmsData.faqDesc || ""} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
 
             <div className="max-w-4xl mx-auto">

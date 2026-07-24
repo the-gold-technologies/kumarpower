@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import { useState, useEffect, useRef } from "react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
@@ -993,7 +994,7 @@ const OurClients = () => {
           </h1>
           {/* Add underline below the heading */}
           <div className="w-24 h-1 bg-white mb-10"></div>
-          <p className="text-lg max-w-2xl">{heroDesc}</p>
+          <p className="text-lg max-w-2xl"><LinkText text={heroDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
           <button className="flex items-center text-white mt-4 text-sm">
             {heroCtaText}
             <svg
@@ -1060,7 +1061,7 @@ const OurClients = () => {
               <h3 className="text-4xl font-bold text-[#2D6FBA] mb-2">
                 {counts.clients}+
               </h3>
-              <p className="text-sm text-gray-600">{cmsData.stat1Text}</p>
+              <p className="text-sm text-gray-600"><LinkText text={cmsData.stat1Text} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
             <div
               className="bg-white p-8 rounded-lg shadow-lg transform transition-all duration-500 hover:scale-105 cursor-pointer"
@@ -1085,7 +1086,7 @@ const OurClients = () => {
               <h3 className="text-4xl font-bold text-[#2D6FBA] mb-2">
                 {counts.years}+
               </h3>
-              <p className="text-sm text-gray-600">{cmsData.stat2Text}</p>
+              <p className="text-sm text-gray-600"><LinkText text={cmsData.stat2Text} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
             <div
               className="bg-white p-8 rounded-lg shadow-lg transform transition-all duration-500 hover:scale-105 cursor-pointer"
@@ -1110,9 +1111,7 @@ const OurClients = () => {
               <h3 className="text-4xl font-bold text-[#2D6FBA] mb-2">
                 {counts.installations}+
               </h3>
-              <p className="text-sm text-gray-600">
-                {cmsData.stat3Text}
-              </p>
+              <p className="text-sm text-gray-600"><LinkText text={cmsData.stat3Text} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
           </div>
         </div>
@@ -1124,9 +1123,7 @@ const OurClients = () => {
           <h2 className="text-4xl font-bold text-center mb-2">
             {prestigiousTitle}
           </h2>
-          <p className="text-sm text-center max-w-2xl mx-auto mb-8">
-            {prestigiousDesc}
-          </p>
+          <p className="text-sm text-center max-w-2xl mx-auto mb-8"><LinkText text={prestigiousDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
 
           {/* Industry Category Tabs */}
           <div className="flex flex-wrap justify-center gap-3 mb-10">
@@ -1259,7 +1256,7 @@ const OurClients = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-8">
               {clientCategories[activeTab].clients.map((client, index) => (
                 <div key={index}>
-                  <p className="font-semibold mb-4">{client}</p>
+                  <p className="font-semibold mb-4"><LinkText text={client} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 </div>
               ))}
             </div>

@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
@@ -242,7 +243,7 @@ const Contact = () => {
                     ? 'bg-green-50 border border-green-200 text-green-800'
                     : 'bg-red-50 border border-red-200 text-red-800'
                   }`}>
-                  <p className="text-sm font-medium">{contactSubmitStatus.message}</p>
+                  <p className="text-sm font-medium"><LinkText text={contactSubmitStatus.message} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 </div>
               )}
 
@@ -485,7 +486,7 @@ const Contact = () => {
                         ? 'bg-green-50 border border-green-200 text-green-800'
                         : 'bg-red-50 border border-red-200 text-red-800'
                       }`}>
-                      <p className="text-sm font-medium">{resumeSubmitStatus.message}</p>
+                      <p className="text-sm font-medium"><LinkText text={resumeSubmitStatus.message} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                     </div>
                   )}
 

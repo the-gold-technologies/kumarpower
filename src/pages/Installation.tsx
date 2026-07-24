@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, Wrench, Gauge, BookOpen, UserCheck, Truck, Settings, ArrowRight } from 'lucide-react';
@@ -366,7 +367,7 @@ const InstallationService = () => {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                        <p className="text-white font-medium">{product.name}</p>
+                        <p className="text-white font-medium"><LinkText text={product.name} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                         <Badge className="self-start mt-2 bg-blue-600">{product.category}</Badge>
                       </div>
                     </div>

@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import { Download } from "lucide-react";
 import diesel from "@/assets/Products/OPTIPRIMEGEN.png";
 import gas from "@/assets/Products/15GAS.jpeg";
@@ -116,7 +117,7 @@ const PSCard = ({
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          {desc}
+          <LinkText text={desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" />
         </motion.p>
         <div className="space-y-2 mb-6">
           {specs.map((spec, index) => (
@@ -444,9 +445,7 @@ const PowerSolutions = () => {
           <h3 className="text-4xl md:text-5xl font-semibold">
             {psCMS.assocTitle || ""}
           </h3>
-          <p className="text-gray-600 mt-4 text-lg">
-            {psCMS.assocSubtitle || ""}
-          </p>
+          <p className="text-gray-600 mt-4 text-lg"><LinkText text={psCMS.assocSubtitle || ""} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
         </motion.div>
 
         {/* Association logos sliding gallery */}
@@ -488,9 +487,7 @@ const PowerSolutions = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 2.3, duration: 0.5 }}
         >
-          <p className="text-sm">
-            {psCMS.assocFooterText || psCMS.assocFooterNote || ""}
-          </p>
+          <p className="text-sm"><LinkText text={psCMS.assocFooterText || psCMS.assocFooterNote || ""} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
         </motion.div>
       </motion.div>
 

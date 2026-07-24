@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/landing/Header";
@@ -558,7 +559,7 @@ const KirloskarGeneratorsBlog = () => {
                           <h3 className="text-xl md:text-2xl font-bold mt-12 mb-2">{section.heading}</h3>
 
                           {/* 2. Intro Paragraph */}
-                          <p className="text-gray-600 text-justify">{section.introText}</p>
+                          <p className="text-gray-600 text-justify"><LinkText text={section.introText} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
 
                           {/* 3. LI Bullet Points (Inner Loop) */}
                           <div className="flex flex-col gap-y-4 my-6 pl-2">
@@ -573,7 +574,7 @@ const KirloskarGeneratorsBlog = () => {
                           </div>
 
                           {/* 4. Outro Paragraph */}
-                          <p className="text-gray-600 text-justify">{section.outroText}</p>
+                          <p className="text-gray-600 text-justify"><LinkText text={section.outroText} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                         </div>
                       ))}
                     </div>

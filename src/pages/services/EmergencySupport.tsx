@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, PhoneCall, Clock, Truck, Zap, AlertTriangle, Shield, ArrowRight, Headset, LifeBuoy, Siren } from 'lucide-react';
@@ -149,9 +150,7 @@ const EmergencySupportService = () => {
           <div className="container mx-auto text-center px-4">
             <Badge className="mb-4 bg-custom-blue text-white hover:bg-[#225488]">{cmsData.heroTagline || "Critical Response"}</Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">{heroHeading}</h1>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-              {heroSub}
-            </p>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             <Button asChild size="lg" className="bg-custom-blue hover:bg-[#225488]">
               <a href={`tel:${cmsData.emergencyPhone || "+919773851767"}`} className="flex items-center gap-2">
                 <PhoneCall size={20} /> Emergency Hotline
@@ -174,9 +173,7 @@ const EmergencySupportService = () => {
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
                   {introTitle}
                 </h2>
-                <p className="text-lg text-muted-foreground mb-6">
-                  {introDesc1}
-                </p>
+                <p className="text-lg text-muted-foreground mb-6"><LinkText text={introDesc1} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 <p className="text-lg text-muted-foreground mb-8">
                   Our rapid response teams are strategically positioned across India to provide fast,
                   effective emergency service when your power systems fail, minimizing downtime
@@ -233,7 +230,7 @@ const EmergencySupportService = () => {
                 <div key={index} className="text-center p-8 bg-gray-900 rounded-lg border border-gray-800 hover:border-custom-blue transition-all duration-300">
                   <div className="text-4xl md:text-5xl font-bold text-[#2D6FBA] mb-2">{stat.value}</div>
                   <div className="text-xl font-semibold mb-3 text-white">{stat.label}</div>
-                  <p className="text-gray-300">{stat.description}</p>
+                  <p className="text-gray-300"><LinkText text={stat.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 </div>
               ))}
             </div>
@@ -266,7 +263,7 @@ const EmergencySupportService = () => {
                     {benefit.icon}
                   </div>
                   <h3 className="text-2xl font-bold mb-3">{benefit.title}</h3>
-                  <p className="text-muted-foreground">{benefit.description}</p>
+                  <p className="text-muted-foreground"><LinkText text={benefit.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 </Card>
               ))}
             </div>
@@ -442,9 +439,7 @@ const EmergencySupportService = () => {
                 <div key={index} className="bg-gray-50 p-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-t-4 border-custom-blue text-center">
                   {scenario.icon}
                   <h3 className="text-xl font-bold mb-3">{scenario.title}</h3>
-                  <p className="text-muted-foreground">
-                    {scenario.description}
-                  </p>
+                  <p className="text-muted-foreground"><LinkText text={scenario.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 </div>
               ))}
             </div>

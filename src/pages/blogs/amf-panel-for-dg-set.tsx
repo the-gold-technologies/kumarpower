@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/landing/Header";
@@ -654,7 +655,7 @@ const BlogAMFPanel = () => {
                             <span className="inline-flex items-center justify-center rounded-full bg-blue-100 h-4 w-4 shrink-0 mt-2">
                               <CheckCircle2 className="text-white h-4 w-4" style={{ background: "#2D6FBA", borderRadius: "9999px" }} />
                             </span>
-                            <p className="!leading-loose text:sm md:text-base text-gray-700 text-justify">{b.featureList}</p>
+                            <p className="!leading-loose text:sm md:text-base text-gray-700 text-justify"><LinkText text={b.featureList} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                           </div>
                         ))}
                       </div>

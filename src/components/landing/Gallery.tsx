@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import { useState } from "react";
 import { useSectionData } from "@/store/useCMSStore";
 
@@ -18,7 +19,7 @@ const Gallery = () => {
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold">{heading}</h2>
           <div className="w-16 h-1 bg-blue-600 mx-auto mt-2 rounded"></div>
-          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">{subtitle}</p>
+          <p className="text-gray-600 mt-4 max-w-2xl mx-auto"><LinkText text={subtitle} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
         </div>
 
         {/* Gallery grid matching the exact layout in the screenshot */}

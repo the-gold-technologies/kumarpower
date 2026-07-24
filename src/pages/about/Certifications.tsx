@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
@@ -105,9 +106,7 @@ const Certifications = () => {
               {heroTitlePart1}{" "}
               <span className="text-[#2D6FBA]">{heroTitlePart2}</span>
             </h1>
-            <p className="text-lg text-gray-300 text-center mb-12">
-              {sectionSub}
-            </p>
+            <p className="text-lg text-gray-300 text-center mb-12"><LinkText text={sectionSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
 
             {certificateSlides.length > 0 && (
               <div className="relative" ref={certificateSliderRef}>
@@ -152,9 +151,7 @@ const Certifications = () => {
                                     Since {certificate.year}
                                   </span>
                                 )}
-                                <p className="text-gray-300 text-sm mb-3 line-clamp-3">
-                                  {certificate.description || certificate.desc}
-                                </p>
+                                <p className="text-gray-300 text-sm mb-3 line-clamp-3"><LinkText text={certificate.description || certificate.desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                                 {certificate.issuer && (
                                   <p className="text-gray-400 text-xs mt-auto">
                                     Issued by:{" "}
@@ -341,7 +338,7 @@ const Certifications = () => {
                     {item.icon}
                   </div>
                   <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
-                  <p className="text-gray-600">{item.description}</p>
+                  <p className="text-gray-600"><LinkText text={item.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
                 </motion.div>
               ))}
             </div>
@@ -362,7 +359,7 @@ const Certifications = () => {
                 {commitTitlePart1}{" "}
                 <span className="text-[#2D6FBA]">{commitTitlePart2}</span>
               </h2>
-              <p className="text-lg text-gray-700 mb-8">{commitText}</p>
+              <p className="text-lg text-gray-700 mb-8"><LinkText text={commitText} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
               <div className="flex flex-wrap justify-center gap-4">
                 {commitBtn1Text && (
                   <button

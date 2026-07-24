@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import BlogSection from "@/components/landing/BlogSection";
 import SEO from "@/components/SEO";
 import Header from "@/components/landing/Header";
@@ -37,9 +38,7 @@ const Blogs = () => {
           <h1 className="text-2xl md:text-4xl font-bold leading-tight">
             {heroData.heroHeading}
           </h1>
-          <p className="text-sm sm:text-base md:text-lg mt-3 max-w-4xl text-justify">
-            {heroData.heroSub}
-          </p>
+          <p className="text-sm sm:text-base md:text-lg mt-3 max-w-4xl text-justify"><LinkText text={heroData.heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
         </div>
       </div>
       <BlogSection />

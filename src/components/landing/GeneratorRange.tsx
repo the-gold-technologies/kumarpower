@@ -1,3 +1,4 @@
+import { LinkText } from "@/components/ui/LinkText";
 import diesel from "@/assets/Products/OPTIPRIMEGEN.png";
 import gas from "@/assets/Products/15GAS.jpeg";
 import portable from "@/assets/Products/200CPCB.jpeg";
@@ -90,9 +91,7 @@ const Card = ({
         >
           {title}
         </motion.h3>
-        <p className="text-sm text-muted-foreground mb-4 flex-1 line-clamp-3 h-[60px]">
-          {caption}
-        </p>
+        <p className="text-sm text-muted-foreground mb-4 flex-1 line-clamp-3 h-[60px]"><LinkText text={caption} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
         <div className="flex items-center gap-2 mt-auto">
           <motion.div
             whileHover={{ y: -3 }}
@@ -223,7 +222,7 @@ const GeneratorRange = () => {
               transition={{ delay: 0.8, duration: 0.8 }}
             />
           </h2>
-          <p className="text-white mt-6 mb-8">{sectionDesc}</p>
+          <p className="text-white mt-6 mb-8"><LinkText text={sectionDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
         </motion.div>
 
         {/* Interactive filter buttons */}
