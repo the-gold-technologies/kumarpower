@@ -3,7 +3,6 @@ import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
 import { useSectionData } from "@/store/useCMSStore";
-import handshake from "@/assets/handshake.png";
 import honeywell from "@/assets/Honeywell.png";
 import suez from "@/assets/Suez.png";
 import adani from "@/assets/Adani.png";
@@ -41,21 +40,14 @@ const OurClients = () => {
   const { data: rawCMSData } = useSectionData<any>("our-clients");
   const cmsData = rawCMSData || {};
 
-  const heroHeading =
-    cmsData.heroHeading ||
-    cmsData.title ||
-    "Powering India's\nElite Enterprises";
-  const heroDesc =
-    cmsData.heroDesc ||
-    cmsData.description ||
-    "For over three decades, Kumar Generator House has been the trusted power partner for India's most demanding institutions.";
-  const esteemedTitle = cmsData.esteemedTitle || "Our Esteemed Clients";
+  const heroHeading = cmsData.heroHeading;
+  const heroDesc = cmsData.heroDesc;
+  const heroImage = cmsData.heroImage;
+  const heroCtaText = cmsData.heroCtaText;
+  const esteemedTitle = cmsData.esteemedTitle;
 
-  const prestigiousTitle =
-    cmsData.prestigiousTitle || "Our Prestigious Clients";
-  const prestigiousDesc =
-    cmsData.prestigiousDesc ||
-    "We are proud to partner with industry leaders across various sectors, providing exceptional power solutions.";
+  const prestigiousTitle = cmsData.prestigiousTitle;
+  const prestigiousDesc = cmsData.prestigiousDesc;
 
   const [activeTab, setActiveTab] = useState("industries");
   const [counts, setCounts] = useState({
@@ -72,11 +64,9 @@ const OurClients = () => {
     if (animationStarted.current && !resetAnimation) return;
 
     const finalNumbers = {
-      clients: cmsData.clientsCount ? parseInt(cmsData.clientsCount) : 500,
-      years: cmsData.yearsCount ? parseInt(cmsData.yearsCount) : 30,
-      installations: cmsData.installationsCount
-        ? parseInt(cmsData.installationsCount)
-        : 10000,
+      clients: cmsData.stat1Num ? parseInt(cmsData.stat1Num) : 0,
+      years: cmsData.stat2Num ? parseInt(cmsData.stat2Num) : 0,
+      installations: cmsData.stat3Num ? parseInt(cmsData.stat3Num) : 0,
     };
 
     // Reset counts to 0 for a fresh animation if requested
@@ -139,7 +129,7 @@ const OurClients = () => {
   }, []);
 
   // Client data for each category
-  const clientCategories = {
+  const clientCategories: Record<string, any> = {
     mallsAndFarms: {
       icon: (
         <svg
@@ -951,6 +941,22 @@ const OurClients = () => {
     },
   };
 
+  // Merge dynamic clients from CMS into the static categories
+  if (Array.isArray(cmsData.clients) && cmsData.clients.length > 0) {
+    const groupedClients = cmsData.clients.reduce((acc: any, curr: any) => {
+      if (!acc[curr.category]) acc[curr.category] = [];
+      acc[curr.category].push(curr.name);
+      return acc;
+    }, {});
+
+    Object.keys(clientCategories).forEach(key => {
+      const catTitle = clientCategories[key].title;
+      if (groupedClients[catTitle]) {
+        clientCategories[key].clients = groupedClients[catTitle];
+      }
+    });
+  }
+
   // Tab Button Component
   const TabButton = ({ id, title, icon, isActive }) => (
     <button
@@ -976,7 +982,7 @@ const OurClients = () => {
       <section
         className="bg-contain bg-center py-24 text-white relative"
         style={{
-          backgroundImage: `url(${handshake})`,
+          backgroundImage: `url(${heroImage})`,
           backgroundPosition: "center 20%",
         }}
       >
@@ -989,7 +995,7 @@ const OurClients = () => {
           <div className="w-24 h-1 bg-white mb-10"></div>
           <p className="text-lg max-w-2xl">{heroDesc}</p>
           <button className="flex items-center text-white mt-4 text-sm">
-            Explore our client portfolio
+            {heroCtaText}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4 ml-2"
@@ -1019,124 +1025,11 @@ const OurClients = () => {
       <section className="bg-white py-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-            {/* Row 1 */}
-            <div className="flex items-center justify-center ">
-              <img src={honeywell} alt="Honeywell" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={suez} alt="Suez" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={adani} alt="Adani Wilmar" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={sikka} alt="Sikka" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={apollo} alt="Apollo" className="h-20" />
-            </div>
-
-            {/* Row 2 */}
-            <div className="flex items-center justify-center">
-              <img src={cec} alt="National Small Industries" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={seasons} alt="Seasons" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={ncc} alt="NCC" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={gmr} alt="GMR" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={airindia} alt="Air India" className="h-20" />
-            </div>
-
-            {/* Row 3 */}
-            <div className="flex items-center justify-center">
-              <img src={british} alt="British Paints" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={nbcc} alt="NHPC" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={afcons} alt="Afcons" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={kec} alt="KEC" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={ojc} alt="Oriental" className="h-20" />
-            </div>
-
-            {/* Row 4 */}
-            <div className="flex items-center justify-center">
-              <img src={mapple} alt="Mapple" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={comed} alt="Coated" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={mbd} alt="MBD Group" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={sp} alt="Infrastructure" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={rai} alt="Raj Foundation" className="h-20" />
-            </div>
-
-            {/* Row 5 */}
-            <div className="flex items-center justify-center">
-              <img src={kashyapi} alt="Kashyapi" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={pwc} alt="PwC" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={daiken} alt="Daikin" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={ignou} alt="IGNOU" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={vistara} alt="Vistaar" className="h-20" />
-            </div>
-            {/* Row 6 */}
-            <div className="flex items-center justify-center">
-              <img src={ace} alt="Ace Construction" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={claroin} alt="Clarion" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={Comed} alt="Comed" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={Dps} alt="DPS" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img src={addidas} alt="Adidas" className="h-20" />
-            </div>
-            {/* Row 7 - New logos */}
-            <div className="flex items-center justify-center">
-              <img src={GEPL} alt="GEPL" className="h-20" />
-            </div>
-            <div className="flex items-center justify-center">
-              <img
-                src="https://res.cloudinary.com/dmhabztbf/image/upload/v1762928655/5d8a7ffc-390a-42d8-bee8-2a5c353e5d05_abj0u1.jpg"
-                alt="Trusted Partner"
-                className="h-20"
-              />
-            </div>
-            <div className="flex items-center justify-center">
-              <img
-                src="https://res.cloudinary.com/dmhabztbf/image/upload/v1762928656/68724243-11f2-42ec-85dc-69c153744f3c_n1154o.jpg"
-                alt="Trusted Client"
-                className="h-20"
-              />
-            </div>
+            {(cmsData.logos || []).map((logo: any) => (
+              <div key={logo.id} className="flex items-center justify-center p-4">
+                <img src={logo.url} alt={logo.alt || "Client Logo"} className="h-20 object-contain" />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1167,7 +1060,7 @@ const OurClients = () => {
               <h3 className="text-4xl font-bold text-[#2D6FBA] mb-2">
                 {counts.clients}+
               </h3>
-              <p className="text-sm text-gray-600">Enterprise Clients</p>
+              <p className="text-sm text-gray-600">{cmsData.stat1Text}</p>
             </div>
             <div
               className="bg-white p-8 rounded-lg shadow-lg transform transition-all duration-500 hover:scale-105 cursor-pointer"
@@ -1192,7 +1085,7 @@ const OurClients = () => {
               <h3 className="text-4xl font-bold text-[#2D6FBA] mb-2">
                 {counts.years}+
               </h3>
-              <p className="text-sm text-gray-600">Years of Service</p>
+              <p className="text-sm text-gray-600">{cmsData.stat2Text}</p>
             </div>
             <div
               className="bg-white p-8 rounded-lg shadow-lg transform transition-all duration-500 hover:scale-105 cursor-pointer"
@@ -1218,7 +1111,7 @@ const OurClients = () => {
                 {counts.installations}+
               </h3>
               <p className="text-sm text-gray-600">
-                Installations Across India
+                {cmsData.stat3Text}
               </p>
             </div>
           </div>
