@@ -36,10 +36,7 @@ import Submissions from "./pages/Data";
 //Blog Page
 import Blogs from "./pages/blogs/Blog";
 
-//Blog page Detail
-import KirloskarSilentGenerator from "./pages/blogs/kirloskar-silent-generator";
-import KirloskarGeneratorsBlog from "./pages/blogs/industrial-kirloskar-dg-set-750-1500kva";
-import AmfPanel from "./pages/blogs/amf-panel-for-dg-set";
+import BlogPost from "./pages/blogs/BlogPost";
 
 const queryClient = new QueryClient();
 
@@ -107,15 +104,7 @@ const App = () => (
           {/* Contact Route */}
           <Route path="/contact" element={<Contact />} />
           <Route path="/blogs" element={<Blogs />} />
-          <Route
-            path="/blog/kirloskar-silent-generator"
-            element={<KirloskarSilentGenerator />}
-          />
-          <Route
-            path="/blog/industrial-kirloskar-dg-set-750kva-1500kva"
-            element={<KirloskarGeneratorsBlog />}
-          />
-          <Route path="/blog/amf-panel-for-dg-set" element={<AmfPanel />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
 
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

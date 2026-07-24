@@ -1,16 +1,19 @@
 import BlogSection from "@/components/landing/BlogSection";
 import SEO from "@/components/SEO";
-import hero from "@/assets/Products/HeropBG.png";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
+import { useSectionData } from "@/store/useCMSStore";
+
 const Blogs = () => {
+  const { data: heroData } = useSectionData<any>("blogs", "blogs");
+
   return (
     <>
       <SEO
-        title="Benefits Of Diesel Generator"
-        description="Looking for a reliable Kirloskar Generator dealer? Explore affordable prices, expert installation, 24/7 service support & high-efficiency DG sets. Call now for details."
+        title={heroData.heroHeading || "Blogs | Kumar Power"}
+        description={heroData.heroSub || "Expert Insights on Industrial Power Generation"}
         canonical="https://www.kumarpower.com/blogs"
-        robots="noindex, nofollow"
+        robots="index, follow"
       />
 
       <Header />
@@ -19,23 +22,23 @@ const Blogs = () => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url(${hero})`,
+            backgroundImage: `url(${heroData.heroBg})`,
             filter: "brightness(0.5)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80"></div>
 
         <div className="relative max-w-7xl mx-auto px-4 py-12 flex flex-col items-center justify-center text-center">
+          {heroData.heroTagline && (
+            <span className="text-[#F5B544] font-bold text-sm tracking-wider uppercase mb-3">
+              {heroData.heroTagline}
+            </span>
+          )}
           <h1 className="text-2xl md:text-4xl font-bold leading-tight">
-            Our Blogs: Expert Guide to Industrial Power Generation
+            {heroData.heroHeading}
           </h1>
           <p className="text-sm sm:text-base md:text-lg mt-3 max-w-4xl text-justify">
-            Kumar Power provides expert insights on industrial power generation,
-            focusing on Kirloskar generator efficiency, CPCB IV+ compliance, and
-            energy management for continuous operations. The blog serves as a
-            resource for manufacturing, commercial, and healthcare sectors
-            seeking to optimize power infrastructure and reduce downtime. Read
-            more at Kumar Power.
+            {heroData.heroSub}
           </p>
         </div>
       </div>
@@ -46,3 +49,4 @@ const Blogs = () => {
 };
 
 export default Blogs;
+

@@ -34,7 +34,7 @@ const Index = () => {
         <UseCases />
         <Gallery />
         <Testimonials />
-        <BlogSection />
+        <BlogSection limit={3} />
 
         <Footer />
       </main>
