@@ -74,7 +74,10 @@ const BlogCard = ({ blog, index }: { blog: BlogPost; index: number }) => (
           delay: 0.4 + index * 0.15,
         }}
       >
-        <LinkText text={blog.summary} linkClassName="text-[#2D6FBA] hover:underline font-bold" />
+        <LinkText
+          text={blog.summary}
+          linkClassName="text-[#2D6FBA] hover:underline font-bold"
+        />
       </motion.p>
 
       <Link
@@ -103,14 +106,14 @@ const BlogSection = ({ limit }: { limit?: number }) => {
   const { data: cmsData } = useSectionData<any>("blogs", "blogs");
   const { data: articlesData } = useSectionData<any>("blogs", "articles");
 
-  let displayBlogs = Array.isArray(articlesData) ? articlesData : []; 
+  let displayBlogs = Array.isArray(articlesData) ? articlesData : [];
 
   if (limit) {
     displayBlogs = displayBlogs.slice(0, limit);
   }
 
-  const sectionTitle = cmsData.title || cmsData.heroHeading || "Blogs";
-  const sectionSub = cmsData.heroSub || cmsData.subtitle || "";
+  const sectionTitle = cmsData.articlesHeading || "Blogs";
+  const sectionSub = cmsData.articlesSub || "";
 
   return (
     <motion.section
@@ -177,7 +180,12 @@ const BlogSection = ({ limit }: { limit?: number }) => {
             <h3 className="text-2xl md:text-3xl font-bold text-black mb-4 text-left">
               {cmsData.ctaTitle || ""}
             </h3>
-            <p className="text-gray-800 text-base md:text-lg mb-0 max-w-xl text-left"><LinkText text={cmsData.ctaDescription || ""} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+            <p className="text-gray-800 text-base md:text-lg mb-0 max-w-xl text-left">
+              <LinkText
+                text={cmsData.ctaDescription || ""}
+                linkClassName="text-[#2D6FBA] hover:underline font-bold"
+              />
+            </p>
           </div>
           <div className="flex flex-col gap-4 w-full md:w-[320px] md:mr-10 mt-8 md:mt-0">
             <button
