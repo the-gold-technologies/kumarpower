@@ -75,7 +75,34 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         marquee: 'marquee 25s linear infinite',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            blockquote: {
+              backgroundColor: '#F4F7FB',
+              borderLeftWidth: '4px',
+              borderLeftColor: '#3B82F6',
+              padding: '1.25rem 1.5rem',
+              borderTopRightRadius: '0.75rem',
+              borderBottomRightRadius: '0.75rem',
+              fontStyle: 'italic',
+              fontWeight: '500',
+              color: '#374151',
+              quotes: 'none',
+            },
+            'blockquote p:first-of-type::before': {
+              content: 'none',
+            },
+            'blockquote p:last-of-type::after': {
+              content: 'none',
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-}
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+  ],
+};
