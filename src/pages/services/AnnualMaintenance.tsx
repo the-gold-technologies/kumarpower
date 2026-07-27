@@ -22,11 +22,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 
 import asset1 from "@/assets/Kumar Assets/mrg Green 160kVA-.png";
 
 const AnnualMaintenanceService = () => {
+  const HeadingTag = usePageHeadingTag("annual-maintenance");
   const { data: rawCMSData } = useSectionData<any>("annual-maintenance");
   const cmsData = rawCMSData || {};
 
@@ -105,9 +106,9 @@ const AnnualMaintenanceService = () => {
                 className="block h-px w-8 md:w-16 ml-2 md:ml-4"
               />
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 text-white">
+            <HeadingTag className="text-3xl md:text-5xl font-bold mb-4 text-white">
               {heroTitle}
-            </h1>
+            </HeadingTag>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             <Button
               asChild

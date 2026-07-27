@@ -152,3 +152,9 @@ export function useSectionData<T>(
 
   return { data, loading, error };
 }
+
+export function usePageHeadingTag(pageSlug: string): keyof JSX.IntrinsicElements {
+  const pageState = useCMSStore((state) => state.pages[pageSlug]);
+  const globalSEO = useCMSStore((state) => state.globalSEO);
+  return (pageState?.seo?.headingOptions || globalSEO?.headingOptions || "h1") as keyof JSX.IntrinsicElements;
+}

@@ -1,3 +1,4 @@
+import { usePageHeadingTag } from "@/store/useCMSStore";
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Building2, Briefcase, Globe, Award, ArrowRight, Building, Hotel, Trophy } from 'lucide-react';
@@ -43,6 +44,7 @@ import SEO from '@/components/SEO';
 import { useSectionData } from '@/store/useCMSStore';
 
 const ValueClient = () => {
+  const HeadingTag = usePageHeadingTag("value-client");
   const { data: rawCMSData } = useSectionData<any>("our-clients");
   const cmsData = rawCMSData || {};
 
@@ -140,7 +142,7 @@ const ValueClient = () => {
         <div className="bg-black py-12 md:py-16">
           <div className="container mx-auto text-center px-4">
             <Badge className="mb-4 bg-[#2D6FBA] text-white hover:bg-[#2D6FBA]">Trusted Partnerships</Badge>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Our Valued Clients</h1>
+            <HeadingTag className="text-4xl md:text-5xl font-bold text-white mb-6">Our Valued Clients</HeadingTag>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
               Powering success for leading organizations across diverse industries with reliable power solutions.
             </p>

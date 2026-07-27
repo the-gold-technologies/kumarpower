@@ -4,7 +4,7 @@ import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
 import { useState, useEffect, useLayoutEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion"; // Import framer-motion
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import gallery from "@/assets/Gallery1.png";
 import gallery2 from "@/assets/gallery2.png";
 import gallery3 from "@/assets/gallery3.png";
@@ -154,6 +154,7 @@ interface GalleryImage {
 }
 
 const Masonry = ({ images }: { images: GalleryImage[] }) => {
+  const HeadingTag = usePageHeadingTag("photo-gallery");
   // Animation variants for the container
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -561,9 +562,9 @@ const PhotoGallery = () => {
         <div className="absolute inset-0 bg-black/60 z-10"></div>
         <div className="absolute inset-0 z-20 flex items-center">
           <div className="max-w-7xl w-full mx-auto px-6">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-2">
+            <HeadingTag className="text-5xl md:text-6xl font-bold text-white mb-2">
               {heroHeading}
-            </h1>
+            </HeadingTag>
             <p className="text-white text-lg"><LinkText text={heroSubtitle} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
           </div>
         </div>

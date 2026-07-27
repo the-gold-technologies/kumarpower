@@ -27,7 +27,7 @@ import { Badge } from "@/components/ui/badge";
 import range5 from "@/assets/Range5.png";
 
 import SEO from "@/components/SEO";
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 
 import instal2 from "@/assets/Installation/instal2.png";
 import instal3 from "@/assets/Installation/instal3.png";
@@ -58,6 +58,7 @@ import instal27 from "@/assets/Installation/instal27.png";
 import heroinstal from "@/assets/heroinstalll.jpeg";
 
 const InstallationService = () => {
+  const HeadingTag = usePageHeadingTag("installation");
   const { data: rawCMSData } = useSectionData<any>("installation", "services");
   const cmsData = rawCMSData || {};
   console.log("CMS DATA:", cmsData);
@@ -126,9 +127,9 @@ const InstallationService = () => {
             <Badge className="mb-4 bg-custom-blue text-white hover:bg-[#225488]">
               {cmsData.heroBadge || ""}
             </Badge>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <HeadingTag className="text-4xl md:text-5xl font-bold text-white mb-6">
               {heroHeading}
-            </h1>
+            </HeadingTag>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             <Button
               asChild

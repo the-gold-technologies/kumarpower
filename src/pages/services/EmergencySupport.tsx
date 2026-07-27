@@ -10,10 +10,11 @@ import { Card } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import SEO from '@/components/SEO';
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 
 import asset3 from "@/assets/Kumar Assets/20240820_left side 2.8 with 5.5 kVA.png"
 const EmergencySupportService = () => {
+  const HeadingTag = usePageHeadingTag("emergency-support");
   const { data: rawCMSData } = useSectionData<any>("emergency-support");
   const cmsData = rawCMSData || {};
 
@@ -149,7 +150,7 @@ const EmergencySupportService = () => {
         <div className="bg-black py-12 md:py-16">
           <div className="container mx-auto text-center px-4">
             <Badge className="mb-4 bg-custom-blue text-white hover:bg-[#225488]">{cmsData.heroTagline || "Critical Response"}</Badge>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">{heroHeading}</h1>
+            <HeadingTag className="text-4xl md:text-5xl font-bold text-white mb-6">{heroHeading}</HeadingTag>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             <Button asChild size="lg" className="bg-custom-blue hover:bg-[#225488]">
               <a href={`tel:${cmsData.emergencyPhone || "+919773851767"}`} className="flex items-center gap-2">

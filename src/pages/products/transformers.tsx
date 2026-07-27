@@ -67,9 +67,10 @@ import gasBrochure from "@/assets/Brochure/NEW CATELOG - GAS GENSET.pdf";
 import petrolBrochure from "@/assets/Brochure/4.Kirloskar powergen_Sentinel series Genset.pdf";
 import Direction76 from "@/assets/Brochure/Direction76.pdf";
 import { Helmet } from "react-helmet-async";
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 
 const Products = () => {
+  const HeadingTag = usePageHeadingTag("transformers");
   const { data: rawCMSData } = useSectionData<any>("transformers");
   const cmsData = rawCMSData || {};
   const { data: productsRawCMSData } = useSectionData<any>("products");
@@ -193,9 +194,9 @@ const Products = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80"></div>
 
           <div className="relative max-w-7xl mx-auto px-4 h-full flex flex-col items-center justify-center text-center">
-            <h1 className="text-2xl md:text-5xl font-bold">
+            <HeadingTag className="text-2xl md:text-5xl font-bold">
               {heroHeadingPart1} <span className="text-[#2D6FBA]">{heroHeadingPart2}</span>
-            </h1>
+            </HeadingTag>
             <p className="text-sm sm:text-base md:text-lg mt-2 max-w-3xl"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
           </div>
         </div>

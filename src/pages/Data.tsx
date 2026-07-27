@@ -1,7 +1,9 @@
+import { usePageHeadingTag } from "@/store/useCMSStore";
 import React, { useEffect, useState } from "react";
 import Login from "@/components/Login";
 
 const Submissions = () => {
+  const HeadingTag = usePageHeadingTag("data");
   const [contacts, setContacts] = useState([]);
   const [resumes, setResumes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -80,9 +82,9 @@ const Submissions = () => {
     <div className="min-h-screen bg-gray-50 py-10 px-4">
       <div className="max-w-5xl mx-auto space-y-12">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-[#2D6FBA]">
+          <HeadingTag className="text-3xl font-bold text-[#2D6FBA]">
             📋 Form Submissions
-          </h1>
+          </HeadingTag>
           <button
             onClick={handleLogout}
             className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-medium transition"

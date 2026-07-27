@@ -4,10 +4,11 @@ import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import { Helmet } from "react-helmet-async";
 
 const Certifications = () => {
+  const HeadingTag = usePageHeadingTag("certifications");
   const { data: rawCMSData } = useSectionData<any>("certifications");
   const cmsData = rawCMSData || {};
 
@@ -102,10 +103,10 @@ const Certifications = () => {
         {/* Certificate Slider Section */}
         <section className="py-20 bg-black text-white">
           <div className="max-w-7xl mx-auto px-6">
-            <h1 className="text-3xl font-bold mb-4 text-center">
+            <HeadingTag className="text-3xl font-bold mb-4 text-center">
               {heroTitlePart1}{" "}
               <span className="text-[#2D6FBA]">{heroTitlePart2}</span>
-            </h1>
+            </HeadingTag>
             <p className="text-lg text-gray-300 text-center mb-12"><LinkText text={sectionSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
 
             {certificateSlides.length > 0 && (

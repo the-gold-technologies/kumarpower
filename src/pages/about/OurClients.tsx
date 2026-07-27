@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import honeywell from "@/assets/Honeywell.png";
 import suez from "@/assets/Suez.png";
 import adani from "@/assets/Adani.png";
@@ -38,6 +38,7 @@ import addidas from "@/assets/Clients page/Adidas.jpg";
 import SEO from "@/components/SEO";
 
 const OurClients = () => {
+  const HeadingTag = usePageHeadingTag("our-clients");
   const { data: rawCMSData } = useSectionData<any>("our-clients");
   const cmsData = rawCMSData || {};
 
@@ -989,9 +990,9 @@ const OurClients = () => {
       >
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 whitespace-pre-line">
+          <HeadingTag className="text-5xl md:text-6xl font-bold mb-4 whitespace-pre-line">
             {heroHeading}
-          </h1>
+          </HeadingTag>
           {/* Add underline below the heading */}
           <div className="w-24 h-1 bg-white mb-10"></div>
           <p className="text-lg max-w-2xl"><LinkText text={heroDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>

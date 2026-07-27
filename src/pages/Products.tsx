@@ -67,9 +67,10 @@ import gasBrochure from "@/assets/Brochure/NEW CATELOG - GAS GENSET.pdf";
 import petrolBrochure from "@/assets/Brochure/4.Kirloskar powergen_Sentinel series Genset.pdf";
 import Direction76 from "@/assets/Brochure/Direction76.pdf";
 import SEO from "@/components/SEO";
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 
 const Products = () => {
+  const HeadingTag = usePageHeadingTag("products");
   const { data: rawCMSData } = useSectionData<any>("products");
   const cmsData = rawCMSData || {};
 
@@ -425,9 +426,9 @@ const Products = () => {
           ></div>
           <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-90"></div>
           <div className="relative max-w-7xl mx-auto px-4 py-10 md:py-24 flex flex-col gap-4 h-full justify-center">
-            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold max-w-2xl">
+            <HeadingTag className="text-2xl sm:text-3xl md:text-5xl font-bold max-w-2xl">
               {heroHeadingPart1} <span className="text-[#2D6FBA]">{heroHeadingPart2}</span>
-            </h1>
+            </HeadingTag>
             <p className="text-base sm:text-lg md:text-xl max-w-2xl"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 w-full max-w-xs sm:max-w-none">
               <Button

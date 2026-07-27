@@ -1,3 +1,4 @@
+import { usePageHeadingTag } from "@/store/useCMSStore";
 import { LinkText } from "@/components/ui/LinkText";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -12,6 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import SEO from '@/components/SEO';
 
 const InstallationService = () => {
+  const HeadingTag = usePageHeadingTag("installation");
   // Sample products with distinct categories
   const installationProducts = [
     { id: 1, name: "Industrial Generator A", imageUrl: "https://via.placeholder.com/150", category: "Industrial" },
@@ -109,7 +111,7 @@ const InstallationService = () => {
           <div className="bg-black py-12 md:py-16">
             <div className="container mx-auto text-center px-4">
               <Badge className="mb-4 bg-blue-600 text-white hover:bg-blue-700">Professional Services</Badge>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Installation & Commissioning</h1>
+              <HeadingTag className="text-4xl md:text-5xl font-bold text-white mb-6">Installation & Commissioning</HeadingTag>
               <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
                 Expert power system installation and commissioning services for optimal performance, reliability, and compliance.
               </p>

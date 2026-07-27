@@ -28,13 +28,14 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import SEO from "@/components/SEO";
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 
 import asset2 from "@/assets/Kumar Assets/new750.png";
 
 
 // Icon Mapper for CMS string icons
 const renderIcon = (iconName: string, className: string) => {
+  const HeadingTag = usePageHeadingTag("repair-overhaul");
   const icons: Record<string, any> = {
     AlertTriangle, Wrench, Cpu, Clock, Shield, Activity, FileText, CheckCircle2, Zap
   };
@@ -77,9 +78,9 @@ const RepairOverhaulService = () => {
             <Badge className="mb-4 bg-custom-blue text-white hover:bg-[#225488]">
               {cmsData.heroBadge}
             </Badge>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <HeadingTag className="text-4xl md:text-5xl font-bold text-white mb-6">
               {heroHeading}
-            </h1>
+            </HeadingTag>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             <Button
               asChild

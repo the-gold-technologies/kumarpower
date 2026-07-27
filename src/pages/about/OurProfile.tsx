@@ -3,9 +3,10 @@ import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
 import SEO from "@/components/SEO";
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 
 const About = () => {
+  const HeadingTag = usePageHeadingTag("our-profile");
   const { data: pageData } = useSectionData<any>("our-profile");
 
   const hero = pageData.hero || {};
@@ -91,9 +92,9 @@ const About = () => {
             </div>
             {/* Text on the right */}
             <div className="flex-1 md:w-2/3 md:pl-12 mt-8 md:mt-0">
-              <h1 className="text-4xl md:text-5xl font-bold mb-2 text-black">
+              <HeadingTag className="text-4xl md:text-5xl font-bold mb-2 text-black">
                 {heroTitle}
-              </h1>
+              </HeadingTag>
               <h2 className="text-xl md:text-2xl font-semibold text-black mb-4">
                 {heroSubtitle}
               </h2>
