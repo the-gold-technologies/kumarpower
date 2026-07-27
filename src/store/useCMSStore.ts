@@ -14,11 +14,28 @@ interface PageState {
 
 interface CMSState {
   pages: Record<string, PageState>;
+  globalSEO: any;
   fetchPage: (slug: string) => Promise<void>;
+  fetchGlobalSEO: () => Promise<void>;
 }
 
 export const useCMSStore = create<CMSState>((set, get) => ({
   pages: {},
+  globalSEO: null,
+  fetchGlobalSEO: async () => {
+    if (get().globalSEO) return; // Already fetched
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/seo/global`);
+      if (response.ok) {
+        const json = await response.json();
+        if (json.success && json.data) {
+          set({ globalSEO: json.data });
+        }
+      }
+    } catch (err) {
+      console.warn("Error fetching global SEO:", err);
+    }
+  },
   fetchPage: async (slug: string) => {
     const existing = get().pages[slug];
     if (existing?.loading || existing?.fetched) return;
@@ -41,6 +58,9 @@ export const useCMSStore = create<CMSState>((set, get) => ({
       if (!response.ok) {
         response = await fetch(`${API_BASE_URL}/api/pages/${slug}`);
       }
+      if (!response.ok) {
+        response = await fetch(`${API_BASE_URL}/api/seo/pages/${slug}`);
+      }
 
       if (!response.ok) {
         throw new Error(`Failed to fetch page data: ${response.statusText}`);
@@ -60,6 +80,8 @@ export const useCMSStore = create<CMSState>((set, get) => ({
         Object.assign(sectionsMap, json.data);
       }
 
+      const pageData = json.page || (typeof json.data === "object" && !Array.isArray(json.data) ? json.data : {});
+
       set((state) => ({
         pages: {
           ...state.pages,
@@ -67,7 +89,18 @@ export const useCMSStore = create<CMSState>((set, get) => ({
             loading: false,
             error: null,
             sections: sectionsMap,
-            seo: json.data.seo || null,
+            seo: {
+              metaTitle: pageData.metaTitle,
+              metaDescription: pageData.metaDescription,
+              keywords: pageData.keywords,
+              canonicalUrl: pageData.canonicalUrl,
+              noIndex: pageData.noIndex,
+              ogTitle: pageData.ogTitle,
+              ogDescription: pageData.ogDescription,
+              ogImage: pageData.ogImage,
+              schema: pageData.schema,
+              headingOptions: pageData.headingOptions,
+            },
             fetched: true,
           },
         },

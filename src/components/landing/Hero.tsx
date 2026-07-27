@@ -2,7 +2,7 @@ import { LinkText } from "@/components/ui/LinkText";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, useCMSStore } from "@/store/useCMSStore";
 import trust from "@/assets/Seasons (1).png";
 import trust1 from "@/assets/SIS (1).png";
 import trust2 from "@/assets/Vistara 1 (1).png";
@@ -22,6 +22,9 @@ import BackgroundVideo from "../BackgroundVideo";
 const Hero = () => {
   const { data: homeData } = useSectionData<any>("home");
   const data = homeData?.hero || {};
+  const globalSEO = useCMSStore((state) => state.globalSEO);
+  const pageState = useCMSStore((state) => state.pages["home"]);
+  const HeadingTag = (pageState?.seo?.headingOptions || globalSEO?.headingOptions || "h1") as keyof JSX.IntrinsicElements;
 
   // Show overlay after scrolling more than 180px and keep it visible
   const [showOverlay, setShowOverlay] = useState(false);
@@ -112,11 +115,11 @@ const Hero = () => {
         {showOverlay && (
           <div className="absolute top-0 left-0 h-full w-full flex flex-col items-center justify-center z-20 p-4">
             <div className="backdrop-blur-xl border border-white/30 rounded-2xl p-4 md:p-8 lg:p-12 shadow-2xl w-full max-w-[90%] sm:max-w-xs md:max-w-lg lg:max-w-2xl flex flex-col items-center space-y-2 md:space-y-8">
-              <h1 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-center leading-tight drop-shadow-lg">
+              <HeadingTag className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-center leading-tight drop-shadow-lg">
                 {heading1}
                 <br />
                 {heading2}
-              </h1>
+              </HeadingTag>
               <p className="text-white/90 text-center text-xs sm:text-sm md:text-lg font-medium">
                 <LinkText text={subtitle} linkClassName="text-white underline font-bold" />
               </p>

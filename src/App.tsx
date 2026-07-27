@@ -35,8 +35,8 @@ import Submissions from "./pages/Data";
 
 //Blog Page
 import Blogs from "./pages/blogs/Blog";
-
 import BlogPost from "./pages/blogs/BlogPost";
+import GlobalScripts from "./components/GlobalScripts";
 
 const queryClient = new QueryClient();
 
@@ -56,6 +56,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <GlobalScripts />
         <Routes>
           <Route path="/" element={<Index />} />
           {/* About Us Section Routes */}
