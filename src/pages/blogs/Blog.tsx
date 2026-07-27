@@ -4,9 +4,14 @@ import SEO from "@/components/SEO";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import { useSectionData } from "@/store/useCMSStore";
+import Loader from "@/components/ui/Loader";
 
 const Blogs = () => {
-  const { data: heroData } = useSectionData<any>("blogs", "blogs");
+  const { data: heroData, loading } = useSectionData<any>("blogs", "blogs");
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>

@@ -5,6 +5,7 @@ import Footer from "@/components/landing/Footer";
 import SEO from "@/components/SEO";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
+import Loader from "@/components/ui/Loader";
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
@@ -15,15 +16,7 @@ export default function BlogPost() {
   const articles = Array.isArray(rawArticles) ? rawArticles : [];
 
   if (loading) {
-    return (
-      <>
-        <Header />
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-        </div>
-        <Footer />
-      </>
-    );
+    return <Loader />;
   }
 
   const post = articles?.find((a: any) => a.slug === slug);
@@ -35,6 +28,7 @@ export default function BlogPost() {
   return (
     <>
       <SEO
+        pageSlug="blogs"
         title={`${post.title} | Kumar Power Blogs`}
         description={post.excerpt || post.summary}
         canonical={`https://www.kumarpower.com/blog/${post.slug}`}

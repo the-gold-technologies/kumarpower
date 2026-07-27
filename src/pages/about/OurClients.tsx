@@ -950,8 +950,9 @@ const OurClients = () => {
       acc[curr.category].push(curr.name);
       return acc;
     }, {});
+    console.log(cmsData.clients, "cmsData.clients");
 
-    Object.keys(clientCategories).forEach(key => {
+    Object.keys(clientCategories).forEach((key) => {
       const catTitle = clientCategories[key].title;
       if (groupedClients[catTitle]) {
         clientCategories[key].clients = groupedClients[catTitle];
@@ -995,7 +996,12 @@ const OurClients = () => {
           </HeadingTag>
           {/* Add underline below the heading */}
           <div className="w-24 h-1 bg-white mb-10"></div>
-          <p className="text-lg max-w-2xl"><LinkText text={heroDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+          <p className="text-lg max-w-2xl">
+            <LinkText
+              text={heroDesc}
+              linkClassName="text-[#2D6FBA] hover:underline font-bold"
+            />
+          </p>
           <button className="flex items-center text-white mt-4 text-sm">
             {heroCtaText}
             <svg
@@ -1028,8 +1034,15 @@ const OurClients = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
             {(cmsData.logos || []).map((logo: any) => (
-              <div key={logo.id} className="flex items-center justify-center p-4">
-                <img src={logo.url} alt={logo.alt || "Client Logo"} className="h-20 object-contain" />
+              <div
+                key={logo.id}
+                className="flex items-center justify-center p-4"
+              >
+                <img
+                  src={logo.url}
+                  alt={logo.alt || "Client Logo"}
+                  className="h-20 object-contain"
+                />
               </div>
             ))}
           </div>
@@ -1062,7 +1075,12 @@ const OurClients = () => {
               <h3 className="text-4xl font-bold text-[#2D6FBA] mb-2">
                 {counts.clients}+
               </h3>
-              <p className="text-sm text-gray-600"><LinkText text={cmsData.stat1Text} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-sm text-gray-600">
+                <LinkText
+                  text={cmsData.stat1Text}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
             <div
               className="bg-white p-8 rounded-lg shadow-lg transform transition-all duration-500 hover:scale-105 cursor-pointer"
@@ -1087,7 +1105,12 @@ const OurClients = () => {
               <h3 className="text-4xl font-bold text-[#2D6FBA] mb-2">
                 {counts.years}+
               </h3>
-              <p className="text-sm text-gray-600"><LinkText text={cmsData.stat2Text} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-sm text-gray-600">
+                <LinkText
+                  text={cmsData.stat2Text}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
             <div
               className="bg-white p-8 rounded-lg shadow-lg transform transition-all duration-500 hover:scale-105 cursor-pointer"
@@ -1112,7 +1135,12 @@ const OurClients = () => {
               <h3 className="text-4xl font-bold text-[#2D6FBA] mb-2">
                 {counts.installations}+
               </h3>
-              <p className="text-sm text-gray-600"><LinkText text={cmsData.stat3Text} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-sm text-gray-600">
+                <LinkText
+                  text={cmsData.stat3Text}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
           </div>
         </div>
@@ -1124,7 +1152,12 @@ const OurClients = () => {
           <h2 className="text-4xl font-bold text-center mb-2">
             {prestigiousTitle}
           </h2>
-          <p className="text-sm text-center max-w-2xl mx-auto mb-8"><LinkText text={prestigiousDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+          <p className="text-sm text-center max-w-2xl mx-auto mb-8">
+            <LinkText
+              text={prestigiousDesc}
+              linkClassName="text-[#2D6FBA] hover:underline font-bold"
+            />
+          </p>
 
           {/* Industry Category Tabs */}
           <div className="flex flex-wrap justify-center gap-3 mb-10">
@@ -1257,7 +1290,12 @@ const OurClients = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-8">
               {clientCategories[activeTab].clients.map((client, index) => (
                 <div key={index}>
-                  <p className="font-semibold mb-4"><LinkText text={client} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                  <p className="font-semibold mb-4">
+                    <LinkText
+                      text={client}
+                      linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                    />
+                  </p>
                 </div>
               ))}
             </div>
