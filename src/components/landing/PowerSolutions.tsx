@@ -1,5 +1,6 @@
 import { LinkText } from "@/components/ui/LinkText";
 import { Download } from "lucide-react";
+import { downloadPdf } from "@/lib/utils";
 import diesel from "@/assets/Products/OPTIPRIMEGEN.png";
 import gas from "@/assets/Products/15GAS.jpeg";
 import portable from "@/assets/Products/2.1PORTABLE.jpeg";
@@ -148,31 +149,26 @@ const PSCard = ({
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               className="w-full"
             >
-              <a
-                href={brochureUrl}
-                download={downloadFileName}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full block"
+              <Button 
+                onClick={() => downloadPdf(brochureUrl, downloadFileName)}
+                className="bg-[#2D6FBA] hover:bg-[#22548e] text-white rounded-md overflow-hidden w-full group"
               >
-                <Button className="bg-[#2D6FBA] hover:bg-[#22548e] text-white rounded-md overflow-hidden w-full group">
-                  <div className="flex items-center justify-center gap-2">
-                    <span>Download Brochure</span>
-                    <motion.div
-                      initial={{ y: 0 }}
-                      whileHover={{ y: -3 }}
-                      transition={{
-                        duration: 0.2,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                        repeatDelay: 0.2,
-                      }}
-                    >
-                      <Download className="h-4 w-4" />
-                    </motion.div>
-                  </div>
-                </Button>
-              </a>
+                <div className="flex items-center justify-center gap-2">
+                  <span>Download Brochure</span>
+                  <motion.div
+                    initial={{ y: 0 }}
+                    whileHover={{ y: -3 }}
+                    transition={{
+                      duration: 0.2,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      repeatDelay: 0.2,
+                    }}
+                  >
+                    <Download className="h-4 w-4" />
+                  </motion.div>
+                </div>
+              </Button>
             </motion.div>
           </div>
         )}

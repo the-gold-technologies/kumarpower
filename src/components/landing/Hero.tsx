@@ -17,7 +17,7 @@ import Comed from "@/assets/Clients page/Comed.png";
 import Dps from "@/assets/Clients page/DPS.jpg";
 import GEPL from "@/assets/Clients page/GEPL.jpg";
 import addidas from "@/assets/Clients page/Adidas.jpg";
-import companyProfile from "./profile.pdf"; // Import PDF file
+import { downloadPdf } from "@/lib/utils";
 import BackgroundVideo from "../BackgroundVideo";
 const Hero = () => {
   const { data: homeData } = useSectionData<any>("home");
@@ -135,14 +135,7 @@ const Hero = () => {
                 <Button
                   variant="outline"
                   className="border border-white/30 text-white bg-white/10 hover:bg-white/20 hover:text-white font-semibold px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-lg w-full sm:w-auto flex items-center justify-center backdrop-blur text-sm md:text-base"
-                  onClick={() => {
-                    const link = document.createElement("a");
-                    link.href = profilePdf;
-                    link.download = "Kumar Power - Company Profile.pdf";
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                  }}
+                  onClick={() => downloadPdf(profilePdf, "Kumar Power - Company Profile.pdf")}
                 >
                   {btn2Text}&nbsp;
                   <Download size={16} className="ml-1 md:ml-2" />

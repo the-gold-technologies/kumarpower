@@ -1,4 +1,5 @@
 import { LinkText } from "@/components/ui/LinkText";
+import { downloadPdf } from "@/lib/utils";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/landing/Header";
@@ -438,15 +439,14 @@ const Products = () => {
               >
                 <Link to={btn1Url}>{btn1Text}</Link>
               </Button>
-              <a href={btn2Url} download>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-transparent border-white text-white hover:bg-white/10 w-full sm:w-auto"
-                >
-                  {btn2Text}
-                </Button>
-              </a>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => downloadPdf(btn2Url, `${btn2Text || "Portfolio"}.pdf`)}
+                className="bg-transparent border-white text-white hover:bg-white/10 w-full sm:w-auto"
+              >
+                {btn2Text}
+              </Button>
             </div>
           </div>
         </div>
@@ -506,55 +506,53 @@ const Products = () => {
               {/* Download Button */}
 
               {/* New Bharat Rajpat Button */}
-              <a href={downloadBtn1Url} download>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="flex items-center gap-1 text-xs h-7 p-4 bg-white/20 text-gray-400 hover:bg-[#2D6FBA] hover:text-white"
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => downloadPdf(downloadBtn1Url, `${downloadBtn1Label || "document"}.pdf`)}
+                className="flex items-center gap-1 text-xs h-7 p-4 bg-white/20 text-gray-400 hover:bg-[#2D6FBA] hover:text-white"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7 10 12 15 17 10" />
-                    <line x1="12" y1="15" x2="12" y2="3" />
-                  </svg>
-                  {downloadBtn1Label}
-                </Button>
-              </a>
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                {downloadBtn1Label}
+              </Button>
 
-              <a href={downloadBtn2Url} download>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="flex items-center gap-1 text-xs h-7 p-4 bg-white/20 text-gray-400 hover:bg-[#2D6FBA] hover:text-white"
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => downloadPdf(downloadBtn2Url, `${downloadBtn2Label || "document"}.pdf`)}
+                className="flex items-center gap-1 text-xs h-7 p-4 bg-white/20 text-gray-400 hover:bg-[#2D6FBA] hover:text-white"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7 10 12 15 17 10" />
-                    <line x1="12" y1="15" x2="12" y2="3" />
-                  </svg>
-                  {downloadBtn2Label}
-                </Button>
-              </a>
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                {downloadBtn2Label}
+              </Button>
 
               {/* Talk Button */}
               <Button

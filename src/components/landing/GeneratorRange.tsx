@@ -26,6 +26,8 @@ import cpcb750 from "@/assets/Brochure/750 kVA-1500 kVA.pdf";
 import Gase from "@/assets/Brochure/NEW CATELOG - GAS GENSET.pdf";
 import sential from "@/assets/Brochure/4.Kirloskar powergen_Sentinel series Genset.pdf";
 
+import { downloadPdf } from "@/lib/utils";
+
 // Animated Card component
 const Card = ({
   title,
@@ -98,45 +100,38 @@ const Card = ({
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
             className="w-full"
           >
-            <a
-              href={brochureUrl}
-              download={downloadFileName}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full block"
+            <Button
+              size="sm"
+              onClick={() => downloadPdf(brochureUrl, downloadFileName)}
+              className="overflow-hidden group relative bg-[#2D6FBA] hover:bg-[#22548e] w-full"
+              variant="default"
             >
-              <Button
-                size="sm"
-                className="overflow-hidden group relative bg-[#2D6FBA] hover:bg-[#22548e] w-full"
-                variant="default"
+              <motion.span
+                initial={{ opacity: 1 }}
+                whileHover={{ opacity: 0.9 }}
               >
-                <motion.span
-                  initial={{ opacity: 1 }}
-                  whileHover={{ opacity: 0.9 }}
-                >
-                  Download Brochure
-                </motion.span>
-                <motion.div
-                  className="ml-1 inline-flex"
-                  initial={{ y: 0 }}
-                  whileHover={{ y: -3 }}
-                  transition={{
-                    duration: 0.2,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    repeatDelay: 0.2,
-                  }}
-                >
-                  <Download className="h-4 w-4 group-hover:text-white" />
-                </motion.div>
-                <motion.span
-                  className="absolute bottom-0 left-0 h-0.5 bg-white"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: "100%" }}
-                  transition={{ duration: 0.3 }}
-                />
-              </Button>
-            </a>
+                Download Brochure
+              </motion.span>
+              <motion.div
+                className="ml-1 inline-flex"
+                initial={{ y: 0 }}
+                whileHover={{ y: -3 }}
+                transition={{
+                  duration: 0.2,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  repeatDelay: 0.2,
+                }}
+              >
+                <Download className="h-4 w-4 group-hover:text-white" />
+              </motion.div>
+              <motion.span
+                className="absolute bottom-0 left-0 h-0.5 bg-white"
+                initial={{ width: 0 }}
+                whileHover={{ width: "100%" }}
+                transition={{ duration: 0.3 }}
+              />
+            </Button>
           </motion.div>
         </div>
       </motion.div>

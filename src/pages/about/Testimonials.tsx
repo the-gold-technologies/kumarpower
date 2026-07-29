@@ -4,6 +4,7 @@ import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
 import { useState, useEffect } from "react";
 import { useSectionData } from "@/store/useCMSStore";
+import { downloadPdf } from "@/lib/utils";
 import SEO from "@/components/SEO";
 
 const Testimonials = () => {
@@ -235,11 +236,12 @@ const Testimonials = () => {
                   />
                 </svg>
               </button>
-              <a href={brochurePdf} download>
-                <button className="border border-white text-white py-2 px-6 rounded">
-                  {brochureBtnText}
-                </button>
-              </a>
+              <button 
+                onClick={() => downloadPdf(brochurePdf, "Kumar Power Portfolio.pdf")}
+                className="border border-white text-white py-2 px-6 rounded"
+              >
+                {brochureBtnText}
+              </button>
             </div>
 
             {/* Contact Info */}

@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useSectionData } from "@/store/useCMSStore";
+import { downloadPdf } from "@/lib/utils";
 
 interface BlogPost {
   id: number;
@@ -198,14 +199,7 @@ const BlogSection = ({ limit }: { limit?: number }) => {
               {cmsData.ctaPrimaryLabel || ""}
             </button>
             <button
-              onClick={() => {
-                const link = document.createElement("a");
-                link.href = cmsData.companyProfilePdf || "";
-                link.download = "Kumar Power - Company Profile.pdf";
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-              }}
+              onClick={() => downloadPdf(cmsData.companyProfilePdf, "Kumar Power - Company Profile.pdf")}
               type="button"
               className="bg-white border border-gray-400 text-black font-medium px-6 py-3 rounded-md transition-colors w-full"
             >
