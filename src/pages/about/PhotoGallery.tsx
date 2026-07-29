@@ -154,7 +154,6 @@ interface GalleryImage {
 }
 
 const Masonry = ({ images }: { images: GalleryImage[] }) => {
-  const HeadingTag = usePageHeadingTag("photo-gallery");
   // Animation variants for the container
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -449,6 +448,7 @@ const fallbackStoryImages: GalleryImage[] = [
 const PhotoGallery = () => {
   const { data: rawCMSData } = useSectionData<any>("photo-gallery");
   const cmsData = rawCMSData || {};
+  const HeadingTag = usePageHeadingTag("photo-gallery");
 
   const heroHeading =
     cmsData.hero?.heading || cmsData.heroHeading || cmsData.title || "";
@@ -565,7 +565,12 @@ const PhotoGallery = () => {
             <HeadingTag className="text-5xl md:text-6xl font-bold text-white mb-2">
               {heroHeading}
             </HeadingTag>
-            <p className="text-white text-lg"><LinkText text={heroSubtitle} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+            <p className="text-white text-lg">
+              <LinkText
+                text={heroSubtitle}
+                linkClassName="text-[#2D6FBA] hover:underline font-bold"
+              />
+            </p>
           </div>
         </div>
         <img
@@ -632,7 +637,12 @@ const PhotoGallery = () => {
                 exit={{ opacity: 0 }}
                 className="text-center py-20"
               >
-                <p className="text-white text-lg"><LinkText text={emptyGalleryMessage} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <p className="text-white text-lg">
+                  <LinkText
+                    text={emptyGalleryMessage}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </p>
                 <button
                   onClick={() => {
                     setActiveFilter("installations");
@@ -650,12 +660,14 @@ const PhotoGallery = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                <SimpleImageGrid images={filteredImages.slice(0, visibleCount)} />
+                <SimpleImageGrid
+                  images={filteredImages.slice(0, visibleCount)}
+                />
                 <div className="flex justify-center items-center gap-4 mt-8">
                   {filteredImages.length > visibleCount ? (
                     <button
                       className="px-6 py-2 bg-[#2D6FBA] text-white rounded hover:bg-[#22548e] transition-colors"
-                      onClick={() => setVisibleCount(prev => prev + 12)}
+                      onClick={() => setVisibleCount((prev) => prev + 12)}
                     >
                       {seeMoreLabel}
                     </button>
@@ -683,7 +695,12 @@ const PhotoGallery = () => {
                 {experienceTitlePart1}{" "}
                 <span className="text-blue-400">{experienceTitlePart2}</span>
               </h3>
-              <p className="text-sm mb-6"><LinkText text={experienceDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-sm mb-6">
+                <LinkText
+                  text={experienceDesc}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
               <div className="flex flex-wrap gap-4">
                 {experienceBtn1Text && (
                   <a
