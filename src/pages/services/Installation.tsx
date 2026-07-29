@@ -63,12 +63,19 @@ const InstallationService = () => {
   const cmsData = rawCMSData || {};
   console.log("CMS DATA:", cmsData);
 
-  const heroHeading = cmsData.heroHeading || "";
-  const heroSub = cmsData.heroSub || "";
+  const heroHeading = cmsData.heroHeading || "Installation & Commissioning";
+  const heroSub =
+    cmsData.heroSub ||
+    "Expert power system installation and commissioning services for optimal performance, reliability, and compliance.";
 
-  const introTitle = cmsData.introHeading || "";
-  const introDesc1 = cmsData.introP1 || "";
-  const introDesc2 = cmsData.introP2 || "";
+  const introTitle =
+    cmsData.introHeading || "Professional Power System Installation";
+  const introDesc1 =
+    cmsData.introP1 ||
+    "Kumar Power delivers end-to-end installation and commissioning services for all types of power generation equipment, ensuring your systems operate at peak efficiency from day one.";
+  const introDesc2 =
+    cmsData.introP2 ||
+    "Our certified technicians handle everything from site assessment and planning to final commissioning and operator training, delivering turnkey solutions that maximize reliability and minimize downtime across industries.";
   const steps = cmsData.steps || [];
   const portfolio = cmsData.portfolio || [];
   const faqs = cmsData.faqs || [];
@@ -125,7 +132,7 @@ const InstallationService = () => {
         >
           <div className="container mx-auto text-center px-4 bg-black/50 backdrop-blur-sm py-12 md:py-16">
             <Badge className="mb-4 bg-custom-blue text-white hover:bg-[#225488]">
-              {cmsData.heroBadge || ""}
+              {cmsData.heroBadge || "Professional Services"}
             </Badge>
             <HeadingTag className="text-4xl md:text-5xl font-bold text-white mb-6">
               {heroHeading}
@@ -136,7 +143,7 @@ const InstallationService = () => {
               size="lg"
               className="bg-custom-blue hover:bg-[#225488]"
             >
-              <Link to="/contact">{cmsData.heroCtaLabel || ""}</Link>
+              <Link to="/contact">{cmsData.heroCtaLabel || "Schedule a Consultation"}</Link>
             </Button>
           </div>
         </div>
@@ -150,7 +157,7 @@ const InstallationService = () => {
                   <div className="flex items-center">
                     <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
                     <span className="text-custom-blue font-semibold tracking-wider">
-                      {cmsData.introTagline || ""}
+                      {cmsData.introTagline || "KUMAR POWER EXPERTISE"}
                     </span>
                   </div>
                 </div>
@@ -196,15 +203,15 @@ const InstallationService = () => {
                 <div className="flex items-center justify-center">
                   <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
                   <span className="text-blue-400 font-semibold tracking-wider">
-                    {cmsData.processTagline || ""}
+                    {cmsData.processTagline || "OUR INSTALLATION PROCESS"}
                   </span>
                   <span className="block h-1 w-10 bg-custom-blue ml-3"></span>
                 </div>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                {cmsData.processHeading || ""}
+                {cmsData.processHeading || "Our Installation Process"}
               </h2>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto"><LinkText text={cmsData.processDesc || ""} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto"><LinkText text={cmsData.processDesc || "A comprehensive approach to ensure your power system is installed correctly, efficiently, and with minimal disruption"} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
 
             <div className="max-w-4xl mx-auto">
@@ -256,15 +263,15 @@ const InstallationService = () => {
                 <div className="flex items-center justify-center">
                   <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
                   <span className="text-custom-blue font-semibold tracking-wider">
-                    {cmsData.portfolioTagline || ""}
+                    {cmsData.portfolioTagline || "OUR PROFESSIONAL INSTALLATIONS"}
                   </span>
                   <span className="block h-1 w-10 bg-custom-blue ml-3"></span>
                 </div>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                {cmsData.portfolioHeading || ""}
+                {cmsData.portfolioHeading || "Our Installation Portfolio"}
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8"><LinkText text={cmsData.portfolioDesc || ""} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8"><LinkText text={cmsData.portfolioDesc || "Explore our comprehensive range of professional generator installations across industrial, commercial, and residential settings"} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -288,7 +295,7 @@ const InstallationService = () => {
                 size="lg"
                 className="bg-custom-blue hover:bg-[#225488]"
               >
-                <Link to="/contact">{cmsData.portfolioCtaLabel || ""}</Link>
+                <Link to="/contact">{cmsData.portfolioCtaLabel || "Schedule Your Installation"}</Link>
               </Button>
             </div>
           </div>
@@ -302,15 +309,15 @@ const InstallationService = () => {
                 <div className="flex items-center justify-center">
                   <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
                   <span className="text-[#2D6FBA] font-semibold tracking-wider">
-                    {cmsData.faqTagline || ""}
+                    {cmsData.faqTagline || "FREQUENTLY ASKED QUESTIONS"}
                   </span>
                   <span className="block h-1 w-10 bg-custom-blue ml-3"></span>
                 </div>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                {cmsData.faqHeading || ""}
+                {cmsData.faqHeading || "Common Questions About Installation"}
               </h2>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto"><LinkText text={cmsData.faqDesc || ""} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto"><LinkText text={cmsData.faqDesc || "Get answers to frequently asked questions about our installation and commissioning services"} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
             </div>
 
             <div className="max-w-4xl mx-auto">
