@@ -1,6 +1,7 @@
 import React from "react";
 import { Plane, Factory, Sun, CheckCircle2, ArrowRight, MapPin, Sparkles, AlertCircle, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import ps1 from "@/assets/ps1.png";
 import ps2 from "@/assets/ps2.png";
@@ -53,8 +54,14 @@ export const SelectedProjects: React.FC = () => {
     <section id="solutions-in-action" className="py-20 md:py-24 bg-slate-50 text-slate-900 border-b border-slate-200 relative overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl space-y-12">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
+        {/* Animated Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto space-y-4"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1A6AA2]/10 border border-[#1A6AA2]/20 text-xs font-bold uppercase tracking-widest text-[#1A6AA2]">
             <Sparkles className="w-3.5 h-3.5" /> Proven Field Execution
           </div>
@@ -64,22 +71,26 @@ export const SelectedProjects: React.FC = () => {
           <p className="text-slate-600 text-base sm:text-lg font-normal">
             Real-world case studies demonstrating our end-to-end power engineering, installation, and operational results.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Alternating (Zig-Zag Left-Right) Light Case Study Cards */}
+        {/* Alternating Light Case Study Cards with Scroll Animation */}
         <div className="space-y-8">
           {caseStudies.map((project, idx) => {
             const Icon = project.icon;
-            const isReversed = idx % 2 === 1; // Alternates layout: Card 1 (Right Image), Card 2 (Left Image), Card 3 (Right Image)
+            const isReversed = idx % 2 === 1;
 
             return (
-              <div
+              <motion.div
                 key={project.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.55, delay: idx * 0.12 }}
                 className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm hover:shadow-xl hover:border-[#1A6AA2] transition-all duration-300 group"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                   
-                  {/* Story & Narrative Block (Alternating order on Desktop) */}
+                  {/* Story & Narrative Block */}
                   <div className={`lg:col-span-8 space-y-5 ${isReversed ? "lg:order-last" : "lg:order-first"}`}>
                     
                     {/* Top Pill Badges */}
@@ -139,7 +150,7 @@ export const SelectedProjects: React.FC = () => {
 
                   </div>
 
-                  {/* Product Image Frame (Alternating order on Desktop) */}
+                  {/* Product Image Frame */}
                   <div className={`lg:col-span-4 ${isReversed ? "lg:order-first" : "lg:order-last"}`}>
                     <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 h-52 sm:h-64 flex items-center justify-center relative overflow-hidden group-hover:bg-slate-100/80 transition-colors">
                       <img
@@ -154,7 +165,7 @@ export const SelectedProjects: React.FC = () => {
                   </div>
 
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

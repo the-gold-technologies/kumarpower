@@ -1,5 +1,6 @@
 import React from "react";
 import { Compass, PackageCheck, Wrench, ShieldAlert } from "lucide-react";
+import { motion } from "framer-motion";
 
 const capabilities = [
   {
@@ -30,10 +31,16 @@ const capabilities = [
 
 export const PositioningStatement: React.FC = () => {
   return (
-    <section className="py-20 bg-white text-slate-900 border-b border-slate-200">
+    <section className="py-20 bg-white text-slate-900 border-b border-slate-200 overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl">
-        {/* Header Block */}
-        <div className="max-w-4xl mx-auto text-center space-y-5 mb-16">
+        {/* Header Block with Scroll Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto text-center space-y-5 mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1A6AA2]/10 border border-[#1A6AA2]/20 text-xs font-bold uppercase tracking-widest text-[#1A6AA2]">
             Integrated Electrical Capability
           </div>
@@ -49,15 +56,19 @@ export const PositioningStatement: React.FC = () => {
             power quality, renewable energy and battery storage under one
             coordinated solution.
           </p>
-        </div>
+        </motion.div>
 
-        {/* 4 Clean Capability Cards */}
+        {/* 4 Clean Capability Cards with Staggered Scroll Animation */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {capabilities.map((cap, idx) => {
             const Icon = cap.icon;
             return (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.12 }}
                 className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:bg-white hover:border-[#1A6AA2] hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
               >
                 <div>
@@ -73,7 +84,7 @@ export const PositioningStatement: React.FC = () => {
                     {cap.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

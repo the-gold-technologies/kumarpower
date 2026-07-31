@@ -8,6 +8,7 @@ import {
   HardHat,
   ArrowUpRight,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 import ps1 from "@/assets/ps1.png";
 import ps2 from "@/assets/ps2.png";
@@ -81,9 +82,17 @@ export const CustomerProblems: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-slate-950 text-white relative">
+    <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        
+        {/* Animated Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-16 space-y-4"
+        >
           <div className="inline-block px-3.5 py-1 rounded-full bg-[#1A6AA2]/20 border border-[#1A6AA2]/30 text-xs font-semibold uppercase tracking-widest text-[#1A6AA2]">
             Target Outcome Engineering
           </div>
@@ -95,19 +104,23 @@ export const CustomerProblems: React.FC = () => {
             operational challenge rather than displaying generic equipment
             inventory.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Visual Media Cards Grid - Exact Original Design & Layout */}
+        {/* Visual Media Cards Grid with Staggered Scroll Animation */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {problems.map((item) => {
+          {problems.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <div
+              <motion.div
                 key={item.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
                 onClick={scrollToConsultation}
                 className="relative h-[380px] rounded-3xl overflow-hidden cursor-pointer group border border-slate-800 hover:border-[#1A6AA2] transition-all duration-500 shadow-2xl flex flex-col justify-between p-8"
               >
-                {/* Visual Image Background - Exact Original Layout */}
+                {/* Visual Image Background */}
                 <img
                   src={item.image}
                   alt={item.title}
@@ -136,9 +149,9 @@ export const CustomerProblems: React.FC = () => {
                   </p>
 
                   <div className="flex flex-wrap gap-1.5 pt-2">
-                    {item.tags.map((t, idx) => (
+                    {item.tags.map((t, i) => (
                       <span
-                        key={idx}
+                        key={i}
                         className="px-2.5 py-1 rounded-md bg-slate-900/90 border border-slate-700/60 text-[10px] font-semibold text-slate-200 backdrop-blur-md"
                       >
                         {t}
@@ -146,7 +159,7 @@ export const CustomerProblems: React.FC = () => {
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

@@ -10,6 +10,7 @@ import {
   Landmark,
   ArrowUpRight,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const industries = [
   {
@@ -58,13 +59,13 @@ const industries = [
     problem:
       "Rugged distribution transformers, outdoor feeder pillars, & heavy-duty EPC cabling.",
     image:
-      "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=800&q=80",
   },
   {
-    name: "Cold Storage",
+    name: "Cold Storage & Warehousing",
     icon: Truck,
     problem:
-      "Preserving constant refrigeration temperatures with hybrid solar-BESS energy cost reduction.",
+      "Continuous thermal refrigeration load protection, solar PV integration, & EnerCube BESS.",
     image:
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
   },
@@ -72,7 +73,7 @@ const industries = [
     name: "Commercial Towers",
     icon: Building,
     problem:
-      "Sub-metering floor distribution, peak demand shaving, & silent automated backup.",
+      "Elevator & chiller backup, central AMF switchgear, & rooftop solar power offset.",
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
   },
@@ -87,60 +88,72 @@ export const IndustriesServed: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-slate-50 text-slate-900 relative border-b border-slate-200">
+    <section id="industries-served" className="py-24 bg-slate-950 text-white relative overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-block px-3.5 py-1 rounded-full bg-[#1A6AA2]/10 border border-[#1A6AA2]/20 text-xs font-bold uppercase tracking-widest text-[#1A6AA2]">
-            Sector-Specific Engineering
+        
+        {/* Animated Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-16 space-y-4"
+        >
+          <div className="inline-block px-3.5 py-1 rounded-full bg-[#1A6AA2]/20 border border-[#1A6AA2]/30 text-xs font-semibold uppercase tracking-widest text-[#1A6AA2]">
+            Sector-Specific Solutions
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
             Solutions Designed for Your Industry
           </h2>
-          <p className="text-slate-600 text-base sm:text-lg">
-            We adapt our electrical architecture specifically for the power
-            stability and operational demands of your sector.
+          <p className="text-slate-400 text-base sm:text-lg">
+            We tailor electrical architecture to meet the specific operational,
+            duty cycle, and statutory compliance demands of your sector.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Visual Photography Masonry Grid */}
+        {/* 8 Sector Cards Grid with Staggered Scroll Animation */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {industries.map((ind, idx) => {
-            const Icon = ind.icon;
+          {industries.map((item, idx) => {
+            const Icon = item.icon;
             return (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.45, delay: idx * 0.08 }}
                 onClick={scrollToConsultation}
-                className="relative h-[320px] rounded-3xl overflow-hidden group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500 p-6 flex flex-col justify-between"
+                className="relative h-[320px] rounded-3xl overflow-hidden cursor-pointer group border border-slate-800 hover:border-[#1A6AA2] transition-all duration-500 shadow-xl flex flex-col justify-between p-6"
               >
-                {/* Background Photo */}
+                {/* Background Image */}
                 <img
-                  src={ind.image}
-                  alt={ind.name}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90 contrast-105"
+                  src={item.image}
+                  alt={item.name}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-45 contrast-125"
                 />
-                {/* High-Contrast Dark Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/30 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/20" />
 
-                {/* Top Badge Icon */}
+                {/* Top Badge */}
                 <div className="relative z-10 flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-xl bg-white/90 backdrop-blur-md flex items-center justify-center text-[#1A6AA2] shadow">
+                  <div className="p-2.5 rounded-xl bg-[#1A6AA2]/20 border border-[#1A6AA2]/40 backdrop-blur-md text-[#1A6AA2] group-hover:bg-[#1A6AA2] group-hover:text-white transition-colors">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <span className="p-2 rounded-full bg-slate-900/80 text-white group-hover:bg-[#1A6AA2] transition-colors">
+                  <span className="p-2 rounded-full bg-slate-900/80 border border-slate-700/60 backdrop-blur-md text-slate-300 group-hover:text-white group-hover:bg-[#1A6AA2] transition-colors">
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
 
-                {/* Bottom Card Title & Subtitle with crisp drop shadow */}
-                <div className="relative z-10 space-y-1.5 text-white">
-                  <h3 className="text-xl sm:text-2xl font-extrabold text-white group-hover:text-cyan-300 transition-colors tracking-tight leading-snug drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                    {ind.name}
+                {/* Content */}
+                <div className="relative z-10 space-y-2">
+                  <h3 className="text-xl font-bold text-white group-hover:text-[#1A6AA2] transition-colors drop-shadow">
+                    {item.name}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-200 line-clamp-2 leading-relaxed font-normal drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
-                    {ind.problem}
+
+                  <p className="text-xs text-slate-300 leading-relaxed font-light drop-shadow-sm">
+                    {item.problem}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
