@@ -59,7 +59,7 @@ const industries = [
     problem:
       "Rugged distribution transformers, outdoor feeder pillars, & heavy-duty EPC cabling.",
     image:
-      "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
   },
   {
     name: "Cold Storage & Warehousing",
@@ -130,6 +130,10 @@ export const IndustriesServed: React.FC = () => {
                   src={item.image}
                   alt={item.name}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-45 contrast-125"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80";
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/20" />
 

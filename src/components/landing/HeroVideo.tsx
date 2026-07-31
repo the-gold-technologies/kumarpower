@@ -35,7 +35,7 @@ const scenes = [
     message: "Reliable power when the grid cannot deliver.",
     badge: "DG Sets & AMF",
     image:
-      "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1920&q=80",
+      "https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=1920&q=80",
     detail:
       "Kirloskar CPCB IV+ silent DG sets with sub-second automatic transfer.",
   },
@@ -45,7 +45,7 @@ const scenes = [
     message: "Smarter energy for a changing world.",
     badge: "Solar & EnerCube BESS",
     image:
-      "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1920&q=80",
+      "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1920&q=80",
     detail:
       "Rooftop solar integration, battery storage peak-shaving & microgrids.",
   },
@@ -96,6 +96,10 @@ export const HeroVideo: React.FC = () => {
             src={scene.image}
             alt={scene.title}
             className="w-full h-full object-cover filter brightness-75 contrast-110"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src =
+                "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1920&q=80";
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/40" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1A6AA2]/20 via-transparent to-transparent" />
