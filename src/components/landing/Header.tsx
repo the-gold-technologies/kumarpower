@@ -3,17 +3,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Header = () => {
-  // Add state for tracking expanded product categories
-  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
-  // Add state for mobile menu visibility
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Function to toggle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Function to close mobile menu (useful when clicking on a link)
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
@@ -21,6 +16,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-white border-b">
       <nav className="max-w-7xl px-6 mx-auto flex items-center justify-between h-16">
+        {/* Brand Logo */}
         <Link to="/" className="flex items-center gap-3">
           <img
             src="https://res.cloudinary.com/dinhcaf2c/image/upload/v1755013519/logo_vptmta.png"
@@ -28,6 +24,8 @@ const Header = () => {
             className="h-12 w-auto"
           />
         </Link>
+
+        {/* Desktop Navigation Links */}
         <ul className="hidden md:flex items-center gap-6 text-base font-medium">
           <li>
             <Link to="/" className="hover:text-primary transition-colors">
@@ -35,124 +33,106 @@ const Header = () => {
             </Link>
           </li>
 
-          {/* About Us dropdown - updated: no link, only dropdown */}
-          <li className="relative group">
-            <span className="hover:text-primary transition-colors flex items-center gap-1 cursor-pointer py-4">
-              About Us <ChevronDown className="w-4 h-4" />
-            </span>
-            <div className="absolute left-0 top-[90%] pt-3 hidden group-hover:block hover:block">
-              <div className="bg-white shadow-lg rounded-md min-w-[200px] z-10 overflow-hidden">
-                <Link
-                  to="/about/OurProfile"
-                  className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                >
-                  Our Story
-                </Link>
-                <Link
-                  to="/about/Testimonials"
-                  className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                >
-                  Testimonials
-                </Link>
-                {/* <Link to="/about/OurClients" className="block px-4 py-3 hover:bg-gray-100 cursor-pointer">Our Clients</Link> */}
-                <Link
-                  to="/about/PhotoGallery"
-                  className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                >
-                  Photo gallery
-                </Link>
-                <Link
-                  to="/about/Certifications"
-                  className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                >
-                  Certifications
-                </Link>
-              </div>
-            </div>
-          </li>
-
+          {/* Solutions Mega Dropdown */}
           <li className="relative group">
             <Link
               to="/products"
               className="hover:text-primary transition-colors flex items-center gap-1 cursor-pointer py-4"
             >
-              Products <ChevronDown className="w-4 h-4" />
+              Solutions <ChevronDown className="w-4 h-4" />
             </Link>
             <div className="absolute left-0 top-[90%] pt-3 hidden group-hover:block hover:block">
-              <div className="bg-white shadow-lg rounded-md min-w-[300px] z-10 overflow-hidden">
+              <div className="bg-white shadow-lg rounded-md min-w-[260px] z-10 overflow-hidden py-1 border border-slate-100">
                 <Link
                   to="/products/kirloskar-diesel-generator"
-                  className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
                 >
-                  Kirloskar Diesel Generator
-                </Link>
-                <Link
-                  to="/products/kirloskar-gas-generator"
-                  className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                >
-                  Kirloskar Gas Generator
-                </Link>
-                <Link
-                  to="/products/kirloskar-portable-generator"
-                  className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                >
-                  Kirloskar Portable Generator
-                </Link>
-                <Link
-                  to="/products/panels"
-                  className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                >
-                  Panels
-                </Link>
-                <Link
-                  to="/products/optiprime"
-                  className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                >
-                  Optiprime
-                </Link>
-                <Link
-                  to="/products/servo-stabilizer"
-                  className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                >
-                  Servo Stabilizer
+                  Power Generation
                 </Link>
                 <Link
                   to="/products/transformers"
-                  className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
                 >
                   Transformers
+                </Link>
+                <Link
+                  to="/products/panels"
+                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
+                >
+                  Electrical Panels
+                </Link>
+                <Link
+                  to="/products/optiprime"
+                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
+                >
+                  Battery Storage
+                </Link>
+                <Link
+                  to="/products"
+                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
+                >
+                  Solar and Renewable Energy
+                </Link>
+                <Link
+                  to="/products/servo-stabilizer"
+                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
+                >
+                  Power Quality
+                </Link>
+                <Link
+                  to="/installation"
+                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
+                >
+                  Turnkey Projects
+                </Link>
+                <Link
+                  to="/contact"
+                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer border-t border-slate-100"
+                >
+                  Service and Maintenance
                 </Link>
               </div>
             </div>
           </li>
 
-          {/* Products dropdown - updated to match the hierarchical structure in the image */}
-          {/* <li className="relative group">
-            <Link to="/products" className="hover:text-primary transition-colors flex items-center gap-1 cursor-pointer py-4">
-              Products 
-            </Link>
-            
-          </li> */}
-
-          {/* Our Clients  */}
-          <li className="relative group">
-            <Link
-              to="/about/OurClients"
-              className="hover:text-primary transition-colors flex items-center gap-1 cursor-pointer py-4"
-            >
-              Our Clients
-            </Link>
+          {/* Industries */}
+          <li>
+            <a href="#industries-served" className="hover:text-primary transition-colors py-4">
+              Industries
+            </a>
           </li>
 
-          {/* Installation Contact and Blog links */}
+          {/* Projects */}
           <li>
             <Link
-              to="/installation"
+              to="/about/OurClients"
               className="hover:text-primary transition-colors py-4"
             >
-              Installation
+              Projects
             </Link>
           </li>
+
+          {/* About */}
+          <li>
+            <Link
+              to="/about/OurProfile"
+              className="hover:text-primary transition-colors py-4"
+            >
+              About
+            </Link>
+          </li>
+
+          {/* Insights */}
+          <li>
+            <Link
+              to="/blogs"
+              className="hover:text-primary transition-colors py-4"
+            >
+              Insights
+            </Link>
+          </li>
+
+          {/* Contact */}
           <li>
             <Link
               to="/contact"
@@ -161,19 +141,11 @@ const Header = () => {
               Contact
             </Link>
           </li>
-          <li>
-            <Link
-              to="/blogs"
-              className="hover:text-primary transition-colors py-4"
-            >
-              Blog
-            </Link>
-          </li>
         </ul>
 
-        {/* Profile link - keeping existing code */}
+        {/* Profile Logo CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <a href="#cta" className="flex items-center">
+          <a href="#consultation-form" className="flex items-center">
             <img
               src="https://res.cloudinary.com/dinhcaf2c/image/upload/v1755014410/Screenshot_2025-06-02_at_12.44.43_PM_lxdedo.png"
               alt="Kumar Power Profile Logo"
@@ -182,7 +154,7 @@ const Header = () => {
           </a>
         </div>
 
-        {/* Mobile menu button - updated with toggle functionality */}
+        {/* Mobile menu button */}
         <button
           className="md:hidden p-2"
           aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
@@ -192,7 +164,7 @@ const Header = () => {
         </button>
       </nav>
 
-      {/* Mobile Menu - updated to match large screen structure */}
+      {/* Mobile Menu */}
       <div
         className={`md:hidden bg-white border-t shadow-lg ${isMobileMenuOpen ? "block" : "hidden"}`}
       >
@@ -205,146 +177,112 @@ const Header = () => {
             Home
           </Link>
 
-          {/* About dropdown for mobile */}
+          {/* Solutions Dropdown Mobile */}
           <div className="py-3 border-b">
             <details className="group">
               <summary className="flex justify-between items-center cursor-pointer list-none">
-                <span>About Us</span>
+                <span>Solutions</span>
                 <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180" />
               </summary>
               <div className="mt-2 ml-4 space-y-2">
                 <Link
-                  to="/about/OurProfile"
-                  className="block py-2"
+                  to="/products/kirloskar-diesel-generator"
+                  className="block py-1.5 text-sm"
                   onClick={closeMobileMenu}
                 >
-                  Our Story
+                  Power Generation
                 </Link>
                 <Link
-                  to="/about/Testimonials"
-                  className="block py-2"
+                  to="/products/transformers"
+                  className="block py-1.5 text-sm"
                   onClick={closeMobileMenu}
                 >
-                  Testimonials
+                  Transformers
                 </Link>
                 <Link
-                  to="/about/PhotoGallery"
-                  className="block py-2"
+                  to="/products/panels"
+                  className="block py-1.5 text-sm"
                   onClick={closeMobileMenu}
                 >
-                  Photo gallery
+                  Electrical Panels
                 </Link>
                 <Link
-                  to="/about/Certifications"
-                  className="block py-2"
+                  to="/products/optiprime"
+                  className="block py-1.5 text-sm"
                   onClick={closeMobileMenu}
                 >
-                  Certifications
+                  Battery Storage
                 </Link>
-              </div>
-            </details>
-          </div>
-
-          {/* Products link for mobile */}
-          {/* <div className="py-3 border-b">
-            <Link to="/products" className="block" onClick={closeMobileMenu}>Products</Link>
-          </div> */}
-          <div className="py-3 border-b">
-            <details className="group">
-              <summary className="flex justify-between items-center cursor-pointer list-none">
                 <Link
                   to="/products"
-                  className="block"
+                  className="block py-1.5 text-sm"
                   onClick={closeMobileMenu}
                 >
-                  Products
+                  Solar and Renewable Energy
                 </Link>
-                <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180" />
-              </summary>
-              <div className="mt-2 ml-4 space-y-2">
-                <div className="bg-white shadow-lg rounded-md min-w-[300px] z-10 overflow-hidden">
-                  <Link
-                    to="/products/kirloskar-diesel-generator"
-                    className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                  >
-                    Kirloskar Diesel Generator
-                  </Link>
-                  <Link
-                    to="/products/kirloskar-gas-generator"
-                    className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                  >
-                    Kirloskar Gas Generator
-                  </Link>
-                  <Link
-                    to="/products/kirloskar-portable-generator"
-                    className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                  >
-                    Kirloskar Portable Generator
-                  </Link>
-                  <Link
-                    to="/products/panels"
-                    className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                  >
-                    Panels
-                  </Link>
-                  <Link
-                    to="/products/optiprime"
-                    className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                  >
-                    Optiprime
-                  </Link>
-                  <Link
-                    to="/products/servo-stabilizer"
-                    className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                  >
-                    Servo Stabilizer
-                  </Link>
-                  <Link
-                    to="/products/transformers"
-                    className="block px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                  >
-                    Transformers
-                  </Link>
-                </div>
+                <Link
+                  to="/products/servo-stabilizer"
+                  className="block py-1.5 text-sm"
+                  onClick={closeMobileMenu}
+                >
+                  Power Quality
+                </Link>
+                <Link
+                  to="/installation"
+                  className="block py-1.5 text-sm"
+                  onClick={closeMobileMenu}
+                >
+                  Turnkey Projects
+                </Link>
+                <Link
+                  to="/contact"
+                  className="block py-1.5 text-sm"
+                  onClick={closeMobileMenu}
+                >
+                  Service and Maintenance
+                </Link>
               </div>
             </details>
           </div>
-          {/* Our Clients link */}
-          <div className="py-3 border-b">
-            <Link
-              to="/about/OurClients"
-              className="block"
-              onClick={closeMobileMenu}
-            >
-              Our Clients
-            </Link>
-          </div>
 
-          {/* Installation link */}
-          <Link
-            to="/installation"
+          <a
+            href="#industries-served"
             className="block py-3 border-b"
             onClick={closeMobileMenu}
           >
-            Installation
-          </Link>
+            Industries
+          </a>
 
-          {/* Contact link */}
           <Link
-            to="/contact"
+            to="/about/OurClients"
             className="block py-3 border-b"
             onClick={closeMobileMenu}
           >
-            Contact
+            Projects
           </Link>
 
-          {/* Contact link */}
+          <Link
+            to="/about/OurProfile"
+            className="block py-3 border-b"
+            onClick={closeMobileMenu}
+          >
+            About
+          </Link>
+
           <Link
             to="/blogs"
             className="block py-3 border-b"
             onClick={closeMobileMenu}
           >
-            Blog
+            Insights
+          </Link>
+
+          <Link
+            to="/contact"
+            className="block py-3"
+            onClick={closeMobileMenu}
+          >
+            Contact
           </Link>
         </div>
       </div>

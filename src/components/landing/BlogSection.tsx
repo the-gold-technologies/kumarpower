@@ -199,7 +199,12 @@ const BlogSection = ({ limit }: { limit?: number }) => {
               {cmsData.ctaPrimaryLabel || ""}
             </button>
             <button
-              onClick={() => downloadPdf(cmsData.companyProfilePdf, "Kumar Power - Company Profile.pdf")}
+              onClick={() =>
+                downloadPdf(
+                  cmsData.companyProfilePdf,
+                  "Kumar Power - Company Profile.pdf",
+                )
+              }
               type="button"
               className="bg-white border border-gray-400 text-black font-medium px-6 py-3 rounded-md transition-colors w-full"
             >
