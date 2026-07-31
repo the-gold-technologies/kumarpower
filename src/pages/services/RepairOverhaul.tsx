@@ -32,12 +32,19 @@ import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 
 import asset2 from "@/assets/Kumar Assets/new750.png";
 
-
 // Icon Mapper for CMS string icons
 const renderIcon = (iconName: string, className: string) => {
   const HeadingTag = usePageHeadingTag("repair-overhaul");
   const icons: Record<string, any> = {
-    AlertTriangle, Wrench, Cpu, Clock, Shield, Activity, FileText, CheckCircle2, Zap
+    AlertTriangle,
+    Wrench,
+    Cpu,
+    Clock,
+    Shield,
+    Activity,
+    FileText,
+    CheckCircle2,
+    Zap,
   };
   const IconComponent = icons[iconName] || AlertTriangle;
   return <IconComponent className={className} />;
@@ -66,6 +73,7 @@ const RepairOverhaulService = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <SEO
+        pageSlug="repair-overhaul"
         title="Repair & Overhaul Services - Kumar Power"
         description="From emergency repairs to rebuilds, Kumar Power’s certified technicians diagnose and fix equipment issues, minimizing downtime and extending service life."
         canonical="https://www.kumarpower.com/services/repair-overhaul"
@@ -81,7 +89,12 @@ const RepairOverhaulService = () => {
             <HeadingTag className="text-4xl md:text-5xl font-bold text-white mb-6">
               {heroHeading}
             </HeadingTag>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
+              <LinkText
+                text={heroSub}
+                linkClassName="text-[#2D6FBA] hover:underline font-bold"
+              />
+            </p>
             <Button
               asChild
               size="lg"
@@ -100,14 +113,26 @@ const RepairOverhaulService = () => {
                 <div className="inline-block mb-4">
                   <div className="flex items-center">
                     <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
-                    <span className="text-custom-blue font-semibold tracking-wider">{cmsData.introTagline}</span>
+                    <span className="text-custom-blue font-semibold tracking-wider">
+                      {cmsData.introTagline}
+                    </span>
                   </div>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
                   {introTitle}
                 </h2>
-                <p className="text-lg text-muted-foreground mb-6"><LinkText text={introDesc1} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
-                <p className="text-lg text-muted-foreground mb-8"><LinkText text={cmsData.introDesc2} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <p className="text-lg text-muted-foreground mb-6">
+                  <LinkText
+                    text={introDesc1}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </p>
+                <p className="text-lg text-muted-foreground mb-8">
+                  <LinkText
+                    text={cmsData.introDesc2}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </p>
                 <div className="flex flex-wrap gap-4">
                   <Button
                     asChild
@@ -149,14 +174,21 @@ const RepairOverhaulService = () => {
               <div className="inline-block mb-4">
                 <div className="flex items-center justify-center">
                   <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
-                  <span className="text-blue-400 font-semibold tracking-wider">{cmsData.diffTagline}</span>
+                  <span className="text-blue-400 font-semibold tracking-wider">
+                    {cmsData.diffTagline}
+                  </span>
                   <span className="block h-1 w-10 bg-custom-blue ml-3"></span>
                 </div>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {cmsData.diffHeading}
               </h2>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto"><LinkText text={cmsData.diffDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+                <LinkText
+                  text={cmsData.diffDesc}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
 
             <div className="max-w-4xl mx-auto">
@@ -180,16 +212,28 @@ const RepairOverhaulService = () => {
                     <h3 className="text-2xl font-bold mb-4 text-blue-400">
                       {cmsData.repairTabTitle}
                     </h3>
-                    <p className="mb-6 text-gray-300"><LinkText text={cmsData.repairTabDesc1} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                    <p className="mb-6 text-gray-300">
+                      <LinkText
+                        text={cmsData.repairTabDesc1}
+                        linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                      />
+                    </p>
                     <ul className="space-y-3 mb-6">
-                      {(cmsData.repairScenarios || []).map((item: string, idx: number) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <CheckCircle2 className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-200">{item}</span>
-                        </li>
-                      ))}
+                      {(cmsData.repairScenarios || []).map(
+                        (item: string, idx: number) => (
+                          <li key={idx} className="flex items-start gap-3">
+                            <CheckCircle2 className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                            <span className="text-gray-200">{item}</span>
+                          </li>
+                        ),
+                      )}
                     </ul>
-                    <p className="text-gray-300"><LinkText text={cmsData.repairTabDesc2} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                    <p className="text-gray-300">
+                      <LinkText
+                        text={cmsData.repairTabDesc2}
+                        linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                      />
+                    </p>
                   </Card>
                 </TabsContent>
                 <TabsContent value="overhaul" className="mt-6">
@@ -197,16 +241,28 @@ const RepairOverhaulService = () => {
                     <h3 className="text-2xl font-bold mb-4 text-blue-400">
                       {cmsData.overhaulTabTitle}
                     </h3>
-                    <p className="mb-6 text-gray-300"><LinkText text={cmsData.overhaulTabDesc1} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                    <p className="mb-6 text-gray-300">
+                      <LinkText
+                        text={cmsData.overhaulTabDesc1}
+                        linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                      />
+                    </p>
                     <ul className="space-y-3 mb-6">
-                      {(cmsData.overhaulScenarios || []).map((item: string, idx: number) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <CheckCircle2 className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-200">{item}</span>
-                        </li>
-                      ))}
+                      {(cmsData.overhaulScenarios || []).map(
+                        (item: string, idx: number) => (
+                          <li key={idx} className="flex items-start gap-3">
+                            <CheckCircle2 className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                            <span className="text-gray-200">{item}</span>
+                          </li>
+                        ),
+                      )}
                     </ul>
-                    <p className="text-gray-300"><LinkText text={cmsData.overhaulTabDesc2} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                    <p className="text-gray-300">
+                      <LinkText
+                        text={cmsData.overhaulTabDesc2}
+                        linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                      />
+                    </p>
                   </Card>
                 </TabsContent>
               </Tabs>
@@ -221,14 +277,21 @@ const RepairOverhaulService = () => {
               <div className="inline-block mb-4">
                 <div className="flex items-center justify-center">
                   <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
-                  <span className="text-[#2D6FBA] font-semibold tracking-wider">{cmsData.servicesTagline}</span>
+                  <span className="text-[#2D6FBA] font-semibold tracking-wider">
+                    {cmsData.servicesTagline}
+                  </span>
                   <span className="block h-1 w-10 bg-custom-blue ml-3"></span>
                 </div>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {cmsData.servicesHeading}
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto"><LinkText text={cmsData.servicesDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                <LinkText
+                  text={cmsData.servicesDesc}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -239,10 +302,20 @@ const RepairOverhaulService = () => {
                 >
                   <div className="p-8">
                     <div className="mb-6">
-                      {typeof service.icon === 'string' ? renderIcon(service.icon, "h-10 w-10 text-[#2D6FBA]") : React.cloneElement(service.icon as React.ReactElement, { className: "h-10 w-10 text-[#2D6FBA]" })}
+                      {typeof service.icon === "string"
+                        ? renderIcon(service.icon, "h-10 w-10 text-[#2D6FBA]")
+                        : React.cloneElement(
+                            service.icon as React.ReactElement,
+                            { className: "h-10 w-10 text-[#2D6FBA]" },
+                          )}
                     </div>
                     <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-                    <p className="text-muted-foreground mb-6"><LinkText text={service.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                    <p className="text-muted-foreground mb-6">
+                      <LinkText
+                        text={service.description}
+                        linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                      />
+                    </p>
                     <ul className="space-y-3">
                       {service.features.map((feature, i) => (
                         <li key={i} className="flex items-start gap-3">
@@ -274,7 +347,12 @@ const RepairOverhaulService = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {cmsData.benefitsHeading}
               </h2>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto"><LinkText text={cmsData.benefitsDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+                <LinkText
+                  text={cmsData.benefitsDesc}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -287,7 +365,12 @@ const RepairOverhaulService = () => {
                   <h3 className="text-xl font-bold mb-3 text-blue-400">
                     {benefit.title}
                   </h3>
-                  <p className="text-gray-300"><LinkText text={benefit.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                  <p className="text-gray-300">
+                    <LinkText
+                      text={benefit.description}
+                      linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                    />
+                  </p>
                 </div>
               ))}
             </div>
@@ -320,8 +403,15 @@ const RepairOverhaulService = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {cmsData.processHeading}
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto"><LinkText text={cmsData.processDesc ||
-                  "A systematic approach to efficiently diagnose and resolve power system issues"} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                <LinkText
+                  text={
+                    cmsData.processDesc ||
+                    "A systematic approach to efficiently diagnose and resolve power system issues"
+                  }
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
 
             <div className="max-w-4xl mx-auto">
@@ -339,7 +429,12 @@ const RepairOverhaulService = () => {
                       <h3 className="text-2xl font-bold mb-3 text-[#2D6FBA]">
                         {step.title}
                       </h3>
-                      <p className="text-muted-foreground mb-4"><LinkText text={step.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                      <p className="text-muted-foreground mb-4">
+                        <LinkText
+                          text={step.description}
+                          linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                        />
+                      </p>
                       <ul className="space-y-2">
                         {step.features &&
                           step.features.map(
@@ -378,7 +473,12 @@ const RepairOverhaulService = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {cmsData.faqHeading}
               </h2>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto"><LinkText text={cmsData.faqDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+                <LinkText
+                  text={cmsData.faqDesc}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
 
             <div className="max-w-4xl mx-auto">
@@ -409,7 +509,12 @@ const RepairOverhaulService = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 {cmsData.helpTitle}
               </h2>
-              <p className="text-lg md:text-xl mb-10 text-gray-200"><LinkText text={cmsData.helpSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-lg md:text-xl mb-10 text-gray-200">
+                <LinkText
+                  text={cmsData.helpSub}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 {/* Primary Button */}
                 <Button

@@ -70,6 +70,7 @@ const About = () => {
   return (
     <>
       <SEO
+        pageSlug="our-profile"
         title="About Us | Kumar Power - Trusted Name in Power Solutions"
         description="Learn about Kumar Power, Delhi’s trusted kirloskar generator and power solutions provider. Know more about our expertise, commitment and service support."
         canonical="https://www.kumarpower.com/about/OurProfile"
@@ -98,10 +99,30 @@ const About = () => {
               <h2 className="text-xl md:text-2xl font-semibold text-black mb-4">
                 {heroSubtitle}
               </h2>
-              <p className="text-base text-black mb-4"><LinkText text={paragraph1} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
-              <p className="text-base text-black mb-4"><LinkText text={paragraph2} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
-              <p className="text-base text-black mb-4"><LinkText text={paragraph3} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
-              <p className="text-base text-black"><LinkText text={paragraph4} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-base text-black mb-4">
+                <LinkText
+                  text={paragraph1}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
+              <p className="text-base text-black mb-4">
+                <LinkText
+                  text={paragraph2}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
+              <p className="text-base text-black mb-4">
+                <LinkText
+                  text={paragraph3}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
+              <p className="text-base text-black">
+                <LinkText
+                  text={paragraph4}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
           </div>
         </div>
@@ -112,7 +133,12 @@ const About = () => {
             <h2 className="text-5xl font-bold text-center mb-6">
               {storyTitle}
             </h2>
-            <p className="text-center max-w-3xl mx-auto mb-16"><LinkText text={storySub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+            <p className="text-center max-w-3xl mx-auto mb-16">
+              <LinkText
+                text={storySub}
+                linkClassName="text-[#2D6FBA] hover:underline font-bold"
+              />
+            </p>
 
             {/* Timeline Container with gradient background */}
             <div className="max-w-6xl mx-auto bg-gradient-to-b from-white/95 to-transparent p-8">
@@ -128,7 +154,12 @@ const About = () => {
                       {item.year}
                     </span>
                     <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                    <p><LinkText text={item.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                    <p>
+                      <LinkText
+                        text={item.description}
+                        linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                      />
+                    </p>
                     <div className="w-16 h-1 bg-zinc-600 mt-4 self-start"></div>
                   </div>
                   <div className={idx % 2 === 1 ? "md:order-1" : ""}>
@@ -163,8 +194,18 @@ const About = () => {
                   <h3 className="text-xl font-bold uppercase mb-1 text-center">
                     {member.name}
                   </h3>
-                  <p className="font-semibold text-lg mb-3 text-center"><LinkText text={member.role} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
-                  <p className="text-base text-justify leading-relaxed"><LinkText text={member.bio} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                  <p className="font-semibold text-lg mb-3 text-center">
+                    <LinkText
+                      text={member.role}
+                      linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                    />
+                  </p>
+                  <p className="text-base text-justify leading-relaxed">
+                    <LinkText
+                      text={member.bio}
+                      linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                    />
+                  </p>
                 </div>
               ))}
             </div>
@@ -221,7 +262,12 @@ const About = () => {
                       )}
                     </div>
                     <h3 className="text-lg font-semibold mb-2">{card.title}</h3>
-                    <p className="text-sm"><LinkText text={card.description || card.desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                    <p className="text-sm">
+                      <LinkText
+                        text={card.description || card.desc}
+                        linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                      />
+                    </p>
                   </div>
                 );
               })}
@@ -232,7 +278,12 @@ const About = () => {
                 {/* Left: Statement and List */}
                 <div className="flex-1">
                   <h3 className="text-2xl font-bold mb-3">{policyTitle}</h3>
-                  <p className="text-base text-gray-800 mb-6"><LinkText text={policyStatement} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                  <p className="text-base text-gray-800 mb-6">
+                    <LinkText
+                      text={policyStatement}
+                      linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                    />
+                  </p>
                   <ul className="space-y-4">
                     {bullet1 && (
                       <li className="flex items-center text-base">
@@ -335,7 +386,12 @@ const About = () => {
               <h2 className="text-2xl md:text-3xl font-bold mb-2">
                 {ctaTitle}
               </h2>
-              <p className="text-base md:text-lg text-gray-700"><LinkText text={ctaDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-base md:text-lg text-gray-700">
+                <LinkText
+                  text={ctaDesc}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
             <div className="mt-6 md:mt-0">
               <a

@@ -20,15 +20,19 @@ export default function SEO({
   ogImage,
   canonical,
   robots,
-  pageSlug
+  pageSlug,
 }: SEOProps) {
   const location = useLocation();
-  const resolvedSlug = pageSlug || (location.pathname === "/" ? "home" : location.pathname.substring(1));
+  const resolvedSlug =
+    pageSlug ||
+    (location.pathname === "/" ? "home" : location.pathname.substring(1));
 
   const globalSEO = useCMSStore((state) => state.globalSEO);
   const fetchGlobalSEO = useCMSStore((state) => state.fetchGlobalSEO);
   const fetchPage = useCMSStore((state) => state.fetchPage);
-  const pageState = useCMSStore((state) => resolvedSlug ? state.pages[resolvedSlug] : undefined);
+  const pageState = useCMSStore((state) =>
+    resolvedSlug ? state.pages[resolvedSlug] : undefined,
+  );
 
   useEffect(() => {
     fetchGlobalSEO();
@@ -42,14 +46,14 @@ export default function SEO({
   const finalTitle =
     (resolvedSlug === "home"
       ? globalSEO?.siteTitle || seoData?.metaTitle || title
-      : seoData?.metaTitle || globalSEO?.siteTitle || title) ||
-    "Kumar Power";
+      : seoData?.metaTitle || globalSEO?.siteTitle || title) || "Kumar Power";
 
   const finalDescription =
     (resolvedSlug === "home"
       ? globalSEO?.siteDescription || seoData?.metaDescription || description
-      : seoData?.metaDescription || globalSEO?.siteDescription || description) ||
-    "Kumar Power | Kirloskar Generator Dealer";
+      : seoData?.metaDescription ||
+        globalSEO?.siteDescription ||
+        description) || "Kumar Power | Kirloskar Generator Dealer";
 
   const finalKeywords = seoData?.keywords || keywords;
   const finalOgImage = seoData?.ogImage || ogImage;
@@ -67,9 +71,7 @@ export default function SEO({
       {finalRobots && <meta name="robots" content={finalRobots} />}
 
       {seoData?.schema && (
-        <script type="application/ld+json">
-          {seoData.schema}
-        </script>
+        <script type="application/ld+json">{seoData.schema}</script>
       )}
 
       {/* Open Graph */}

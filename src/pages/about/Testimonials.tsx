@@ -78,6 +78,7 @@ const Testimonials = () => {
 
       {/* <SEOJsonLD /> */}
       <SEO
+        pageSlug="testimonials"
         title="Why Kumar Power? | Customer Feedback & Testimonials"
         description="Discover what customers say about Kumar Power. Real reviews and experience highlighting our service quality, product reliability, and trusted power solutions."
         canonical="https://kumarpower.com/about/Testimonials"
@@ -103,7 +104,12 @@ const Testimonials = () => {
                 <br />
                 {heroHeadingLine2}
               </h2>
-              <p className="mt-2 text-gray-200"><LinkText text={heroSubtitle} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="mt-2 text-gray-200">
+                <LinkText
+                  text={heroSubtitle}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
           </div>
         </div>
@@ -153,10 +159,20 @@ const Testimonials = () => {
                       <h4 className="font-semibold text-2xl">
                         {item.authorName}
                       </h4>
-                      <p className="text-xs text-gray-600"><LinkText text={item.roleCompany || item.role} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                      <p className="text-xs text-gray-600">
+                        <LinkText
+                          text={item.roleCompany || item.role}
+                          linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                        />
+                      </p>
                     </div>
                   </div>
-                  <p className="text-base mb-4 leading-relaxed whitespace-pre-line"><LinkText text={item.quote || item.content || item.text} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                  <p className="text-base mb-4 leading-relaxed whitespace-pre-line">
+                    <LinkText
+                      text={item.quote || item.content || item.text}
+                      linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                    />
+                  </p>
                   {item.dateText && (
                     <div className="text-xs text-gray-500 mt-2">
                       {item.dateText}
@@ -176,21 +192,41 @@ const Testimonials = () => {
           <div className="grid grid-cols-3 gap-8 mb-12">
             <div className="text-center">
               <h2 className="text-4xl font-bold mb-1">{stat1Num}</h2>
-              <p className="text-sm"><LinkText text={stat1Text} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-sm">
+                <LinkText
+                  text={stat1Text}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
             <div className="text-center">
               <h2 className="text-4xl font-bold mb-1">{stat2Num}</h2>
-              <p className="text-sm"><LinkText text={stat2Text} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-sm">
+                <LinkText
+                  text={stat2Text}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
             <div className="text-center">
               <h2 className="text-4xl font-bold mb-1">{stat3Num}</h2>
-              <p className="text-sm"><LinkText text={stat3Text} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+              <p className="text-sm">
+                <LinkText
+                  text={stat3Text}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
             </div>
           </div>
 
           {/* Trusted By Section */}
           <div className="text-center mb-8">
-            <p className="text-2xl mb-6"><LinkText text={trustedTitle} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+            <p className="text-2xl mb-6">
+              <LinkText
+                text={trustedTitle}
+                linkClassName="text-[#2D6FBA] hover:underline font-bold"
+              />
+            </p>
             <div className="logos-container">
               <div className="logos-slide">
                 {clientLogos
@@ -211,7 +247,12 @@ const Testimonials = () => {
           {/* CTA Section */}
           <div className="text-center mt-16">
             <h3 className="text-2xl font-bold mb-2">{ctaTitle}</h3>
-            <p className="text-sm max-w-2xl mx-auto mb-6"><LinkText text={ctaDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+            <p className="text-sm max-w-2xl mx-auto mb-6">
+              <LinkText
+                text={ctaDesc}
+                linkClassName="text-[#2D6FBA] hover:underline font-bold"
+              />
+            </p>
 
             <div className="flex flex-wrap justify-center gap-4">
               <button
@@ -236,8 +277,10 @@ const Testimonials = () => {
                   />
                 </svg>
               </button>
-              <button 
-                onClick={() => downloadPdf(brochurePdf, "Kumar Power Portfolio.pdf")}
+              <button
+                onClick={() =>
+                  downloadPdf(brochurePdf, "Kumar Power Portfolio.pdf")
+                }
                 className="border border-white text-white py-2 px-6 rounded"
               >
                 {brochureBtnText}

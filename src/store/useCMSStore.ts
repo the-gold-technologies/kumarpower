@@ -80,7 +80,11 @@ export const useCMSStore = create<CMSState>((set, get) => ({
         Object.assign(sectionsMap, json.data);
       }
 
-      const pageData = json.page || (typeof json.data === "object" && !Array.isArray(json.data) ? json.data : {});
+      const pageData =
+        json.page ||
+        (typeof json.data === "object" && !Array.isArray(json.data)
+          ? json.data
+          : {});
 
       set((state) => ({
         pages: {
@@ -153,8 +157,12 @@ export function useSectionData<T>(
   return { data, loading, error };
 }
 
-export function usePageHeadingTag(pageSlug: string): keyof JSX.IntrinsicElements {
+export function usePageHeadingTag(
+  pageSlug: string,
+): keyof JSX.IntrinsicElements {
   const pageState = useCMSStore((state) => state.pages[pageSlug]);
   const globalSEO = useCMSStore((state) => state.globalSEO);
-  return (pageState?.seo?.headingOptions || globalSEO?.headingOptions || "h1") as keyof JSX.IntrinsicElements;
+  return (pageState?.seo?.headingOptions ||
+    globalSEO?.headingOptions ||
+    "h1") as keyof JSX.IntrinsicElements;
 }

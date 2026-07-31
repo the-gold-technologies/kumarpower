@@ -31,13 +31,20 @@ const AnnualMaintenanceService = () => {
   const { data: rawCMSData } = useSectionData<any>("annual-maintenance");
   const cmsData = rawCMSData || {};
 
-  const heroHeadingPart1 = cmsData.heroHeadingPart1 || "ANNUAL MAINTENANCE CONTRACTS";
-  const heroTitle = cmsData.heroTitle || "Preventive Care for Uninterrupted Power";
-  const heroSub = cmsData.heroSub || "Ensure maximum uptime and equipment longevity with our comprehensive maintenance solutions";
+  const heroHeadingPart1 =
+    cmsData.heroHeadingPart1 || "ANNUAL MAINTENANCE CONTRACTS";
+  const heroTitle =
+    cmsData.heroTitle || "Preventive Care for Uninterrupted Power";
+  const heroSub =
+    cmsData.heroSub ||
+    "Ensure maximum uptime and equipment longevity with our comprehensive maintenance solutions";
 
-  const introTitlePart1 = cmsData.introTitlePart1 || "Keep Your Power Systems Running at";
+  const introTitlePart1 =
+    cmsData.introTitlePart1 || "Keep Your Power Systems Running at";
   const introTitlePart2 = cmsData.introTitlePart2 || "Peak Efficiency";
-  const introDesc1 = cmsData.introDesc1 || "Our Annual Maintenance Contracts (AMC) provide scheduled preventive maintenance, prompt repairs, and emergency support to ensure your power generation equipment operates reliably year-round.";
+  const introDesc1 =
+    cmsData.introDesc1 ||
+    "Our Annual Maintenance Contracts (AMC) provide scheduled preventive maintenance, prompt repairs, and emergency support to ensure your power generation equipment operates reliably year-round.";
   // FAQ items
   const faqItems = [
     {
@@ -78,12 +85,11 @@ const AnnualMaintenanceService = () => {
       /> */}
 
       <SEO
+        pageSlug="annual-maintenance"
         title="Annual Maintainence Contracts- Kumar Power"
         description="Our Annual Maintenance Contracts (AMC) provide scheduled preventive maintenance, prompt repairs, and emergency support to ensure your power generation equipment operates reliably year-round."
-        
         canonical="https://www.kumarpower.com/services/annual-maintenance"
       />
-
 
       <main>
         {/* Hero Banner */}
@@ -109,7 +115,12 @@ const AnnualMaintenanceService = () => {
             <HeadingTag className="text-3xl md:text-5xl font-bold mb-4 text-white">
               {heroTitle}
             </HeadingTag>
-            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+              <LinkText
+                text={heroSub}
+                linkClassName="text-[#2D6FBA] hover:underline font-bold"
+              />
+            </p>
             <Button
               asChild
               size="lg"
@@ -130,7 +141,12 @@ const AnnualMaintenanceService = () => {
                   {introTitlePart1}{" "}
                   <span style={{ color: "#2D6FBA" }}>{introTitlePart2}</span>
                 </h2>
-                <p className="text-lg text-gray-700 mb-6"><LinkText text={introDesc1} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <p className="text-lg text-gray-700 mb-6">
+                  <LinkText
+                    text={introDesc1}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </p>
                 <p className="text-lg text-gray-700 mb-8">
                   With Kumar Power's expert technicians and genuine Kirloskar
                   parts, you can minimize downtime, extend equipment life, and
@@ -261,7 +277,12 @@ const AnnualMaintenanceService = () => {
                   <h3 className="text-xl font-bold mb-3 text-white">
                     {item.title}
                   </h3>
-                  <p className="text-gray-300"><LinkText text={item.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                  <p className="text-gray-300">
+                    <LinkText
+                      text={item.description}
+                      linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                    />
+                  </p>
                 </Card>
               ))}
             </div>
@@ -340,7 +361,12 @@ const AnnualMaintenanceService = () => {
                       >
                         {item.title}
                       </h3>
-                      <p className="text-gray-300 text-lg"><LinkText text={item.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                      <p className="text-gray-300 text-lg">
+                        <LinkText
+                          text={item.description}
+                          linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                        />
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -423,11 +449,13 @@ const AnnualMaintenanceService = () => {
                   style={{ borderColor: "white", color: "white" }}
                   className="bg-transparent hover:bg-white/10 hover:text-[#2D6FBA] hover:border-[#2D6FBA] px-8 py-6 text-lg transition-colors duration-200"
                 >
-                  <Link to="/products" className="text-white hover:text-[#2D6FBA]">
+                  <Link
+                    to="/products"
+                    className="text-white hover:text-[#2D6FBA]"
+                  >
                     Explore Other Services
                   </Link>
                 </Button>
-
               </div>
             </div>
           </div>
