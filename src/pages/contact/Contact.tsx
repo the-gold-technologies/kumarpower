@@ -27,52 +27,60 @@ const Contact = () => {
 
   // Add submission status states
   const [contactSubmitStatus, setContactSubmitStatus] = useState<{
-    type: 'success' | 'error' | null;
+    type: "success" | "error" | null;
     message: string;
-  }>({ type: null, message: '' });
+  }>({ type: null, message: "" });
 
   const [resumeSubmitStatus, setResumeSubmitStatus] = useState<{
-    type: 'success' | 'error' | null;
+    type: "success" | "error" | null;
     message: string;
-  }>({ type: null, message: '' });
+  }>({ type: null, message: "" });
 
   // Add loading states
   const [isContactSubmitting, setIsContactSubmitting] = useState(false);
   const [isResumeSubmitting, setIsResumeSubmitting] = useState(false);
 
   // Form handling for main contact form
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   // Form handling for resume form
-  const handleResumeChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleResumeChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
-    setResumeData(prev => ({ ...prev, [name]: value }));
+    setResumeData((prev) => ({ ...prev, [name]: value }));
   };
 
   // File handling for resume upload
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setResumeData(prev => ({ ...prev, resume: e.target.files![0] }));
+      setResumeData((prev) => ({ ...prev, resume: e.target.files![0] }));
     }
   };
 
   // Updated contact form submit handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setContactSubmitStatus({ type: null, message: '' });
+    setContactSubmitStatus({ type: null, message: "" });
     setIsContactSubmitting(true); // Start loading
 
     // Get checkbox value
-    const callbackCheckbox = document.getElementById('callback') as HTMLInputElement;
+    const callbackCheckbox = document.getElementById(
+      "callback",
+    ) as HTMLInputElement;
     const callbackValue = callbackCheckbox?.checked || false;
 
     const submissionData = {
       ...formData,
-      form_type: 'contact_inquiry',
-      callback: callbackValue
+      form_type: "contact_inquiry",
+      callback: callbackValue,
     };
 
     try {
@@ -84,8 +92,8 @@ const Contact = () => {
 
       if (response.ok) {
         setContactSubmitStatus({
-          type: 'success',
-          message: '✓ Message sent successfully! We\'ll get back to you soon.'
+          type: "success",
+          message: "✓ Message sent successfully! We'll get back to you soon.",
         });
         setFormData({
           name: "",
@@ -99,19 +107,20 @@ const Contact = () => {
 
         // Clear success message after 5 seconds
         setTimeout(() => {
-          setContactSubmitStatus({ type: null, message: '' });
+          setContactSubmitStatus({ type: null, message: "" });
         }, 5000);
       } else {
         setContactSubmitStatus({
-          type: 'error',
-          message: '✗ There was an issue submitting your form. Please try again.'
+          type: "error",
+          message:
+            "✗ There was an issue submitting your form. Please try again.",
         });
       }
     } catch (error) {
       console.error("Error:", error);
       setContactSubmitStatus({
-        type: 'error',
-        message: '✗ Network error. Please check your connection and try again.'
+        type: "error",
+        message: "✗ Network error. Please check your connection and try again.",
       });
     } finally {
       setIsContactSubmitting(false); // Stop loading
@@ -121,7 +130,7 @@ const Contact = () => {
   // Updated resume form submit handler
   const handleResumeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setResumeSubmitStatus({ type: null, message: '' });
+    setResumeSubmitStatus({ type: null, message: "" });
     setIsResumeSubmitting(true); // Start loading
 
     const formDataObj = new FormData();
@@ -143,8 +152,9 @@ const Contact = () => {
 
       if (response.ok) {
         setResumeSubmitStatus({
-          type: 'success',
-          message: '✓ Resume submitted successfully! We\'ll review your application and get back to you.'
+          type: "success",
+          message:
+            "✓ Resume submitted successfully! We'll review your application and get back to you.",
         });
         setResumeData({
           fullName: "",
@@ -154,24 +164,25 @@ const Contact = () => {
           resume: null,
         });
         // Reset file input
-        const fileInput = document.getElementById('resume') as HTMLInputElement;
-        if (fileInput) fileInput.value = '';
+        const fileInput = document.getElementById("resume") as HTMLInputElement;
+        if (fileInput) fileInput.value = "";
 
         // Clear success message after 5 seconds
         setTimeout(() => {
-          setResumeSubmitStatus({ type: null, message: '' });
+          setResumeSubmitStatus({ type: null, message: "" });
         }, 5000);
       } else {
         setResumeSubmitStatus({
-          type: 'error',
-          message: '✗ There was an issue submitting your resume. Please try again.'
+          type: "error",
+          message:
+            "✗ There was an issue submitting your resume. Please try again.",
         });
       }
     } catch (error) {
       console.error("Error:", error);
       setResumeSubmitStatus({
-        type: 'error',
-        message: '✗ Network error. Please check your connection and try again.'
+        type: "error",
+        message: "✗ Network error. Please check your connection and try again.",
       });
     } finally {
       setIsResumeSubmitting(false); // Stop loading
@@ -181,9 +192,8 @@ const Contact = () => {
   return (
     <>
       <SEO
-        title="Kumar Power | Contact us for Your Power Queries in Delhi" 
+        title="Kumar Power | Contact us for Your Power Queries in Delhi"
         description="Get in touch with Kumar Power today. Whether you need generator assistance, installation info, or pricing details, our experts team are always ready to help."
-        
         canonical="https://kumarpower.com/contact"
       />
       {/* <SEOJsonLD /> */}
@@ -191,16 +201,20 @@ const Contact = () => {
 
       <main>
         {/* FIRST SECTION: Powering Connections Section */}
-        <section className="py-20 bg-[#2D6FBA] relative overflow-hidden" style={{
-          backgroundImage: "linear-gradient(to right, #0a1535, #1a2a59)",
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}>
-          <div className="absolute inset-0 z-0 bg-no-repeat bg-cover opacity-60"
+        <section
+          className="py-20 bg-[#2D6FBA] relative overflow-hidden"
+          style={{
+            backgroundImage: "linear-gradient(to right, #0a1535, #1a2a59)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div
+            className="absolute inset-0 z-0 bg-no-repeat bg-cover opacity-60"
             style={{
-              backgroundImage: 'url(' + contact + ')',
+              backgroundImage: "url(" + contact + ")",
               mixBlendMode: "normal",
-              backgroundPosition: "center -380px" // move image up
+              backgroundPosition: "center -380px", // move image up
             }}
           ></div>
 
@@ -212,14 +226,27 @@ const Contact = () => {
 
               {/* Content with improved contrast */}
               <div className="relative z-10">
-                <h2 className="text-3xl md:text-4xl font-bold mb-2 text-white drop-shadow-md">Powering Connections That Matter</h2>
-                <p className="text-base text-white tracking-tighter font-extralight mb-8 drop-shadow">Let's build something extraordinary. Talk to our experts today.</p>
+                <h2 className="text-3xl md:text-4xl font-bold mb-2 text-white drop-shadow-md">
+                  Powering Connections That Matter
+                </h2>
+                <p className="text-base text-white tracking-tighter font-extralight mb-8 drop-shadow">
+                  Let's build something extraordinary. Talk to our experts
+                  today.
+                </p>
 
                 <div className="flex flex-wrap justify-center gap-4">
-                  <a href="#contact-form" className="bg-[#2D6FBA] hover:bg-[#2360a0] text-white px-8 py-3 rounded-[5px] font-medium transition-colors shadow-lg">
+                  <a
+                    href="#contact-form"
+                    className="bg-[#2D6FBA] hover:bg-[#2360a0] text-white px-8 py-3 rounded-[5px] font-medium transition-colors shadow-lg"
+                  >
                     Start Your Inquiry
                   </a>
-                  <a href="https://wa.me/+919773851767" target="_blank" rel="noreferrer" className="backdrop-blur-sm border border-[#2D6FBA] hover:bg-[#2D6FBA]/50 text-white px-8 py-3 rounded-[5px] font-medium transition-colors shadow-lg">
+                  <a
+                    href="https://wa.me/+919773851767"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="backdrop-blur-sm border border-[#2D6FBA] hover:bg-[#2D6FBA]/50 text-white px-8 py-3 rounded-[5px] font-medium transition-colors shadow-lg"
+                  >
                     Connect on WhatsApp
                   </a>
                 </div>
@@ -233,24 +260,39 @@ const Contact = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto bg-white p-8 rounded-[18px] shadow-lg">
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-black mb-2">Get in Touch</h2>
+                <h2 className="text-3xl font-bold text-black mb-2">
+                  Get in Touch
+                </h2>
                 <div className="mx-auto w-24 h-1 bg-[#2D6FBA] rounded mb-2"></div>
               </div>
 
               {/* Contact Form Success/Error Message */}
               {contactSubmitStatus.type && (
-                <div className={`mb-6 p-4 rounded-lg ${contactSubmitStatus.type === 'success'
-                    ? 'bg-green-50 border border-green-200 text-green-800'
-                    : 'bg-red-50 border border-red-200 text-red-800'
-                  }`}>
-                  <p className="text-sm font-medium"><LinkText text={contactSubmitStatus.message} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <div
+                  className={`mb-6 p-4 rounded-lg ${
+                    contactSubmitStatus.type === "success"
+                      ? "bg-green-50 border border-green-200 text-green-800"
+                      : "bg-red-50 border border-red-200 text-red-800"
+                  }`}
+                >
+                  <p className="text-sm font-medium">
+                    <LinkText
+                      text={contactSubmitStatus.message}
+                      linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                    />
+                  </p>
                 </div>
               )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-black mb-1">Full Name</label>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-black mb-1"
+                    >
+                      Full Name
+                    </label>
                     <input
                       type="text"
                       id="name"
@@ -262,7 +304,12 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-black mb-1">Email Address</label>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-black mb-1"
+                    >
+                      Email Address
+                    </label>
                     <input
                       type="email"
                       id="email"
@@ -276,7 +323,12 @@ const Contact = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-black mb-1">Phone Number</label>
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-black mb-1"
+                    >
+                      Phone Number
+                    </label>
                     <input
                       type="tel"
                       id="phone"
@@ -288,7 +340,12 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="department" className="block text-sm font-medium text-black mb-1">Department</label>
+                    <label
+                      htmlFor="department"
+                      className="block text-sm font-medium text-black mb-1"
+                    >
+                      Department
+                    </label>
                     <select
                       id="department"
                       name="department"
@@ -305,7 +362,12 @@ const Contact = () => {
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-black mb-1">Message</label>
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-black mb-1"
+                  >
+                    Message
+                  </label>
                   <textarea
                     id="message"
                     name="message"
@@ -324,7 +386,10 @@ const Contact = () => {
                       name="callback"
                       className="h-4 w-4 text-[#2D6FBA]  border-gray-300 rounded focus:ring-[#2D6FBA]"
                     />
-                    <label htmlFor="callback" className="block text-sm text-black cursor-pointer">
+                    <label
+                      htmlFor="callback"
+                      className="block text-sm text-black cursor-pointer"
+                    >
                       Request a callback
                     </label>
                   </div>
@@ -336,17 +401,44 @@ const Contact = () => {
                     >
                       {isContactSubmitting ? (
                         <>
-                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          <svg
+                            className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
                           </svg>
                           Sending...
                         </>
                       ) : (
                         <>
                           Send Secure Message
-                          <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          <svg
+                            className="w-5 h-5 ml-2"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            />
                           </svg>
                         </>
                       )}
@@ -367,57 +459,127 @@ const Contact = () => {
                 <div className="bg-black text-white p-6 rounded-md">
                   <div className="items-center mb-4">
                     <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <svg
+                        className="w-5 h-5 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
                       </svg>
                     </div>
                     <h3 className="mt-3 text-lg font-bold">Office Hours</h3>
                   </div>
                   <p className="text-gray-300 text-sm">Monday - Saturday</p>
                   <p className="text-gray-300 text-sm">10:00 AM - 7:00 PM</p>
-                  <p className="text-gray-300 text-sm mt-1">Closed on Sundays & National Holidays</p>
+                  <p className="text-gray-300 text-sm mt-1">
+                    Closed on Sundays & National Holidays
+                  </p>
                 </div>
 
                 {/* Phone */}
                 <div className="bg-black text-white p-6 rounded-md">
                   <div className=" items-center mb-4">
                     <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      <svg
+                        className="w-5 h-5 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                        />
                       </svg>
                     </div>
                     <h3 className="mt-3 text-lg font-bold">Phone</h3>
                   </div>
-                  <p className="text-gray-300 text-sm">Main:  9773851767</p>
-                  <p className="text-gray-300 text-sm">Support: 9773877796</p>
-                  <p className="text-gray-300 text-sm mt-1">Landline: 01146701273</p>
+                  <div className="flex items-center gap-2 text-sm text-gray-300">
+                    <span className="text-white/60 w-20">Main: </span>
+                    <a
+                      href="tel:+919773851767"
+                      className="hover:text-blue-300 transition-colors font-medium"
+                    >
+                      9773851767
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-300 mt-1">
+                    <span className="text-white/60 w-20">Support: </span>
+                    <a
+                      href="tel:+919773877796"
+                      className="hover:text-blue-300 transition-colors"
+                    >
+                      9773877796
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-300 mt-1">
+                    <span className="text-white/60 w-20">Landline: </span>
+                    <a
+                      href="tel:01146701273"
+                      className="hover:text-blue-300 transition-colors"
+                    >
+                      011-46701273
+                    </a>
+                  </div>
                 </div>
 
                 {/* Email */}
                 <div className="bg-black text-white p-6 rounded-md">
                   <div className="items-center mb-4">
                     <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      <svg
+                        className="w-5 h-5 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
                       </svg>
                     </div>
                     <h3 className="mt-3 text-lg font-bold">Email</h3>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-white/60 w-20">Main: </span>
-                    <a href="mailto:kumargeneratorhouse@gmail.com" className="hover:text-blue-300 transition-colors">kumargeneratorhouse@gmail.com</a>
-                  </div>
-                  <div className="flex items-center gap-2">
                     <span className="text-white/60 w-20">Sales: </span>
-                    <a href="mailto:sales@kumarpower.com" className="hover:text-blue-300 transition-colors">sales@kumarpower.com</a>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-white/60 w-20">Support: </span>
-                    <a href="mailto:support@kumarpower.com" className="hover:text-blue-300 transition-colors">support@kumarpower.com</a>
+                    <a
+                      href="mailto:Sales@kumarpower.com"
+                      className="hover:text-blue-300 transition-colors font-medium"
+                    >
+                      Sales@kumarpower.com
+                    </a>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-white/60 w-20">Accounts: </span>
-                    <a href="mailto:accounts@kumarpower.com" className="hover:text-blue-300 transition-colors">accounts@kumarpower.com</a>
+                    <a
+                      href="mailto:Accounts@kumarpower.com"
+                      className="hover:text-blue-300 transition-colors font-medium"
+                    >
+                      Accounts@kumarpower.com
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-white/60 w-20">Support: </span>
+                    <a
+                      href="mailto:Support@kumarpower.com"
+                      className="hover:text-blue-300 transition-colors font-medium"
+                    >
+                      Support@kumarpower.com
+                    </a>
                   </div>
                 </div>
               </div>
@@ -434,45 +596,91 @@ const Contact = () => {
                 <div>
                   <h2 className="text-2xl font-bold mb-4">Drop Your Resume</h2>
                   <p className="text-gray-300 mb-6">
-                    Didn't find your role? We're always looking for great talent to join our team. Submit
-                    your resume and we'll contact you when a suitable position opens up.
+                    Didn't find your role? We're always looking for great talent
+                    to join our team. Submit your resume and we'll contact you
+                    when a suitable position opens up.
                   </p>
 
                   <div className="space-y-6">
                     {/* Feature Points */}
                     <div className="flex items-start">
                       <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        <svg
+                          className="w-5 h-5 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                          />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-white">Industry Leading Company</h3>
-                        <p className="text-gray-400 text-sm">One of India's most respected power generation brands</p>
+                        <h3 className="font-semibold text-white">
+                          Industry Leading Company
+                        </h3>
+                        <p className="text-gray-400 text-sm">
+                          One of India's most respected power generation brands
+                        </p>
                       </div>
                     </div>
 
                     <div className="flex items-start">
                       <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        <svg
+                          className="w-5 h-5 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                          />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-white">Career Growth</h3>
-                        <p className="text-gray-400 text-sm">Continuous learning and advancement opportunities</p>
+                        <h3 className="font-semibold text-white">
+                          Career Growth
+                        </h3>
+                        <p className="text-gray-400 text-sm">
+                          Continuous learning and advancement opportunities
+                        </p>
                       </div>
                     </div>
 
                     <div className="flex items-start">
                       <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                        <svg
+                          className="w-5 h-5 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                          />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-white">Comprehensive Benefits</h3>
-                        <p className="text-gray-400 text-sm">Sales incentives, PF, and more</p>
+                        <h3 className="font-semibold text-white">
+                          Comprehensive Benefits
+                        </h3>
+                        <p className="text-gray-400 text-sm">
+                          Sales incentives, PF, and more
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -482,18 +690,31 @@ const Contact = () => {
                 <div className="bg-white p-6 rounded-md text-black">
                   {/* Resume Form Success/Error Message */}
                   {resumeSubmitStatus.type && (
-                    <div className={`mb-6 p-4 rounded-lg ${resumeSubmitStatus.type === 'success'
-                        ? 'bg-green-50 border border-green-200 text-green-800'
-                        : 'bg-red-50 border border-red-200 text-red-800'
-                      }`}>
-                      <p className="text-sm font-medium"><LinkText text={resumeSubmitStatus.message} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                    <div
+                      className={`mb-6 p-4 rounded-lg ${
+                        resumeSubmitStatus.type === "success"
+                          ? "bg-green-50 border border-green-200 text-green-800"
+                          : "bg-red-50 border border-red-200 text-red-800"
+                      }`}
+                    >
+                      <p className="text-sm font-medium">
+                        <LinkText
+                          text={resumeSubmitStatus.message}
+                          linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                        />
+                      </p>
                     </div>
                   )}
 
                   <form onSubmit={handleResumeSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="fullName" className="block text-sm font-medium text-black mb-1">Full Name</label>
+                        <label
+                          htmlFor="fullName"
+                          className="block text-sm font-medium text-black mb-1"
+                        >
+                          Full Name
+                        </label>
                         <input
                           type="text"
                           id="fullName"
@@ -505,7 +726,12 @@ const Contact = () => {
                         />
                       </div>
                       <div>
-                        <label htmlFor="resumeEmail" className="block text-sm font-medium text-black mb-1">Email Address</label>
+                        <label
+                          htmlFor="resumeEmail"
+                          className="block text-sm font-medium text-black mb-1"
+                        >
+                          Email Address
+                        </label>
                         <input
                           type="email"
                           id="resumeEmail"
@@ -519,7 +745,12 @@ const Contact = () => {
                     </div>
 
                     <div>
-                      <label htmlFor="resumePhone" className="block text-sm font-medium text-black mb-1">Phone Number</label>
+                      <label
+                        htmlFor="resumePhone"
+                        className="block text-sm font-medium text-black mb-1"
+                      >
+                        Phone Number
+                      </label>
                       <input
                         type="tel"
                         id="resumePhone"
@@ -532,7 +763,12 @@ const Contact = () => {
                     </div>
 
                     <div>
-                      <label htmlFor="resumeMessage" className="block text-sm font-medium text-black mb-1">Message / Cover Note</label>
+                      <label
+                        htmlFor="resumeMessage"
+                        className="block text-sm font-medium text-black mb-1"
+                      >
+                        Message / Cover Note
+                      </label>
                       <textarea
                         id="resumeMessage"
                         name="message"
@@ -545,16 +781,36 @@ const Contact = () => {
                     </div>
 
                     <div>
-                      <label htmlFor="resume" className="block text-sm font-medium text-black mb-1">Upload Resume (PDF/DOC)</label>
+                      <label
+                        htmlFor="resume"
+                        className="block text-sm font-medium text-black mb-1"
+                      >
+                        Upload Resume (PDF/DOC)
+                      </label>
                       <div className="relative">
                         <div className="border-2 border-dashed border-gray-300 rounded p-8 text-center bg-gray-50">
                           <div className="flex justify-center mb-2">
-                            <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0l-4 4m4-4v12" />
+                            <svg
+                              className="w-6 h-6 text-gray-500"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0l-4 4m4-4v12"
+                              />
                             </svg>
                           </div>
-                          <p className="text-sm text-gray-600">Drag and drop your resume here or click to browse</p>
-                          <p className="text-xs text-gray-500 mt-1">Maximum file size: 5MB</p>
+                          <p className="text-sm text-gray-600">
+                            Drag and drop your resume here or click to browse
+                          </p>
+                          <p className="text-xs text-gray-500 mt-1">
+                            Maximum file size: 5MB
+                          </p>
                           <input
                             type="file"
                             id="resume"
@@ -574,14 +830,30 @@ const Contact = () => {
                     >
                       {isResumeSubmitting ? (
                         <>
-                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          <svg
+                            className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
                           </svg>
                           Submitting...
                         </>
                       ) : (
-                        'Submit Application'
+                        "Submit Application"
                       )}
                     </button>
                   </form>
@@ -621,16 +893,12 @@ const Contact = () => {
                     <span className="font-semibold text-lg">Our Office</span>
                   </div>
                   <div className="text-sm font-extralight leading-snug tracking-tighter">
-                    New Address: 904, 9th Floor, Westend Mall,<br />
+                    New Address: 904, 9th Floor, Westend Mall,
+                    <br />
                     Janakpuri, New Delhi - 110058
                   </div>
                 </div>
               </div>
-
-
-
-
-
             </div>
           </div>
         </section>

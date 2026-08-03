@@ -82,7 +82,7 @@ export const ConsultationForm: React.FC = () => {
               </button>
 
               <a
-                href="tel:+911145007693"
+                href="tel:+919773851767"
                 className="inline-flex items-center bg-white border border-slate-200 text-slate-900 hover:bg-slate-50 rounded-full px-6 py-3.5 text-xs sm:text-sm font-bold transition-all shadow-sm group"
               >
                 <PhoneCall className="w-4 h-4 mr-2 text-[#1A6AA2]" />
@@ -91,25 +91,53 @@ export const ConsultationForm: React.FC = () => {
             </div>
 
             {/* Direct Contact Info */}
-            <div className="space-y-4 pt-4 border-t border-slate-200/80">
-              <div className="flex items-center gap-3 text-sm">
-                <Mail className="w-4 h-4 text-[#1A6AA2]" />
-                <span className="text-slate-500">Email:</span>
+            <div className="space-y-2.5 pt-4 border-t border-slate-200/80 text-sm">
+              <div className="flex items-center gap-3">
+                <Phone className="w-4 h-4 text-[#1A6AA2] shrink-0" />
+                <span className="text-slate-500 font-medium min-w-[75px]">
+                  Phone:
+                </span>
                 <a
-                  href="mailto:info@kumarpower.com"
-                  className="font-bold text-slate-900 hover:text-[#1A6AA2]"
+                  href="tel:+919773851767"
+                  className="font-bold text-slate-900 hover:text-[#1A6AA2] transition-colors"
                 >
-                  info@kumarpower.com
+                  +91 97738 51767
                 </a>
               </div>
-              <div className="flex items-center gap-3 text-sm">
-                <Phone className="w-4 h-4 text-[#1A6AA2]" />
-                <span className="text-slate-500">Phone:</span>
+              <div className="flex items-center gap-3">
+                <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0" />
+                <span className="text-slate-500 font-medium min-w-[75px]">
+                  Sales:
+                </span>
                 <a
-                  href="tel:+911145007693"
-                  className="font-bold text-slate-900 hover:text-[#1A6AA2]"
+                  href="mailto:Sales@kumarpower.com"
+                  className="font-semibold text-slate-900 hover:text-[#1A6AA2] transition-colors"
                 >
-                  +91 (011) 4500-POWER
+                  Sales@kumarpower.com
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0 opacity-0" />
+                <span className="text-slate-500 font-medium min-w-[75px]">
+                  Accounts:
+                </span>
+                <a
+                  href="mailto:Accounts@kumarpower.com"
+                  className="font-semibold text-slate-900 hover:text-[#1A6AA2] transition-colors"
+                >
+                  Accounts@kumarpower.com
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0 opacity-0" />
+                <span className="text-slate-500 font-medium min-w-[75px]">
+                  Support:
+                </span>
+                <a
+                  href="mailto:Support@kumarpower.com"
+                  className="font-semibold text-slate-900 hover:text-[#1A6AA2] transition-colors"
+                >
+                  Support@kumarpower.com
                 </a>
               </div>
             </div>

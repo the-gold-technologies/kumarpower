@@ -19,8 +19,8 @@ export const Footer: React.FC = () => {
 
   const address =
     data.address || "904, Westend Mall, Janakpuri, New Delhi 110058";
-  const mainPhone = data.mainPhone || "+91 97738 51767";
-  const salesEmail = data.salesEmail || "sales@kumarpower.com";
+  const mainPhone = data.mainPhone || "9773851767";
+  const salesEmail = data.salesEmail || "Sales@kumarpower.com";
 
   return (
     <footer
@@ -307,20 +307,34 @@ export const Footer: React.FC = () => {
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#1A6AA2] shrink-0" />
                 <a
-                  href={`tel:${mainPhone}`}
+                  href={`tel:+91${mainPhone}`}
                   className="hover:text-white transition-colors font-medium"
                 >
                   {mainPhone}
                 </a>
               </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0" />
-                <a
-                  href={`mailto:${salesEmail}`}
-                  className="hover:text-white transition-colors font-medium"
-                >
-                  {salesEmail}
-                </a>
+              <div className="flex items-start gap-2">
+                <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0 mt-0.5" />
+                <div className="flex flex-col gap-1">
+                  <a
+                    href="mailto:Sales@kumarpower.com"
+                    className="hover:text-white transition-colors font-medium"
+                  >
+                    Sales@kumarpower.com
+                  </a>
+                  <a
+                    href="mailto:Accounts@kumarpower.com"
+                    className="hover:text-white transition-colors font-medium"
+                  >
+                    Accounts@kumarpower.com
+                  </a>
+                  <a
+                    href="mailto:Support@kumarpower.com"
+                    className="hover:text-white transition-colors font-medium"
+                  >
+                    Support@kumarpower.com
+                  </a>
+                </div>
               </div>
               <div className="flex items-center gap-2 pt-1 text-slate-500 text-[11px]">
                 <ShieldCheck className="w-4 h-4 text-[#1A6AA2] shrink-0" />
