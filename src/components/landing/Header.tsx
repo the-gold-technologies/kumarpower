@@ -7,7 +7,9 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
-  const [scrolledPastHero, setScrolledPastHero] = useState(!isHomePage);
+  const [scrolledPastHero, setScrolledPastHero] = useState(
+    !isHomePage && (typeof window !== "undefined" ? window.scrollY > 100 : true)
+  );
 
   useEffect(() => {
     if (!isHomePage) {
@@ -15,20 +17,30 @@ const Header = () => {
       return;
     }
 
-    const handleScroll = () => {
+    const checkHeroVisibility = () => {
+      // If user is at or near the top of the page, navbar must stay hidden
+      if (window.scrollY < 50) {
+        setScrolledPastHero(false);
+        return;
+      }
+
       const heroEl = document.getElementById("home");
-      if (heroEl) {
+      if (heroEl && heroEl.offsetHeight > 100) {
         const rect = heroEl.getBoundingClientRect();
-        // Show navbar once user has scrolled past the hero video section
-        setScrolledPastHero(rect.bottom <= 80);
+        // Show navbar only after hero section has completely scrolled above the screen
+        setScrolledPastHero(rect.bottom <= 0);
       } else {
-        setScrolledPastHero(window.scrollY > 300);
+        setScrolledPastHero(window.scrollY > 400);
       }
     };
 
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    checkHeroVisibility();
+    window.addEventListener("scroll", checkHeroVisibility, { passive: true });
+    window.addEventListener("resize", checkHeroVisibility, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", checkHeroVisibility);
+      window.removeEventListener("resize", checkHeroVisibility);
+    };
   }, [isHomePage, location.pathname]);
 
   const toggleMobileMenu = () => {
@@ -40,12 +52,12 @@ const Header = () => {
   };
 
   const headerClasses = isHomePage
-    ? `fixed top-0 left-0 right-0 z-50 bg-white border-b shadow-sm transition-all duration-300 ease-in-out ${
+    ? `fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 shadow-sm transition-all duration-300 ease-in-out ${
         scrolledPastHero
           ? "translate-y-0 opacity-100 pointer-events-auto"
           : "-translate-y-full opacity-0 pointer-events-none"
       }`
-    : "sticky top-0 z-50 bg-white border-b shadow-sm";
+    : "sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm w-full";
 
   return (
     <header className={headerClasses}>
