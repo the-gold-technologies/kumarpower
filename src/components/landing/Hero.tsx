@@ -19,7 +19,6 @@ const Hero = () => {
           src={bgVideo}
           autoPlay
           loop
-          muted
           playsInline
           className="w-full h-auto block object-cover"
         />
