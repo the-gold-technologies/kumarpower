@@ -52,9 +52,9 @@ export const PositioningStatement: React.FC = () => {
           <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-3xl mx-auto">
             Kumar Power delivers integrated electrical solutions for commercial,
             industrial, institutional and infrastructure customers. We bring
-            together power generators, transformation, distribution, protection,
-            power quality, renewable energy and battery storage under one
-            coordinated solution.
+            together power generators, transformers, distribution pannels,
+            protection, power quality, renewable energy and battery storage
+            under one coordinated solution.
           </p>
         </motion.div>
 

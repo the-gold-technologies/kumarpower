@@ -85,7 +85,7 @@ export const PartnerCertifications: React.FC = () => {
       {/* Centered Dark Mode Header */}
       <div className="container mx-auto px-4 max-w-5xl text-center relative z-10 mb-10 sm:mb-14">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
-          Trusted OEM Partnerships & Quality Standards
+          Trusted Association
         </h2>
         <p className="text-slate-400 text-base sm:text-lg mt-4 max-w-3xl mx-auto font-normal">
           Certified and recognized by leading industry organizations for quality
