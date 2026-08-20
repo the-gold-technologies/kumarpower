@@ -12,6 +12,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { useSectionData } from "@/store/useCMSStore";
+import kumarLogoDark from "@/assets/kumar_power_logo_dark.svg";
 
 export const Footer: React.FC = () => {
   const { data: homeData } = useSectionData<any>("home");
@@ -30,14 +31,15 @@ export const Footer: React.FC = () => {
       <div className="container mx-auto px-4 max-w-7xl space-y-16">
         {/* Top Header Row: Brand Identity, Tagline & Major CTA */}
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-12 border-b border-slate-800/80">
-          <div className="space-y-2 max-w-3xl">
-            <div className="flex items-center gap-3">
-              <span className="text-3xl font-black text-white tracking-tight">
-                KUMAR <span className="text-[#1A6AA2]">POWER</span>
-              </span>
-              <span className="px-3 py-1 rounded-full bg-[#1A6AA2]/10 border border-[#1A6AA2]/30 text-xs font-mono font-bold text-[#1A6AA2] uppercase tracking-wider">
-                Authorised Kirloskar Partner
-              </span>
+          <div className="space-y-3 max-w-3xl">
+            <div className="flex flex-wrap items-center gap-4">
+              <Link to="/" className="inline-block hover:opacity-90 transition-opacity">
+                <img
+                  src={kumarLogoDark}
+                  alt="Kumar Power"
+                  className="h-14 sm:h-16 md:h-20 w-auto object-contain"
+                />
+              </Link>
             </div>
             <p className="text-base text-slate-300 font-medium">
               Complete Electrical Solution Provider and Authorised Kirloskar
@@ -117,7 +119,7 @@ export const Footer: React.FC = () => {
                   to="/products/servo-stabilizer"
                   className="hover:text-white transition-colors"
                 >
-                  Power Quality
+                  Servo Stabiliser
                 </Link>
               </li>
               <li>

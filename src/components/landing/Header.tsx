@@ -1,6 +1,7 @@
 import { Menu, ChevronDown, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import kumarLogo from "@/assets/kumar_power_logo.png";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -52,9 +53,9 @@ const Header = () => {
         {/* Brand Logo */}
         <Link to="/" className="flex items-center gap-3">
           <img
-            src="https://res.cloudinary.com/dinhcaf2c/image/upload/v1755013519/logo_vptmta.png"
-            alt="Kumar Power Logo"
-            className="h-12 w-auto"
+            src={kumarLogo}
+            alt="Kumar Power"
+            className="h-12 w-auto object-contain"
           />
         </Link>
 
@@ -98,7 +99,7 @@ const Header = () => {
                   to="/products/optiprime"
                   className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
                 >
-                  Battery Storage
+                  Battery Energy Storage System
                 </Link>
                 <Link
                   to="/products"
@@ -110,19 +111,7 @@ const Header = () => {
                   to="/products/servo-stabilizer"
                   className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
                 >
-                  Power Quality
-                </Link>
-                <Link
-                  to="/installation"
-                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
-                >
-                  Turnkey Projects
-                </Link>
-                <Link
-                  to="/contact"
-                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer border-t border-slate-100"
-                >
-                  Service and Maintenance
+                  Servo Stabiliser Pannel
                 </Link>
               </div>
             </div>
@@ -130,7 +119,10 @@ const Header = () => {
 
           {/* Industries */}
           <li>
-            <a href="#industries-served" className="hover:text-primary transition-colors py-4">
+            <a
+              href="#industries-served"
+              className="hover:text-primary transition-colors py-4"
+            >
               Industries
             </a>
           </li>
@@ -244,7 +236,7 @@ const Header = () => {
                   className="block py-1.5 text-sm"
                   onClick={closeMobileMenu}
                 >
-                  Battery Storage
+                  Battery Energy Storage System
                 </Link>
                 <Link
                   to="/products"
@@ -258,21 +250,7 @@ const Header = () => {
                   className="block py-1.5 text-sm"
                   onClick={closeMobileMenu}
                 >
-                  Power Quality
-                </Link>
-                <Link
-                  to="/installation"
-                  className="block py-1.5 text-sm"
-                  onClick={closeMobileMenu}
-                >
-                  Turnkey Projects
-                </Link>
-                <Link
-                  to="/contact"
-                  className="block py-1.5 text-sm"
-                  onClick={closeMobileMenu}
-                >
-                  Service and Maintenance
+                  Servo Stabiliser Pannel
                 </Link>
               </div>
             </details>
@@ -310,11 +288,7 @@ const Header = () => {
             Insights
           </Link>
 
-          <Link
-            to="/contact"
-            className="block py-3"
-            onClick={closeMobileMenu}
-          >
+          <Link to="/contact" className="block py-3" onClick={closeMobileMenu}>
             Contact
           </Link>
         </div>

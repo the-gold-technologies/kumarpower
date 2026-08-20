@@ -1,4 +1,13 @@
 import React from "react";
+import kirloskarPowergen from "@/assets/associations/kirloskar_powergen.png";
+import kirloskarOilEngines from "@/assets/associations/assoc6.png";
+import iiaLogo from "@/assets/associations/iia_logo.svg";
+import baiLogo from "@/assets/associations/assoc1.png";
+import ipaLogo from "@/assets/associations/assoc2.png";
+import mbaLogo from "@/assets/associations/assoc3.png";
+import bniLogo from "@/assets/associations/assoc4.png";
+import wsccLogo from "@/assets/associations/assoc5.png";
+import isoLogo from "@/assets/iso profile.png";
 import trust from "@/assets/Seasons (1).png";
 import trust1 from "@/assets/SIS (1).png";
 import trust2 from "@/assets/Vistara 1 (1).png";
@@ -21,12 +30,17 @@ import certi5 from "@/assets/certi5.png";
 import certi6 from "@/assets/certi6.png";
 import certi7 from "@/assets/certi7.png";
 import certi8 from "@/assets/certi8.png";
-import kirloskarLogo from "@/assets/kirlosksar profile.png";
-import isoLogo from "@/assets/iso profile.png";
 import { useSectionData } from "@/store/useCMSStore";
 
 const fallbackLogos = [
-  { src: kirloskarLogo, alt: "Kirloskar Oil Engines" },
+  { src: kirloskarPowergen, alt: "Kirloskar Powergen" },
+  { src: kirloskarOilEngines, alt: "Kirloskar Oil Engines" },
+  { src: iiaLogo, alt: "Indian Industries Association (IIA)" },
+  { src: baiLogo, alt: "Builders' Association of India (BAI)" },
+  { src: ipaLogo, alt: "Indian Plumbing Association (IPA)" },
+  { src: mbaLogo, alt: "MES Builders Association of India (MBA)" },
+  { src: bniLogo, alt: "BNI" },
+  { src: wsccLogo, alt: "World Sikh Chamber of Commerce (WSCC)" },
   { src: isoLogo, alt: "ISO 9001:2015 Quality Management" },
   { src: certi1, alt: "MBA Member Association" },
   { src: certi2, alt: "BNI Member Association" },
