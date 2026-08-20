@@ -44,7 +44,7 @@ const caseStudies = [
     metric: "38% Energy Bill Cut",
     image: optiprimeGen,
     challenge: "High daytime electricity grid tariffs, strict diesel generator emission caps, and low solar self-consumption without storage.",
-    solution: "Integrated 250 kWp rooftop solar PV array with 500 kWh EnerCube BESS battery storage and intelligent EMS control platform.",
+    solution: "Integrated 250 kWp rooftop solar PV array with 500 kWh BESS battery storage and intelligent EMS control platform.",
     outcome: "Cut monthly energy bill by 38% and reduced generator run hours by 65% while keeping critical loads backed up.",
   }
 ];

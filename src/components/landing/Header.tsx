@@ -1,9 +1,34 @@
 import { Menu, ChevronDown, X } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+  const [scrolledPastHero, setScrolledPastHero] = useState(!isHomePage);
+
+  useEffect(() => {
+    if (!isHomePage) {
+      setScrolledPastHero(true);
+      return;
+    }
+
+    const handleScroll = () => {
+      const heroEl = document.getElementById("home");
+      if (heroEl) {
+        const rect = heroEl.getBoundingClientRect();
+        // Show navbar once user has scrolled past the hero video section
+        setScrolledPastHero(rect.bottom <= 80);
+      } else {
+        setScrolledPastHero(window.scrollY > 300);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHomePage, location.pathname]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -13,8 +38,16 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const headerClasses = isHomePage
+    ? `fixed top-0 left-0 right-0 z-50 bg-white border-b shadow-sm transition-all duration-300 ease-in-out ${
+        scrolledPastHero
+          ? "translate-y-0 opacity-100 pointer-events-auto"
+          : "-translate-y-full opacity-0 pointer-events-none"
+      }`
+    : "sticky top-0 z-50 bg-white border-b shadow-sm";
+
   return (
-    <header className="sticky top-0 z-50 bg-white border-b">
+    <header className={headerClasses}>
       <nav className="max-w-7xl px-6 mx-auto flex items-center justify-between h-16">
         {/* Brand Logo */}
         <Link to="/" className="flex items-center gap-3">

@@ -1,8 +1,6 @@
 import React from "react";
 import Header from "@/components/landing/Header";
-import HeroVideo from "@/components/landing/HeroVideo";
 import PositioningStatement from "@/components/landing/PositioningStatement";
-import CustomerProblems from "@/components/landing/CustomerProblems";
 import ElectricalEcosystem from "@/components/landing/ElectricalEcosystem";
 import SolutionPortfolio from "@/components/landing/SolutionPortfolio";
 import FeaturedSolutions from "@/components/landing/FeaturedSolutions";
@@ -15,7 +13,6 @@ import KnowledgeCenter from "@/components/landing/KnowledgeCenter";
 import ConsultationForm from "@/components/landing/ConsultationForm";
 import Footer from "@/components/landing/Footer";
 import SEO from "@/components/SEO";
-import SEOJsonLD from "@/components/SEOJsonLD";
 import Hero from "@/components/landing/Hero";
 
 const Index: React.FC = () => {
@@ -36,9 +33,6 @@ const Index: React.FC = () => {
 
         {/* 2. Immediate positioning statement (Clean White) */}
         <PositioningStatement />
-
-        {/* 3. Solutions by customer problem (Light Cool Slate) */}
-        <CustomerProblems />
 
         {/* 4. Complete electrical ecosystem graphic (High-Tech Dark Navy Contrast) */}
         <ElectricalEcosystem />

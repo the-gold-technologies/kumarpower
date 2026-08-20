@@ -48,7 +48,7 @@ const problems = [
     title: "Renewable Energy Integration",
     subtitle: "Integrating rooftop solar with battery storage and standby DG.",
     image: range1,
-    tags: ["Commercial Solar", "EnerCube BESS", "Hybrid Controllers", "EMS"],
+    tags: ["Commercial Solar", "Battery Energy Storage (BESS)", "Hybrid Controllers", "EMS"],
   },
   {
     id: "power-quality",

@@ -16,7 +16,7 @@ const featuredScenarios = [
     icon: BatteryCharging,
     headline: "Minimize Generator Hours & Diesel Expenses",
     description:
-      "Combine battery energy storage (EnerCube BESS), solar PV, and intelligent EMS controls to drastically lower generator runtime, carbon emissions, noise, and maintenance frequency.",
+      "Combine battery energy storage (BESS), solar PV, and intelligent EMS controls to drastically lower generator runtime, carbon emissions, noise, and maintenance frequency.",
     outcomes: [
       "Up to 60% reduction in diesel consumption",
       "Eliminating low-load generator running inefficiently",
@@ -24,7 +24,7 @@ const featuredScenarios = [
       "Extended genset overhaul and maintenance intervals",
     ],
     components: [
-      "EnerCube BESS",
+      "Battery Energy Storage (BESS)",
       "Solar PV Array",
       "Smart EMS Controller",
       "Kirloskar DG Set",
@@ -48,7 +48,7 @@ const featuredScenarios = [
       "Kirloskar DG Sets",
       "AMF & ATS Switchgear",
       "Isolation Transformer",
-      "EnerCube BESS Buffer",
+      "BESS Battery Buffer",
     ],
   },
   {

@@ -38,11 +38,11 @@ const pipelineNodes: StepNode[] = [
     image: ps1,
     headline: "Grid Entry, Solar PV, Gensets & BESS",
     description:
-      "Accepts high-voltage grid supply, integrates rooftop/ground solar PV arrays, Kirloskar CPCB IV+ diesel gensets, and EnerCube battery energy storage.",
+      "Accepts high-voltage grid supply, integrates rooftop/ground solar PV arrays, Kirloskar CPCB IV+ diesel gensets, and battery energy storage (BESS).",
     equipment: [
       "CPCB IV+ Gensets",
       "Rooftop Solar Array",
-      "EnerCube BESS",
+      "Battery Energy Storage (BESS)",
       "High-Voltage Substation",
     ],
   },

@@ -63,7 +63,7 @@ const portfolioCategories: CategoryItem[] = [
   },
   {
     id: "battery-storage",
-    title: "Battery Energy Storage (EnerCube)",
+    title: "Battery Energy Storage (BESS)",
     subtitle: "kWh to containerised MWh-scale smart BESS systems.",
     image: optiprimeGen,
     features: [

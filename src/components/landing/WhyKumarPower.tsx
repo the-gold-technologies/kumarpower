@@ -40,7 +40,7 @@ const reasons = [
   {
     icon: Sun,
     title: "Conventional & Hybrid Renewable",
-    desc: "Seamless integration of traditional DG power with rooftop solar PV and EnerCube battery storage.",
+    desc: "Seamless integration of traditional DG power with rooftop solar PV and battery storage (BESS).",
   },
 ];
 
