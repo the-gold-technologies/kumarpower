@@ -2,11 +2,11 @@ import React from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import ps1 from "@/assets/ps1.png";
-import ps2 from "@/assets/ps2.png";
-import ps3 from "@/assets/ps3.png";
-import ps4 from "@/assets/ps4.png";
-import range1 from "@/assets/Range1.png";
+import uninterruptedPowerImg from "@/assets/portfolio/uninterrupted_power.jpg";
+import electricalDistImg from "@/assets/portfolio/electrical_distribution.jpg";
+import renewableIntegrationImg from "@/assets/portfolio/renewable_integration.jpg";
+import powerQualityImg from "@/assets/portfolio/power_quality.jpg";
+import turnkeyProjectsImg from "@/assets/portfolio/turnkey_projects.jpg";
 
 interface CategoryItem {
   id: string;
@@ -22,7 +22,7 @@ const portfolioCategories: CategoryItem[] = [
     id: "uninterrupted-power",
     title: "Uninterrupted Power",
     subtitle: "For facilities where downtime causes massive financial loss.",
-    image: ps1,
+    image: uninterruptedPowerImg,
     features: ["CPCB IV+ Gensets", "BESS", "UPS Inverter", "Solar"],
     link: "/products/kirloskar-diesel-generator",
   },
@@ -30,7 +30,7 @@ const portfolioCategories: CategoryItem[] = [
     id: "electrical-distribution",
     title: "Electrical Distribution",
     subtitle: "Safe, controlled power routing from incoming high-voltage grid.",
-    image: ps2,
+    image: electricalDistImg,
     features: ["Transformers", "HT/LT Panels"],
     link: "/products/transformers",
   },
@@ -38,7 +38,7 @@ const portfolioCategories: CategoryItem[] = [
     id: "renewable-integration",
     title: "Renewable Energy Integration",
     subtitle: "Integrating rooftop solar with battery storage and standby DG.",
-    image: range1,
+    image: renewableIntegrationImg,
     features: ["Solar Energy", "BESS", "EV Charging Station"],
     link: "/products",
   },
@@ -46,7 +46,7 @@ const portfolioCategories: CategoryItem[] = [
     id: "power-quality",
     title: "Power Quality & Protection",
     subtitle: "Eliminating voltage sag, harmonics, & power factor penalties.",
-    image: ps4,
+    image: powerQualityImg,
     features: ["Servo Stabilisers", "APFC Banks", "Surge Panels"],
     link: "/products/servo-stabilizer",
   },
@@ -54,7 +54,7 @@ const portfolioCategories: CategoryItem[] = [
     id: "turnkey-projects",
     title: "Turnkey Electrical Projects",
     subtitle: "Single-point EPC accountability from concept to commissioning.",
-    image: ps3,
+    image: turnkeyProjectsImg,
     features: ["Design & EPC", "Heavy Cabling", "Substations", "Testing & AMC"],
     link: "/services/installation",
   },

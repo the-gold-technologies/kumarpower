@@ -13,9 +13,9 @@ import {
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import ps1 from "@/assets/ps1.png";
-import ps2 from "@/assets/ps2.png";
-import optiprimeGen from "@/assets/Products/OPTIPRIMEGEN.png";
+import aviationBackupImg from "@/assets/portfolio/uninterrupted_power.jpg";
+import manufacturingDistImg from "@/assets/portfolio/electrical_distribution.jpg";
+import solarBessImg from "@/assets/portfolio/renewable_integration.jpg";
 
 const caseStudies = [
   {
@@ -26,11 +26,11 @@ const caseStudies = [
     client: "Air India Terminal Operations",
     title: "Critical Ground & Runway Operation Backup",
     metric: "99.999% Power Uptime",
-    image: ps1,
+    image: aviationBackupImg,
     challenge:
       "Zero-downtime standby power required for critical flight ground control, terminal lighting, and security infrastructure during grid outages.",
     solution:
-      "Turnkey CPCB IV+ silent DG set synchronization,AMF panels, heavy-duty underground cabling, and 24/7 support.",
+      "Turnkey CPCB IV+ silent DG set synchronization, AMF panels, heavy-duty underground cabling, and 24/7 support.",
     outcome:
       "Achieved 99.999% power uptime during utility grid interruptions with sub-second failover transition.",
   },
@@ -42,7 +42,7 @@ const caseStudies = [
     client: "Automotive Precision Plant",
     title: "Plant Electrical Distribution & Power Quality",
     metric: "85% Breakdown Cut",
-    image: ps2,
+    image: manufacturingDistImg,
     challenge:
       "Frequent utility voltage fluctuations, poor power factor penalties, and unorganized floor power distribution causing frequent machine trips.",
     solution:
@@ -58,7 +58,7 @@ const caseStudies = [
     client: "Tech Park Infrastructure",
     title: "Hybrid Solar-BESS Cost Reduction & Backup",
     metric: "38% Energy Bill Cut",
-    image: optiprimeGen,
+    image: solarBessImg,
     challenge:
       "High daytime electricity grid tariffs, strict diesel generator emission caps, and low solar self-consumption without storage.",
     solution:
@@ -180,13 +180,14 @@ export const SelectedProjects: React.FC = () => {
                   <div
                     className={`lg:col-span-4 ${isReversed ? "lg:order-first" : "lg:order-last"}`}
                   >
-                    <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 h-52 sm:h-64 flex items-center justify-center relative overflow-hidden group-hover:bg-slate-100/80 transition-colors">
+                    <div className="bg-slate-100 border border-slate-200 rounded-2xl h-56 sm:h-72 w-full flex items-center justify-center relative overflow-hidden shadow-inner">
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="max-h-full max-w-full object-contain filter drop-shadow-md group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute bottom-3 right-3 text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
+                      <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-slate-900/80 backdrop-blur-sm border border-white/20 text-[10px] font-mono font-bold text-white uppercase tracking-wider shadow-sm">
                         Kumar Power Execution
                       </div>
                     </div>

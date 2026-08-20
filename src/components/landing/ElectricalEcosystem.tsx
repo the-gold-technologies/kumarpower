@@ -11,12 +11,12 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import ps1 from "@/assets/ps1.png";
-import ps2 from "@/assets/ps2.png";
-import ps3 from "@/assets/ps3.png";
-import ps4 from "@/assets/ps4.png";
-import optiprimeGen from "@/assets/Products/OPTIPRIMEGEN.png";
-import heroInstall from "@/assets/heroinstalll.jpeg";
+import stage1PowerSources from "@/assets/ecosystem/stage1_power_sources.jpg";
+import stage2Transformers from "@/assets/ecosystem/stage2_transformers.jpg";
+import stage3Panels from "@/assets/ecosystem/stage3_panels.jpg";
+import stage4PowerQuality from "@/assets/ecosystem/stage4_power_quality.jpg";
+import stage5Busbar from "@/assets/ecosystem/stage5_busbar.jpg";
+import stage6FinalLoad from "@/assets/ecosystem/stage6_final_load.jpg";
 
 interface StepNode {
   id: string;
@@ -35,7 +35,7 @@ const pipelineNodes: StepNode[] = [
     step: "01",
     name: "Power Sources",
     icon: Zap,
-    image: ps1,
+    image: stage1PowerSources,
     headline: "Grid Entry, Solar Panels, Gensets & BESS",
     description:
       "Accepts high-voltage grid supply, integrates rooftop solar panels, Kirloskar CPCB IV+ diesel gensets, and battery energy storage (BESS).",
@@ -51,7 +51,7 @@ const pipelineNodes: StepNode[] = [
     step: "02",
     name: "Distribution",
     icon: Cpu,
-    image: ps2,
+    image: stage2Transformers,
     headline: "Step-Up / Step-Down Transformers",
     description:
       "Steps high transmission voltages up or down to operational facility voltage levels with custom dry-type and oil-filled transformers.",
@@ -65,12 +65,12 @@ const pipelineNodes: StepNode[] = [
   {
     id: "Pannels",
     step: "03",
-    name: "HT/LT Pannels",
+    name: "HT/LT Panels",
     icon: ShieldCheck,
-    image: ps3,
-    headline: "Distribution Pannel, AMF & Changeover",
+    image: stage3Panels,
+    headline: "Distribution Panels, AMF & Changeover",
     description:
-      "Routes power safely across main LT Pannel, HT breaker panels, PCC/MCC motor controls, AMF & ATS  Pannels.",
+      "Routes power safely across main LT Panels, HT breaker panels, PCC/MCC motor controls, AMF & ATS Panels.",
     equipment: [
       "Main LT Switchgear",
       "HT Breaker Panels",
@@ -83,7 +83,7 @@ const pipelineNodes: StepNode[] = [
     step: "04",
     name: "Power Quality & Protection",
     icon: Gauge,
-    image: ps4,
+    image: stage4PowerQuality,
     headline: "Voltage Regulation & Harmonics",
     description:
       "Stabilizes fluctuating grid voltages, maintains high power factor via APFC capacitor banks, and filters active harmonic distortion.",
@@ -99,7 +99,7 @@ const pipelineNodes: StepNode[] = [
     step: "05",
     name: "Sub-Distribution",
     icon: BatteryCharging,
-    image: optiprimeGen,
+    image: stage5Busbar,
     headline: "Bus Ducts & Feeder Pillars",
     description:
       "Transfers clean, protected electrical power through riser busbars, sub-distribution boards, and smart energy monitoring meters.",
@@ -115,8 +115,8 @@ const pipelineNodes: StepNode[] = [
     step: "06",
     name: "Final Facility Load",
     icon: Factory,
-    image: heroInstall,
-    headline: "Industrial commcial and resigential sector",
+    image: stage6FinalLoad,
+    headline: "Industrial, Commercial & Critical Facilities",
     description:
       "Delivers continuous, highly stable electrical energy to critical infrastructure, manufacturing plants, commercial complexes, data centres, healthcare facilities, and residential buildings.",
     equipment: [
