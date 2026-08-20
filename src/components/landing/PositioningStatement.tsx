@@ -42,7 +42,7 @@ export const PositioningStatement: React.FC = () => {
           className="max-w-4xl mx-auto text-center space-y-5 mb-16"
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1A6AA2]/10 border border-[#1A6AA2]/20 text-xs font-bold uppercase tracking-widest text-[#1A6AA2]">
-            Integrated Electrical Capability
+            Integrated Electrical Solution
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
@@ -52,7 +52,7 @@ export const PositioningStatement: React.FC = () => {
           <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-3xl mx-auto">
             Kumar Power delivers integrated electrical solutions for commercial,
             industrial, institutional and infrastructure customers. We bring
-            together power generation, transformation, distribution, protection,
+            together power generators, transformation, distribution, protection,
             power quality, renewable energy and battery storage under one
             coordinated solution.
           </p>

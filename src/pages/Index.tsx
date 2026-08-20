@@ -13,6 +13,7 @@ import KnowledgeCenter from "@/components/landing/KnowledgeCenter";
 import ConsultationForm from "@/components/landing/ConsultationForm";
 import Footer from "@/components/landing/Footer";
 import SEO from "@/components/SEO";
+import SEOJsonLD from "@/components/SEOJsonLD";
 import Hero from "@/components/landing/Hero";
 
 const Index: React.FC = () => {
@@ -34,7 +35,7 @@ const Index: React.FC = () => {
         {/* 2. Immediate positioning statement (Clean White) */}
         <PositioningStatement />
 
-        {/* 4. Complete electrical ecosystem graphic (High-Tech Dark Navy Contrast) */}
+        {/* 3. Complete electrical ecosystem graphic (High-Tech Dark Navy Contrast) */}
         <ElectricalEcosystem />
 
         {/* 5. Core solution portfolio (Clean White) */}

@@ -24,7 +24,7 @@ const problems = [
     title: "Uninterrupted Power",
     subtitle: "For facilities where downtime causes massive financial loss.",
     image: ps1,
-    tags: ["CPCB IV+ Gensets", "AMF Panels", "BESS Buffer", "Sync Controls"],
+    tags: ["CPCB IV+ Gensets", "BESS", "UPS inverter ", " solar"],
   },
   {
     id: "electrical-distribution",
@@ -32,15 +32,7 @@ const problems = [
     title: "Electrical Distribution",
     subtitle: "Safe, controlled power routing from incoming high-voltage grid.",
     image: ps2,
-    tags: ["Transformers", "HT/LT Switchgear", "PCC/MCC", "Bus Ducts"],
-  },
-  {
-    id: "energy-cost-reduction",
-    icon: CircleDollarSign,
-    title: "Energy Cost Reduction",
-    subtitle: "Tackling high peak electricity demand tariffs & diesel bills.",
-    image: optiprimeGen,
-    tags: ["Peak Shaving BESS", "Solar PV", "APFC Panels", "Smart EMS"],
+    tags: ["Transformers", "HT/LT Panels"],
   },
   {
     id: "renewable-integration",
@@ -48,7 +40,7 @@ const problems = [
     title: "Renewable Energy Integration",
     subtitle: "Integrating rooftop solar with battery storage and standby DG.",
     image: range1,
-    tags: ["Commercial Solar", "Battery Energy Storage (BESS)", "Hybrid Controllers", "EMS"],
+    tags: ["Solar energy", "BESS", "Ev charging station"],
   },
   {
     id: "power-quality",
@@ -56,12 +48,7 @@ const problems = [
     title: "Power Quality & Protection",
     subtitle: "Eliminating voltage sag, harmonics, & power factor penalties.",
     image: ps4,
-    tags: [
-      "Servo Stabilisers",
-      "Harmonic Filters",
-      "APFC Banks",
-      "Surge Panels",
-    ],
+    tags: ["Servo Stabilisers", "APFC Banks", "Surge Panels"],
   },
   {
     id: "turnkey-projects",
@@ -84,7 +71,6 @@ export const CustomerProblems: React.FC = () => {
   return (
     <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl">
-        
         {/* Animated Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

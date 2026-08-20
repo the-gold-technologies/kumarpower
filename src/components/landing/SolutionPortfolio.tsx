@@ -6,9 +6,7 @@ import ps1 from "@/assets/ps1.png";
 import ps2 from "@/assets/ps2.png";
 import ps3 from "@/assets/ps3.png";
 import ps4 from "@/assets/ps4.png";
-import optiprimeGen from "@/assets/Products/OPTIPRIMEGEN.png";
 import range1 from "@/assets/Range1.png";
-import range4 from "@/assets/Range4.png";
 
 interface CategoryItem {
   id: string;
@@ -21,96 +19,43 @@ interface CategoryItem {
 
 const portfolioCategories: CategoryItem[] = [
   {
-    id: "power-generation",
-    title: "Power Generation",
-    subtitle: "Dependable standby & prime diesel power systems.",
+    id: "uninterrupted-power",
+    title: "Uninterrupted Power",
+    subtitle: "For facilities where downtime causes massive financial loss.",
     image: ps1,
-    features: [
-      "Kirloskar CPCB IV+ DG sets",
-      "Silent diesel generators",
-      "Prime & standby power architecture",
-      "Multi-genset synchronisation solutions",
-      "RECD retrofit emission solutions",
-    ],
+    features: ["CPCB IV+ Gensets", "BESS", "UPS Inverter", "Solar"],
     link: "/products/kirloskar-diesel-generator",
   },
   {
-    id: "transformers",
-    title: "Transformers",
-    subtitle: "High-efficiency step-up, step-down & isolation transformers.",
+    id: "electrical-distribution",
+    title: "Electrical Distribution",
+    subtitle: "Safe, controlled power routing from incoming high-voltage grid.",
     image: ps2,
-    features: [
-      "Distribution transformers",
-      "Isolation transformers",
-      "Dry-type cast resin transformers",
-      "Application-specific customized solutions",
-    ],
+    features: ["Transformers", "HT/LT Panels"],
     link: "/products/transformers",
   },
   {
-    id: "electrical-panels",
-    title: "Electrical Panels",
-    subtitle: "Custom switchgear, power control & distribution panels.",
-    image: ps3,
-    features: [
-      "AMF & automatic changeover (ATS) panels",
-      "HT and LT switchgear panels",
-      "APFC power factor correction panels",
-      "PCC (Power Control) & MCC (Motor Control) panels",
-      "Sub-metering & floor distribution boards",
-    ],
-    link: "/products/panels",
-  },
-  {
-    id: "battery-storage",
-    title: "Battery Energy Storage (BESS)",
-    subtitle: "kWh to containerised MWh-scale smart BESS systems.",
-    image: optiprimeGen,
-    features: [
-      "Commercial & Industrial (C&I) BESS",
-      "Peak shaving & demand charge reduction",
-      "DG mitigation & solar energy storage",
-      "Seamless sub-cycle backup power",
-    ],
-    link: "/products/optiprime",
-  },
-  {
-    id: "solar-renewable",
-    title: "Solar & Renewable Energy",
-    subtitle: "Turnkey PV installations & hybrid power architectures.",
+    id: "renewable-integration",
+    title: "Renewable Energy Integration",
+    subtitle: "Integrating rooftop solar with battery storage and standby DG.",
     image: range1,
-    features: [
-      "Rooftop & ground-mounted commercial solar",
-      "Solar-plus-storage hybrid power systems",
-      "DG-Solar-Battery smart integration",
-      "Energy management systems (EMS)",
-    ],
+    features: ["Solar Energy", "BESS", "EV Charging Station"],
     link: "/products",
   },
   {
     id: "power-quality",
-    title: "Power Quality & Conditioning",
-    subtitle: "Harmonic filtering & precise voltage regulation.",
+    title: "Power Quality & Protection",
+    subtitle: "Eliminating voltage sag, harmonics, & power factor penalties.",
     image: ps4,
-    features: [
-      "Servo voltage stabilisers",
-      "APFC reactive power management",
-      "Active & passive harmonic filters",
-      "Equipment protection & transient surge panels",
-    ],
+    features: ["Servo Stabilisers", "APFC Banks", "Surge Panels"],
     link: "/products/servo-stabilizer",
   },
   {
     id: "turnkey-projects",
-    title: "Turnkey Projects & Services",
-    subtitle: "Complete EPC, cabling, installation & lifecycle support.",
-    image: range4,
-    features: [
-      "Comprehensive site load assessment & engineering",
-      "Supply, cabling & earthing grid execution",
-      "Testing, commissioning & statutory approvals",
-      "Annual Maintenance Contracts (AMC) & 24/7 support",
-    ],
+    title: "Turnkey Electrical Projects",
+    subtitle: "Single-point EPC accountability from concept to commissioning.",
+    image: ps3,
+    features: ["Design & EPC", "Heavy Cabling", "Substations", "Testing & AMC"],
     link: "/services/installation",
   },
 ];
@@ -127,11 +72,12 @@ export const SolutionPortfolio: React.FC = () => {
             Comprehensive Capabilities
           </div>
           <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
-            Our Electrical Solution Portfolio
+            What Power Challenge Are You Solving?
           </h2>
           <p className="text-slate-600 text-lg font-normal">
-            Engineered systems designed to work seamlessly together across
-            generation, transformation, distribution, and storage.
+            We structure complete electrical power systems around your specific
+            operational challenge rather than displaying generic equipment
+            inventory.
           </p>
         </div>
 

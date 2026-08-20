@@ -27,7 +27,7 @@ const fallbackInsights = [
     category: "System Engineering",
     readTime: "8 min read",
     summary:
-      "A practical buyer's guide comparing capital expenditure, operating costs, and load response across generators, solar PV, and energy storage.",
+      "A practical buyer's guide comparing capital expenditure, operating costs, and load response across generators, solar panels, and energy storage.",
     date: "July 2026",
     slug: "dg-solar-or-battery-sizing-guide",
     img: blog2,

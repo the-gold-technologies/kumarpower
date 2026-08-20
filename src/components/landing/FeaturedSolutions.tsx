@@ -16,7 +16,7 @@ const featuredScenarios = [
     icon: BatteryCharging,
     headline: "Minimize Generator Hours & Diesel Expenses",
     description:
-      "Combine battery energy storage (BESS), solar PV, and intelligent EMS controls to drastically lower generator runtime, carbon emissions, noise, and maintenance frequency.",
+      "Combine battery energy storage (BESS), solar panels, and intelligent EMS controls to drastically lower generator runtime, carbon emissions, noise, and maintenance frequency.",
     outcomes: [
       "Up to 60% reduction in diesel consumption",
       "Eliminating low-load generator running inefficiently",
@@ -25,7 +25,7 @@ const featuredScenarios = [
     ],
     components: [
       "Battery Energy Storage (BESS)",
-      "Solar PV Array",
+      "Solar Panels",
       "Smart EMS Controller",
       "Kirloskar DG Set",
     ],
@@ -37,7 +37,7 @@ const featuredScenarios = [
     icon: ShieldAlert,
     headline: "Uninterrupted Power for Mission-Critical Loads",
     description:
-      "Create a ultra-reliable power architecture using Kirloskar DG sets, sub-second AMF switchgear, BESS battery buffering, step-down transformers, and surge protection.",
+      "Create an ultra-reliable power architecture using Kirloskar DG sets, AMF panels, BESS, transformers, and servo stabilisers.",
     outcomes: [
       "100% power availability during main grid collapse",
       "Seamless automatic transfer switch (ATS) sync",
@@ -46,9 +46,10 @@ const featuredScenarios = [
     ],
     components: [
       "Kirloskar DG Sets",
-      "AMF & ATS Switchgear",
-      "Isolation Transformer",
-      "BESS Battery Buffer",
+      "AMF Panels",
+      "BESS Storage",
+      "Transformers",
+      "Servo Stabilisers",
     ],
   },
   {
@@ -67,7 +68,7 @@ const featuredScenarios = [
     ],
     components: [
       "APFC Capacitor Panel",
-      "Rooftop Solar PV",
+      "Rooftop Solar Panels",
       "Peak Shaving BESS",
       "Energy Management System",
     ],

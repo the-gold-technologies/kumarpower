@@ -4,23 +4,24 @@ import { ShieldCheck, Award, Zap, Globe2 } from "lucide-react";
 const stats = [
   {
     icon: Award,
-    value: "35+",
+    value: "30+",
     unit: "Years",
-    label: "Industry Understanding",
-    subtext: "Delivering reliable electrical infrastructure since 1989.",
+    label: "Years of Experience",
+    subtext: "Delivering reliable electrical infrastructure since 1985.",
   },
   {
     icon: ShieldCheck,
     value: "5,000+",
     unit: "Projects",
-    label: "Executed",
-    subtext: "Across commercial, industrial & healthcare sectors.",
+    label: "Projects Executed",
+    subtext:
+      "Across commercial, industrial, residential & institutional sectors.",
   },
   {
     icon: Zap,
     value: "250+",
     unit: "MW",
-    label: "Power Solutions Delivered",
+    label: "Largest Electrical Solutions Portfolio",
     subtext: "Generators, transformers & solar-BESS systems.",
   },
   {

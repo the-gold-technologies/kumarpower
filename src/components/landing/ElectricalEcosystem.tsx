@@ -36,20 +36,20 @@ const pipelineNodes: StepNode[] = [
     name: "Power Sources",
     icon: Zap,
     image: ps1,
-    headline: "Grid Entry, Solar PV, Gensets & BESS",
+    headline: "Grid Entry, Solar Panels, Gensets & BESS",
     description:
-      "Accepts high-voltage grid supply, integrates rooftop/ground solar PV arrays, Kirloskar CPCB IV+ diesel gensets, and battery energy storage (BESS).",
+      "Accepts high-voltage grid supply, integrates rooftop solar panels, Kirloskar CPCB IV+ diesel gensets, and battery energy storage (BESS).",
     equipment: [
       "CPCB IV+ Gensets",
-      "Rooftop Solar Array",
+      "Rooftop Solar Panels",
       "Battery Energy Storage (BESS)",
       "High-Voltage Substation",
     ],
   },
   {
-    id: "transformer",
+    id: "Distribution",
     step: "02",
-    name: "Transformation",
+    name: "Distribution",
     icon: Cpu,
     image: ps2,
     headline: "Step-Up / Step-Down Transformers",
@@ -59,18 +59,18 @@ const pipelineNodes: StepNode[] = [
       "Distribution Transformers",
       "Isolation Transformers",
       "Dry-Type Cast Resin",
-      "Step-down Substations",
+      "Step-down Transformers",
     ],
   },
   {
-    id: "switchgear",
+    id: "Pannels",
     step: "03",
-    name: "HT/LT Switchgear",
+    name: "HT/LT Pannels",
     icon: ShieldCheck,
     image: ps3,
-    headline: "Central Control, AMF & Changeover",
+    headline: "Distribution Pannel, AMF & Changeover",
     description:
-      "Routes power safely across main LT switchgear, HT breaker panels, PCC/MCC motor controls, and sub-second automatic transfer switches.",
+      "Routes power safely across main LT Pannel, HT breaker panels, PCC/MCC motor controls, AMF & ATS  Pannels.",
     equipment: [
       "Main LT Switchgear",
       "HT Breaker Panels",
@@ -79,9 +79,9 @@ const pipelineNodes: StepNode[] = [
     ],
   },
   {
-    id: "conditioning",
+    id: "Power Quality & Protection",
     step: "04",
-    name: "Power Conditioning",
+    name: "Power Quality & Protection",
     icon: Gauge,
     image: ps4,
     headline: "Voltage Regulation & Harmonics",
@@ -116,29 +116,32 @@ const pipelineNodes: StepNode[] = [
     name: "Final Facility Load",
     icon: Factory,
     image: heroInstall,
-    headline: "Industrial Machinery, Data Racks & HVAC",
+    headline: "Industrial commcial and resigential sector",
     description:
-      "Delivers continuous, highly stable electrical energy to critical infrastructure, factories, commercial buildings, data centres, and hospitals.",
+      "Delivers continuous, highly stable electrical energy to critical infrastructure, manufacturing plants, commercial complexes, data centres, healthcare facilities, and residential buildings.",
     equipment: [
       "Industrial Machinery",
       "Data Centre Servers",
       "Central HVAC Chillers",
-      "Emergency Systems",
+      "Residential Equipment",
     ],
   },
 ];
 
 export const ElectricalEcosystem: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-advancing stage loop every 3.5 seconds
+  // Auto-advancing stage loop every 3.5 seconds (pauses on hover)
   useEffect(() => {
+    if (isPaused) return;
+
     const timer = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % pipelineNodes.length);
     }, 3500);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [isPaused]);
 
   const current = pipelineNodes[activeStep];
   const Icon = current.icon;
@@ -165,7 +168,11 @@ export const ElectricalEcosystem: React.FC = () => {
         </div>
 
         {/* Connected Pipeline Navigation */}
-        <div className="mb-10 w-full">
+        <div
+          className="mb-10 w-full"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           {/* Desktop Row View */}
           <div className="hidden lg:flex items-center justify-between gap-1.5 w-full">
             {pipelineNodes.map((node, idx) => {
@@ -177,6 +184,11 @@ export const ElectricalEcosystem: React.FC = () => {
                 <React.Fragment key={node.id}>
                   <button
                     onClick={() => setActiveStep(idx)}
+                    onMouseEnter={() => {
+                      setActiveStep(idx);
+                      setIsPaused(true);
+                    }}
+                    onMouseLeave={() => setIsPaused(false)}
                     className={`flex-1 min-w-0 p-3 rounded-xl sm:rounded-2xl text-left transition-all duration-300 ease-out relative group ${
                       isSelected
                         ? "bg-[#1A6AA2] border-2 border-[#1A6AA2] text-white shadow-lg shadow-[#1A6AA2]/25 scale-[1.02] z-20"
@@ -247,6 +259,11 @@ export const ElectricalEcosystem: React.FC = () => {
                 <button
                   key={node.id}
                   onClick={() => setActiveStep(idx)}
+                  onMouseEnter={() => {
+                    setActiveStep(idx);
+                    setIsPaused(true);
+                  }}
+                  onMouseLeave={() => setIsPaused(false)}
                   className={`w-full p-3 rounded-xl text-left transition-all duration-300 ease-out relative group ${
                     isSelected
                       ? "bg-[#1A6AA2] border-2 border-[#1A6AA2] text-white shadow-lg shadow-[#1A6AA2]/25 scale-[1.02] z-20"
@@ -295,7 +312,11 @@ export const ElectricalEcosystem: React.FC = () => {
         </div>
 
         {/* Inspection Display Card - Exact Original Design & Layout */}
-        <div className="rounded-3xl bg-white border border-slate-200 overflow-hidden shadow-2xl min-h-[420px] relative">
+        <div
+          className="rounded-3xl bg-white border border-slate-200 overflow-hidden shadow-2xl min-h-[420px] relative"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={current.id}

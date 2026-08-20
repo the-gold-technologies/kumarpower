@@ -65,7 +65,7 @@ const industries = [
     name: "Cold Storage & Warehousing",
     icon: Truck,
     problem:
-      "Continuous thermal refrigeration load protection, solar PV integration, & Battery Energy Storage (BESS).",
+      "Continuous thermal refrigeration load protection, solar panels integration, & Battery Energy Storage (BESS).",
     image:
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
   },

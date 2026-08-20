@@ -19,7 +19,7 @@ const reasons = [
   },
   {
     icon: Award,
-    title: "Established 35+ Year Track Record",
+    title: "Established 30+ Year Track Record",
     desc: "Decades of proven power sector experience executing 5,000+ complex industrial and commercial projects.",
   },
   {
@@ -34,13 +34,13 @@ const reasons = [
   },
   {
     icon: Headset,
-    title: "Lifecycle Support & 24/7 AMC",
+    title: "Lifecycle Support & AMC",
     desc: "Dedicated emergency response team, routine maintenance, testing & statutory commissioning.",
   },
   {
     icon: Sun,
     title: "Conventional & Hybrid Renewable",
-    desc: "Seamless integration of traditional DG power with rooftop solar PV and battery storage (BESS).",
+    desc: "Seamless integration of traditional DG power with rooftop solar panels and battery storage (BESS).",
   },
 ];
 
@@ -50,7 +50,6 @@ export const WhyKumarPower: React.FC = () => {
   return (
     <section className="py-20 md:py-24 bg-white text-slate-900 relative border-b border-slate-200 overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl space-y-16">
-        
         {/* Animated Header Row */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -67,9 +66,9 @@ export const WhyKumarPower: React.FC = () => {
               Why Businesses Choose Kumar Power
             </h2>
             <p className="text-slate-600 text-base sm:text-lg font-normal max-w-2xl">
-              We structure complete electrical power systems around your specific
-              operational challenge rather than displaying generic equipment
-              inventory.
+              We structure complete electrical power systems around your
+              specific operational challenge rather than displaying generic
+              equipment inventory.
             </p>
           </div>
 
@@ -112,7 +111,6 @@ export const WhyKumarPower: React.FC = () => {
             );
           })}
         </div>
-
       </div>
 
       {/* Leadership Modal */}
@@ -135,11 +133,18 @@ export const WhyKumarPower: React.FC = () => {
             </h3>
 
             <p className="text-sm text-slate-600 leading-relaxed font-normal">
-              Founded over three decades ago, Kumar Power has evolved from a pioneering generator dealership into an integrated electrical power systems engineering enterprise. Under veteran leadership, our team combines senior electrical engineers, certified technicians, and project managers committed to zero-downtime client infrastructure.
+              Founded over three decades ago, Kumar Power has evolved from a
+              pioneering generator dealership into an integrated electrical
+              power systems engineering enterprise. Under veteran leadership,
+              our team combines senior electrical engineers, certified
+              technicians, and project managers committed to zero-downtime
+              client infrastructure.
             </p>
 
             <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
-              <p className="font-bold text-slate-900">Head Office & Regional Reach</p>
+              <p className="font-bold text-slate-900">
+                Head Office & Regional Reach
+              </p>
               <p>Delhi NCR • Pan-India Project Execution & Service Support</p>
             </div>
 
