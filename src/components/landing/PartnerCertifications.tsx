@@ -70,23 +70,12 @@ export const PartnerCertifications: React.FC = () => {
   const { data: homeCMS } = useSectionData<any>("home");
   const psCMS = homeCMS?.["power-solutions"] || {};
 
-  const cmsLogos = Array.isArray(psCMS.assocLogos)
-    ? psCMS.assocLogos
-        .map((item: any) => ({
-          src: typeof item === "string" ? item : item.url || item.image || "",
-          alt:
-            typeof item === "string"
-              ? "Association Logo"
-              : item.name || item.alt || "Association Logo",
-        }))
-        .filter((l: any) => Boolean(l.src))
-    : [];
-
-  const logoList = cmsLogos.length > 0 ? cmsLogos : fallbackLogos;
+  // Display all fallbackLogos directly
+  const logoList = fallbackLogos;
 
   // Production Infinite Marquee Engine: Dynamically calculate optimal repeat count
   // to ensure 100% full screen coverage on any resolution (including 4K) without DOM bloat.
-  const repeatFactor = Math.max(4, Math.ceil(32 / (logoList.length || 1)));
+  const repeatFactor = Math.max(3, Math.ceil(32 / (logoList.length || 1)));
   const extendedLogos = Array.from({ length: repeatFactor }).flatMap(
     () => logoList,
   );
