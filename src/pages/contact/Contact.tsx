@@ -77,8 +77,7 @@ const Contact = () => {
     ) as HTMLInputElement;
     const callbackValue = callbackCheckbox?.checked || false;
 
-    const API_BASE_URL =
-      import.meta.env.VITE_CMS_API_URL || "http://localhost:3000";
+    const API_BASE_URL = import.meta.env.VITE_CMS_API_URL || "";
 
     const payload = {
       name: formData.name,
@@ -147,8 +146,7 @@ const Contact = () => {
     setResumeSubmitStatus({ type: null, message: "" });
     setIsResumeSubmitting(true); // Start loading
 
-    const API_BASE_URL =
-      import.meta.env.VITE_CMS_API_URL || "http://localhost:3000";
+    const API_BASE_URL = import.meta.env.VITE_CMS_API_URL || "";
 
     const careerPayload = {
       name: resumeData.fullName,

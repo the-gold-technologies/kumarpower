@@ -49,8 +49,7 @@ export const ConsultationForm: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const API_BASE_URL =
-      import.meta.env.VITE_CMS_API_URL || "http://localhost:3000";
+    const API_BASE_URL = import.meta.env.VITE_CMS_API_URL || "";
 
     const detailedMessage = [
       formData.requirement ? `Requirement: ${formData.requirement}` : "",
