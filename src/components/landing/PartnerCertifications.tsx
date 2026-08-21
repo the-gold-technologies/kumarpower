@@ -1,38 +1,6 @@
 import React from "react";
 import { useSectionData } from "@/store/useCMSStore";
 
-import kirloskarPowergen from "@/assets/associations/kirloskar_powergen.png";
-import kirloskarOilEngines from "@/assets/associations/assoc6.png";
-import iiaLogo from "@/assets/associations/iia_logo.svg";
-import baiLogo from "@/assets/associations/assoc1.png";
-import ipaLogo from "@/assets/associations/assoc2.png";
-import mbaLogo from "@/assets/associations/assoc3.png";
-import bniLogo from "@/assets/associations/assoc4.png";
-import wsccLogo from "@/assets/associations/assoc5.png";
-import isoLogo from "@/assets/iso profile.png";
-import trust from "@/assets/Seasons (1).png";
-import trust1 from "@/assets/SIS (1).png";
-import trust2 from "@/assets/Vistara 1 (1).png";
-import trust3 from "@/assets/Clients page/GMR Infra.jpg";
-import trust4 from "@/assets/Honeywell 1 (1).png";
-import trust5 from "@/assets/Kashyapi (2).png";
-import trust6 from "@/assets/Caritas (1).png";
-import trust7 from "@/assets/CEC (1).png";
-import ace from "@/assets/Clients page/AceConstruction.jpg";
-import claroin from "@/assets/Clients page/Clarion.png";
-import Comed from "@/assets/Clients page/Comed.png";
-import Dps from "@/assets/Clients page/DPS.jpg";
-import GEPL from "@/assets/Clients page/GEPL.jpg";
-import addidas from "@/assets/Clients page/Adidas.jpg";
-import certi1 from "@/assets/certi1.png";
-import certi2 from "@/assets/certi2.png";
-import certi3 from "@/assets/certi3.png";
-import certi4 from "@/assets/certi4.png";
-import certi5 from "@/assets/certi5.png";
-import certi6 from "@/assets/certi6.png";
-import certi7 from "@/assets/certi7.png";
-import certi8 from "@/assets/certi8.png";
-
 export const PartnerCertifications: React.FC = () => {
   const { data: homeCMS } = useSectionData<any>("home");
   const data = homeCMS?.partnerCertifications || {};
