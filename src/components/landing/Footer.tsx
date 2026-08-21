@@ -18,10 +18,20 @@ export const Footer: React.FC = () => {
   const { data: homeData } = useSectionData<any>("home");
   const data = homeData?.footer || {};
 
-  const address =
-    data.address || "904, Westend Mall, Janakpuri, New Delhi 110058";
-  const mainPhone = data.mainPhone || "9773851767";
-  const salesEmail = data.salesEmail || "Sales@kumarpower.com";
+  const address = data.address || "";
+  const aboutBio = data.aboutBio || "";
+  const mainPhone = data.mainPhone || "";
+  const supportPhone = data.supportPhone || "";
+  const landline = data.landline || "";
+  const salesEmail = data.salesEmail || "";
+  const supportEmail = data.supportEmail || "";
+  const accountsEmail = data.accountsEmail || "";
+  const facebookUrl = data.facebookUrl || "";
+  const linkedinUrl = data.linkedinUrl || "";
+  const instagramUrl = data.instagramUrl || "";
+  const copyrightText = data.copyrightText || "";
+
+  const whatsappPhone = (mainPhone || "919773851767").replace(/[^+\d]/g, "");
 
   return (
     <footer
@@ -45,16 +55,16 @@ export const Footer: React.FC = () => {
               Complete Electrical Solution Provider and Authorised Kirloskar
               Channel Partner
             </p>
-            <p className="text-xs text-slate-500 font-normal italic">
-              "Kumar Power does not merely supply equipment. We design and
-              integrate the complete electrical system around your actual
-              operational requirement."
-            </p>
+            {aboutBio && (
+              <p className="text-xs text-slate-400 font-normal leading-relaxed max-w-2xl">
+                {aboutBio}
+              </p>
+            )}
           </div>
 
           <div className="flex items-center gap-4 shrink-0">
             <a
-              href="https://wa.me/919773851767?text=Hello%20Kumar%20Power,%20I%20have%20an%20electrical%20system%20enquiry."
+              href={`https://wa.me/${whatsappPhone}?text=Hello%20Kumar%20Power,%20I%20have%20an%20electrical%20system%20enquiry.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#1A6AA2] hover:bg-[#145380] text-white text-xs font-bold px-6 py-3.5 rounded-full transition-all shadow-lg shadow-[#1A6AA2]/20 group"
@@ -119,7 +129,7 @@ export const Footer: React.FC = () => {
                   to="/products/servo-stabilizer"
                   className="hover:text-white transition-colors"
                 >
-                  Servo Stabiliser
+                  Servo Stabilizers
                 </Link>
               </li>
               <li>
@@ -141,50 +151,50 @@ export const Footer: React.FC = () => {
             <ul className="space-y-3 text-xs font-medium">
               <li>
                 <a
-                  href="#consultation-form"
+                  href="#industries-served"
                   className="hover:text-white transition-colors"
                 >
-                  Manufacturing
+                  Manufacturing & Steel
                 </a>
               </li>
               <li>
                 <a
-                  href="#consultation-form"
+                  href="#industries-served"
                   className="hover:text-white transition-colors"
                 >
-                  Hospitality
+                  Healthcare & Hospitals
                 </a>
               </li>
               <li>
                 <a
-                  href="#consultation-form"
+                  href="#industries-served"
                   className="hover:text-white transition-colors"
                 >
-                  Healthcare
+                  Data Centres & IT Parks
                 </a>
               </li>
               <li>
                 <a
-                  href="#consultation-form"
+                  href="#industries-served"
                   className="hover:text-white transition-colors"
                 >
-                  Commercial Real Estate
+                  Hospitality & Hotels
                 </a>
               </li>
               <li>
                 <a
-                  href="#consultation-form"
+                  href="#industries-served"
                   className="hover:text-white transition-colors"
                 >
-                  Infrastructure
+                  Commercial Buildings
                 </a>
               </li>
               <li>
                 <a
-                  href="#consultation-form"
+                  href="#industries-served"
                   className="hover:text-white transition-colors"
                 >
-                  Data Centres
+                  Infrastructure & Rail
                 </a>
               </li>
             </ul>
@@ -206,14 +216,6 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/about/OurProfile"
-                  className="hover:text-white transition-colors"
-                >
-                  Leadership
-                </Link>
-              </li>
-              <li>
-                <Link
                   to="/about/OurClients"
                   className="hover:text-white transition-colors"
                 >
@@ -225,23 +227,31 @@ export const Footer: React.FC = () => {
                   to="/about/Certifications"
                   className="hover:text-white transition-colors"
                 >
-                  Partners & Certifications
+                  Certifications & OEM
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/contact"
+                  to="/about/Milestones"
                   className="hover:text-white transition-colors"
                 >
-                  Careers
+                  Company Milestones
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/contact"
+                  to="/about/OurTeam"
                   className="hover:text-white transition-colors"
                 >
-                  Contact Us
+                  Leadership Team
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about/Gallery"
+                  className="hover:text-white transition-colors"
+                >
+                  Field Photo Gallery
                 </Link>
               </li>
             </ul>
@@ -302,45 +312,79 @@ export const Footer: React.FC = () => {
               Contact
             </h4>
             <div className="space-y-3 text-xs font-normal">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#1A6AA2] shrink-0 mt-0.5" />
-                <span>{address}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#1A6AA2] shrink-0" />
-                <a
-                  href={`tel:+91${mainPhone}`}
-                  className="hover:text-white transition-colors font-medium"
-                >
-                  {mainPhone}
-                </a>
-              </div>
-              <div className="flex items-start gap-2">
-                <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0 mt-0.5" />
-                <div className="flex flex-col gap-1">
+              {address && (
+                <div className="flex items-start gap-2">
+                  <MapPin className="w-4 h-4 text-[#1A6AA2] shrink-0 mt-0.5" />
+                  <span>{address}</span>
+                </div>
+              )}
+              {mainPhone && (
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4 text-[#1A6AA2] shrink-0" />
                   <a
-                    href="mailto:Sales@kumarpower.com"
+                    href={`tel:${mainPhone.replace(/[^+\d]/g, "")}`}
                     className="hover:text-white transition-colors font-medium"
                   >
-                    Sales@kumarpower.com
-                  </a>
-                  <a
-                    href="mailto:Accounts@kumarpower.com"
-                    className="hover:text-white transition-colors font-medium"
-                  >
-                    Accounts@kumarpower.com
-                  </a>
-                  <a
-                    href="mailto:Support@kumarpower.com"
-                    className="hover:text-white transition-colors font-medium"
-                  >
-                    Support@kumarpower.com
+                    {mainPhone}
                   </a>
                 </div>
-              </div>
+              )}
+              {supportPhone && (
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4 text-[#1A6AA2] shrink-0" />
+                  <a
+                    href={`tel:${supportPhone.replace(/[^+\d]/g, "")}`}
+                    className="hover:text-white transition-colors font-medium"
+                  >
+                    Support: {supportPhone}
+                  </a>
+                </div>
+              )}
+              {landline && (
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4 text-[#1A6AA2] shrink-0" />
+                  <a
+                    href={`tel:${landline.replace(/[^+\d]/g, "")}`}
+                    className="hover:text-white transition-colors font-medium"
+                  >
+                    Landline: {landline}
+                  </a>
+                </div>
+              )}
+              {(salesEmail || accountsEmail || supportEmail) && (
+                <div className="flex items-start gap-2">
+                  <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0 mt-0.5" />
+                  <div className="flex flex-col gap-1">
+                    {salesEmail && (
+                      <a
+                        href={`mailto:${salesEmail}`}
+                        className="hover:text-white transition-colors font-medium"
+                      >
+                        {salesEmail}
+                      </a>
+                    )}
+                    {accountsEmail && (
+                      <a
+                        href={`mailto:${accountsEmail}`}
+                        className="hover:text-white transition-colors font-medium"
+                      >
+                        {accountsEmail}
+                      </a>
+                    )}
+                    {supportEmail && (
+                      <a
+                        href={`mailto:${supportEmail}`}
+                        className="hover:text-white transition-colors font-medium"
+                      >
+                        {supportEmail}
+                      </a>
+                    )}
+                  </div>
+                </div>
+              )}
               <div className="flex items-center gap-2 pt-1 text-slate-500 text-[11px]">
                 <ShieldCheck className="w-4 h-4 text-[#1A6AA2] shrink-0" />
-                <span>ISO 9001:2015 | GSTIN: 07AAAACK1234F1Z</span>
+                <span>ISO 9001:2015 Certified</span>
               </div>
             </div>
           </div>
@@ -349,38 +393,44 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar: Copyright, Socials & Legal */}
         <div className="pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>
-            © {new Date().getFullYear()} Kumar Power (Kumar Generators Pvt.
-            Ltd.). All rights reserved.
+            {copyrightText ||
+              `© ${new Date().getFullYear()} Kumar Power. All rights reserved.`}
           </p>
 
           <div className="flex items-center gap-4">
-            <a
-              href={data.linkedinUrl || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="text-slate-400 hover:text-white transition-colors"
-            >
-              <Linkedin className="w-4 h-4" />
-            </a>
-            <a
-              href={data.facebookUrl || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="text-slate-400 hover:text-white transition-colors"
-            >
-              <Facebook className="w-4 h-4" />
-            </a>
-            <a
-              href={data.instagramUrl || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="text-slate-400 hover:text-white transition-colors"
-            >
-              <Instagram className="w-4 h-4" />
-            </a>
+            {linkedinUrl && (
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+            )}
+            {facebookUrl && (
+              <a
+                href={facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+            )}
+            {instagramUrl && (
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+            )}
           </div>
 
           <div className="flex flex-wrap items-center gap-6">

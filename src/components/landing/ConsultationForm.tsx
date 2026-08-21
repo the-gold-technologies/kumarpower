@@ -8,8 +8,26 @@ import {
   PhoneCall,
 } from "lucide-react";
 import { toast } from "sonner";
+import { useSectionData } from "@/store/useCMSStore";
 
 export const ConsultationForm: React.FC = () => {
+  const { data: homeData } = useSectionData<any>("home");
+  const data = homeData?.consultation || {};
+
+  const badge = data.badge || "";
+  const heading = data.heading || "";
+  const description = data.description || "";
+  const phone = data.phone || "";
+  const salesEmail = data.salesEmail || "";
+  const supportEmail = data.supportEmail || "";
+  const accountsEmail = data.accountsEmail || "";
+  const expertBtnText = data.expertBtnText || "";
+  const assessmentBtnText = data.assessmentBtnText || "";
+  const submitBtnText = data.submitBtnText || "";
+  const successTitle = data.successTitle || "";
+  const successMessage = data.successMessage || "";
+  const industries: string[] = Array.isArray(data.industries) ? data.industries : [];
+
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -33,7 +51,8 @@ export const ConsultationForm: React.FC = () => {
       setIsSubmitting(false);
       setSubmitted(true);
       toast.success(
-        "Requirement submitted! Our engineering team will review and contact you shortly.",
+        successMessage ||
+          "Requirement submitted! Our engineering team will review and contact you shortly.",
       );
     }, 1000);
   };
@@ -55,19 +74,23 @@ export const ConsultationForm: React.FC = () => {
           {/* Left Column Text, Copy & Action Buttons */}
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-4">
-              <span className="text-xs uppercase tracking-[0.2em] font-semibold text-slate-400 block">
-                WE'RE HERE TO HELP YOU
-              </span>
+              {badge && (
+                <span className="text-xs uppercase tracking-[0.2em] font-semibold text-slate-400 block">
+                  {badge}
+                </span>
+              )}
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-                Not Sure Which Electrical Solution You Need?
-              </h2>
+              {heading && (
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+                  {heading}
+                </h2>
+              )}
 
-              <blockquote className="text-slate-600 text-sm sm:text-base font-normal leading-relaxed border-l-2 border-[#1A6AA2] pl-4 italic py-1">
-                Share your load, electricity bill, DG usage or project
-                requirement. Our team will assess the application and recommend
-                a suitable system—not simply the largest product.
-              </blockquote>
+              {description && (
+                <blockquote className="text-slate-600 text-sm sm:text-base font-normal leading-relaxed border-l-2 border-[#1A6AA2] pl-4 italic py-1">
+                  {description}
+                </blockquote>
+              )}
             </div>
 
             {/* Action Buttons: Request Site Assessment & Speak With Power Expert */}
@@ -77,73 +100,85 @@ export const ConsultationForm: React.FC = () => {
                 type="button"
                 className="inline-flex items-center bg-[#1A6AA2] hover:bg-[#145380] text-white rounded-full px-6 py-3.5 text-xs sm:text-sm font-bold transition-all shadow-lg shadow-[#1A6AA2]/25 group cursor-pointer"
               >
-                <span>Request a Site Assessment</span>
+                <span>{assessmentBtnText || "Request a Site Assessment"}</span>
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
 
-              <a
-                href="tel:+919773851767"
-                className="inline-flex items-center bg-white border border-slate-200 text-slate-900 hover:bg-slate-50 rounded-full px-6 py-3.5 text-xs sm:text-sm font-bold transition-all shadow-sm group"
-              >
-                <PhoneCall className="w-4 h-4 mr-2 text-[#1A6AA2]" />
-                <span>Speak With a Power Expert</span>
-              </a>
+              {phone && (
+                <a
+                  href={`tel:${phone.replace(/[^+\d]/g, "")}`}
+                  className="inline-flex items-center bg-white border border-slate-200 text-slate-900 hover:bg-slate-50 rounded-full px-6 py-3.5 text-xs sm:text-sm font-bold transition-all shadow-sm group"
+                >
+                  <PhoneCall className="w-4 h-4 mr-2 text-[#1A6AA2]" />
+                  <span>{expertBtnText || "Speak With a Power Expert"}</span>
+                </a>
+              )}
             </div>
 
             {/* Direct Contact Info */}
-            <div className="space-y-2.5 pt-4 border-t border-slate-200/80 text-sm">
-              <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-[#1A6AA2] shrink-0" />
-                <span className="text-slate-500 font-medium min-w-[75px]">
-                  Phone:
-                </span>
-                <a
-                  href="tel:+919773851767"
-                  className="font-bold text-slate-900 hover:text-[#1A6AA2] transition-colors"
-                >
-                  +91 97738 51767
-                </a>
+            {(phone || salesEmail || accountsEmail || supportEmail) && (
+              <div className="space-y-2.5 pt-4 border-t border-slate-200/80 text-sm">
+                {phone && (
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-[#1A6AA2] shrink-0" />
+                    <span className="text-slate-500 font-medium min-w-[75px]">
+                      Phone:
+                    </span>
+                    <a
+                      href={`tel:${phone.replace(/[^+\d]/g, "")}`}
+                      className="font-bold text-slate-900 hover:text-[#1A6AA2] transition-colors"
+                    >
+                      {phone}
+                    </a>
+                  </div>
+                )}
+                {salesEmail && (
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0" />
+                    <span className="text-slate-500 font-medium min-w-[75px]">
+                      Sales:
+                    </span>
+                    <a
+                      href={`mailto:${salesEmail}`}
+                      className="font-semibold text-slate-900 hover:text-[#1A6AA2] transition-colors"
+                    >
+                      {salesEmail}
+                    </a>
+                  </div>
+                )}
+                {accountsEmail && (
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0 opacity-0" />
+                    <span className="text-slate-500 font-medium min-w-[75px]">
+                      Accounts:
+                    </span>
+                    <a
+                      href={`mailto:${accountsEmail}`}
+                      className="font-semibold text-slate-900 hover:text-[#1A6AA2] transition-colors"
+                    >
+                      {accountsEmail}
+                    </a>
+                  </div>
+                )}
+                {supportEmail && (
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0 opacity-0" />
+                    <span className="text-slate-500 font-medium min-w-[75px]">
+                      Support:
+                    </span>
+                    <a
+                      href={`mailto:${supportEmail}`}
+                      className="font-semibold text-slate-900 hover:text-[#1A6AA2] transition-colors"
+                    >
+                      {supportEmail}
+                    </a>
+                  </div>
+                )}
               </div>
-              <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0" />
-                <span className="text-slate-500 font-medium min-w-[75px]">
-                  Sales:
-                </span>
-                <a
-                  href="mailto:Sales@kumarpower.com"
-                  className="font-semibold text-slate-900 hover:text-[#1A6AA2] transition-colors"
-                >
-                  Sales@kumarpower.com
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0 opacity-0" />
-                <span className="text-slate-500 font-medium min-w-[75px]">
-                  Accounts:
-                </span>
-                <a
-                  href="mailto:Accounts@kumarpower.com"
-                  className="font-semibold text-slate-900 hover:text-[#1A6AA2] transition-colors"
-                >
-                  Accounts@kumarpower.com
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0 opacity-0" />
-                <span className="text-slate-500 font-medium min-w-[75px]">
-                  Support:
-                </span>
-                <a
-                  href="mailto:Support@kumarpower.com"
-                  className="font-semibold text-slate-900 hover:text-[#1A6AA2] transition-colors"
-                >
-                  Support@kumarpower.com
-                </a>
-              </div>
-            </div>
+            )}
           </div>
 
-          {/* Right Column: Compact Form Card matching the reference design */}
+          {/* Right Column: Compact Form Card */}
           <div className="lg:col-span-7">
             <div
               id="homepage-form-inputs"
@@ -155,16 +190,15 @@ export const ConsultationForm: React.FC = () => {
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900">
-                    Site Assessment Requested!
+                    {successTitle || "Site Assessment Requested!"}
                   </h3>
                   <p className="text-slate-500 text-sm max-w-sm mx-auto">
-                    Thank you, {formData.name || "Customer"}. Our technical
-                    engineering team will review your application and get back
-                    to you shortly.
+                    {successMessage ||
+                      `Thank you, ${formData.name || "Customer"}. Our technical engineering team will review your application and get back to you shortly.`}
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-4 px-6 py-2.5 rounded-full bg-[#1A6AA2] text-white text-xs font-semibold hover:bg-[#145380] transition-colors"
+                    className="mt-4 px-6 py-2.5 rounded-full bg-[#1A6AA2] text-white text-xs font-semibold hover:bg-[#145380] transition-colors cursor-pointer"
                   >
                     Submit Another Requirement
                   </button>
@@ -275,20 +309,30 @@ export const ConsultationForm: React.FC = () => {
                           <option value="" disabled hidden>
                             Select Industry...
                           </option>
-                          <option value="Manufacturing">Manufacturing</option>
-                          <option value="Hospitality">
-                            Hospitality & Hotels
-                          </option>
-                          <option value="Healthcare">
-                            Healthcare & Hospitals
-                          </option>
-                          <option value="Data Centre">Data Centre</option>
-                          <option value="Commercial">
-                            Commercial Real Estate
-                          </option>
-                          <option value="Infrastructure">
-                            Infrastructure & Govt
-                          </option>
+                          {industries.length > 0 ? (
+                            industries.map((ind, idx) => (
+                              <option key={idx} value={ind}>
+                                {ind}
+                              </option>
+                            ))
+                          ) : (
+                            <>
+                              <option value="Manufacturing">Manufacturing</option>
+                              <option value="Hospitality">
+                                Hospitality & Hotels
+                              </option>
+                              <option value="Healthcare">
+                                Healthcare & Hospitals
+                              </option>
+                              <option value="Data Centre">Data Centre</option>
+                              <option value="Commercial">
+                                Commercial Real Estate
+                              </option>
+                              <option value="Infrastructure">
+                                Infrastructure & Govt
+                              </option>
+                            </>
+                          )}
                         </select>
                         <ChevronDown className="w-4 h-4 text-slate-400 absolute right-4 top-4 pointer-events-none" />
                       </div>
@@ -384,7 +428,7 @@ export const ConsultationForm: React.FC = () => {
                       <span>
                         {isSubmitting
                           ? "Sending..."
-                          : "Request a Site Assessment"}
+                          : (submitBtnText || "Request a Site Assessment")}
                       </span>
                     </button>
                   </div>
