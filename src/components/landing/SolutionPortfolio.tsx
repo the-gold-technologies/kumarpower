@@ -3,12 +3,6 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSectionData } from "@/store/useCMSStore";
 
-import uninterruptedPowerImg from "@/assets/portfolio/uninterrupted_power.jpg";
-import electricalDistImg from "@/assets/portfolio/electrical_distribution.jpg";
-import renewableIntegrationImg from "@/assets/portfolio/renewable_integration.jpg";
-import powerQualityImg from "@/assets/portfolio/power_quality.jpg";
-import turnkeyProjectsImg from "@/assets/portfolio/turnkey_projects.jpg";
-
 export const SolutionPortfolio: React.FC = () => {
   const { data: homeData } = useSectionData<any>("home");
   const data = homeData?.solutionPortfolio || {};

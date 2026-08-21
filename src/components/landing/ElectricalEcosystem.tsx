@@ -12,12 +12,6 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSectionData } from "@/store/useCMSStore";
-import stage1PowerSources from "@/assets/ecosystem/stage1_power_sources.jpg";
-import stage2Transformers from "@/assets/ecosystem/stage2_transformers.jpg";
-import stage3Panels from "@/assets/ecosystem/stage3_panels.jpg";
-import stage4PowerQuality from "@/assets/ecosystem/stage4_power_quality.jpg";
-import stage5Busbar from "@/assets/ecosystem/stage5_busbar.jpg";
-import stage6FinalLoad from "@/assets/ecosystem/stage6_final_load.jpg";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Zap,

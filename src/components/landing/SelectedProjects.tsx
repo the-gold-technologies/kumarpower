@@ -15,10 +15,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSectionData } from "@/store/useCMSStore";
 
-import aviationBackupImg from "@/assets/portfolio/uninterrupted_power.jpg";
-import manufacturingDistImg from "@/assets/portfolio/electrical_distribution.jpg";
-import solarBessImg from "@/assets/portfolio/renewable_integration.jpg";
-
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Plane,
   Factory,
