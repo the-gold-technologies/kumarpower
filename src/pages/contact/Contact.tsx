@@ -77,45 +77,59 @@ const Contact = () => {
     ) as HTMLInputElement;
     const callbackValue = callbackCheckbox?.checked || false;
 
-    const submissionData = {
-      ...formData,
-      form_type: "contact_inquiry",
+    const API_BASE_URL =
+      import.meta.env.VITE_CMS_API_URL || "http://localhost:3000";
+
+    const payload = {
+      name: formData.name,
+      department: formData.department || "General Inquiry",
+      email: formData.email,
+      phone: formData.phone,
+      productOrService: formData.department
+        ? `${formData.department} Inquiry`
+        : "Contact Page Inquiry",
       callback: callbackValue,
+      status: "New",
+      message: formData.message,
     };
 
     try {
-      const response = await fetch("https://kumarpower.com/wep-api.php", {
+      // 1. Submit directly to CMS Enquiries endpoint
+      await fetch(`${API_BASE_URL}/api/enquiries`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(submissionData),
+        body: JSON.stringify(payload),
       });
 
-      if (response.ok) {
-        setContactSubmitStatus({
-          type: "success",
-          message: "✓ Message sent successfully! We'll get back to you soon.",
-        });
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          department: "",
-          message: "",
-        });
-        // Reset checkbox
-        if (callbackCheckbox) callbackCheckbox.checked = false;
+      // 2. Also forward to legacy php endpoint
+      fetch("https://kumarpower.com/wep-api.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          form_type: "contact_inquiry",
+          callback: callbackValue,
+        }),
+      }).catch(() => {});
 
-        // Clear success message after 5 seconds
-        setTimeout(() => {
-          setContactSubmitStatus({ type: null, message: "" });
-        }, 5000);
-      } else {
-        setContactSubmitStatus({
-          type: "error",
-          message:
-            "✗ There was an issue submitting your form. Please try again.",
-        });
-      }
+      setContactSubmitStatus({
+        type: "success",
+        message: "✓ Message sent successfully! We'll get back to you soon.",
+      });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        department: "",
+        message: "",
+      });
+      // Reset checkbox
+      if (callbackCheckbox) callbackCheckbox.checked = false;
+
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setContactSubmitStatus({ type: null, message: "" });
+      }, 5000);
     } catch (error) {
       console.error("Error:", error);
       setContactSubmitStatus({
@@ -133,8 +147,21 @@ const Contact = () => {
     setResumeSubmitStatus({ type: null, message: "" });
     setIsResumeSubmitting(true); // Start loading
 
-    const formDataObj = new FormData();
+    const API_BASE_URL =
+      import.meta.env.VITE_CMS_API_URL || "http://localhost:3000";
 
+    const careerPayload = {
+      name: resumeData.fullName,
+      department: "Careers / Job Application",
+      email: resumeData.email,
+      phone: resumeData.phone,
+      productOrService: "Resume Submission",
+      callback: false,
+      status: "New",
+      message: resumeData.message || "Resume dropped via Careers page.",
+    };
+
+    const formDataObj = new FormData();
     formDataObj.append("form_type", "resume_submission");
     formDataObj.append("fullName", resumeData.fullName);
     formDataObj.append("email", resumeData.email);
@@ -145,39 +172,39 @@ const Contact = () => {
     }
 
     try {
-      const response = await fetch("https://kumarpower.com/wep-api.php", {
+      // 1. Log lead to CMS Enquiries
+      await fetch(`${API_BASE_URL}/api/enquiries`, {
         method: "POST",
-        body: formDataObj,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(careerPayload),
       });
 
-      if (response.ok) {
-        setResumeSubmitStatus({
-          type: "success",
-          message:
-            "✓ Resume submitted successfully! We'll review your application and get back to you.",
-        });
-        setResumeData({
-          fullName: "",
-          email: "",
-          phone: "",
-          message: "",
-          resume: null,
-        });
-        // Reset file input
-        const fileInput = document.getElementById("resume") as HTMLInputElement;
-        if (fileInput) fileInput.value = "";
+      // 2. Also send to file upload webhook
+      fetch("https://kumarpower.com/wep-api.php", {
+        method: "POST",
+        body: formDataObj,
+      }).catch(() => {});
 
-        // Clear success message after 5 seconds
-        setTimeout(() => {
-          setResumeSubmitStatus({ type: null, message: "" });
-        }, 5000);
-      } else {
-        setResumeSubmitStatus({
-          type: "error",
-          message:
-            "✗ There was an issue submitting your resume. Please try again.",
-        });
-      }
+      setResumeSubmitStatus({
+        type: "success",
+        message:
+          "✓ Resume submitted successfully! We'll review your application and get back to you.",
+      });
+      setResumeData({
+        fullName: "",
+        email: "",
+        phone: "",
+        message: "",
+        resume: null,
+      });
+      // Reset file input
+      const fileInput = document.getElementById("resume") as HTMLInputElement;
+      if (fileInput) fileInput.value = "";
+
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setResumeSubmitStatus({ type: null, message: "" });
+      }, 5000);
     } catch (error) {
       console.error("Error:", error);
       setResumeSubmitStatus({

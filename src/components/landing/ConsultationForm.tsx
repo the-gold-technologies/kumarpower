@@ -49,19 +49,52 @@ export const ConsultationForm: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const submissionData = {
-      ...formData,
-      form_type: "site_assessment_consultation",
+    const API_BASE_URL =
+      import.meta.env.VITE_CMS_API_URL || "http://localhost:3000";
+
+    const detailedMessage = [
+      formData.requirement ? `Requirement: ${formData.requirement}` : "",
+      formData.company ? `Company: ${formData.company}` : "",
+      formData.location ? `Location: ${formData.location}` : "",
+      formData.industry ? `Industry: ${formData.industry}` : "",
+      formData.monthlyBill ? `Monthly Bill: ${formData.monthlyBill}` : "",
+      formData.existingDG ? `Existing DG: ${formData.existingDG}` : "",
+      formData.existingSolar ? `Existing Solar: ${formData.existingSolar}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const payload = {
+      name: formData.name,
+      department: formData.company
+        ? `${formData.company}${formData.industry ? ` (${formData.industry})` : ""}`
+        : (formData.industry || "Sales & Site Assessment"),
+      email: formData.email,
+      phone: formData.phone,
+      productOrService: formData.industry
+        ? `${formData.industry} - Site Assessment`
+        : (formData.requirement || "Site Assessment & Consultation"),
+      callback: true,
+      status: "New",
+      message: detailedMessage || formData.requirement || "Site Assessment Requested",
     };
 
     try {
-      await fetch("https://kumarpower.com/wep-api.php", {
+      // 1. Submit directly to CMS Enquiries endpoint
+      await fetch(`${API_BASE_URL}/api/enquiries`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(submissionData),
+        body: JSON.stringify(payload),
       });
+
+      // 2. Also forward to webhook if available
+      fetch("https://kumarpower.com/wep-api.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      }).catch(() => {});
     } catch (err) {
-      // Non-blocking network error handling
+      console.warn("CMS enquiries submission error:", err);
     } finally {
       setIsSubmitting(false);
       setSubmitted(true);
