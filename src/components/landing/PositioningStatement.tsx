@@ -1,35 +1,34 @@
 import React from "react";
+import * as LucideIcons from "lucide-react";
 import { Compass, PackageCheck, Wrench, ShieldAlert } from "lucide-react";
 import { motion } from "framer-motion";
+import { useSectionData } from "@/store/useCMSStore";
 
-const capabilities = [
-  {
-    icon: Compass,
-    title: "Design and Engineering",
-    description:
-      "Load assessment, system planning, equipment selection and technical coordination.",
-  },
-  {
-    icon: PackageCheck,
-    title: "Supply",
-    description:
-      "Reliable equipment sourced from established manufacturers and technology partners.",
-  },
-  {
-    icon: Wrench,
-    title: "Execution",
-    description:
-      "Installation, cabling, integration, testing and commissioning.",
-  },
-  {
-    icon: ShieldAlert,
-    title: "Lifecycle Support",
-    description:
-      "Preventive maintenance, breakdown support, upgrades and system optimisation.",
-  },
-];
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Compass,
+  PackageCheck,
+  Wrench,
+  ShieldAlert,
+};
+
+const getIcon = (iconName: string | any) => {
+  if (typeof iconName === "function" || typeof iconName === "object") return iconName;
+  if (typeof iconName === "string") {
+    if (iconMap[iconName]) return iconMap[iconName];
+    if ((LucideIcons as any)[iconName]) return (LucideIcons as any)[iconName];
+  }
+  return Compass;
+};
 
 export const PositioningStatement: React.FC = () => {
+  const { data: homeData } = useSectionData<any>("home");
+  const data = homeData?.positioningStatement || {};
+
+  const badge = data.badge || "";
+  const heading = data.heading || "";
+  const description = data.description || "";
+  const capabilities = Array.isArray(data.capabilities) ? data.capabilities : [];
+
   return (
     <section className="py-20 bg-white text-slate-900 border-b border-slate-200 overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl">
@@ -41,30 +40,32 @@ export const PositioningStatement: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto text-center space-y-5 mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1A6AA2]/10 border border-[#1A6AA2]/20 text-xs font-bold uppercase tracking-widest text-[#1A6AA2]">
-            Integrated Electrical Solution
-          </div>
+          {badge && (
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1A6AA2]/10 border border-[#1A6AA2]/20 text-xs font-bold uppercase tracking-widest text-[#1A6AA2]">
+              {badge}
+            </div>
+          )}
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
-            One Partner. Every Stage of Your Electrical Infrastructure.
-          </h2>
+          {heading && (
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
+              {heading}
+            </h2>
+          )}
 
-          <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-3xl mx-auto">
-            Kumar Power delivers integrated electrical solutions for commercial,
-            industrial, institutional and infrastructure customers. We bring
-            together power generators, transformers, distribution pannels,
-            protection, power quality, renewable energy and battery storage
-            under one coordinated solution.
-          </p>
+          {description && (
+            <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-3xl mx-auto">
+              {description}
+            </p>
+          )}
         </motion.div>
 
         {/* 4 Clean Capability Cards with Staggered Scroll Animation */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {capabilities.map((cap, idx) => {
-            const Icon = cap.icon;
+          {capabilities.map((cap: any, idx: number) => {
+            const Icon = getIcon(cap.icon);
             return (
               <motion.div
-                key={idx}
+                key={cap.id || idx}
                 initial={{ opacity: 0, y: 35 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}

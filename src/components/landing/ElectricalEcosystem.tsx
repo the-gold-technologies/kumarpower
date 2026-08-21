@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import * as LucideIcons from "lucide-react";
 import {
   Zap,
   Cpu,
@@ -10,7 +11,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { useSectionData } from "@/store/useCMSStore";
 import stage1PowerSources from "@/assets/ecosystem/stage1_power_sources.jpg";
 import stage2Transformers from "@/assets/ecosystem/stage2_transformers.jpg";
 import stage3Panels from "@/assets/ecosystem/stage3_panels.jpg";
@@ -18,133 +19,67 @@ import stage4PowerQuality from "@/assets/ecosystem/stage4_power_quality.jpg";
 import stage5Busbar from "@/assets/ecosystem/stage5_busbar.jpg";
 import stage6FinalLoad from "@/assets/ecosystem/stage6_final_load.jpg";
 
-interface StepNode {
-  id: string;
-  step: string;
-  name: string;
-  icon: any;
-  image: string;
-  headline: string;
-  description: string;
-  equipment: string[];
-}
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Zap,
+  Cpu,
+  ShieldCheck,
+  Gauge,
+  BatteryCharging,
+  Factory,
+};
 
-const pipelineNodes: StepNode[] = [
-  {
-    id: "generation",
-    step: "01",
-    name: "Power Sources",
-    icon: Zap,
-    image: stage1PowerSources,
-    headline: "Grid Entry, Solar Panels, Gensets & BESS",
-    description:
-      "Accepts high-voltage grid supply, integrates rooftop solar panels, Kirloskar CPCB IV+ diesel gensets, and battery energy storage (BESS).",
-    equipment: [
-      "CPCB IV+ Gensets",
-      "Rooftop Solar Panels",
-      "Battery Energy Storage (BESS)",
-      "High-Voltage Substation",
-    ],
-  },
-  {
-    id: "Distribution",
-    step: "02",
-    name: "Distribution",
-    icon: Cpu,
-    image: stage2Transformers,
-    headline: "Step-Up / Step-Down Transformers",
-    description:
-      "Steps high transmission voltages up or down to operational facility voltage levels with custom dry-type and oil-filled transformers.",
-    equipment: [
-      "Distribution Transformers",
-      "Isolation Transformers",
-      "Dry-Type Cast Resin",
-      "Step-down Transformers",
-    ],
-  },
-  {
-    id: "Pannels",
-    step: "03",
-    name: "HT/LT Panels",
-    icon: ShieldCheck,
-    image: stage3Panels,
-    headline: "Distribution Panels, AMF & Changeover",
-    description:
-      "Routes power safely across main LT Panels, HT breaker panels, PCC/MCC motor controls, AMF & ATS Panels.",
-    equipment: [
-      "Main LT Switchgear",
-      "HT Breaker Panels",
-      "AMF & ATS Panels",
-      "PCC & MCC Panels",
-    ],
-  },
-  {
-    id: "Power Quality & Protection",
-    step: "04",
-    name: "Power Quality & Protection",
-    icon: Gauge,
-    image: stage4PowerQuality,
-    headline: "Voltage Regulation & Harmonics",
-    description:
-      "Stabilizes fluctuating grid voltages, maintains high power factor via APFC capacitor banks, and filters active harmonic distortion.",
-    equipment: [
-      "Servo Stabilisers",
-      "APFC Capacitor Banks",
-      "Active Harmonic Filters",
-      "Surge Arrestors",
-    ],
-  },
-  {
-    id: "distribution",
-    step: "05",
-    name: "Sub-Distribution",
-    icon: BatteryCharging,
-    image: stage5Busbar,
-    headline: "Bus Ducts & Feeder Pillars",
-    description:
-      "Transfers clean, protected electrical power through riser busbars, sub-distribution boards, and smart energy monitoring meters.",
-    equipment: [
-      "Busbar Trunking Systems",
-      "Floor Distribution Boards",
-      "Feeder Pillars",
-      "Smart Meters",
-    ],
-  },
-  {
-    id: "final-load",
-    step: "06",
-    name: "Final Facility Load",
-    icon: Factory,
-    image: stage6FinalLoad,
-    headline: "Industrial, Commercial & Critical Facilities",
-    description:
-      "Delivers continuous, highly stable electrical energy to critical infrastructure, manufacturing plants, commercial complexes, data centres, healthcare facilities, and residential buildings.",
-    equipment: [
-      "Industrial Machinery",
-      "Data Centre Servers",
-      "Central HVAC Chillers",
-      "Residential Equipment",
-    ],
-  },
-];
+const getIcon = (iconName: string | any) => {
+  if (
+    typeof iconName === "function" ||
+    (typeof iconName === "object" && iconName !== null)
+  )
+    return iconName;
+  if (typeof iconName === "string") {
+    if (iconMap[iconName]) return iconMap[iconName];
+    if ((LucideIcons as any)[iconName]) return (LucideIcons as any)[iconName];
+  }
+  return Zap;
+};
 
 export const ElectricalEcosystem: React.FC = () => {
+  const { data: homeData } = useSectionData<any>("home");
+  const data = homeData?.electricalEcosystem || {};
+
+  const badge = data.badge || "";
+  const title = data.title || "";
+  const description = data.description || "";
+  const stages: any[] = Array.isArray(data.stages) ? data.stages : [];
+
   const [activeStep, setActiveStep] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
+  // Keep activeStep in bounds
+  useEffect(() => {
+    if (activeStep >= stages.length && stages.length > 0) {
+      setActiveStep(0);
+    }
+  }, [stages.length, activeStep]);
+
   // Auto-advancing stage loop every 3.5 seconds (pauses on hover)
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || stages.length === 0) return;
 
     const timer = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % pipelineNodes.length);
+      setActiveStep((prev) => (prev + 1) % stages.length);
     }, 3500);
 
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, [isPaused, stages.length]);
 
-  const current = pipelineNodes[activeStep];
-  const Icon = current.icon;
+  if (stages.length === 0) {
+    return null;
+  }
+
+  const current = stages[activeStep] || stages[0];
+  const Icon = getIcon(current?.icon);
+  const equipment: string[] = Array.isArray(current?.equipment)
+    ? current.equipment
+    : [];
 
   return (
     <section
@@ -154,17 +89,22 @@ export const ElectricalEcosystem: React.FC = () => {
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         {/* Header Title */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <div className="inline-block px-3.5 py-1 rounded-full bg-[#1A6AA2]/10 border border-[#1A6AA2]/20 text-xs font-bold uppercase tracking-widest text-[#1A6AA2]">
-            <Zap className="w-3.5 h-3.5 text-[#1A6AA2] inline mr-1" />
-            Interactive System Flow
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
-            From Incoming Power to Final Load
-          </h2>
-          <p className="text-slate-600 text-base sm:text-lg font-normal">
-            Automated power progression across all 6 electrical system stages.
-            Click any stage to inspect equipment details.
-          </p>
+          {badge && (
+            <div className="inline-block px-3.5 py-1 rounded-full bg-[#1A6AA2]/10 border border-[#1A6AA2]/20 text-xs font-bold uppercase tracking-widest text-[#1A6AA2]">
+              <Zap className="w-3.5 h-3.5 text-[#1A6AA2] inline mr-1" />
+              {badge}
+            </div>
+          )}
+          {title && (
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+              {title}
+            </h2>
+          )}
+          {description && (
+            <p className="text-slate-600 text-base sm:text-lg font-normal">
+              {description}
+            </p>
+          )}
         </div>
 
         {/* Connected Pipeline Navigation */}
@@ -175,13 +115,13 @@ export const ElectricalEcosystem: React.FC = () => {
         >
           {/* Desktop Row View */}
           <div className="hidden lg:flex items-center justify-between gap-1.5 w-full">
-            {pipelineNodes.map((node, idx) => {
-              const NodeIcon = node.icon;
+            {stages.map((node, idx) => {
+              const NodeIcon = getIcon(node.icon);
               const isSelected = activeStep === idx;
               const isPassed = idx < activeStep;
 
               return (
-                <React.Fragment key={node.id}>
+                <React.Fragment key={node.id || idx}>
                   <button
                     onClick={() => setActiveStep(idx)}
                     onMouseEnter={() => {
@@ -230,7 +170,7 @@ export const ElectricalEcosystem: React.FC = () => {
                   </button>
 
                   {/* Flow Connector Arrow */}
-                  {idx < pipelineNodes.length - 1 && (
+                  {idx < stages.length - 1 && (
                     <div className="shrink-0 px-0.5 flex items-center text-slate-300">
                       <ChevronRight
                         className={`w-4 h-4 transition-all duration-500 ${
@@ -250,14 +190,14 @@ export const ElectricalEcosystem: React.FC = () => {
 
           {/* Mobile/Tablet Grid View */}
           <div className="grid lg:hidden grid-cols-2 sm:grid-cols-3 gap-2.5 w-full">
-            {pipelineNodes.map((node, idx) => {
-              const NodeIcon = node.icon;
+            {stages.map((node, idx) => {
+              const NodeIcon = getIcon(node.icon);
               const isSelected = activeStep === idx;
               const isPassed = idx < activeStep;
 
               return (
                 <button
-                  key={node.id}
+                  key={node.id || idx}
                   onClick={() => setActiveStep(idx)}
                   onMouseEnter={() => {
                     setActiveStep(idx);
@@ -294,7 +234,7 @@ export const ElectricalEcosystem: React.FC = () => {
                               : "text-slate-500"
                         }`}
                       />
-                      {idx < pipelineNodes.length - 1 && (
+                      {idx < stages.length - 1 && (
                         <ChevronRight className="w-3 h-3 text-slate-300" />
                       )}
                     </div>
@@ -311,7 +251,7 @@ export const ElectricalEcosystem: React.FC = () => {
           </div>
         </div>
 
-        {/* Inspection Display Card - Exact Original Design & Layout */}
+        {/* Inspection Display Card */}
         <div
           className="rounded-3xl bg-white border border-slate-200 overflow-hidden shadow-2xl min-h-[420px] relative"
           onMouseEnter={() => setIsPaused(true)}
@@ -319,20 +259,22 @@ export const ElectricalEcosystem: React.FC = () => {
         >
           <AnimatePresence mode="wait">
             <motion.div
-              key={current.id}
+              key={current.id || activeStep}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
               className="grid grid-cols-1 lg:grid-cols-12 gap-0 w-full h-full"
             >
-              {/* Left Visual Photo Frame - Exact Original Design */}
+              {/* Left Visual Photo Frame */}
               <div className="lg:col-span-6 relative h-[360px] lg:h-auto overflow-hidden">
-                <img
-                  src={current.image}
-                  alt={current.name}
-                  className="w-full h-full object-cover filter brightness-95 contrast-105 transition-transform duration-700"
-                />
+                {current.image && (
+                  <img
+                    src={current.image}
+                    alt={current.name || "Stage Equipment"}
+                    className="w-full h-full object-cover filter brightness-95 contrast-105 transition-transform duration-700"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
                 <div className="absolute top-6 left-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-slate-200 text-xs font-mono font-bold text-[#1A6AA2] backdrop-blur-md shadow">
                   <Icon className="w-3.5 h-3.5 text-[#1A6AA2]" /> Stage{" "}
@@ -340,39 +282,45 @@ export const ElectricalEcosystem: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right Detailed Equipment Callouts - Exact Original Design */}
+              {/* Right Detailed Equipment Callouts */}
               <div className="lg:col-span-6 p-8 lg:p-12 space-y-6 flex flex-col justify-between text-slate-900">
                 <div className="space-y-4">
                   <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#1A6AA2]">
                     Stage {current.step} — {current.name}
                   </span>
 
-                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
-                    {current.headline}
-                  </h3>
+                  {current.headline && (
+                    <h3 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+                      {current.headline}
+                    </h3>
+                  )}
 
-                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
-                    {current.description}
-                  </p>
+                  {current.description && (
+                    <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
+                      {current.description}
+                    </p>
+                  )}
                 </div>
 
-                <div className="space-y-3 pt-4 border-t border-slate-100">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    Integrated Stage Technologies:
-                  </span>
+                {equipment.length > 0 && (
+                  <div className="space-y-3 pt-4 border-t border-slate-100">
+                    <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                      Integrated Stage Technologies:
+                    </span>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    {current.equipment.map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 flex items-center gap-2"
-                      >
-                        <Check className="w-4 h-4 text-[#1A6AA2] shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {equipment.map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 flex items-center gap-2"
+                        >
+                          <Check className="w-4 h-4 text-[#1A6AA2] shrink-0" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </motion.div>
           </AnimatePresence>

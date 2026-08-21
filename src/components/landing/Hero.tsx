@@ -16,6 +16,7 @@ const Hero = () => {
     <section id="home" className="relative w-full bg-black overflow-hidden">
       {mounted && bgVideo && (
         <video
+          key={bgVideo}
           src={bgVideo}
           autoPlay
           loop

@@ -38,35 +38,35 @@ const Index: React.FC = () => {
         {/* 3. Complete electrical ecosystem graphic (High-Tech Dark Navy Contrast) */}
         <ElectricalEcosystem />
 
-        {/* 5. Core solution portfolio (Clean White) */}
+        {/* 4. Core solution portfolio (Clean White) */}
         <SolutionPortfolio />
 
-        {/* 6. Featured solutions (Light Cool Slate) */}
+        {/* 5. Featured solutions (Light Cool Slate) */}
         <FeaturedSolutions />
 
-        {/* 7. Industries served (Clean White) */}
+        {/* 6. Industries served (Clean White) */}
         <IndustriesServed />
 
-        {/* 8. Why Kumar Power (Light Cool Slate) */}
+        {/* 7. Why Kumar Power (Light Cool Slate) */}
         <WhyKumarPower />
 
-        {/* 9. Numbers and credibility (Deep Navy High Impact Stat Band) */}
+        {/* 8. Numbers and credibility (Deep Navy High Impact Stat Band) */}
         <NumbersCredibility />
 
-        {/* 10. Selected projects and case studies (Clean White) */}
+        {/* 9. Selected projects and case studies (Clean White) */}
         <SelectedProjects />
 
-        {/* 11. Partner and certification section (Light Cool Slate) */}
+        {/* 10. Partner and certification section (Light Cool Slate) */}
         <PartnerCertifications />
 
-        {/* 12. Knowledge centre / Power Insights (Clean White) */}
+        {/* 11. Knowledge centre / Power Insights (Clean White) */}
         <KnowledgeCenter />
 
-        {/* 13. Consultation section (High-Impact Navy Conversion Card) */}
+        {/* 12. Consultation section (High-Impact Navy Conversion Card) */}
         <ConsultationForm />
       </main>
 
-      {/* 14. Structured Footer (Deep Navy / Charcoal) */}
+      {/* 13. Structured Footer (Deep Navy / Charcoal) */}
       <Footer />
     </div>
   );
