@@ -23,6 +23,7 @@ export const ConsultationForm: React.FC = () => {
   const accountsEmail = data.accountsEmail || "";
   const expertBtnText = data.expertBtnText || "";
   const assessmentBtnText = data.assessmentBtnText || "";
+  const formCardTitle = data.formCardTitle || "";
   const submitBtnText = data.submitBtnText || "";
   const successTitle = data.successTitle || "";
   const successMessage = data.successMessage || "";
@@ -44,17 +45,31 @@ export const ConsultationForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    const submissionData = {
+      ...formData,
+      form_type: "site_assessment_consultation",
+    };
+
+    try {
+      await fetch("https://kumarpower.com/wep-api.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(submissionData),
+      });
+    } catch (err) {
+      // Non-blocking network error handling
+    } finally {
       setIsSubmitting(false);
       setSubmitted(true);
       toast.success(
         successMessage ||
           "Requirement submitted! Our engineering team will review and contact you shortly.",
       );
-    }, 1000);
+    }
   };
 
   const scrollToForm = () => {
@@ -184,6 +199,13 @@ export const ConsultationForm: React.FC = () => {
               id="homepage-form-inputs"
               className="bg-white rounded-[32px] p-6 sm:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.05)] border border-slate-100"
             >
+              {formCardTitle && (
+                <div className="mb-6 pb-4 border-b border-slate-100">
+                  <h3 className="text-lg font-bold text-slate-900">
+                    {formCardTitle}
+                  </h3>
+                </div>
+              )}
               {submitted ? (
                 <div className="text-center py-12 space-y-4">
                   <div className="w-16 h-16 rounded-full bg-[#1A6AA2]/10 text-[#1A6AA2] flex items-center justify-center mx-auto shadow-inner">
