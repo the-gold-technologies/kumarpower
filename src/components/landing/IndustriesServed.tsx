@@ -10,6 +10,10 @@ import {
   Plane,
   Landmark,
   ArrowUpRight,
+  GraduationCap,
+  FileCheck,
+  Calendar,
+  HardHat,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSectionData } from "@/store/useCMSStore";
@@ -23,6 +27,10 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Landmark,
   Truck,
   Building,
+  GraduationCap,
+  FileCheck,
+  Calendar,
+  HardHat,
 };
 
 const getIcon = (iconName: string | any) => {
@@ -87,7 +95,7 @@ export const IndustriesServed: React.FC = () => {
 
         {/* Sector Cards Grid with Staggered Scroll Animation */}
         {industries.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {industries.map((item: any, idx: number) => {
               const Icon = getIcon(item.icon);
               return (
@@ -98,7 +106,7 @@ export const IndustriesServed: React.FC = () => {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.45, delay: idx * 0.08 }}
                   onClick={scrollToConsultation}
-                  className="relative h-[320px] rounded-3xl overflow-hidden cursor-pointer group border border-slate-800 hover:border-[#1A6AA2] transition-all duration-500 shadow-xl flex flex-col justify-between p-6"
+                  className="relative h-[320px] rounded-2xl overflow-hidden cursor-pointer group border border-slate-800 hover:border-[#1A6AA2] transition-all duration-500 shadow-xl flex flex-col justify-between p-4 sm:p-5"
                 >
                   {/* Background Image */}
                   {item.image && (
@@ -127,13 +135,13 @@ export const IndustriesServed: React.FC = () => {
                   {/* Content */}
                   <div className="relative z-10 space-y-2">
                     {item.name && (
-                      <h3 className="text-xl font-bold text-white group-hover:text-[#1A6AA2] transition-colors drop-shadow">
+                      <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-[#1A6AA2] transition-colors drop-shadow">
                         {item.name}
                       </h3>
                     )}
 
                     {item.problem && (
-                      <p className="text-xs text-slate-300 leading-relaxed font-light drop-shadow-sm">
+                      <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-light drop-shadow-sm">
                         {item.problem}
                       </p>
                     )}

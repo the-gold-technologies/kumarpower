@@ -547,15 +547,7 @@ const Contact = () => {
                       9773877796
                     </a>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-300 mt-1">
-                    <span className="text-white/60 w-20">Landline: </span>
-                    <a
-                      href="tel:01146701273"
-                      className="hover:text-blue-300 transition-colors"
-                    >
-                      011-46701273
-                    </a>
-                  </div>
+                  
                 </div>
 
                 {/* Email */}

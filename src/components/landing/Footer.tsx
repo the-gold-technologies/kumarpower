@@ -97,7 +97,7 @@ export const Footer: React.FC = () => {
                   to="/products/transformers"
                   className="hover:text-white transition-colors"
                 >
-                  Transformers
+                  Transformers/Substation
                 </Link>
               </li>
               <li>
@@ -227,7 +227,7 @@ export const Footer: React.FC = () => {
                   to="/about/Certifications"
                   className="hover:text-white transition-colors"
                 >
-                  Certifications & OEM
+                  Certifications
                 </Link>
               </li>
               <li>
@@ -340,17 +340,7 @@ export const Footer: React.FC = () => {
                   </a>
                 </div>
               )}
-              {landline && (
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-[#1A6AA2] shrink-0" />
-                  <a
-                    href={`tel:${landline.replace(/[^+\d]/g, "")}`}
-                    className="hover:text-white transition-colors font-medium"
-                  >
-                    Landline: {landline}
-                  </a>
-                </div>
-              )}
+              
               {(salesEmail || accountsEmail || supportEmail) && (
                 <div className="flex items-start gap-2">
                   <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0 mt-0.5" />

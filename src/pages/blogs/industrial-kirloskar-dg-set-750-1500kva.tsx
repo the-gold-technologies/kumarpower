@@ -618,7 +618,7 @@ const KirloskarGeneratorsBlog = () => {
 
                     <p className="text-base leading-8 text-gray-700 text-justify mb-8">
                       When you invest in a high-capacity Kirloskar DG Set, it's not only about buying an engine, it's about investing in a highly secure power station. Industrial buyers are always concerned about the short circuit and the maintenance cost of these diesel generators. At such high
-                      loads, a short circuit or fault could result in losses amounting to lakhs and crores. To prevent this, Kirloskar DG sets come equipped with an industry-grade, dedicated Control and Switchgear Panel or <a href="/products/panels" className="text-blue-700 font-bold">AMF Panel</a>/LT Panel that provides multi-layered protection.
+                      loads, a short circuit or fault could result in losses amounting to lakhs and crores. To prevent this, Kirloskar DG sets come equipped with an industry-grade, dedicated Control Panel or <a href="/products/panels" className="text-blue-700 font-bold">AMF Panel</a>/LT Panel that provides multi-layered protection.
                     </p>
 
                     <h3 className="text-xl md:text-2xl font-bold mt-12 mb-2">Main Circuit Breakers (MCB)</h3>
@@ -663,7 +663,7 @@ const KirloskarGeneratorsBlog = () => {
                     <h3 className="text-xl md:text-2xl font-bold mt-12 mb-2">Smart Controllers and AVR (Digital Controllers & AVR)</h3>
 
                     <p className="text-base leading-8 text-gray-700 text-justify mb-4">
-                      <strong className="text-dark-600">Digital Controller (Deep Sea, ComAp, Woodward):</strong> These modern smart switchgear panels monitor the health of the generator. In the event of a short circuit, they not only trip the breaker but also send a signal to the engine actuator to
+                      <strong className="text-dark-600">Digital Controller (Deep Sea, ComAp, Woodward):</strong> These modern smart panels monitor the health of the generator. In the event of a short circuit, they not only trip the breaker but also send a signal to the engine actuator to
                       immediately cut off the diesel supply, ensuring the engine shuts down instantly.
                     </p>
 

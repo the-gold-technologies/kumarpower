@@ -79,6 +79,16 @@ const Header = () => {
             </Link>
           </li>
 
+          {/* About */}
+          <li>
+            <Link
+              to="/about/OurProfile"
+              className="hover:text-primary transition-colors py-4"
+            >
+              About
+            </Link>
+          </li>
+
           {/* Solutions Mega Dropdown */}
           <li className="relative group">
             <Link
@@ -99,7 +109,7 @@ const Header = () => {
                   to="/products/transformers"
                   className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
                 >
-                  Transformers
+                  Transformers/Substation
                 </Link>
                 <Link
                   to="/products/panels"
@@ -129,33 +139,13 @@ const Header = () => {
             </div>
           </li>
 
-          {/* Industries */}
-          <li>
-            <a
-              href="#industries-served"
-              className="hover:text-primary transition-colors py-4"
-            >
-              Industries
-            </a>
-          </li>
-
-          {/* Projects */}
+          {/* Our Clients */}
           <li>
             <Link
               to="/about/OurClients"
               className="hover:text-primary transition-colors py-4"
             >
-              Projects
-            </Link>
-          </li>
-
-          {/* About */}
-          <li>
-            <Link
-              to="/about/OurProfile"
-              className="hover:text-primary transition-colors py-4"
-            >
-              About
+              Our Clients
             </Link>
           </li>
 
@@ -214,6 +204,15 @@ const Header = () => {
             Home
           </Link>
 
+          {/* About */}
+          <Link
+            to="/about/OurProfile"
+            className="block py-3 border-b"
+            onClick={closeMobileMenu}
+          >
+            About
+          </Link>
+
           {/* Solutions Dropdown Mobile */}
           <div className="py-3 border-b">
             <details className="group">
@@ -234,7 +233,7 @@ const Header = () => {
                   className="block py-1.5 text-sm"
                   onClick={closeMobileMenu}
                 >
-                  Transformers
+                  Transformers/Substation
                 </Link>
                 <Link
                   to="/products/panels"
@@ -268,28 +267,12 @@ const Header = () => {
             </details>
           </div>
 
-          <a
-            href="#industries-served"
-            className="block py-3 border-b"
-            onClick={closeMobileMenu}
-          >
-            Industries
-          </a>
-
           <Link
             to="/about/OurClients"
             className="block py-3 border-b"
             onClick={closeMobileMenu}
           >
-            Projects
-          </Link>
-
-          <Link
-            to="/about/OurProfile"
-            className="block py-3 border-b"
-            onClick={closeMobileMenu}
-          >
-            About
+            Our Clients
           </Link>
 
           <Link

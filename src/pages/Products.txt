@@ -451,7 +451,7 @@ const Products = () => {
       rating: 4.6,
       range: "500-5000 kVA",
       category: "transformers",
-      description: "Complete electrical substation solution with integrated transformer, switchgear, and protection systems.",
+      description: "Complete electrical substation solution with integrated transformer, panels, and protection systems.",
       technicalSpecs: `The Unitized Package Substation (USS) is a compact, space-saving solution that seamlessly integrates a Ring Main Unit (RMU), a Transformer, and a Low Voltage (LV) panel into a single enclosure. Designed as a ready-to-install "plug-and-play" unit, it drastically reduces installation time and complexity. The compartmentalized design ensures maximum operator safety by isolating high-voltage components. With an aesthetic that blends well with urban architecture, it is the ideal choice for modern infrastructure projects.`
     }
   ];

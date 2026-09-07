@@ -35,7 +35,7 @@ const panelSpecs = [
   { spec: "Controller Type", feature: "Microprocessor-based intelligent AMF controller" },
   { spec: "Control Logic", feature: "Precision programmed automatic start/stop sequence" },
   { spec: "User Interface", feature: "Clear LED/LCD display for Mains & DG status monitoring" },
-  { spec: "Standards reference", feature: "Built and wired as per IS/IEC low-voltage switchgear practice" },
+  { spec: "Standards reference", feature: "Built and wired as per IS/IEC low-voltage panels practice" },
 ];
 
 // AMF Feature
@@ -150,7 +150,7 @@ const faqsList = [
   },
   {
     question: "What certifications should a good AMF panel have?",
-    answer: "Look for panels built to IS 8623 or IEC 61439 standards for switchgear safety, along with a CE mark if the components are imported. These certifications confirm the panel has been tested for insulation, short-circuit withstand, and safe switching under load.",
+    answer: "Look for panels built to IS 8623 or IEC 61439 standards for panels safety, along with a CE mark if the components are imported. These certifications confirm the panel has been tested for insulation, short-circuit withstand, and safe switching under load.",
   },
 ];
 
@@ -317,7 +317,7 @@ const BlogAMFPanel = () => {
                     <a href="/blog/industrial-kirloskar-dg-set-750kva-1500kva" className="text-[#254f81] hover:text-[#f00] transition font-bold">
                       generator capacity
                     </a>
-                    . A heavy-duty industrial AMF installation consolidates switchgear, computational logical components, and safety modules into a unified structural enclosure. Below are the key building blocks:{" "}
+                    . A heavy-duty industrial AMF installation consolidates panels, computational logical components, and safety modules into a unified structural enclosure. Below are the key building blocks:{" "}
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
                     <div className="group bg-white border border-[#254f81a4] rounded-sm p-6 shadow-sm hover:translate-y-[-2px] hover:shadow-md">
