@@ -89,7 +89,7 @@ export const Footer: React.FC = () => {
                   to="/products/kirloskar-diesel-generator"
                   className="hover:text-white transition-colors"
                 >
-                  Power Generation
+                  Diesel Generators
                 </Link>
               </li>
               <li>
@@ -102,10 +102,18 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
+                  to="/products/kirloskar-gas-generator"
+                  className="hover:text-white transition-colors"
+                >
+                  Gas Generators
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/products/transformers"
                   className="hover:text-white transition-colors"
                 >
-                  Transformers/Substation
+                  Transformers & Substation
                 </Link>
               </li>
               <li>
@@ -126,14 +134,6 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/products"
-                  className="hover:text-white transition-colors"
-                >
-                  Solar & Renewable
-                </Link>
-              </li>
-              <li>
-                <Link
                   to="/products/servo-stabilizer"
                   className="hover:text-white transition-colors"
                 >
@@ -142,10 +142,10 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/services/installation"
+                  to="/products"
                   className="hover:text-white transition-colors"
                 >
-                  Turnkey Projects
+                  All Products
                 </Link>
               </li>
             </ul>
@@ -191,14 +191,6 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/about/PhotoGallery"
-                  className="hover:text-white transition-colors"
-                >
-                  Site Installation Gallery
-                </Link>
-              </li>
-              <li>
-                <Link
                   to="/about/Testimonials"
                   className="hover:text-white transition-colors"
                 >
@@ -235,7 +227,7 @@ export const Footer: React.FC = () => {
                   to="/about/Certifications"
                   className="hover:text-white transition-colors"
                 >
-                  Certifications
+                  Certifications & Compliance
                 </Link>
               </li>
               <li>
@@ -251,7 +243,7 @@ export const Footer: React.FC = () => {
                   to="/contact"
                   className="hover:text-white transition-colors"
                 >
-                  Contact & Support
+                  Contact & Inquiries
                 </Link>
               </li>
             </ul>
@@ -268,15 +260,7 @@ export const Footer: React.FC = () => {
                   to="/blogs"
                   className="hover:text-white transition-colors"
                 >
-                  Knowledge Centre
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/blogs"
-                  className="hover:text-white transition-colors"
-                >
-                  Downloads & Manuals
+                  Knowledge Centre & Insights
                 </Link>
               </li>
               <li>
@@ -284,24 +268,16 @@ export const Footer: React.FC = () => {
                   href="#consultation-form"
                   className="hover:text-white transition-colors"
                 >
-                  FAQs & Support
+                  Expert Consultation
                 </a>
               </li>
               <li>
-                <Link
-                  to="/products"
+                <a
+                  href={`tel:${mainPhone || "+919773851767"}`}
                   className="hover:text-white transition-colors"
                 >
-                  Product Catalogues
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/services/emergency-support"
-                  className="hover:text-white transition-colors"
-                >
-                  Technical Support
-                </Link>
+                  Direct Support Line
+                </a>
               </li>
             </ul>
           </div>

@@ -165,6 +165,16 @@ const Header = () => {
             </Link>
           </li>
 
+          {/* Testimonials */}
+          <li>
+            <Link
+              to="/about/Testimonials"
+              className="hover:text-primary transition-colors py-4"
+            >
+              Testimonials
+            </Link>
+          </li>
+
           {/* Contact */}
           <li>
             <Link
@@ -294,6 +304,14 @@ const Header = () => {
             onClick={closeMobileMenu}
           >
             Insights
+          </Link>
+
+          <Link
+            to="/about/Testimonials"
+            className="block py-3 border-b"
+            onClick={closeMobileMenu}
+          >
+            Testimonials
           </Link>
 
           <Link to="/contact" className="block py-3" onClick={closeMobileMenu}>
