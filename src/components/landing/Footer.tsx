@@ -33,13 +33,6 @@ export const Footer: React.FC = () => {
 
   const whatsappPhone = (mainPhone || "919773851767").replace(/[^+\d]/g, "");
 
-  const scrollToIndustry = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  };
-
   return (
     <footer
       id="footer-section"
@@ -158,64 +151,58 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 2: Industries */}
+          {/* Column 2: Services */}
           <div className="space-y-4">
             <h4 className="text-xs font-mono font-bold text-white uppercase tracking-widest">
-              Industries
+              Services
             </h4>
             <ul className="space-y-3 text-xs font-medium">
               <li>
                 <Link
-                  to="/#ind-manufacturing"
-                  onClick={() => scrollToIndustry("ind-manufacturing")}
+                  to="/services/annual-maintenance"
                   className="hover:text-white transition-colors"
                 >
-                  Manufacturing & Steel
+                  Annual Maintenance (AMC)
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/#ind-healthcare"
-                  onClick={() => scrollToIndustry("ind-healthcare")}
+                  to="/services/installation"
                   className="hover:text-white transition-colors"
                 >
-                  Healthcare & Hospitals
+                  Turnkey SITC & Installation
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/#ind-data-centres"
-                  onClick={() => scrollToIndustry("ind-data-centres")}
+                  to="/services/repair-overhaul"
                   className="hover:text-white transition-colors"
                 >
-                  Data Centres & IT Parks
+                  Repair & Engine Overhaul
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/#ind-hospitality"
-                  onClick={() => scrollToIndustry("ind-hospitality")}
+                  to="/services/emergency-support"
                   className="hover:text-white transition-colors"
                 >
-                  Hospitality & Hotels
+                  24/7 Emergency Support
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/#ind-commercial"
-                  onClick={() => scrollToIndustry("ind-commercial")}
+                  to="/about/PhotoGallery"
                   className="hover:text-white transition-colors"
                 >
-                  Commercial Buildings
+                  Site Installation Gallery
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/#ind-infrastructure"
-                  onClick={() => scrollToIndustry("ind-infrastructure")}
+                  to="/about/Testimonials"
                   className="hover:text-white transition-colors"
                 >
-                  Infrastructure & Rail
+                  Client Testimonials
                 </Link>
               </li>
             </ul>
@@ -253,26 +240,18 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/about/Milestones"
-                  className="hover:text-white transition-colors"
-                >
-                  Company Milestones
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/about/OurTeam"
-                  className="hover:text-white transition-colors"
-                >
-                  Leadership Team
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/about/Gallery"
+                  to="/about/PhotoGallery"
                   className="hover:text-white transition-colors"
                 >
                   Field Photo Gallery
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className="hover:text-white transition-colors"
+                >
+                  Contact & Support
                 </Link>
               </li>
             </ul>
