@@ -101,12 +101,13 @@ export const IndustriesServed: React.FC = () => {
               return (
                 <motion.div
                   key={item.id || idx}
+                  id={item.id}
                   initial={{ opacity: 0, y: 35 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.45, delay: idx * 0.08 }}
                   onClick={scrollToConsultation}
-                  className="relative h-[320px] rounded-2xl overflow-hidden cursor-pointer group border border-slate-800 hover:border-[#1A6AA2] transition-all duration-500 shadow-xl flex flex-col justify-between p-4 sm:p-5"
+                  className="relative h-[320px] rounded-2xl overflow-hidden cursor-pointer group border border-slate-800 hover:border-[#1A6AA2] transition-all duration-500 shadow-xl flex flex-col justify-between p-4 sm:p-5 scroll-mt-28 target:ring-2 target:ring-[#1A6AA2] target:border-[#1A6AA2]"
                 >
                   {/* Background Image */}
                   {item.image && (

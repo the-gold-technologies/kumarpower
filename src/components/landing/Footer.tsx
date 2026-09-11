@@ -33,6 +33,13 @@ export const Footer: React.FC = () => {
 
   const whatsappPhone = (mainPhone || "919773851767").replace(/[^+\d]/g, "");
 
+  const scrollToIndustry = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
+
   return (
     <footer
       id="footer-section"
@@ -158,52 +165,58 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-3 text-xs font-medium">
               <li>
-                <a
-                  href="#industries-served"
+                <Link
+                  to="/#ind-manufacturing"
+                  onClick={() => scrollToIndustry("ind-manufacturing")}
                   className="hover:text-white transition-colors"
                 >
                   Manufacturing & Steel
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#industries-served"
+                <Link
+                  to="/#ind-healthcare"
+                  onClick={() => scrollToIndustry("ind-healthcare")}
                   className="hover:text-white transition-colors"
                 >
                   Healthcare & Hospitals
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#industries-served"
+                <Link
+                  to="/#ind-data-centres"
+                  onClick={() => scrollToIndustry("ind-data-centres")}
                   className="hover:text-white transition-colors"
                 >
                   Data Centres & IT Parks
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#industries-served"
+                <Link
+                  to="/#ind-hospitality"
+                  onClick={() => scrollToIndustry("ind-hospitality")}
                   className="hover:text-white transition-colors"
                 >
                   Hospitality & Hotels
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#industries-served"
+                <Link
+                  to="/#ind-commercial"
+                  onClick={() => scrollToIndustry("ind-commercial")}
                   className="hover:text-white transition-colors"
                 >
                   Commercial Buildings
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#industries-served"
+                <Link
+                  to="/#ind-infrastructure"
+                  onClick={() => scrollToIndustry("ind-infrastructure")}
                   className="hover:text-white transition-colors"
                 >
                   Infrastructure & Rail
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
