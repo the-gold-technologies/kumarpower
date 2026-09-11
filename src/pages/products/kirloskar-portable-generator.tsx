@@ -1,4 +1,5 @@
 import { LinkText } from "@/components/ui/LinkText";
+import { downloadPdf } from "@/lib/utils";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/landing/Header";
@@ -68,6 +69,20 @@ import petrolBrochure from "@/assets/Brochure/4.Kirloskar powergen_Sentinel seri
 import Direction76 from "@/assets/Brochure/Direction76.pdf";
 import { Helmet } from "react-helmet-async";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
+
+const getPortableBrochure = (product: any) => {
+  if (
+    product?.brochurePdf &&
+    typeof product.brochurePdf === "string" &&
+    product.brochurePdf.trim() !== "" &&
+    !product.brochurePdf.endsWith(".jpg") &&
+    !product.brochurePdf.endsWith(".jpeg") &&
+    !product.brochurePdf.endsWith(".png")
+  ) {
+    return product.brochurePdf;
+  }
+  return petrolBrochure || "/Brochures/4.Kirloskar powergen_Sentinel series Genset.pdf";
+};
 
 const Products = () => {
   const HeadingTag = usePageHeadingTag("kirloskar-portable-generator");
@@ -515,83 +530,21 @@ const Products = () => {
                 >
                   <Link to="/contact">Request Quote </Link>
                 </Button>
-                {/* Only show brochure button for generator categories */}
-                {["diesel", "gas", "portable", "optiprime"].includes(
-                  selectedProductForSpecs.category,
-                ) && (
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex items-center gap-1 w-full sm:w-auto"
-                  >
-                    <Download className="w-4 h-4" />
-                    <a
-                      href={
-                        selectedProductForSpecs.category === "diesel"
-                          ? selectedProductForSpecs.range.includes("7.5") ||
-                            selectedProductForSpecs.range.includes("7.5 - 20")
-                            ? cpcb7To20
-                            : selectedProductForSpecs.range.includes("58") ||
-                                selectedProductForSpecs.range.includes(
-                                  "25 - 58.5",
-                                )
-                              ? cpcb25To58
-                              : selectedProductForSpecs.range.includes(
-                                    "82.5",
-                                  ) ||
-                                  selectedProductForSpecs.range.includes(
-                                    "82.5 - 160",
-                                  )
-                                ? cpcb82To160
-                                : selectedProductForSpecs.range.includes(
-                                      "250",
-                                    ) ||
-                                    selectedProductForSpecs.range.includes(
-                                      "200 - 250",
-                                    ) ||
-                                    selectedProductForSpecs.id.includes(
-                                      "200 kVA to 250 kVA",
-                                    )
-                                  ? cpcb200To250
-                                  : selectedProductForSpecs.range.includes(
-                                        "320",
-                                      ) ||
-                                      selectedProductForSpecs.range.includes(
-                                        "320 - 750",
-                                      )
-                                    ? cpcb320To750
-                                    : selectedProductForSpecs.range.includes(
-                                          "750",
-                                        ) ||
-                                        selectedProductForSpecs.range.includes(
-                                          "750 - 1500",
-                                        )
-                                      ? cpcb750To1500
-                                      : Brochure
-                          : selectedProductForSpecs.category === "gas"
-                            ? gasBrochure
-                            : selectedProductForSpecs.category === "portable"
-                              ? petrolBrochure
-                              : selectedProductForSpecs.category === "optiprime"
-                                ? optiprimeBrochure
-                                : Brochure
-                      }
-                      download={
-                        selectedProductForSpecs.category === "diesel"
-                          ? `Kirloskar ${selectedProductForSpecs.range} Diesel Generator Brochure.pdf`
-                          : selectedProductForSpecs.category === "gas"
-                            ? "Kirloskar Gas Generator Brochure.pdf"
-                            : selectedProductForSpecs.category === "portable"
-                              ? "Kirloskar Portable Generator Brochure.pdf"
-                              : selectedProductForSpecs.category === "optiprime"
-                                ? "Kirloskar Optiprime Generator Brochure.pdf"
-                                : "Generator Brochure.pdf"
-                      }
-                    >
-                      Brochure
-                    </a>
-                  </Button>
-                )}
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="flex items-center gap-1 w-full sm:w-auto cursor-pointer text-slate-800 hover:text-[#2D6FBA]"
+                  onClick={() => {
+                    const brochure = getPortableBrochure(selectedProductForSpecs);
+                    downloadPdf(
+                      brochure,
+                      `${selectedProductForSpecs.name || "Kirloskar Portable Generator"} Brochure.pdf`
+                    );
+                  }}
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Download Brochure</span>
+                </Button>
               </div>
             </>
           )}

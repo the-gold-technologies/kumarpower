@@ -745,19 +745,6 @@ const Products = () => {
                 >
                   <Link to="/contact">Request Quote </Link>
                 </Button>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="flex items-center gap-1 w-full sm:w-auto"
-                >
-                  <Download className="w-4 h-4" />
-                  <a
-                    href={getPanelBrochure(selectedProductForSpecs)}
-                    download={`${selectedProductForSpecs.name} Brochure.pdf`}
-                  >
-                    Download Brochure
-                  </a>
-                </Button>
               </div>
             </>
           )}
