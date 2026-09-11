@@ -273,7 +273,7 @@ const Products = () => {
                       className="h-7 text-xs border-gray-600 text-gray-300 bg-gray-700 hover:bg-gray-600"
                       onClick={() => openSpecsModal(product)}
                     >
-                      View Specs
+                      View Details
                     </Button>
 
                     <Button

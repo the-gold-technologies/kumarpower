@@ -249,7 +249,7 @@ const Products = () => {
 
   // Function to open the specs modal
   const openSpecsModal = (product) => {
-    setSelectedProductForSpecs(product);
+    setSelectedProductForSpecs({ ...product, category: product.category || "optiprime" });
     setShowSpecsModal(true);
   };
 
@@ -360,7 +360,7 @@ const Products = () => {
                             className="h-7 text-xs flex items-center gap-1 py-0 px-2 border-gray-600 text-gray-300 bg-gray-700 hover:bg-gray-600"
                             onClick={() => openSpecsModal(product)}
                           >
-                            View Specs <ChevronRight className="w-3 h-3" />
+                            View Details <ChevronRight className="w-3 h-3" />
                           </Button>
 
                           <Button
@@ -734,83 +734,19 @@ const Products = () => {
                 >
                   <Link to="/contact">Request Quote </Link>
                 </Button>
-                {/* Only show brochure button for generator categories */}
-                {["diesel", "gas", "portable", "optiprime"].includes(
-                  selectedProductForSpecs.category,
-                ) && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="flex items-center gap-1 w-full sm:w-auto"
-                    >
-                      <Download className="w-4 h-4" />
-                      <a
-                        href={
-                          selectedProductForSpecs.category === "diesel"
-                            ? selectedProductForSpecs.range.includes("7.5") ||
-                              selectedProductForSpecs.range.includes("7.5 - 20")
-                              ? cpcb7To20
-                              : selectedProductForSpecs.range.includes("58") ||
-                                selectedProductForSpecs.range.includes(
-                                  "25 - 58.5",
-                                )
-                                ? cpcb25To58
-                                : selectedProductForSpecs.range.includes(
-                                  "82.5",
-                                ) ||
-                                  selectedProductForSpecs.range.includes(
-                                    "82.5 - 160",
-                                  )
-                                  ? cpcb82To160
-                                  : selectedProductForSpecs.range.includes(
-                                    "250",
-                                  ) ||
-                                    selectedProductForSpecs.range.includes(
-                                      "200 - 250",
-                                    ) ||
-                                    selectedProductForSpecs.id.includes(
-                                      "200 kVA to 250 kVA",
-                                    )
-                                    ? cpcb200To250
-                                    : selectedProductForSpecs.range.includes(
-                                      "320",
-                                    ) ||
-                                      selectedProductForSpecs.range.includes(
-                                        "320 - 750",
-                                      )
-                                      ? cpcb320To750
-                                      : selectedProductForSpecs.range.includes(
-                                        "750",
-                                      ) ||
-                                        selectedProductForSpecs.range.includes(
-                                          "750 - 1500",
-                                        )
-                                        ? cpcb750To1500
-                                        : Brochure
-                            : selectedProductForSpecs.category === "gas"
-                              ? gasBrochure
-                              : selectedProductForSpecs.category === "portable"
-                                ? petrolBrochure
-                                : selectedProductForSpecs.category === "optiprime"
-                                  ? optiprimeBrochure
-                                  : Brochure
-                        }
-                        download={
-                          selectedProductForSpecs.category === "diesel"
-                            ? `Kirloskar ${selectedProductForSpecs.range} Diesel Generator Brochure.pdf`
-                            : selectedProductForSpecs.category === "gas"
-                              ? "Kirloskar Gas Generator Brochure.pdf"
-                              : selectedProductForSpecs.category === "portable"
-                                ? "Kirloskar Portable Generator Brochure.pdf"
-                                : selectedProductForSpecs.category === "optiprime"
-                                  ? "Kirloskar Optiprime Generator Brochure.pdf"
-                                  : "Generator Brochure.pdf"
-                        }
-                      >
-                        Brochure
-                      </a>
-                    </Button>
-                  )}
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="flex items-center gap-1 w-full sm:w-auto"
+                >
+                  <Download className="w-4 h-4" />
+                  <a
+                    href={optiprimeBrochure}
+                    download="Kirloskar Optiprime Generator Brochure.pdf"
+                  >
+                    Download Brochure
+                  </a>
+                </Button>
               </div>
             </>
           )}

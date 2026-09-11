@@ -106,6 +106,12 @@ const Header = () => {
                   Power Generation
                 </Link>
                 <Link
+                  to="/products/kirloskar-portable-generator"
+                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
+                >
+                  Portable Generators
+                </Link>
+                <Link
                   to="/products/transformers"
                   className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
                 >
@@ -227,6 +233,13 @@ const Header = () => {
                   onClick={closeMobileMenu}
                 >
                   Power Generation
+                </Link>
+                <Link
+                  to="/products/kirloskar-portable-generator"
+                  className="block py-1.5 text-sm"
+                  onClick={closeMobileMenu}
+                >
+                  Portable Generators
                 </Link>
                 <Link
                   to="/products/transformers"

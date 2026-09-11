@@ -69,6 +69,18 @@ import Direction76 from "@/assets/Brochure/Direction76.pdf";
 import { Helmet } from "react-helmet-async";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 
+const getDieselBrochure = (product: any) => {
+  const label = `${product?.range || ""} ${product?.name || ""}`;
+  if (/7\.5/.test(label)) return cpcb7To20;
+  if (/58\.5|25 kVA/.test(label)) return cpcb25To58;
+  if (/82\.5|160 kVA/.test(label)) return cpcb82To160;
+  if (/200.*250|200 kVA to 250/.test(label)) return cpcb200To250;
+  if (/1500/.test(label)) return cpcb750To1500;
+  if (/320.*750/.test(label)) return cpcb320To750;
+  if (product?.brochurePdf?.endsWith(".pdf")) return product.brochurePdf;
+  return Brochure;
+};
+
 const Products = () => {
   const HeadingTag = usePageHeadingTag("kirloskar-diesel-generator");
   const { data: rawCMSData } = useSectionData<any>(
@@ -124,7 +136,7 @@ const Products = () => {
   const [quoteSending, setQuoteSending] = useState(false);
 
   const openSpecsModal = (product) => {
-    setSelectedProductForSpecs(product);
+    setSelectedProductForSpecs({ ...product, category: product.category || "diesel" });
     setShowSpecsModal(true);
   };
 
@@ -274,7 +286,7 @@ const Products = () => {
                       className="h-7 text-xs border-gray-600 text-gray-300 bg-gray-700 hover:bg-gray-600"
                       onClick={() => openSpecsModal(product)}
                     >
-                      View Specs
+                      View Details
                     </Button>
 
                     <Button
@@ -518,83 +530,19 @@ const Products = () => {
                 >
                   <Link to="/contact">Request Quote </Link>
                 </Button>
-                {/* Only show brochure button for generator categories */}
-                {["diesel", "gas", "portable", "optiprime"].includes(
-                  selectedProductForSpecs.category,
-                ) && (
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex items-center gap-1 w-full sm:w-auto"
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="flex items-center gap-1 w-full sm:w-auto"
+                >
+                  <Download className="w-4 h-4" />
+                  <a
+                    href={getDieselBrochure(selectedProductForSpecs)}
+                    download={`Kirloskar ${selectedProductForSpecs.range} Diesel Generator Brochure.pdf`}
                   >
-                    <Download className="w-4 h-4" />
-                    <a
-                      href={
-                        selectedProductForSpecs.category === "diesel"
-                          ? selectedProductForSpecs.range.includes("7.5") ||
-                            selectedProductForSpecs.range.includes("7.5 - 20")
-                            ? cpcb7To20
-                            : selectedProductForSpecs.range.includes("58") ||
-                                selectedProductForSpecs.range.includes(
-                                  "25 - 58.5",
-                                )
-                              ? cpcb25To58
-                              : selectedProductForSpecs.range.includes(
-                                    "82.5",
-                                  ) ||
-                                  selectedProductForSpecs.range.includes(
-                                    "82.5 - 160",
-                                  )
-                                ? cpcb82To160
-                                : selectedProductForSpecs.range.includes(
-                                      "250",
-                                    ) ||
-                                    selectedProductForSpecs.range.includes(
-                                      "200 - 250",
-                                    ) ||
-                                    selectedProductForSpecs.id.includes(
-                                      "200 kVA to 250 kVA",
-                                    )
-                                  ? cpcb200To250
-                                  : selectedProductForSpecs.range.includes(
-                                        "320",
-                                      ) ||
-                                      selectedProductForSpecs.range.includes(
-                                        "320 - 750",
-                                      )
-                                    ? cpcb320To750
-                                    : selectedProductForSpecs.range.includes(
-                                          "750",
-                                        ) ||
-                                        selectedProductForSpecs.range.includes(
-                                          "750 - 1500",
-                                        )
-                                      ? cpcb750To1500
-                                      : Brochure
-                          : selectedProductForSpecs.category === "gas"
-                            ? gasBrochure
-                            : selectedProductForSpecs.category === "portable"
-                              ? petrolBrochure
-                              : selectedProductForSpecs.category === "optiprime"
-                                ? optiprimeBrochure
-                                : Brochure
-                      }
-                      download={
-                        selectedProductForSpecs.category === "diesel"
-                          ? `Kirloskar ${selectedProductForSpecs.range} Diesel Generator Brochure.pdf`
-                          : selectedProductForSpecs.category === "gas"
-                            ? "Kirloskar Gas Generator Brochure.pdf"
-                            : selectedProductForSpecs.category === "portable"
-                              ? "Kirloskar Portable Generator Brochure.pdf"
-                              : selectedProductForSpecs.category === "optiprime"
-                                ? "Kirloskar Optiprime Generator Brochure.pdf"
-                                : "Generator Brochure.pdf"
-                      }
-                    >
-                      Brochure
-                    </a>
-                  </Button>
-                )}
+                    Download Brochure
+                  </a>
+                </Button>
               </div>
             </>
           )}

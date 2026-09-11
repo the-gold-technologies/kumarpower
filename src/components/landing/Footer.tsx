@@ -94,6 +94,14 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
+                  to="/products/kirloskar-portable-generator"
+                  className="hover:text-white transition-colors"
+                >
+                  Portable Generators
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/products/transformers"
                   className="hover:text-white transition-colors"
                 >
