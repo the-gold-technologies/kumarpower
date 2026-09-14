@@ -11,6 +11,7 @@ import SelectedProjects from "@/components/landing/SelectedProjects";
 import PartnerCertifications from "@/components/landing/PartnerCertifications";
 import KnowledgeCenter from "@/components/landing/KnowledgeCenter";
 import ConsultationForm from "@/components/landing/ConsultationForm";
+import LandingTestimonials from "@/components/landing/LandingTestimonials";
 import Footer from "@/components/landing/Footer";
 import SEO from "@/components/SEO";
 import SEOJsonLD from "@/components/SEOJsonLD";
@@ -62,7 +63,10 @@ const Index: React.FC = () => {
         {/* 11. Knowledge centre / Power Insights (Clean White) */}
         <KnowledgeCenter />
 
-        {/* 12. Consultation section (High-Impact Navy Conversion Card) */}
+        {/* 12. Real Stories. Real Power. (Customer Testimonials) */}
+        <LandingTestimonials />
+
+        {/* 13. Consultation section (High-Impact Navy Conversion Card) */}
         <ConsultationForm />
       </main>
 
