@@ -449,7 +449,10 @@ const OurClients = () => {
   if (Array.isArray(cmsData.clients) && cmsData.clients.length > 0) {
     const groupedClients = cmsData.clients.reduce((acc: any, curr: any) => {
       if (!acc[curr.category]) acc[curr.category] = [];
-      acc[curr.category].push(curr.name);
+      acc[curr.category].push({
+        name: typeof curr === "string" ? curr : curr.name,
+        logo: typeof curr === "object" ? curr.logo || "" : "",
+      });
       return acc;
     }, {});
 
@@ -789,17 +792,49 @@ const OurClients = () => {
               {/* Blue underline below the name */}
               <span className="mt-2 w-full h-0.5 bg-gradient-to-r from-[#2D6FBA] to-[#2D6FBA]/0 rounded"></span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-8">
-              {clientCategories[activeTab].clients.map((client, index) => (
-                <div key={index}>
-                  <p className="font-semibold mb-4">
-                    <LinkText
-                      text={client}
-                      linkClassName="text-[#2D6FBA] hover:underline font-bold"
-                    />
-                  </p>
-                </div>
-              ))}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-6">
+              {clientCategories[activeTab].clients.map((client: any, index: number) => {
+                const clientName = typeof client === "string" ? client : (client?.name || "");
+                const clientLogo = typeof client === "object" && client?.logo ? client.logo : "";
+
+                if (clientLogo) {
+                  return (
+                    <div
+                      key={index}
+                      className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#2D6FBA]/50 rounded-xl p-3 flex flex-col items-center justify-center transition-all duration-200 group min-h-[96px] shadow-sm relative"
+                      title={clientName}
+                    >
+                      <div className="w-full h-14 flex items-center justify-center p-1.5 bg-white/95 rounded-lg group-hover:bg-white transition-colors">
+                        <img
+                          src={clientLogo}
+                          alt={clientName}
+                          className="max-h-11 max-w-full object-contain filter group-hover:scale-105 transition-transform duration-200"
+                          onError={(e) => {
+                            e.currentTarget.style.display = "none";
+                          }}
+                        />
+                      </div>
+                      <span className="text-[11px] text-gray-300 mt-1.5 truncate max-w-full text-center group-hover:text-white transition-colors font-medium">
+                        {clientName}
+                      </span>
+                    </div>
+                  );
+                }
+
+                return (
+                  <div
+                    key={index}
+                    className="bg-white/[0.03] hover:bg-white/[0.07] border border-white/5 hover:border-white/15 rounded-xl p-3.5 flex items-center min-h-[64px] transition-all"
+                  >
+                    <p className="font-semibold text-white/90 text-sm leading-snug">
+                      <LinkText
+                        text={clientName}
+                        linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                      />
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
