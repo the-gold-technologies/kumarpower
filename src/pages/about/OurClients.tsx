@@ -793,48 +793,54 @@ const OurClients = () => {
               <span className="mt-2 w-full h-0.5 bg-gradient-to-r from-[#2D6FBA] to-[#2D6FBA]/0 rounded"></span>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-6">
-              {clientCategories[activeTab].clients.map((client: any, index: number) => {
-                const clientName = typeof client === "string" ? client : (client?.name || "");
-                const clientLogo = typeof client === "object" && client?.logo ? client.logo : "";
+              {clientCategories[activeTab].clients.map(
+                (client: any, index: number) => {
+                  const clientName =
+                    typeof client === "string" ? client : client?.name || "";
+                  const clientLogo =
+                    typeof client === "object" && client?.logo
+                      ? client.logo
+                      : "";
 
-                if (clientLogo) {
+                  if (clientLogo) {
+                    return (
+                      <div
+                        key={index}
+                        className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#2D6FBA]/50 rounded-xl p-3 flex flex-col items-center justify-center transition-all duration-200 group min-h-[96px] shadow-sm relative"
+                        title={clientName}
+                      >
+                        <div className="w-full h-14 flex items-center justify-center p-2 bg-[#0f172a] rounded-lg group-hover:bg-[#1e293b] transition-colors">
+                          <img
+                            src={clientLogo}
+                            alt={clientName}
+                            className="max-h-10 max-w-full object-contain filter group-hover:scale-105 transition-transform duration-200"
+                            onError={(e) => {
+                              e.currentTarget.style.display = "none";
+                            }}
+                          />
+                        </div>
+                        <span className="text-[11px] text-gray-300 mt-1.5 truncate max-w-full text-center group-hover:text-white transition-colors font-medium">
+                          {clientName}
+                        </span>
+                      </div>
+                    );
+                  }
+
                   return (
                     <div
                       key={index}
-                      className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#2D6FBA]/50 rounded-xl p-3 flex flex-col items-center justify-center transition-all duration-200 group min-h-[96px] shadow-sm relative"
-                      title={clientName}
+                      className="bg-white/[0.03] hover:bg-white/[0.07] border border-white/5 hover:border-white/15 rounded-xl p-3.5 flex items-center min-h-[64px] transition-all"
                     >
-                      <div className="w-full h-14 flex items-center justify-center p-1.5 bg-white/95 rounded-lg group-hover:bg-white transition-colors">
-                        <img
-                          src={clientLogo}
-                          alt={clientName}
-                          className="max-h-11 max-w-full object-contain filter group-hover:scale-105 transition-transform duration-200"
-                          onError={(e) => {
-                            e.currentTarget.style.display = "none";
-                          }}
+                      <p className="font-semibold text-white/90 text-sm leading-snug">
+                        <LinkText
+                          text={clientName}
+                          linkClassName="text-[#2D6FBA] hover:underline font-bold"
                         />
-                      </div>
-                      <span className="text-[11px] text-gray-300 mt-1.5 truncate max-w-full text-center group-hover:text-white transition-colors font-medium">
-                        {clientName}
-                      </span>
+                      </p>
                     </div>
                   );
-                }
-
-                return (
-                  <div
-                    key={index}
-                    className="bg-white/[0.03] hover:bg-white/[0.07] border border-white/5 hover:border-white/15 rounded-xl p-3.5 flex items-center min-h-[64px] transition-all"
-                  >
-                    <p className="font-semibold text-white/90 text-sm leading-snug">
-                      <LinkText
-                        text={clientName}
-                        linkClassName="text-[#2D6FBA] hover:underline font-bold"
-                      />
-                    </p>
-                  </div>
-                );
-              })}
+                },
+              )}
             </div>
           </div>
         </div>
