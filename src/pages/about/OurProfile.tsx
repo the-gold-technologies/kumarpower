@@ -4,6 +4,7 @@ import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
 import SEO from "@/components/SEO";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
+import { Youtube, Linkedin, Instagram } from "lucide-react";
 
 const About = () => {
   const HeadingTag = usePageHeadingTag("our-profile");
@@ -23,6 +24,13 @@ const About = () => {
   const paragraph2 = hero.paragraph2 || "";
   const paragraph3 = hero.paragraph3 || "";
   const paragraph4 = hero.paragraph4 || "";
+  const linkedinUrl =
+    hero.linkedinUrl || "https://www.linkedin.com/company/kumar-power/";
+  const youtubeUrl =
+    hero.youtubeUrl || "https://youtube.com/@kumarpowertv?si=mFgisAy9mp6Uu0LE";
+  const instagramUrl =
+    hero.instagramUrl ||
+    "https://www.instagram.com/kumarpowerlimitless?stkn=MnphYzM1MTlvMTcz&utm_source=qr";
 
   // Story Section fields
   const storyTitle = story.storyTitle || "";
@@ -123,6 +131,43 @@ const About = () => {
                   linkClassName="text-[#2D6FBA] hover:underline font-bold"
                 />
               </p>
+
+              {/* Social Media Links */}
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <span className="text-sm font-semibold text-gray-700">
+                  Connect with us:
+                </span>
+                <a
+                  href={linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#0A66C2]/10 text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white transition-all duration-200 border border-[#0A66C2]/20 hover:border-[#0A66C2] shadow-sm hover:shadow"
+                  title="Follow Kumar Power on LinkedIn"
+                >
+                  <Linkedin className="w-3.5 h-3.5" />
+                  <span>LinkedIn</span>
+                </a>
+                <a
+                  href={youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#FF0000]/10 text-[#FF0000] hover:bg-[#FF0000] hover:text-white transition-all duration-200 border border-[#FF0000]/20 hover:border-[#FF0000] shadow-sm hover:shadow"
+                  title="Subscribe to Kumar Power TV on YouTube"
+                >
+                  <Youtube className="w-3.5 h-3.5" />
+                  <span>YouTube</span>
+                </a>
+                <a
+                  href={instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#E4405F]/10 text-[#E4405F] hover:bg-gradient-to-r hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F77737] hover:text-white transition-all duration-200 border border-[#E4405F]/20 hover:border-[#E4405F] shadow-sm hover:shadow"
+                  title="Follow Kumar Power on Instagram"
+                >
+                  <Instagram className="w-3.5 h-3.5" />
+                  <span>Instagram</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
