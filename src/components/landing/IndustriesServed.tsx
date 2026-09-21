@@ -114,14 +114,15 @@ export const IndustriesServed: React.FC = () => {
                     <img
                       src={item.image}
                       alt={item.name || "Industry"}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-45 contrast-125"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src =
                           "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80";
                       }}
                     />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/20" />
+                  {/* Bottom Text Overlay: only on the bottom side where text is, leaving top bright */}
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-transparent pointer-events-none" />
 
                   {/* Top Badge */}
                   <div className="relative z-10 flex items-center justify-between">
@@ -134,15 +135,15 @@ export const IndustriesServed: React.FC = () => {
                   </div>
 
                   {/* Content */}
-                  <div className="relative z-10 space-y-2">
+                  <div className="relative z-10 space-y-1.5">
                     {item.name && (
-                      <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-[#1A6AA2] transition-colors drop-shadow">
+                      <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#38bdf8] transition-colors leading-snug drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                         {item.name}
                       </h3>
                     )}
 
                     {item.problem && (
-                      <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-light drop-shadow-sm">
+                      <p className="text-[11px] sm:text-xs text-slate-200 leading-relaxed font-normal drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
                         {item.problem}
                       </p>
                     )}

@@ -140,3 +140,13 @@ All colors MUST be HSL.
 .logo-scroll:hover {
   animation-play-state: paused;
 }
+
+/* Hide number input spinners across all browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}

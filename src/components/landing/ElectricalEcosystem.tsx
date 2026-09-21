@@ -247,7 +247,7 @@ export const ElectricalEcosystem: React.FC = () => {
 
         {/* Inspection Display Card */}
         <div
-          className="rounded-3xl bg-white border border-slate-200 overflow-hidden shadow-2xl min-h-[420px] relative"
+          className="rounded-3xl bg-white border border-slate-200 overflow-hidden shadow-2xl relative flex flex-col"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -258,18 +258,17 @@ export const ElectricalEcosystem: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-0 w-full h-full"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-0 w-full flex-1"
             >
               {/* Left Visual Photo Frame */}
-              <div className="lg:col-span-6 relative h-[360px] lg:h-auto overflow-hidden">
+              <div className="lg:col-span-6 relative min-h-[360px] lg:min-h-0 overflow-hidden">
                 {current.image && (
                   <img
                     src={current.image}
                     alt={current.name || "Stage Equipment"}
-                    className="w-full h-full object-cover filter brightness-95 contrast-105 transition-transform duration-700"
+                    className="absolute inset-0 w-full h-full object-cover filter brightness-95 contrast-105 transition-transform duration-700"
                   />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
                 <div className="absolute top-6 left-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-slate-200 text-xs font-mono font-bold text-[#1A6AA2] backdrop-blur-md shadow">
                   <Icon className="w-3.5 h-3.5 text-[#1A6AA2]" /> Stage{" "}
                   {current.step} Equipment Visual
