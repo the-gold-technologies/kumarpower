@@ -100,16 +100,10 @@ const Header = () => {
             <div className="absolute left-0 top-[90%] pt-3 hidden group-hover:block hover:block">
               <div className="bg-white shadow-lg rounded-md min-w-[260px] z-10 overflow-hidden py-1 border border-slate-100">
                 <Link
-                  to="/products/kirloskar-diesel-generator"
+                  to="/products/generators"
                   className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
                 >
-                  Power Generation
-                </Link>
-                <Link
-                  to="/products/kirloskar-portable-generator"
-                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
-                >
-                  Portable Generators
+                  Generators
                 </Link>
                 <Link
                   to="/products/transformers"
@@ -229,18 +223,11 @@ const Header = () => {
               </summary>
               <div className="mt-2 ml-4 space-y-2">
                 <Link
-                  to="/products/kirloskar-diesel-generator"
+                  to="/products/generators"
                   className="block py-1.5 text-sm"
                   onClick={closeMobileMenu}
                 >
-                  Power Generation
-                </Link>
-                <Link
-                  to="/products/kirloskar-portable-generator"
-                  className="block py-1.5 text-sm"
-                  onClick={closeMobileMenu}
-                >
-                  Portable Generators
+                  Generators
                 </Link>
                 <Link
                   to="/products/transformers"

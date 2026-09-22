@@ -15,11 +15,8 @@ import Testimonials from "./pages/about/Testimonials";
 // Main Products page
 import Products from "./pages/Products";
 
-import KirloskarDisel from "./pages/products/Kirloskar-diesel-generator";
-import KirloskarGas from "./pages/products/kirloskar-gas-generator";
-import KirloskarPortable from "./pages/products/kirloskar-portable-generator";
+import Generators from "./pages/products/generators";
 import Panels from "./pages/products/panels";
-import Optiprime from "./pages/products/Optiprime";
 import Servo from "./pages/products/servo-stabilizer";
 import Transformer from "./pages/products/transformers";
 // Services pages
@@ -78,19 +75,10 @@ const App = () => (
           {/* Product Routes */}
           <Route path="/products" element={<Products />} />
           <Route
-            path="/products/kirloskar-diesel-generator"
-            element={<KirloskarDisel />}
-          />
-          <Route
-            path="/products/kirloskar-gas-generator"
-            element={<KirloskarGas />}
-          />
-          <Route
-            path="/products/kirloskar-portable-generator"
-            element={<KirloskarPortable />}
+            path="/products/generators"
+            element={<Generators />}
           />
           <Route path="/products/panels" element={<Panels />} />
-          <Route path="/products/optiprime" element={<Optiprime />} />
           <Route path="/products/servo-stabilizer" element={<Servo />} />
           <Route path="/products/transformers" element={<Transformer />} />
           {/* Services Routes */}

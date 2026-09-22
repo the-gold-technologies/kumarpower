@@ -220,7 +220,7 @@ const Products = () => {
       description:
         "Our range of diesel generators are designed for maximum performance and reliability. Our generators meet the latest CPCB norms and are built for Indian conditions.",
       technicalSpecs: `Engineered specifically for compact power needs, this range utilizes the robust Kirloskar R550 series engines, known for their naturally aspirated design and reliable G2 class mechanical governing. These units are optimized for low-load operations, consuming approximately 2-3 Liters per hour at 75% load, making them highly economical. The silent canopy design ensures noise levels remain below 75 dBA at 1 meter, making these generators the ideal choice for small retail shops, clinics, residential backup, and small offices where silence is as important as power.`,
-      productLink: "/products/kirloskar-diesel-generator",
+      productLink: "/products/generators",
     },
     {
       id: "15 kVA to 250 kVA",

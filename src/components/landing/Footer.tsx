@@ -86,10 +86,10 @@ export const Footer: React.FC = () => {
             <ul className="space-y-3 text-xs font-medium">
               <li>
                 <Link
-                  to="/products/kirloskar-diesel-generator"
+                  to="/products/generators"
                   className="hover:text-white transition-colors"
                 >
-                  Diesel Generators
+                  Generators
                 </Link>
               </li>
               <li>
