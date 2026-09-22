@@ -134,18 +134,18 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/products/servo-stabilizer"
+                  to="/products/solar"
                   className="hover:text-white transition-colors"
                 >
-                  Servo Stabilizers
+                  Solar Panels
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/products"
+                  to="/products/servo-stabilizer"
                   className="hover:text-white transition-colors"
                 >
-                  All Products
+                  Servo Stabilizers
                 </Link>
               </li>
             </ul>

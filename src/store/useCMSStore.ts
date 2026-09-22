@@ -11,16 +11,43 @@ interface PageState {
   fetched: boolean;
 }
 
+export interface NavLinkItem {
+  id: string;
+  label: string;
+  url: string;
+  type: string;
+  parent: string;
+  order: number;
+  isActive: boolean;
+}
+
 interface CMSState {
   pages: Record<string, PageState>;
   globalSEO: any;
+  navLinks: NavLinkItem[];
   fetchPage: (slug: string) => Promise<void>;
   fetchGlobalSEO: () => Promise<void>;
+  fetchNavLinks: () => Promise<void>;
 }
 
 export const useCMSStore = create<CMSState>((set, get) => ({
   pages: {},
   globalSEO: null,
+  navLinks: [],
+  fetchNavLinks: async () => {
+    if (get().navLinks.length > 0) return;
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/nav-links`);
+      if (response.ok) {
+        const json = await response.json();
+        if (json.success && Array.isArray(json.data)) {
+          set({ navLinks: json.data });
+        }
+      }
+    } catch (err) {
+      console.warn("Error fetching nav links:", err);
+    }
+  },
   fetchGlobalSEO: async () => {
     if (get().globalSEO) return; // Already fetched
     try {
@@ -164,4 +191,15 @@ export function usePageHeadingTag(
   return (pageState?.seo?.headingOptions ||
     globalSEO?.headingOptions ||
     "h1") as keyof JSX.IntrinsicElements;
+}
+
+export function useNavLinks(): NavLinkItem[] {
+  const navLinks = useCMSStore((state) => state.navLinks);
+  const fetchNavLinks = useCMSStore((state) => state.fetchNavLinks);
+
+  useEffect(() => {
+    fetchNavLinks();
+  }, [fetchNavLinks]);
+
+  return navLinks;
 }

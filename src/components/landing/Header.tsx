@@ -2,6 +2,7 @@ import { Menu, ChevronDown, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import kumarLogo from "@/assets/kumar_power_logo.png";
+import { useNavLinks, NavLinkItem } from "@/store/useCMSStore";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,6 +11,20 @@ const Header = () => {
   const [scrolledPastHero, setScrolledPastHero] = useState(
     !isHomePage && (typeof window !== "undefined" ? window.scrollY > 100 : true)
   );
+
+  // Dynamic Navigation Links from CMS
+  const cmsNavLinks = useNavLinks();
+  const rawLinks = Array.isArray(cmsNavLinks) ? cmsNavLinks : [];
+  const activeLinks = rawLinks.filter((l) => l.isActive !== false);
+
+  const mainLinks = activeLinks
+    .filter((l) => l.parent === "-" || !l.parent)
+    .sort((a, b) => a.order - b.order);
+
+  const getSubLinks = (parentId: string) =>
+    activeLinks
+      .filter((l) => l.parent === parentId)
+      .sort((a, b) => a.order - b.order);
 
   useEffect(() => {
     if (!isHomePage) {
@@ -71,104 +86,49 @@ const Header = () => {
           />
         </Link>
 
-        {/* Desktop Navigation Links */}
+        {/* Desktop Navigation Links from CMS */}
         <ul className="hidden md:flex items-center gap-6 text-base font-medium">
-          <li>
-            <Link to="/" className="hover:text-primary transition-colors">
-              Home
-            </Link>
-          </li>
+          {mainLinks.map((item) => {
+            if (item.type === "Dropdown") {
+              const subLinks = getSubLinks(item.id);
+              return (
+                <li key={item.id} className="relative group">
+                  <Link
+                    to={item.url}
+                    className="hover:text-primary transition-colors flex items-center gap-1 cursor-pointer py-4"
+                  >
+                    {item.label} <ChevronDown className="w-4 h-4" />
+                  </Link>
+                  {subLinks.length > 0 && (
+                    <div className="absolute left-0 top-[90%] pt-3 hidden group-hover:block hover:block">
+                      <div className="bg-white shadow-lg rounded-md min-w-[260px] z-10 overflow-hidden py-1 border border-slate-100">
+                        {subLinks.map((sub) => (
+                          <Link
+                            key={sub.id}
+                            to={sub.url}
+                            className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </li>
+              );
+            }
 
-          {/* About */}
-          <li>
-            <Link
-              to="/about/OurProfile"
-              className="hover:text-primary transition-colors py-4"
-            >
-              About
-            </Link>
-          </li>
-
-          {/* Solutions Mega Dropdown */}
-          <li className="relative group">
-            <Link
-              to="/products"
-              className="hover:text-primary transition-colors flex items-center gap-1 cursor-pointer py-4"
-            >
-              Solutions <ChevronDown className="w-4 h-4" />
-            </Link>
-            <div className="absolute left-0 top-[90%] pt-3 hidden group-hover:block hover:block">
-              <div className="bg-white shadow-lg rounded-md min-w-[260px] z-10 overflow-hidden py-1 border border-slate-100">
+            return (
+              <li key={item.id}>
                 <Link
-                  to="/products/generators"
-                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
+                  to={item.url}
+                  className="hover:text-primary transition-colors py-4"
                 >
-                  Generators
+                  {item.label}
                 </Link>
-                <Link
-                  to="/products/transformers"
-                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
-                >
-                  Transformers/Substation
-                </Link>
-                <Link
-                  to="/products/panels"
-                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
-                >
-                  Electrical Panels
-                </Link>
-                <Link
-                  to="/products/bess"
-                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
-                >
-                  Battery Energy Storage System
-                </Link>
-                <Link
-                  to="/products/solar"
-                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
-                >
-                  Solar Panels
-                </Link>
-                <Link
-                  to="/products/servo-stabilizer"
-                  className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
-                >
-                  Servo Stabiliser Pannel
-                </Link>
-              </div>
-            </div>
-          </li>
-
-          {/* Our Clients */}
-          <li>
-            <Link
-              to="/about/OurClients"
-              className="hover:text-primary transition-colors py-4"
-            >
-              Our Clients
-            </Link>
-          </li>
-
-          {/* Insights */}
-          <li>
-            <Link
-              to="/blogs"
-              className="hover:text-primary transition-colors py-4"
-            >
-              Insights
-            </Link>
-          </li>
-
-
-          {/* Contact */}
-          <li>
-            <Link
-              to="/contact"
-              className="hover:text-primary transition-colors py-4"
-            >
-              Contact
-            </Link>
-          </li>
+              </li>
+            );
+          })}
         </ul>
 
         {/* Profile Logo CTA */}
@@ -192,102 +152,50 @@ const Header = () => {
         </button>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu from CMS */}
       <div
         className={`md:hidden bg-white border-t shadow-lg ${isMobileMenuOpen ? "block" : "hidden"}`}
       >
         <div className="px-4 py-2">
-          <Link
-            to="/"
-            className="block py-3 border-b"
-            onClick={closeMobileMenu}
-          >
-            Home
-          </Link>
+          {mainLinks.map((item, idx) => {
+            const isLast = idx === mainLinks.length - 1;
+            if (item.type === "Dropdown") {
+              const subLinks = getSubLinks(item.id);
+              return (
+                <div key={item.id} className="py-3 border-b">
+                  <details className="group">
+                    <summary className="flex justify-between items-center cursor-pointer list-none">
+                      <span>{item.label}</span>
+                      <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180" />
+                    </summary>
+                    <div className="mt-2 ml-4 space-y-2">
+                      {subLinks.map((sub) => (
+                        <Link
+                          key={sub.id}
+                          to={sub.url}
+                          className="block py-1.5 text-sm"
+                          onClick={closeMobileMenu}
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </details>
+                </div>
+              );
+            }
 
-          {/* About */}
-          <Link
-            to="/about/OurProfile"
-            className="block py-3 border-b"
-            onClick={closeMobileMenu}
-          >
-            About
-          </Link>
-
-          {/* Solutions Dropdown Mobile */}
-          <div className="py-3 border-b">
-            <details className="group">
-              <summary className="flex justify-between items-center cursor-pointer list-none">
-                <span>Solutions</span>
-                <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180" />
-              </summary>
-              <div className="mt-2 ml-4 space-y-2">
-                <Link
-                  to="/products/generators"
-                  className="block py-1.5 text-sm"
-                  onClick={closeMobileMenu}
-                >
-                  Generators
-                </Link>
-                <Link
-                  to="/products/transformers"
-                  className="block py-1.5 text-sm"
-                  onClick={closeMobileMenu}
-                >
-                  Transformers/Substation
-                </Link>
-                <Link
-                  to="/products/panels"
-                  className="block py-1.5 text-sm"
-                  onClick={closeMobileMenu}
-                >
-                  Electrical Panels
-                </Link>
-                <Link
-                  to="/products/bess"
-                  className="block py-1.5 text-sm"
-                  onClick={closeMobileMenu}
-                >
-                  Battery Energy Storage System
-                </Link>
-                <Link
-                  to="/products/solar"
-                  className="block py-1.5 text-sm"
-                  onClick={closeMobileMenu}
-                >
-                  Solar Panels
-                </Link>
-                <Link
-                  to="/products/servo-stabilizer"
-                  className="block py-1.5 text-sm"
-                  onClick={closeMobileMenu}
-                >
-                  Servo Stabiliser Pannel
-                </Link>
-              </div>
-            </details>
-          </div>
-
-          <Link
-            to="/about/OurClients"
-            className="block py-3 border-b"
-            onClick={closeMobileMenu}
-          >
-            Our Clients
-          </Link>
-
-          <Link
-            to="/blogs"
-            className="block py-3 border-b"
-            onClick={closeMobileMenu}
-          >
-            Insights
-          </Link>
-
-
-          <Link to="/contact" className="block py-3" onClick={closeMobileMenu}>
-            Contact
-          </Link>
+            return (
+              <Link
+                key={item.id}
+                to={item.url}
+                className={`block py-3 ${isLast ? "" : "border-b"}`}
+                onClick={closeMobileMenu}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </header>

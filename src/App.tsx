@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -12,14 +12,13 @@ import OurProfile from "./pages/about/OurProfile";
 import PhotoGallery from "./pages/about/PhotoGallery";
 import OurClients from "./pages/about/OurClients";
 import Testimonials from "./pages/about/Testimonials";
-// Main Products page
-import Products from "./pages/Products";
-
+// Product category pages
 import Generators from "./pages/products/generators";
 import Panels from "./pages/products/panels";
 import Servo from "./pages/products/servo-stabilizer";
 import Transformer from "./pages/products/transformers";
 import BESS from "./pages/products/bess";
+import Solar from "./pages/products/solar";
 // Services pages
 import AnnualMaintenance from "./pages/services/AnnualMaintenance";
 import Installation from "./pages/services/Installation";
@@ -74,28 +73,12 @@ const App = () => (
           <Route path="/about/PhotoGallery" element={<PhotoGallery />} />
           <Route path="/about/Certifications" element={<Certifications />} />
           {/* Product Routes */}
-          <Route path="/products" element={<Products />} />
-          <Route
-            path="/products/generators"
-            element={<Generators />}
-          />
-          <Route
-            path="/products/kirloskar-gas-generator"
-            element={<Navigate to="/products/generators" replace />}
-          />
-          <Route
-            path="/products/kirloskar-portable-generator"
-            element={<Navigate to="/products/generators" replace />}
-          />
+          <Route path="/products/generators" element={<Generators />} />
           <Route path="/products/panels" element={<Panels />} />
+          <Route path="/products/bess" element={<BESS />} />
+          <Route path="/products/solar" element={<Solar />} />
           <Route path="/products/servo-stabilizer" element={<Servo />} />
           <Route path="/products/transformers" element={<Transformer />} />
-          <Route path="/products/bess" element={<BESS />} />
-          <Route
-            path="/products/battery-energy-storage-system"
-            element={<BESS />}
-          />
-          <Route path="/products/optiprime" element={<BESS />} />
           {/* Services Routes */}
           <Route
             path="/services/annual-maintenance"

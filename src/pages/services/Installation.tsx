@@ -202,7 +202,7 @@ const InstallationService = () => {
                     variant="outline"
                     className="hover:bg-black"
                   >
-                    <Link to="/products">View all Products</Link>
+                    <Link to="/products/generators">View all Products</Link>
                   </Button>
                 </div>
               </div>

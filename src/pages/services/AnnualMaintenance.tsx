@@ -168,7 +168,7 @@ const AnnualMaintenanceService = () => {
              hover:bg-[#2D6FBA] hover:text-white hover:border-[#2D6FBA] 
              transition-colors duration-200"
                   >
-                    <Link to="/products">View All Products</Link>
+                    <Link to="/products/generators">View All Products</Link>
                   </Button>
                 </div>
               </div>
@@ -450,7 +450,7 @@ const AnnualMaintenanceService = () => {
                   className="bg-transparent hover:bg-white/10 hover:text-[#2D6FBA] hover:border-[#2D6FBA] px-8 py-6 text-lg transition-colors duration-200"
                 >
                   <Link
-                    to="/products"
+                    to="/services/installation"
                     className="text-white hover:text-[#2D6FBA]"
                   >
                     Explore Other Services

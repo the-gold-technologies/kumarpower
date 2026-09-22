@@ -182,7 +182,7 @@ const ValueClient = () => {
                     <Link to="/contact">Discuss Your Requirements</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className='hover:bg-black'>
-                    <Link to="/products">View Our Services</Link>
+                    <Link to="/services/annual-maintenance">View Our Services</Link>
                   </Button>
                 </div>
               </div>
@@ -406,7 +406,7 @@ const ValueClient = () => {
                   variant="outline"
                   className="border-[#2D6FBA] text-black hover:bg-black  text-lg px-8 py-4 h-14"
                 >
-                  <Link to="/products">Explore Our Solutions</Link>
+                  <Link to="/products/generators">Explore Our Solutions</Link>
                 </Button>
               </div>
             </div>
