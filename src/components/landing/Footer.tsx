@@ -43,7 +43,10 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-12 border-b border-slate-800/80">
           <div className="space-y-3 max-w-3xl">
             <div className="flex flex-wrap items-center gap-4">
-              <Link to="/" className="inline-block hover:opacity-90 transition-opacity">
+              <Link
+                to="/"
+                className="inline-block hover:opacity-90 transition-opacity"
+              >
                 <img
                   src={kumarLogoDark}
                   alt="Kumar Power"
@@ -90,22 +93,6 @@ export const Footer: React.FC = () => {
                   className="hover:text-white transition-colors"
                 >
                   Generators
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/products/generators"
-                  className="hover:text-white transition-colors"
-                >
-                  Portable Generators
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/products/generators"
-                  className="hover:text-white transition-colors"
-                >
-                  Gas Generators
                 </Link>
               </li>
               <li>
@@ -316,19 +303,21 @@ export const Footer: React.FC = () => {
                   </a>
                 </div>
               )}
-              
+
               {(salesEmail || accountsEmail || supportEmail) && (
                 <div className="flex items-start gap-2">
                   <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0 mt-0.5" />
                   <div className="flex flex-col gap-1">
-                    {salesEmail && (
-                      <a
-                        href={`mailto:${salesEmail}`}
-                        className="hover:text-white transition-colors font-medium"
-                      >
-                        {salesEmail}
-                      </a>
-                    )}
+                    {salesEmail &&
+                      salesEmail.split(",").map((email, index) => (
+                        <a
+                          key={index}
+                          href={`mailto:${email.trim()}`}
+                          className="hover:text-white transition-colors font-medium block"
+                        >
+                          {email.trim()}
+                        </a>
+                      ))}
                     {accountsEmail && (
                       <a
                         href={`mailto:${accountsEmail}`}

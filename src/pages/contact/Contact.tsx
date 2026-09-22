@@ -5,8 +5,12 @@ import SEOJsonLD from "@/components/SEOJsonLD";
 import { useState } from "react";
 import contact from "@/assets/Contact/contact.jpeg";
 import SEO from "@/components/SEO";
+import { useSectionData } from "@/store/useCMSStore";
 
 const Contact = () => {
+  const { data: rawCMSData } = useSectionData<any>("contact");
+  const cmsData = rawCMSData || {};
+  console.log(cmsData);
   // Form state for the main contact form
   const [formData, setFormData] = useState({
     name: "",
@@ -237,7 +241,7 @@ const Contact = () => {
           <div
             className="absolute inset-0 z-0 bg-no-repeat bg-cover opacity-60"
             style={{
-              backgroundImage: "url(" + contact + ")",
+              backgroundImage: "url(" + cmsData?.hero?.bannerBgImage + ")",
               mixBlendMode: "normal",
               backgroundPosition: "center -380px", // move image up
             }}
@@ -252,11 +256,10 @@ const Contact = () => {
               {/* Content with improved contrast */}
               <div className="relative z-10">
                 <h2 className="text-3xl md:text-4xl font-bold mb-2 text-white drop-shadow-md">
-                  Powering Connections That Matter
+                  {cmsData?.hero?.bannerHeading}
                 </h2>
                 <p className="text-base text-white tracking-tighter font-extralight mb-8 drop-shadow">
-                  Let's build something extraordinary. Talk to our experts
-                  today.
+                  {cmsData?.hero?.bannerSubtitle}
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-4">
@@ -264,15 +267,15 @@ const Contact = () => {
                     href="#contact-form"
                     className="bg-[#2D6FBA] hover:bg-[#2360a0] text-white px-8 py-3 rounded-[5px] font-medium transition-colors shadow-lg"
                   >
-                    Start Your Inquiry
+                    {cmsData?.hero?.primaryBtnLabel}
                   </a>
                   <a
-                    href="https://wa.me/+919773851767"
+                    href={`https://wa.me/${cmsData?.hero?.whatsappNumber}`}
                     target="_blank"
                     rel="noreferrer"
                     className="backdrop-blur-sm border border-[#2D6FBA] hover:bg-[#2D6FBA]/50 text-white px-8 py-3 rounded-[5px] font-medium transition-colors shadow-lg"
                   >
-                    Connect on WhatsApp
+                    {cmsData?.hero?.whatsappBtnLabel}
                   </a>
                 </div>
               </div>
@@ -499,12 +502,12 @@ const Contact = () => {
                         />
                       </svg>
                     </div>
+
                     <h3 className="mt-3 text-lg font-bold">Office Hours</h3>
                   </div>
-                  <p className="text-gray-300 text-sm">Monday - Saturday</p>
-                  <p className="text-gray-300 text-sm">10:00 AM - 7:00 PM</p>
-                  <p className="text-gray-300 text-sm mt-1">
-                    Closed on Sundays & National Holidays
+
+                  <p className="text-gray-300 text-sm whitespace-pre-line">
+                    {cmsData?.info?.officeHours}
                   </p>
                 </div>
 
@@ -532,22 +535,21 @@ const Contact = () => {
                   <div className="flex items-center gap-2 text-sm text-gray-300">
                     <span className="text-white/60 w-20">Main: </span>
                     <a
-                      href="tel:+919773851767"
+                      href={`tel:${cmsData?.info?.phoneMain}`}
                       className="hover:text-blue-300 transition-colors font-medium"
                     >
-                      9773851767
+                      {cmsData?.info?.phoneMain}
                     </a>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-gray-300 mt-1">
                     <span className="text-white/60 w-20">Support: </span>
                     <a
-                      href="tel:+919773877796"
+                      href={`tel:${cmsData?.info?.phoneSupport}`}
                       className="hover:text-blue-300 transition-colors"
                     >
-                      9773877796
+                      {cmsData?.info?.phoneSupport}
                     </a>
                   </div>
-                  
                 </div>
 
                 {/* Email */}
@@ -571,31 +573,40 @@ const Contact = () => {
                     </div>
                     <h3 className="mt-3 text-lg font-bold">Email</h3>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-white/60 w-20">Sales: </span>
-                    <a
-                      href="mailto:Sales@kumarpower.com"
-                      className="hover:text-blue-300 transition-colors font-medium"
-                    >
-                      Sales@kumarpower.com
-                    </a>
+                  <div className="flex items-start gap-2">
+                    <span className="text-gray-400 shrink-0">Sales:</span>
+
+                    <div className="flex-1 min-w-0">
+                      {cmsData?.info?.emailSales &&
+                        cmsData.info.emailSales
+                          .split(",")
+                          .map((email, index) => (
+                            <a
+                              key={index}
+                              href={`mailto:${email.trim()}`}
+                              className="block break-all hover:text-blue-300 transition-colors font-medium"
+                            >
+                              {email.trim()}
+                            </a>
+                          ))}
+                    </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-white/60 w-20">Accounts: </span>
                     <a
-                      href="mailto:Accounts@kumarpower.com"
+                      href={`mailto:${cmsData?.info?.emailAccounts}`}
                       className="hover:text-blue-300 transition-colors font-medium"
                     >
-                      Accounts@kumarpower.com
+                      {cmsData?.info?.emailAccounts}
                     </a>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-white/60 w-20">Support: </span>
                     <a
-                      href="mailto:Support@kumarpower.com"
+                      href={`mailto:${cmsData?.info?.emailSupport}`}
                       className="hover:text-blue-300 transition-colors font-medium"
                     >
-                      Support@kumarpower.com
+                      {cmsData?.info?.emailSupport}
                     </a>
                   </div>
                 </div>
@@ -611,11 +622,11 @@ const Contact = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Left Side: Resume Drop */}
                 <div>
-                  <h2 className="text-2xl font-bold mb-4">Drop Your Resume</h2>
+                  <h2 className="text-2xl font-bold mb-4">
+                    {cmsData?.resume?.resumeTitle}
+                  </h2>
                   <p className="text-gray-300 mb-6">
-                    Didn't find your role? We're always looking for great talent
-                    to join our team. Submit your resume and we'll contact you
-                    when a suitable position opens up.
+                    {cmsData?.resume?.resumeSubtitle}
                   </p>
 
                   <div className="space-y-6">
