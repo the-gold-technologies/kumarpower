@@ -27,7 +27,9 @@ export const ConsultationForm: React.FC = () => {
   const submitBtnText = data.submitBtnText || "";
   const successTitle = data.successTitle || "";
   const successMessage = data.successMessage || "";
-  const industries: string[] = Array.isArray(data.industries) ? data.industries : [];
+  const industries: string[] = Array.isArray(data.industries)
+    ? data.industries
+    : [];
 
   const [formData, setFormData] = useState({
     name: "",
@@ -67,15 +69,16 @@ export const ConsultationForm: React.FC = () => {
       name: formData.name,
       department: formData.company
         ? `${formData.company}${formData.industry ? ` (${formData.industry})` : ""}`
-        : (formData.industry || "Sales & Site Assessment"),
+        : formData.industry || "Sales & Site Assessment",
       email: formData.email,
       phone: formData.phone,
       productOrService: formData.industry
         ? `${formData.industry} - Site Assessment`
-        : (formData.requirement || "Site Assessment & Consultation"),
+        : formData.requirement || "Site Assessment & Consultation",
       callback: true,
       status: "New",
-      message: detailedMessage || formData.requirement || "Site Assessment Requested",
+      message:
+        detailedMessage || formData.requirement || "Site Assessment Requested",
     };
 
     try {
@@ -180,17 +183,24 @@ export const ConsultationForm: React.FC = () => {
                   </div>
                 )}
                 {salesEmail && (
-                  <div className="flex items-center gap-3">
-                    <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0" />
-                    <span className="text-slate-500 font-medium min-w-[75px]">
+                  <div className="flex items-start gap-3">
+                    <Mail className="w-4 h-4 text-[#1A6AA2] shrink-0 mt-1" />
+
+                    <span className="text-slate-500 font-medium min-w-[75px] shrink-0">
                       Sales:
                     </span>
-                    <a
-                      href={`mailto:${salesEmail}`}
-                      className="font-semibold text-slate-900 hover:text-[#1A6AA2] transition-colors"
-                    >
-                      {salesEmail}
-                    </a>
+
+                    <div className="flex-1 min-w-0 flex flex-wrap gap-x-3 gap-y-1">
+                      {salesEmail.split(",").map((email, index) => (
+                        <a
+                          key={index}
+                          href={`mailto:${email.trim()}`}
+                          className="font-semibold text-slate-900 hover:text-[#1A6AA2] transition-colors break-all"
+                        >
+                          {email.trim()}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 )}
                 {accountsEmail && (
@@ -371,7 +381,9 @@ export const ConsultationForm: React.FC = () => {
                             ))
                           ) : (
                             <>
-                              <option value="Manufacturing">Manufacturing</option>
+                              <option value="Manufacturing">
+                                Manufacturing
+                              </option>
                               <option value="Hospitality">
                                 Hospitality & Hotels
                               </option>
@@ -482,7 +494,7 @@ export const ConsultationForm: React.FC = () => {
                       <span>
                         {isSubmitting
                           ? "Sending..."
-                          : (submitBtnText || "Request a Site Assessment")}
+                          : submitBtnText || "Request a Site Assessment"}
                       </span>
                     </button>
                   </div>
