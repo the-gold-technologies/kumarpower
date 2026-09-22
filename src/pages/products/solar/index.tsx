@@ -20,8 +20,6 @@ const Solar: React.FC = () => {
   const HeadingTag = usePageHeadingTag("solar");
   const { data: rawCMSData } = useSectionData<any>("solar");
   const cmsData = rawCMSData || {};
-  const { data: productsRawCMSData } = useSectionData<any>("products");
-  const productsCMSData = productsRawCMSData || {};
 
   // Hero Section from CMS
   const heroHeadingPart1 = cmsData.heroHeadingPart1 || "";
@@ -57,21 +55,12 @@ const Solar: React.FC = () => {
   };
 
   // Why Choose Cards configuration from CMS
-  const whyChooseTitle =
-    cmsData.whyChooseTitle ||
-    productsCMSData.whyChooseTitle ||
-    "";
+  const whyChooseTitle = cmsData.whyChooseTitle || cmsData.whyChooseTitle || "";
 
   const whyChooseCards: WhyChooseCardData[] = [
     {
-      title:
-        cmsData.whyChooseCard1Title ||
-        productsCMSData.whyChooseCard1Title ||
-        "",
-      desc:
-        cmsData.whyChooseCard1Desc ||
-        productsCMSData.whyChooseCard1Desc ||
-        "",
+      title: cmsData.whyChooseCard1Title || cmsData.whyChooseCard1Title || "",
+      desc: cmsData.whyChooseCard1Desc || cmsData.whyChooseCard1Desc || "",
       iconSvg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -85,14 +74,8 @@ const Solar: React.FC = () => {
       ),
     },
     {
-      title:
-        cmsData.whyChooseCard2Title ||
-        productsCMSData.whyChooseCard2Title ||
-        "",
-      desc:
-        cmsData.whyChooseCard2Desc ||
-        productsCMSData.whyChooseCard2Desc ||
-        "",
+      title: cmsData.whyChooseCard2Title || cmsData.whyChooseCard2Title || "",
+      desc: cmsData.whyChooseCard2Desc || cmsData.whyChooseCard2Desc || "",
       iconSvg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -106,14 +89,8 @@ const Solar: React.FC = () => {
       ),
     },
     {
-      title:
-        cmsData.whyChooseCard3Title ||
-        productsCMSData.whyChooseCard3Title ||
-        "",
-      desc:
-        cmsData.whyChooseCard3Desc ||
-        productsCMSData.whyChooseCard3Desc ||
-        "",
+      title: cmsData.whyChooseCard3Title || cmsData.whyChooseCard3Title || "",
+      desc: cmsData.whyChooseCard3Desc || cmsData.whyChooseCard3Desc || "",
       iconSvg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -127,14 +104,8 @@ const Solar: React.FC = () => {
       ),
     },
     {
-      title:
-        cmsData.whyChooseCard4Title ||
-        productsCMSData.whyChooseCard4Title ||
-        "",
-      desc:
-        cmsData.whyChooseCard4Desc ||
-        productsCMSData.whyChooseCard4Desc ||
-        "",
+      title: cmsData.whyChooseCard4Title || cmsData.whyChooseCard4Title || "",
+      desc: cmsData.whyChooseCard4Desc || cmsData.whyChooseCard4Desc || "",
       iconSvg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -148,14 +119,8 @@ const Solar: React.FC = () => {
       ),
     },
     {
-      title:
-        cmsData.whyChooseCard5Title ||
-        productsCMSData.whyChooseCard5Title ||
-        "",
-      desc:
-        cmsData.whyChooseCard5Desc ||
-        productsCMSData.whyChooseCard5Desc ||
-        "",
+      title: cmsData.whyChooseCard5Title || cmsData.whyChooseCard5Title || "",
+      desc: cmsData.whyChooseCard5Desc || cmsData.whyChooseCard5Desc || "",
       iconSvg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -169,14 +134,8 @@ const Solar: React.FC = () => {
       ),
     },
     {
-      title:
-        cmsData.whyChooseCard6Title ||
-        productsCMSData.whyChooseCard6Title ||
-        "",
-      desc:
-        cmsData.whyChooseCard6Desc ||
-        productsCMSData.whyChooseCard6Desc ||
-        "",
+      title: cmsData.whyChooseCard6Title || cmsData.whyChooseCard6Title || "",
+      desc: cmsData.whyChooseCard6Desc || cmsData.whyChooseCard6Desc || "",
       iconSvg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -73,8 +73,6 @@ const Products = () => {
   const HeadingTag = usePageHeadingTag("servo-stabilizer");
   const { data: rawCMSData } = useSectionData<any>("servo-stabilizer");
   const cmsData = rawCMSData || {};
-  const { data: productsRawCMSData } = useSectionData<any>("products");
-  const productsCMSData = productsRawCMSData || {};
 
   const heroHeadingPart1 = cmsData.heroHeadingPart1 || "";
   const heroHeadingPart2 = cmsData.heroHeadingPart2 || "";
@@ -84,29 +82,28 @@ const Products = () => {
   const sectionTitle = cmsData.sectionTitle || "";
   const sectionDesc = cmsData.sectionDesc || "";
 
-  const whyChooseCard1Title = productsCMSData.whyChooseCard1Title || "";
-  const whyChooseCard1Desc = productsCMSData.whyChooseCard1Desc || "";
-  const whyChooseCard2Title = productsCMSData.whyChooseCard2Title || "";
-  const whyChooseCard2Desc = productsCMSData.whyChooseCard2Desc || "";
-  const whyChooseCard3Title = productsCMSData.whyChooseCard3Title || "";
-  const whyChooseCard3Desc = productsCMSData.whyChooseCard3Desc || "";
-  const whyChooseCard4Title = productsCMSData.whyChooseCard4Title || "";
-  const whyChooseCard4Desc = productsCMSData.whyChooseCard4Desc || "";
-  const whyChooseCard5Title = productsCMSData.whyChooseCard5Title || "";
-  const whyChooseCard5Desc = productsCMSData.whyChooseCard5Desc || "";
-  const whyChooseCard6Title = productsCMSData.whyChooseCard6Title || "";
-  const whyChooseCard6Desc = productsCMSData.whyChooseCard6Desc || "";
+  const whyChooseCard1Title = cmsData.whyChooseCard1Title || "";
+  const whyChooseCard1Desc = cmsData.whyChooseCard1Desc || "";
+  const whyChooseCard2Title = cmsData.whyChooseCard2Title || "";
+  const whyChooseCard2Desc = cmsData.whyChooseCard2Desc || "";
+  const whyChooseCard3Title = cmsData.whyChooseCard3Title || "";
+  const whyChooseCard3Desc = cmsData.whyChooseCard3Desc || "";
+  const whyChooseCard4Title = cmsData.whyChooseCard4Title || "";
+  const whyChooseCard4Desc = cmsData.whyChooseCard4Desc || "";
+  const whyChooseCard5Title = cmsData.whyChooseCard5Title || "";
+  const whyChooseCard5Desc = cmsData.whyChooseCard5Desc || "";
+  const whyChooseCard6Title = cmsData.whyChooseCard6Title || "";
+  const whyChooseCard6Desc = cmsData.whyChooseCard6Desc || "";
 
-  const cert1Title = productsCMSData.cert1Title || "";
-  const cert2Title = productsCMSData.cert2Title || "";
-  const cert3Title = productsCMSData.cert3Title || "";
+  const cert1Title = cmsData.cert1Title || "";
+  const cert2Title = cmsData.cert2Title || "";
+  const cert3Title = cmsData.cert3Title || "";
 
-  const whyChooseTitle = productsCMSData.whyChooseTitle || "";
-  const certTitle = productsCMSData.certTitle || "";
-  const helpTitle = productsCMSData.helpTitle || "";
-  const helpSub = productsCMSData.helpSub || "";
-  const helpBtnText = productsCMSData.helpBtnText || "";
-
+  const whyChooseTitle = cmsData.whyChooseTitle || "";
+  const certTitle = cmsData.certTitle || "";
+  const helpTitle = cmsData.helpTitle || "";
+  const helpSub = cmsData.helpSub || "";
+  const helpBtnText = cmsData.helpBtnText || "";
 
   const [showSpecsModal, setShowSpecsModal] = useState(false);
   const [selectedProductForSpecs, setSelectedProductForSpecs] = useState(null);
@@ -167,9 +164,7 @@ const Products = () => {
       <Header />
 
       <Helmet>
-        <title>
-          Servo Stabilizers Dealer in Delhi | Kumar Power
-        </title>
+        <title>Servo Stabilizers Dealer in Delhi | Kumar Power</title>
 
         <meta
           name="description"
@@ -177,7 +172,9 @@ const Products = () => {
         />
 
         <link
-          rel="canonical" href="https://www.kumarpower.com/products/servo-stabilizer" />
+          rel="canonical"
+          href="https://www.kumarpower.com/products/servo-stabilizer"
+        />
       </Helmet>
 
       <main className="bg-black min-h-screen">
@@ -194,19 +191,28 @@ const Products = () => {
 
           <div className="relative max-w-7xl mx-auto px-4 h-full flex flex-col items-center justify-center text-center">
             <HeadingTag className="text-2xl md:text-5xl font-bold">
-              {heroHeadingPart1} <span className="text-[#2D6FBA]">{heroHeadingPart2}</span>
+              {heroHeadingPart1}{" "}
+              <span className="text-[#2D6FBA]">{heroHeadingPart2}</span>
             </HeadingTag>
-            <p className="text-sm sm:text-base md:text-lg mt-2 max-w-2xl"><LinkText text={heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+            <p className="text-sm sm:text-base md:text-lg mt-2 max-w-2xl">
+              <LinkText
+                text={heroSub}
+                linkClassName="text-[#2D6FBA] hover:underline font-bold"
+              />
+            </p>
           </div>
         </div>
 
         {/* Products Section */}
         <div className="max-w-7xl mx-auto px-4 pb-20">
           <div className="mb-6">
-            <h2 className="text-xl font-bold text-white">
-              {sectionTitle}
-            </h2>
-            <p className="text-gray-400 mt-1 text-sm"><LinkText text={sectionDesc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+            <h2 className="text-xl font-bold text-white">{sectionTitle}</h2>
+            <p className="text-gray-400 mt-1 text-sm">
+              <LinkText
+                text={sectionDesc}
+                linkClassName="text-[#2D6FBA] hover:underline font-bold"
+              />
+            </p>
           </div>
 
           {/* Product Grid */}
@@ -216,7 +222,10 @@ const Products = () => {
                   const defaultImages = [servo1, servo2];
                   return {
                     ...s,
-                    image: (s.image && s.image.trim()) || defaultImages[idx % defaultImages.length] || servo1,
+                    image:
+                      (s.image && s.image.trim()) ||
+                      defaultImages[idx % defaultImages.length] ||
+                      servo1,
                   };
                 })
               : servoStabilizers
@@ -302,8 +311,15 @@ const Products = () => {
                     <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">{whyChooseCard1Title}</h3>
-                <p className="text-sm text-gray-600"><LinkText text={whyChooseCard1Desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <h3 className="text-base font-semibold mb-1">
+                  {whyChooseCard1Title}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  <LinkText
+                    text={whyChooseCard1Desc}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </p>
               </div>
 
               {/* Fuel Efficiency */}
@@ -319,8 +335,15 @@ const Products = () => {
                     <path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">{whyChooseCard2Title}</h3>
-                <p className="text-sm text-gray-600"><LinkText text={whyChooseCard2Desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <h3 className="text-base font-semibold mb-1">
+                  {whyChooseCard2Title}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  <LinkText
+                    text={whyChooseCard2Desc}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </p>
               </div>
 
               {/* Rapid Response */}
@@ -337,8 +360,15 @@ const Products = () => {
                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">{whyChooseCard3Title}</h3>
-                <p className="text-sm text-gray-600"><LinkText text={whyChooseCard3Desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <h3 className="text-base font-semibold mb-1">
+                  {whyChooseCard3Title}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  <LinkText
+                    text={whyChooseCard3Desc}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </p>
               </div>
 
               {/* Low Noise Operation */}
@@ -355,8 +385,15 @@ const Products = () => {
                     <path d="M10.002 4.646a.5.5 0 0 1 .707 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.707-.708L11.293 7 10.002 5.707a.5.5 0 0 1 0-.708zm-6.293 0a.5.5 0 0 0-.707 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .707-.708L1.707 7l2.001-1.293a.5.5 0 0 0 0-.708z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">{whyChooseCard4Title}</h3>
-                <p className="text-sm text-gray-600"><LinkText text={whyChooseCard4Desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <h3 className="text-base font-semibold mb-1">
+                  {whyChooseCard4Title}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  <LinkText
+                    text={whyChooseCard4Desc}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </p>
               </div>
 
               {/* Easy Maintenance */}
@@ -372,8 +409,15 @@ const Products = () => {
                     <path d="M8.932.727c-.243-.97-1.62-.97-1.864 0l-.071.286a.96.96 0 0 1-1.622.434l-.205-.211c-.695-.719-1.888-.03-1.613.931l.08.284a.96.96 0 0 1-1.186 1.187l-.284-.081c-.96-.275-1.65.918-.931 1.613l.211.205a.96.96 0 0 1-.434 1.622l-.286.071c-.97.243-.97 1.62 0 1.864l.286.071a.96.96 0 0 1 .434 1.622l-.211.205c-.719.695-.03 1.888.931 1.613l.284-.08a.96.96 0 0 1 1.187 1.187l-.081.283c-.275.96.918 1.65 1.613.931l.205-.211a.96.96 0 0 1 1.622.434l.071.286c.243.97 1.62.97 1.864 0l.071-.286a.96.96 0 0 1 1.622-.434l.205.211c.695.719 1.888.03 1.613-.931l-.08-.284a.96.96 0 0 1 1.187-1.187l.283.081c.96.275 1.65-.918.931-1.613l-.211-.205a.96.96 0 0 1 .434-1.622l.286-.071c.97-.243.97-1.62 0-1.864l-.286-.071a.96.96 0 0 1-.434-1.622l.211-.205c.719-.695.03-1.888-.931-1.613l-.284.08a.96.96 0 0 1-1.187-1.186l.081-.284c.275-.96-.918-1.65-1.613-.931l-.205.211a.96.96 0 0 1-1.622-.434L8.932.727zM8 12.997a4.998 4.998 0 1 1 0-9.995 4.998 4.998 0 0 1 0 9.996z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">{whyChooseCard5Title}</h3>
-                <p className="text-sm text-gray-600"><LinkText text={whyChooseCard5Desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <h3 className="text-base font-semibold mb-1">
+                  {whyChooseCard5Title}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  <LinkText
+                    text={whyChooseCard5Desc}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </p>
               </div>
 
               {/* Smart Controls */}
@@ -389,8 +433,15 @@ const Products = () => {
                     <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
                   </svg>
                 </div>
-                <h3 className="text-base font-semibold mb-1">{whyChooseCard6Title}</h3>
-                <p className="text-sm text-gray-600"><LinkText text={whyChooseCard6Desc} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <h3 className="text-base font-semibold mb-1">
+                  {whyChooseCard6Title}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  <LinkText
+                    text={whyChooseCard6Desc}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </p>
               </div>
             </div>
           </div>
@@ -411,7 +462,12 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300"><LinkText text={cert1Title} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <p className="font-medium text-sm text-gray-300">
+                  <LinkText
+                    text={cert1Title}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </p>
               </div>
 
               <div className="text-center">
@@ -421,7 +477,12 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300"><LinkText text={cert2Title} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <p className="font-medium text-sm text-gray-300">
+                  <LinkText
+                    text={cert2Title}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </p>
               </div>
 
               <div className="text-center">
@@ -431,7 +492,12 @@ const Products = () => {
                     style={{ color: "#2D6FBA" }}
                   />
                 </div>
-                <p className="font-medium text-sm text-gray-300"><LinkText text={cert3Title} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+                <p className="font-medium text-sm text-gray-300">
+                  <LinkText
+                    text={cert3Title}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </p>
               </div>
             </div>
           </div>
@@ -443,7 +509,12 @@ const Products = () => {
             <h2 className="text-xl sm:text-2xl font-bold mb-2 text-gray-800">
               {helpTitle}
             </h2>
-            <p className="text-xs sm:text-sm text-black mb-6"><LinkText text={helpSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+            <p className="text-xs sm:text-sm text-black mb-6">
+              <LinkText
+                text={helpSub}
+                linkClassName="text-[#2D6FBA] hover:underline font-bold"
+              />
+            </p>
             <div className="flex w-full items-center justify-center">
               <Button
                 onClick={() => {
@@ -466,7 +537,9 @@ const Products = () => {
                     strokeWidth={2}
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                   />
-                </svg>{helpBtnText}</Button>
+                </svg>
+                {helpBtnText}
+              </Button>
             </div>
           </div>
         </section>
@@ -482,8 +555,11 @@ const Products = () => {
                   {selectedProductForSpecs.name} Specifications
                 </DialogTitle>
                 <DialogDescription className="text-gray-500">
-<LinkText text={selectedProductForSpecs.description} linkClassName="text-[#2D6FBA] hover:underline font-bold" />
-</DialogDescription>
+                  <LinkText
+                    text={selectedProductForSpecs.description}
+                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                  />
+                </DialogDescription>
               </DialogHeader>
 
               {/* Technical Specifications Section */}
@@ -494,7 +570,10 @@ const Products = () => {
                 <div className="bg-gray-50 rounded-md p-4 text-sm">
                   {/* We now use the specific technicalSpecs data from the product object instead of generic category blocks */}
                   <div className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
-                    <LinkText text={selectedProductForSpecs.technicalSpecs} linkClassName="text-[#2D6FBA] hover:underline font-bold" />
+                    <LinkText
+                      text={selectedProductForSpecs.technicalSpecs}
+                      linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                    />
                   </div>
                 </div>
               </div>
@@ -512,79 +591,79 @@ const Products = () => {
                 {["diesel", "gas", "portable", "optiprime"].includes(
                   selectedProductForSpecs.category,
                 ) && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="flex items-center gap-1 w-full sm:w-auto"
-                    >
-                      <Download className="w-4 h-4" />
-                      <a
-                        href={
-                          selectedProductForSpecs.category === "diesel"
-                            ? selectedProductForSpecs.range.includes("7.5") ||
-                              selectedProductForSpecs.range.includes("7.5 - 20")
-                              ? cpcb7To20
-                              : selectedProductForSpecs.range.includes("58") ||
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="flex items-center gap-1 w-full sm:w-auto"
+                  >
+                    <Download className="w-4 h-4" />
+                    <a
+                      href={
+                        selectedProductForSpecs.category === "diesel"
+                          ? selectedProductForSpecs.range.includes("7.5") ||
+                            selectedProductForSpecs.range.includes("7.5 - 20")
+                            ? cpcb7To20
+                            : selectedProductForSpecs.range.includes("58") ||
                                 selectedProductForSpecs.range.includes(
                                   "25 - 58.5",
                                 )
-                                ? cpcb25To58
-                                : selectedProductForSpecs.range.includes(
-                                  "82.5",
-                                ) ||
+                              ? cpcb25To58
+                              : selectedProductForSpecs.range.includes(
+                                    "82.5",
+                                  ) ||
                                   selectedProductForSpecs.range.includes(
                                     "82.5 - 160",
                                   )
-                                  ? cpcb82To160
-                                  : selectedProductForSpecs.range.includes(
-                                    "250",
-                                  ) ||
+                                ? cpcb82To160
+                                : selectedProductForSpecs.range.includes(
+                                      "250",
+                                    ) ||
                                     selectedProductForSpecs.range.includes(
                                       "200 - 250",
                                     ) ||
                                     selectedProductForSpecs.id.includes(
                                       "200 kVA to 250 kVA",
                                     )
-                                    ? cpcb200To250
-                                    : selectedProductForSpecs.range.includes(
-                                      "320",
-                                    ) ||
+                                  ? cpcb200To250
+                                  : selectedProductForSpecs.range.includes(
+                                        "320",
+                                      ) ||
                                       selectedProductForSpecs.range.includes(
                                         "320 - 750",
                                       )
-                                      ? cpcb320To750
-                                      : selectedProductForSpecs.range.includes(
-                                        "750",
-                                      ) ||
+                                    ? cpcb320To750
+                                    : selectedProductForSpecs.range.includes(
+                                          "750",
+                                        ) ||
                                         selectedProductForSpecs.range.includes(
                                           "750 - 1500",
                                         )
-                                        ? cpcb750To1500
-                                        : Brochure
-                            : selectedProductForSpecs.category === "gas"
-                              ? gasBrochure
-                              : selectedProductForSpecs.category === "portable"
-                                ? petrolBrochure
-                                : selectedProductForSpecs.category === "optiprime"
-                                  ? optiprimeBrochure
-                                  : Brochure
-                        }
-                        download={
-                          selectedProductForSpecs.category === "diesel"
-                            ? `Kirloskar ${selectedProductForSpecs.range} Diesel Generator Brochure.pdf`
-                            : selectedProductForSpecs.category === "gas"
-                              ? "Kirloskar Gas Generator Brochure.pdf"
-                              : selectedProductForSpecs.category === "portable"
-                                ? "Kirloskar Portable Generator Brochure.pdf"
-                                : selectedProductForSpecs.category === "optiprime"
-                                  ? "Kirloskar Optiprime Generator Brochure.pdf"
-                                  : "Generator Brochure.pdf"
-                        }
-                      >
-                        Brochure
-                      </a>
-                    </Button>
-                  )}
+                                      ? cpcb750To1500
+                                      : Brochure
+                          : selectedProductForSpecs.category === "gas"
+                            ? gasBrochure
+                            : selectedProductForSpecs.category === "portable"
+                              ? petrolBrochure
+                              : selectedProductForSpecs.category === "optiprime"
+                                ? optiprimeBrochure
+                                : Brochure
+                      }
+                      download={
+                        selectedProductForSpecs.category === "diesel"
+                          ? `Kirloskar ${selectedProductForSpecs.range} Diesel Generator Brochure.pdf`
+                          : selectedProductForSpecs.category === "gas"
+                            ? "Kirloskar Gas Generator Brochure.pdf"
+                            : selectedProductForSpecs.category === "portable"
+                              ? "Kirloskar Portable Generator Brochure.pdf"
+                              : selectedProductForSpecs.category === "optiprime"
+                                ? "Kirloskar Optiprime Generator Brochure.pdf"
+                                : "Generator Brochure.pdf"
+                      }
+                    >
+                      Brochure
+                    </a>
+                  </Button>
+                )}
               </div>
             </>
           )}
