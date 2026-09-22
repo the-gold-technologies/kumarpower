@@ -118,16 +118,16 @@ const Header = () => {
                   Electrical Panels
                 </Link>
                 <Link
-                  to="/products/optiprime"
+                  to="/products/bess"
                   className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
                 >
                   Battery Energy Storage System
                 </Link>
                 <Link
-                  to="/products"
+                  to="/products/solar"
                   className="block px-4 py-2.5 text-sm hover:bg-gray-50 hover:text-primary transition-colors cursor-pointer"
                 >
-                  Solar and Renewable Energy
+                  Solar Panels
                 </Link>
                 <Link
                   to="/products/servo-stabilizer"
@@ -244,18 +244,18 @@ const Header = () => {
                   Electrical Panels
                 </Link>
                 <Link
-                  to="/products/optiprime"
+                  to="/products/bess"
                   className="block py-1.5 text-sm"
                   onClick={closeMobileMenu}
                 >
                   Battery Energy Storage System
                 </Link>
                 <Link
-                  to="/products"
+                  to="/products/solar"
                   className="block py-1.5 text-sm"
                   onClick={closeMobileMenu}
                 >
-                  Solar and Renewable Energy
+                  Solar Panels
                 </Link>
                 <Link
                   to="/products/servo-stabilizer"

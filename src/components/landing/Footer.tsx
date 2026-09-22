@@ -94,7 +94,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/products/kirloskar-portable-generator"
+                  to="/products/generators"
                   className="hover:text-white transition-colors"
                 >
                   Portable Generators
@@ -102,7 +102,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/products/kirloskar-gas-generator"
+                  to="/products/generators"
                   className="hover:text-white transition-colors"
                 >
                   Gas Generators
@@ -126,7 +126,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/products/optiprime"
+                  to="/products/bess"
                   className="hover:text-white transition-colors"
                 >
                   BESS (Battery Storage)

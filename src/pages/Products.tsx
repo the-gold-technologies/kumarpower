@@ -27,6 +27,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import hero from "@/assets/Products/HeropBG.png";
 import range1 from "@/assets/Products/200CPCB.jpeg";
 import optiprime from "@/assets/Products/OPTIPRIMEGEN.png";
+import bessHero from "@/assets/bess/bess_hero.jpg";
 import range360 from "@/assets/Products/320CPCB.jpeg";
 import range2 from "@/assets/Products/15GAS.jpeg";
 import range3 from "@/assets/Range3.png";
@@ -237,7 +238,7 @@ const Products = () => {
       description:
         "Eco-friendly and efficient, our gas generators provide clean power with lower emissions and reduced operating costs.",
       technicalSpecs: `Utilizing state-of-the-art gas engine technology, this range offers a greener footprint with extremely low NOx and PM emissions that exceed CPCB norms. The engines employ stoichiometric combustion to ensure high thermal efficiency, resulting in operating costs that are 40-50% lower than comparable diesel gensets. With inherent fuel flexibility (compatible with Natural Gas, CNG, and LPG) and a quieter combustion process, these generators are ideal for urban areas with strict pollution norms, green buildings, and cost-conscious businesses.`,
-      productLink: "/products/kirloskar-gas-generator",
+      productLink: "/products/generators",
     },
     {
       id: "2.1 kVA to 5 kVA",
@@ -254,24 +255,24 @@ const Products = () => {
       description:
         "Compact and versatile generators perfect for homes, small businesses, construction sites, and outdoor events.",
       technicalSpecs: `These lightweight and mobile power solutions are designed for "on-the-go" reliability. Featuring ergonomic designs with wheels and handles on select models, they offer easy mobility for any user. The units come with options for easy recoil start or electric start and feature copper-wound alternators for stable voltage output. Equipped with circuit breaker protection and oil alert systems to prevent damage, they are ideal for food trucks, camping trips, home backup for lights and fans, and operating small construction tools.`,
-      productLink: "/products/kirloskar-portable-generator",
+      productLink: "/products/generators",
     },
     {
-      id: "optiprime-product-1",
-      name: "Kirloskar Optiprime Generator",
-      image: optiprime,
-      fuelType: "Diesel",
-      cpcbNorm: "CPCB-IV+",
-      cooling: "Liquid",
+      id: "bess-product-1",
+      name: "Battery Energy Storage System (BESS)",
+      image: bessHero,
+      fuelType: "Battery / LFP",
+      cpcbNorm: "Zero Emission",
+      cooling: "Liquid / Air",
       phase: "Three Phase",
       ratingCount: 195,
-      rating: 4.8,
-      range: "100 kVA",
-      category: "optiprime",
+      rating: 4.9,
+      range: "5 kW to 60 kW+ & Containerized",
+      category: "bess",
       description:
-        "Kirloskar Optiprime series are advanced generators offering superior fuel efficiency and smart monitoring for optimized performance.",
-      technicalSpecs: `The Optiprime series represents the next evolution in generator efficiency, utilizing variable speed and optimized fuel mapping technology. This advanced system delivers significantly better fuel economy at partial loads compared to standard generators, drastically reducing running costs. It comes integrated with an IoT device for real-time health monitoring and predictive maintenance, ensuring maximum uptime. Housed in an enhanced canopy for superior weather protection, the Optiprime is the perfect solution for telecom towers, ATMs, and remote sites with varying load patterns.`,
-      productLink: "/products/optiprime",
+        "High-efficiency Lithium Iron Phosphate (LFP) Battery Energy Storage Systems (BESS) for peak shaving, DG sync, and uninterrupted clean power.",
+      technicalSpecs: `Kumar Power BESS solutions integrate Tier-1 Lithium Iron Phosphate (LiFePO4) battery racks with intelligent BMS and hybrid bi-directional inverters. Designed for commercial, industrial, and utility-scale deployment, our systems deliver rapid response (<20ms), round-trip efficiency up to 95%, and cycle life exceeding 6000 cycles. Standard power ratings range from 5 kW to 60 kW in modular indoor/outdoor cabinets, up to 1 MW / 2 MWh+ in turnkey 20ft/40ft ISO containerized units. Ideal for peak shaving, renewable solar-diesel hybridization, and mission-critical backup.`,
+      productLink: "/products/bess",
     },
     {
       id: " (AMF) Panels",
@@ -325,8 +326,11 @@ const Products = () => {
       productLink: "/products/transformers",
     },
   ];
-  
-  const ALLProductCategories = Array.isArray(cmsData.categories) ? cmsData.categories : [];
+
+  const ALLProductCategories =
+    Array.isArray(cmsData.categories) && cmsData.categories.length > 0
+      ? cmsData.categories
+      : fallbackProductCategories;
 
   // Filter products based on selected category
   const getDisplayProducts = () => {
@@ -843,7 +847,7 @@ const Products = () => {
                   <Link to="/contact">Request Quote </Link>
                 </Button>
                 {/* Only show brochure button for generator categories */}
-                {["diesel", "gas", "portable", "optiprime"].includes(
+                {["diesel", "gas", "portable", "optiprime", "bess"].includes(
                   selectedProductForSpecs.category,
                 ) && (
                   <Button
@@ -901,7 +905,7 @@ const Products = () => {
                               ? petrolBrochure
                               : selectedProductForSpecs.category === "optiprime"
                                 ? optiprimeBrochure
-                                : Brochure
+                                : Portfolio
                       }
                       download={
                         selectedProductForSpecs.category === "diesel"
@@ -912,7 +916,7 @@ const Products = () => {
                               ? "Kirloskar Portable Generator Brochure.pdf"
                               : selectedProductForSpecs.category === "optiprime"
                                 ? "Kirloskar Optiprime Generator Brochure.pdf"
-                                : "Generator Brochure.pdf"
+                                : "Kumar Power BESS Brochure.pdf"
                       }
                     >
                       Brochure
