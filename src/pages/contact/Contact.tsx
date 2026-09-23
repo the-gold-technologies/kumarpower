@@ -21,7 +21,13 @@ const Contact = () => {
   });
 
   // Form state for the resume drop form
-  const [resumeData, setResumeData] = useState({
+  const [resumeData, setResumeData] = useState<{
+    fullName: string;
+    email: string;
+    phone: string;
+    message: string;
+    resume: File | null;
+  }>({
     fullName: "",
     email: "",
     phone: "",
@@ -148,40 +154,87 @@ const Contact = () => {
   const handleResumeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setResumeSubmitStatus({ type: null, message: "" });
+
+    if (!resumeData.fullName.trim()) {
+      setResumeSubmitStatus({
+        type: "error",
+        message: "Please enter your full name.",
+      });
+      return;
+    }
+    if (!resumeData.email.trim()) {
+      setResumeSubmitStatus({
+        type: "error",
+        message: "Please enter your email address.",
+      });
+      return;
+    }
+    if (!resumeData.phone.trim()) {
+      setResumeSubmitStatus({
+        type: "error",
+        message: "Please enter your phone number.",
+      });
+      return;
+    }
+
     setIsResumeSubmitting(true); // Start loading
 
     const API_BASE_URL = import.meta.env.VITE_CMS_API_URL || "";
 
-    const careerPayload = {
-      name: resumeData.fullName,
-      department: "Careers / Job Application",
-      email: resumeData.email,
-      phone: resumeData.phone,
-      productOrService: "Resume Submission",
-      callback: false,
-      status: "New",
-      message: resumeData.message || "Resume dropped via Careers page.",
-    };
-
-    const formDataObj = new FormData();
-    formDataObj.append("form_type", "resume_submission");
-    formDataObj.append("fullName", resumeData.fullName);
-    formDataObj.append("email", resumeData.email);
-    formDataObj.append("phone", resumeData.phone);
-    formDataObj.append("message", resumeData.message);
-    if (resumeData.resume) {
-      formDataObj.append("resume", resumeData.resume);
-    }
-
     try {
-      // 1. Log lead to CMS Enquiries
-      await fetch(`${API_BASE_URL}/api/enquiries`, {
+      let resumeUrl: string | null = null;
+
+      // 1. Upload resume to Cloudinary via CMS upload endpoint if attached
+      if (resumeData.resume) {
+        const uploadFormData = new FormData();
+        uploadFormData.append("file", resumeData.resume);
+
+        const uploadRes = await fetch(`${API_BASE_URL}/api/upload`, {
+          method: "POST",
+          body: uploadFormData,
+        });
+
+        if (uploadRes.ok) {
+          const uploadJson = await uploadRes.json();
+          if (
+            uploadJson.success &&
+            Array.isArray(uploadJson.files) &&
+            uploadJson.files.length > 0
+          ) {
+            resumeUrl = uploadJson.files[0];
+          }
+        }
+      }
+
+      // 2. Submit application record to dedicated CMS applications endpoint
+      const appPayload = {
+        fullName: resumeData.fullName,
+        email: resumeData.email,
+        phone: resumeData.phone,
+        message: resumeData.message || "",
+        resumeUrl: resumeUrl,
+      };
+
+      const res = await fetch(`${API_BASE_URL}/api/applications`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(careerPayload),
+        body: JSON.stringify(appPayload),
       });
 
-      // 2. Also send to file upload webhook
+      const resJson = await res.json().catch(() => ({}));
+      if (!res.ok || resJson.success === false) {
+        throw new Error(resJson.message || "Failed to submit application.");
+      }
+
+      // 3. Optional legacy backup
+      const formDataObj = new FormData();
+      formDataObj.append("form_type", "resume_submission");
+      formDataObj.append("fullName", resumeData.fullName);
+      formDataObj.append("email", resumeData.email);
+      formDataObj.append("phone", resumeData.phone);
+      formDataObj.append("message", resumeData.message);
+      if (resumeUrl) formDataObj.append("resume_url", resumeUrl);
+      if (resumeData.resume) formDataObj.append("resume", resumeData.resume);
       fetch("https://kumarpower.com/wep-api.php", {
         method: "POST",
         body: formDataObj,
@@ -190,7 +243,7 @@ const Contact = () => {
       setResumeSubmitStatus({
         type: "success",
         message:
-          "✓ Resume submitted successfully! We'll review your application and get back to you.",
+          "✓ Resume application submitted successfully! Our recruitment team will review your profile.",
       });
       setResumeData({
         fullName: "",
@@ -199,19 +252,22 @@ const Contact = () => {
         message: "",
         resume: null,
       });
+
       // Reset file input
       const fileInput = document.getElementById("resume") as HTMLInputElement;
       if (fileInput) fileInput.value = "";
 
-      // Clear success message after 5 seconds
+      // Clear success message after 6 seconds
       setTimeout(() => {
         setResumeSubmitStatus({ type: null, message: "" });
-      }, 5000);
-    } catch (error) {
-      console.error("Error:", error);
+      }, 6000);
+    } catch (error: any) {
+      console.error("Error submitting job application:", error);
       setResumeSubmitStatus({
         type: "error",
-        message: "✗ Network error. Please check your connection and try again.",
+        message:
+          error?.message ||
+          "✗ Network error. Please check your connection and try again.",
       });
     } finally {
       setIsResumeSubmitting(false); // Stop loading
@@ -816,29 +872,70 @@ const Contact = () => {
                         Upload Resume (PDF/DOC)
                       </label>
                       <div className="relative">
-                        <div className="border-2 border-dashed border-gray-300 rounded p-8 text-center bg-gray-50">
+                        <div
+                          className={`border-2 border-dashed rounded p-6 text-center transition-colors ${
+                            resumeData.resume
+                              ? "border-[#2D6FBA] bg-blue-50/50"
+                              : "border-gray-300 bg-gray-50"
+                          }`}
+                        >
                           <div className="flex justify-center mb-2">
-                            <svg
-                              className="w-6 h-6 text-gray-500"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0l-4 4m4-4v12"
-                              />
-                            </svg>
+                            {resumeData.resume ? (
+                              <svg
+                                className="w-8 h-8 text-[#2D6FBA]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                />
+                              </svg>
+                            ) : (
+                              <svg
+                                className="w-6 h-6 text-gray-500"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0l-4 4m4-4v12"
+                                />
+                              </svg>
+                            )}
                           </div>
-                          <p className="text-sm text-gray-600">
-                            Drag and drop your resume here or click to browse
-                          </p>
-                          <p className="text-xs text-gray-500 mt-1">
-                            Maximum file size: 5MB
-                          </p>
+                          {resumeData.resume ? (
+                            <div>
+                              <p className="text-sm font-bold text-[#2D6FBA] truncate max-w-xs mx-auto">
+                                {(resumeData.resume as File).name}
+                              </p>
+                              <p className="text-xs text-gray-500 mt-0.5">
+                                {(
+                                  (resumeData.resume as File).size /
+                                  (1024 * 1024)
+                                ).toFixed(2)}{" "}
+                                MB • Click or drag to change
+                              </p>
+                            </div>
+                          ) : (
+                            <div>
+                              <p className="text-sm text-gray-600 font-medium">
+                                Drag and drop your resume here or click to
+                                browse
+                              </p>
+                              <p className="text-xs text-gray-500 mt-1">
+                                Supported formats: PDF, DOC, DOCX (Max: 5MB)
+                              </p>
+                            </div>
+                          )}
                           <input
                             type="file"
                             id="resume"
