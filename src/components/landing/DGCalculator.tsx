@@ -35,7 +35,7 @@ export const DGCalculator: React.FC = () => {
     typeof cms.surgeMarginPercent === "number" ? cms.surgeMarginPercent : 30;
 
   const complianceBadge = cms.complianceBadge || "";
-  const ctaButtonText = cms.ctaButtonText || "Get Instant Quote for {kva} kVA";
+  const ctaButtonText = cms.ctaButtonText || "";
   const specsButtonText = cms.specsButtonText || "";
   const specsButtonUrl = cms.specsButtonUrl || "";
 
@@ -45,7 +45,7 @@ export const DGCalculator: React.FC = () => {
   // 2. Add safety margin / surge headroom
   const requiredKVA = baseKVA * (1 + surgeMarginPercent / 100);
 
-  // 3. Find closest available rating >= requiredKVA and previous rating for range context
+  // 3. Find closest available rating >= requiredKVA and previous rating for context
   const recIndex = availableRatings.findIndex(
     (rating) => rating >= requiredKVA,
   );
@@ -59,7 +59,6 @@ export const DGCalculator: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value;
-    // Allow empty or digits only to prevent scrolling & invalid typing
     if (raw !== "" && !/^\d*\.?\d*$/.test(raw)) return;
     setInputStr(raw);
     const val = parseFloat(raw);
@@ -73,6 +72,13 @@ export const DGCalculator: React.FC = () => {
   const handlePresetClick = (val: number) => {
     setLoadKW(val);
     setInputStr(val.toString());
+  };
+
+  const adjustLoad = (delta: number) => {
+    const current = loadKW || 0;
+    const next = Math.max(0, Math.min(2500, current + delta));
+    setLoadKW(next);
+    setInputStr(next > 0 ? next.toString() : "");
   };
 
   const scrollToConsultation = () => {
@@ -89,64 +95,71 @@ export const DGCalculator: React.FC = () => {
     }
   };
 
-  const formattedCta = ctaButtonText.replace(
-    "{kva}",
-    recommendedGenset.toString(),
-  );
+  const formattedCta = ctaButtonText
+    ? ctaButtonText.replace("{kva}", recommendedGenset.toString())
+    : "";
 
   return (
     <section
       id="dg-calculator"
-      className="py-10 md:py-14 bg-slate-50 text-slate-900 border-t border-b border-slate-200 relative overflow-hidden"
+      className="py-16 md:py-24 bg-white text-slate-900 border-b border-slate-200 relative overflow-hidden"
     >
-      <div className="container mx-auto px-4 sm:px-6 max-w-2xl relative z-10">
-        {/* Compact Section Header */}
+      {/* Subtle ambient background glow */}
+      <div className="absolute inset-0 pointer-events-none opacity-50">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-[#1A6AA2]/8 to-transparent rounded-full blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 max-w-3xl relative z-10">
+        {/* Section Header */}
         {(badge || heading || subheading) && (
-          <div className="text-center mx-auto mb-6 space-y-2">
+          <div className="text-center mx-auto mb-8 md:mb-10 space-y-3">
             {badge && (
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1A6AA2]/10 border border-[#1A6AA2]/25 text-[#1A6AA2] text-xs font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1A6AA2]/10 border border-[#1A6AA2]/20 text-[#1A6AA2] text-xs font-bold uppercase tracking-widest">
                 <Calculator className="w-3.5 h-3.5" />
                 <span>{badge}</span>
               </div>
             )}
             {heading && (
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-slate-900">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight">
                 {heading}
               </h2>
             )}
             {subheading && (
-              <p className="text-slate-600 text-xs sm:text-sm">{subheading}</p>
+              <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto font-normal">
+                {subheading}
+              </p>
             )}
           </div>
         )}
 
-        {/* Compact Calculator Box */}
-        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-lg shadow-slate-200/50 p-5 sm:p-7">
-          {/* Input Header & Subtitle */}
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-            <div className="flex items-center gap-2">
+        {/* Clean Centered Calculator Card */}
+        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xl shadow-slate-200/50 p-6 sm:p-8 md:p-10 transition-all">
+          {/* Card Header */}
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+            <div className="flex items-center gap-2.5">
               <Zap className="w-4 h-4 text-[#1A6AA2]" />
-              <h3 className="text-sm sm:text-base font-bold text-slate-900">
+              <h3 className="text-base sm:text-lg font-bold text-slate-900">
                 Customer Load Input
               </h3>
             </div>
-            <span className="px-2 py-0.5 text-[11px] font-bold rounded-md bg-slate-100 text-slate-600 border border-slate-200">
+            <span className="px-2.5 py-1 text-xs font-bold rounded-lg bg-slate-100 text-slate-600 border border-slate-200">
               Unit: kW
             </span>
           </div>
 
-          {/* Input Field */}
-          <div className="mt-4">
-            <div className="flex items-baseline justify-between mb-1.5">
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-600">
+          {/* Input Block */}
+          <div className="mt-5">
+            <div className="flex items-baseline justify-between mb-2">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
                 {inputLabel}
               </label>
               {inputSubtext && (
-                <span className="text-[11px] text-slate-400">
+                <span className="text-xs text-slate-400 font-normal">
                   {inputSubtext}
                 </span>
               )}
             </div>
+
             <div className="relative">
               <input
                 type="text"
@@ -156,34 +169,37 @@ export const DGCalculator: React.FC = () => {
                 onChange={handleInputChange}
                 onWheel={(e) => e.currentTarget.blur()}
                 placeholder="0"
-                className="w-full text-2xl sm:text-3xl font-black bg-slate-50 border-2 border-slate-200 focus:border-[#1A6AA2] focus:bg-white rounded-xl px-4 py-3 pr-16 text-slate-900 placeholder:text-slate-300 focus:outline-none transition-all"
+                className="w-full text-2xl sm:text-3xl font-black bg-slate-50/80 border-2 border-slate-200 focus:border-[#1A6AA2] focus:bg-white rounded-2xl px-5 py-3.5 pr-16 text-slate-900 placeholder:text-slate-300 focus:outline-none focus:ring-4 focus:ring-[#1A6AA2]/10 transition-all"
               />
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-base pointer-events-none">
+              <div className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 font-extrabold text-base sm:text-lg pointer-events-none">
                 kW
               </div>
             </div>
           </div>
 
-          {/* Quick Preset Pills */}
+          {/* Preset Pills */}
           {presets.length > 0 && (
-            <div className="mt-3 flex flex-wrap items-center gap-1.5">
-              <span className="text-[11px] font-semibold text-slate-400 mr-1">
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <span className="text-xs font-semibold text-slate-400 mr-1">
                 Presets:
               </span>
-              {presets.map((preset) => (
-                <button
-                  key={preset}
-                  type="button"
-                  onClick={() => handlePresetClick(preset)}
-                  className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all border ${
-                    loadKW === preset
-                      ? "bg-[#1A6AA2] text-white border-[#1A6AA2]"
-                      : "bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200 hover:text-slate-900"
-                  }`}
-                >
-                  {preset} kW
-                </button>
-              ))}
+              {presets.map((preset) => {
+                const isSelected = loadKW === preset;
+                return (
+                  <button
+                    key={preset}
+                    type="button"
+                    onClick={() => handlePresetClick(preset)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border cursor-pointer ${
+                      isSelected
+                        ? "bg-[#1A6AA2] text-white border-[#1A6AA2] shadow-sm shadow-[#1A6AA2]/20"
+                        : "bg-slate-100/90 text-slate-600 border-slate-200 hover:bg-slate-200/80 hover:text-slate-900"
+                    }`}
+                  >
+                    {preset} kW
+                  </button>
+                );
+              })}
               {loadKW > 0 && (
                 <button
                   type="button"
@@ -191,7 +207,7 @@ export const DGCalculator: React.FC = () => {
                     setLoadKW(0);
                     setInputStr("");
                   }}
-                  className="px-2.5 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-slate-700 hover:bg-slate-100 ml-auto transition-colors"
+                  className="px-2.5 py-1 rounded-md text-xs font-semibold text-slate-400 hover:text-rose-600 hover:bg-rose-50 ml-auto transition-colors"
                 >
                   Clear
                 </button>
@@ -199,10 +215,10 @@ export const DGCalculator: React.FC = () => {
             </div>
           )}
 
-          {/* Compact Divider */}
-          <div className="my-5 border-t border-slate-200/80" />
+          {/* Divider */}
+          <div className="my-6 border-t border-slate-100" />
 
-          {/* Bottom Side: Results Display */}
+          {/* Result / Guidance Area */}
           <AnimatePresence mode="wait">
             {loadKW > 0 ? (
               <motion.div
@@ -211,10 +227,10 @@ export const DGCalculator: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="bg-slate-50 rounded-xl p-4 sm:p-5 border border-slate-200/90 text-center"
+                className="bg-slate-50/90 rounded-2xl p-5 sm:p-6 border border-slate-200 text-center"
               >
-                <div className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full mb-2 border border-emerald-200">
-                  <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full mb-2.5 border border-emerald-200">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                   <span>Suitable Genset According to Available Products</span>
                 </div>
 
@@ -223,48 +239,52 @@ export const DGCalculator: React.FC = () => {
                   <span className="text-4xl sm:text-5xl font-black text-[#1A6AA2] tracking-tight">
                     {recommendedGenset}
                   </span>
-                  <span className="text-xl font-bold text-slate-700">kVA</span>
+                  <span className="text-2xl font-bold text-slate-700">kVA</span>
                 </div>
+
                 {complianceBadge && (
-                  <p className="text-xs font-semibold text-slate-700">
+                  <p className="text-xs font-semibold text-slate-700 mt-1">
                     {complianceBadge}
                   </p>
                 )}
 
                 {/* Concise explanation */}
-                <div className="mt-3 p-3 rounded-lg bg-white border border-slate-200 text-xs text-slate-600 leading-relaxed">
+                <div className="mt-4 p-3.5 rounded-xl bg-white border border-slate-200/90 text-xs sm:text-sm text-slate-600 leading-relaxed text-left sm:text-center">
                   <span>
                     Your required load is{" "}
                     <strong className="text-slate-900 font-bold">
                       {requiredKVA.toFixed(0)} kVA
                     </strong>{" "}
-                    (based on {loadKW} kW load + {surgeMarginPercent}% margin).
+                    (based on {loadKW} kW load + {surgeMarginPercent}% surge
+                    margin at {powerFactor} pf).
                   </span>
                   {prevRating && prevRating !== recommendedGenset && (
-                    <span className="block mt-1">
-                      In the available Kirloskar range ({prevRating} kVA and{" "}
+                    <span className="block mt-1 text-slate-500 text-xs">
+                      In the Kirloskar standard range ({prevRating} kVA &amp;{" "}
                       {recommendedGenset} kVA), the{" "}
                       <strong className="text-[#1A6AA2] font-bold">
                         {recommendedGenset} kVA DG Set
                       </strong>{" "}
-                      is the most apt choice.
+                      provides safe headroom for reliable continuous operation.
                     </span>
                   )}
                 </div>
 
-                {/* Compact CTA Row */}
-                <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-2">
-                  <Button
-                    onClick={scrollToConsultation}
-                    className="w-full sm:w-auto bg-[#1A6AA2] hover:bg-[#155380] text-white font-semibold py-2.5 px-6 rounded-lg shadow-sm flex items-center justify-center gap-1.5 text-xs sm:text-sm group transition-all"
-                  >
-                    <span>{formattedCta}</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
+                {/* CTA Buttons */}
+                <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  {formattedCta && (
+                    <Button
+                      onClick={scrollToConsultation}
+                      className="w-full sm:w-auto bg-[#1A6AA2] hover:bg-[#155380] text-white font-bold py-3 px-6 rounded-xl shadow-md shadow-[#1A6AA2]/25 flex items-center justify-center gap-2 text-xs sm:text-sm group transition-all cursor-pointer"
+                    >
+                      <span>{formattedCta}</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  )}
                   {specsButtonUrl && specsButtonText && (
                     <a
                       href={specsButtonUrl}
-                      className="w-full sm:w-auto px-4 py-2.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 hover:text-slate-900 text-xs sm:text-sm font-semibold transition-all text-center"
+                      className="w-full sm:w-auto px-5 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 hover:text-slate-900 text-xs sm:text-sm font-semibold transition-all text-center"
                     >
                       {specsButtonText}
                     </a>
@@ -277,9 +297,9 @@ export const DGCalculator: React.FC = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="py-5 text-center rounded-xl bg-slate-50 border border-dashed border-slate-200 px-4"
+                className="py-6 px-4 text-center rounded-2xl bg-slate-50/80 border border-dashed border-slate-200/90"
               >
-                <p className="text-xs text-slate-500 font-medium">
+                <p className="text-xs sm:text-sm text-slate-500 font-medium">
                   Enter your total load in kW above or click a preset to see the
                   recommended genset capacity.
                 </p>

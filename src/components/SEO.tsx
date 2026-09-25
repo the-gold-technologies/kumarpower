@@ -49,8 +49,8 @@ export default function SEO({
   const globalSEO = useCMSStore((state) => state.globalSEO);
   const fetchGlobalSEO = useCMSStore((state) => state.fetchGlobalSEO);
   const fetchPage = useCMSStore((state) => state.fetchPage);
-  const pageState = useCMSStore((state) =>
-    state.pages[resolvedSlug] || state.pages[rawSlug]
+  const pageState = useCMSStore(
+    (state) => state.pages[resolvedSlug] || state.pages[rawSlug],
   );
 
   useEffect(() => {
