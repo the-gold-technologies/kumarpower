@@ -65,14 +65,15 @@ export default function SEO({
   const finalTitle =
     (resolvedSlug === "home"
       ? globalSEO?.siteTitle || seoData?.metaTitle || title
-      : seoData?.metaTitle || globalSEO?.siteTitle || title) || "Kumar Power";
+      : seoData?.metaTitle || title || globalSEO?.siteTitle) || "Kumar Power";
 
   const finalDescription =
     (resolvedSlug === "home"
       ? globalSEO?.siteDescription || seoData?.metaDescription || description
       : seoData?.metaDescription ||
-        globalSEO?.siteDescription ||
-        description) || "Kumar Power | Kirloskar Generator Dealer";
+        description ||
+        globalSEO?.siteDescription) ||
+    "Kumar Power | Kirloskar Generator Dealer";
 
   const finalKeywords = seoData?.keywords || keywords;
   const finalOgImage = seoData?.ogImage || ogImage;

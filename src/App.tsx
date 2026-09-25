@@ -34,6 +34,9 @@ import Submissions from "./pages/Data";
 import Blogs from "./pages/blogs/Blog";
 import BlogPost from "./pages/blogs/BlogPost";
 import GlobalScripts from "./components/GlobalScripts";
+// Legal Pages
+import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
+import TermsAndConditions from "./pages/legal/TermsAndConditions";
 
 const queryClient = new QueryClient();
 
@@ -102,6 +105,14 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          {/* Legal Pages */}
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route
+            path="/terms-and-conditions"
+            element={<TermsAndConditions />}
+          />
+          <Route path="/terms" element={<TermsAndConditions />} />
 
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
