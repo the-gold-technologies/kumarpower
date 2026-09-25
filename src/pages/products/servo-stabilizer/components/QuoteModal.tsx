@@ -52,14 +52,37 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
     e.preventDefault();
     setQuoteSending(true);
     setQuoteResult("Sending...");
-    setTimeout(() => {
+    try {
+      const API_BASE_URL = import.meta.env.VITE_CMS_API_URL || "";
+      const res = await fetch(`${API_BASE_URL}/api/enquiries`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: quoteForm.name,
+          email: quoteForm.email,
+          phone: quoteForm.phone,
+          interestedIn: `Quote Request: ${product?.name || "Servo Stabilizers"}`,
+          message: quoteForm.message,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setQuoteResult("Form Submitted Successfully! We will contact you soon.");
+        setQuoteForm({ name: "", email: "", phone: "", message: "" });
+        setTimeout(() => {
+          onOpenChange(false);
+          setQuoteResult("");
+        }, 1800);
+      } else {
+        setQuoteResult(data.message || "Submission failed");
+      }
+    } catch (err) {
+      console.error(err);
+      setQuoteResult("Submission error. Please try again.");
+    } finally {
       setQuoteSending(false);
-      setQuoteResult("Form Submitted Successfully");
-      setTimeout(() => {
-        onOpenChange(false);
-        setQuoteResult("");
-      }, 1500);
-    }, 1200);
+    }
   };
 
   return (

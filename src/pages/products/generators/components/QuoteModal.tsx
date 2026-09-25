@@ -51,10 +51,37 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
     e.preventDefault();
     setSending(true);
     setResult("Sending...");
-    setTimeout(() => {
+    try {
+      const API_BASE_URL = import.meta.env.VITE_CMS_API_URL || "";
+      const res = await fetch(`${API_BASE_URL}/api/enquiries`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          interestedIn: `Quote Request: ${product?.name || "Generators"}`,
+          message: form.message,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setResult("Form Submitted Successfully! We will contact you soon.");
+        setForm({ name: "", email: "", phone: "", message: "" });
+        setTimeout(() => {
+          onOpenChange(false);
+          setResult("");
+        }, 1800);
+      } else {
+        setResult(data.message || "Submission failed");
+      }
+    } catch (err) {
+      console.error(err);
+      setResult("Submission error. Please try again.");
+    } finally {
       setSending(false);
-      setResult("Form Submitted Successfully");
-    }, 1500);
+    }
   };
 
   const handleClose = () => {

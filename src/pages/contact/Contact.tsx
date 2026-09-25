@@ -249,9 +249,23 @@ const Contact = () => {
 
     try {
       let resumeUrl: string | null = null;
+      let resumeBase64: string | null = null;
+      let resumeName: string | null = null;
 
-      // 1. Upload resume to Cloudinary via CMS upload endpoint if attached
+      // 1. Prepare resume attachment & upload to Cloudinary via CMS upload endpoint
       if (resumeData.resume) {
+        resumeName = resumeData.resume.name;
+        try {
+          resumeBase64 = await new Promise<string>((resolve) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve((reader.result as string) || "");
+            reader.onerror = () => resolve("");
+            reader.readAsDataURL(resumeData.resume as File);
+          });
+        } catch {
+          // fallback to URL only if base64 fails
+        }
+
         const uploadFormData = new FormData();
         uploadFormData.append("file", resumeData.resume);
 
@@ -279,6 +293,8 @@ const Contact = () => {
         phone: resumeData.phone,
         message: resumeData.message || "",
         resumeUrl: resumeUrl,
+        resumeBase64: resumeBase64 || undefined,
+        resumeName: resumeName || undefined,
       };
 
       const res = await fetch(`${API_BASE_URL}/api/applications`, {

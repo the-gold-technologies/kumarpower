@@ -50,23 +50,25 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
 
   const handleQuoteSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setQuoteResult("Sending....");
+    setQuoteResult("Sending...");
     setQuoteSending(true);
     try {
-      const formEl = e.target as HTMLFormElement;
-      const formData = new FormData(formEl);
-      formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
-      formData.append("product", product?.name || "BESS Solution");
-
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const API_BASE_URL = import.meta.env.VITE_CMS_API_URL || "";
+      const res = await fetch(`${API_BASE_URL}/api/enquiries`, {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: quoteForm.name,
+          email: quoteForm.email,
+          phone: quoteForm.phone,
+          interestedIn: `Quote Request: ${product?.name || "BESS Solution"}`,
+          message: quoteForm.message,
+        }),
       });
 
       const data = await res.json();
-      if (data.success) {
-        setQuoteResult("Form Submitted Successfully");
-        formEl.reset();
+      if (res.ok && data.success) {
+        setQuoteResult("Quote Request Submitted Successfully! We will contact you soon.");
         setQuoteForm({ name: "", email: "", phone: "", message: "" });
         setTimeout(() => {
           onOpenChange(false);
@@ -77,7 +79,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
       }
     } catch (err) {
       console.error(err);
-      setQuoteResult("Submission error");
+      setQuoteResult("Submission error. Please try again.");
     } finally {
       setQuoteSending(false);
     }
