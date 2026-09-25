@@ -3,6 +3,24 @@ import { useEffect } from "react";
 import { useCMSStore } from "../store/useCMSStore";
 import { useLocation } from "react-router-dom";
 
+function getCanonicalSlug(raw: string): string {
+  if (!raw) return "";
+  const parts = raw.trim().split("/").filter(Boolean);
+  if (parts.length === 0 || raw === "/") return "home";
+
+  const lastPart = parts[parts.length - 1]
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .toLowerCase();
+
+  const slugAliases: Record<string, string> = {
+    ourprofile: "our-profile",
+    ourclients: "our-clients",
+    photogallery: "photo-gallery",
+  };
+
+  return slugAliases[lastPart] || lastPart;
+}
+
 type SEOProps = {
   title?: string;
   description?: string;
@@ -23,15 +41,16 @@ export default function SEO({
   pageSlug,
 }: SEOProps) {
   const location = useLocation();
-  const resolvedSlug =
+  const rawSlug =
     pageSlug ||
     (location.pathname === "/" ? "home" : location.pathname.substring(1));
+  const resolvedSlug = getCanonicalSlug(rawSlug);
 
   const globalSEO = useCMSStore((state) => state.globalSEO);
   const fetchGlobalSEO = useCMSStore((state) => state.fetchGlobalSEO);
   const fetchPage = useCMSStore((state) => state.fetchPage);
   const pageState = useCMSStore((state) =>
-    resolvedSlug ? state.pages[resolvedSlug] : undefined,
+    state.pages[resolvedSlug] || state.pages[rawSlug]
   );
 
   useEffect(() => {

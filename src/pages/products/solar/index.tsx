@@ -153,6 +153,7 @@ const Solar: React.FC = () => {
   return (
     <>
       <SEO
+        pageSlug="solar"
         title="Kumar Power - Solar Panels & Rooftop Solar Solutions"
         description="High-efficiency Tier-1 Mono PERC & TOPCon Bifacial solar panels from Kumar Power. Complete turnkey commercial & industrial rooftop solar systems in Delhi NCR & North India."
         keywords="Solar Panels, Mono PERC Solar Panel, TOPCon Bifacial Solar, Rooftop Solar, Commercial Solar, Solar DG Synchronization, Kumar Power"

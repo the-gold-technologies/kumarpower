@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import heroDefaultBg from "@/assets/Products/HeropBG.png";
 import trans1 from "@/assets/transformer/Trans1.png";
@@ -169,17 +169,12 @@ const Transformers = () => {
     <>
       <Header />
 
-      <Helmet>
-        <title>Transformers Dealer in Delhi - Kumar Power</title>
-        <meta
-          name="description"
-          content="Explore Kumar Power’s transformer range: Distribution, Power, Cast Resin, and Unitized Package Substations, built for efficiency, safety, and reliability"
-        />
-        <link
-          rel="canonical"
-          href="https://www.kumarpower.com/products/transformers"
-        />
-      </Helmet>
+      <SEO
+        pageSlug="transformers"
+        title="Transformers Dealer in Delhi - Kumar Power"
+        description="Explore Kumar Power’s transformer range: Distribution, Power, Cast Resin, and Unitized Package Substations, built for efficiency, safety, and reliability"
+        canonical="https://www.kumarpower.com/products/transformers"
+      />
 
       <main className="bg-black min-h-screen">
         {/* Hero Section */}

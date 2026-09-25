@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import heroDefaultBg from "@/assets/Products/HeropBG.png";
 
@@ -158,17 +158,12 @@ const Panels = () => {
     <>
       <Header />
 
-      <Helmet>
-        <title>Electrical Control Panels Dealer in Delhi | Kumar Power</title>
-        <meta
-          name="description"
-          content="Explore our range of high-quality electrical control panels for power distribution, control, and protection of electrical systems trusted by industries"
-        />
-        <link
-          rel="canonical"
-          href="https://www.kumarpower.com/products/panels"
-        />
-      </Helmet>
+      <SEO
+        pageSlug="panels"
+        title="Electrical Control Panels Dealer in Delhi | Kumar Power"
+        description="Explore our range of high-quality electrical control panels for power distribution, control, and protection of electrical systems trusted by industries"
+        canonical="https://www.kumarpower.com/products/panels"
+      />
 
       <main className="bg-black min-h-screen">
         {/* Hero Section */}

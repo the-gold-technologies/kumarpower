@@ -154,6 +154,7 @@ const BESS: React.FC = () => {
   return (
     <>
       <SEO
+        pageSlug="bess"
         title="Kumar Power - Battery Energy Storage Systems (BESS)"
         description="Explore Kumar Power Battery Energy Storage Systems (BESS) from 5 kW to 1 MW+ containerized solutions. Tier-1 LFP chemistry for commercial and industrial clean energy backup."
         keywords="BESS, Battery Energy Storage System, Lithium Iron Phosphate, LFP, Kumar Power, Solar BESS, Commercial Energy Storage"

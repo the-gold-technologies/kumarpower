@@ -2,10 +2,10 @@ import { LinkText } from "@/components/ui/LinkText";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
+import SEO from "@/components/SEO";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
-import { Helmet } from "react-helmet-async";
 
 const Certifications = () => {
   const HeadingTag = usePageHeadingTag("certifications");
@@ -88,17 +88,12 @@ const Certifications = () => {
       <div className="min-h-screen bg-background">
         <Header />
 
-        <Helmet>
-          <title>Kumar Power – Our Certifications & Quality Standards</title>
-          <meta
-            name="description"
-            content="Explore certifications that make Kumar Power a trusted name in power solutions industry. Our compliance ensures safety, reliability, and professional service."
-          />
-          <link
-            rel="canonical"
-            href="https://www.kumarpower.com/about/certifications"
-          />
-        </Helmet>
+        <SEO
+          pageSlug="certifications"
+          title="Kumar Power – Our Certifications & Quality Standards"
+          description="Explore certifications that make Kumar Power a trusted name in power solutions industry. Our compliance ensures safety, reliability, and professional service."
+          canonical="https://www.kumarpower.com/about/certifications"
+        />
 
         {/* Certificate Slider Section */}
         <section className="py-20 bg-black text-white">

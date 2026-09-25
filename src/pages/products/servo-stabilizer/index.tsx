@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import heroDefaultBg from "@/assets/Products/HeropBG.png";
 import servo1 from "@/assets/servo/servo1.png";
@@ -164,17 +164,12 @@ const ServoStabilizer = () => {
     <>
       <Header />
 
-      <Helmet>
-        <title>Servo Stabilizers Dealer in Delhi | Kumar Power</title>
-        <meta
-          name="description"
-          content="Explore Kirloskar-certified servo stabilizers from Kumar Power, engineered for high performance, reliability, and full compliance with latest CPCB norms."
-        />
-        <link
-          rel="canonical"
-          href="https://www.kumarpower.com/products/servo-stabilizer"
-        />
-      </Helmet>
+      <SEO
+        pageSlug="servo-stabilizer"
+        title="Servo Stabilizers Dealer in Delhi | Kumar Power"
+        description="Explore Kirloskar-certified servo stabilizers from Kumar Power, engineered for high performance, reliability, and full compliance with latest CPCB norms."
+        canonical="https://www.kumarpower.com/products/servo-stabilizer"
+      />
 
       <main className="bg-black min-h-screen">
         {/* Hero Section */}

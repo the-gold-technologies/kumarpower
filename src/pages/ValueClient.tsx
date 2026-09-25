@@ -131,6 +131,7 @@ const ValueClient = () => {
       /> */}
 
       <SEO
+        pageSlug="our-clients"
         title="Our Valuable Clients - Kumar Power"
         description="Our commitment to excellence, reliability, and innovation has earned us the trust of some of the most prestigious organizations in India and beyond"
         keywords="power certifications, electrical certification, Kumar Power"

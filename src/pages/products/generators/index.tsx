@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import heroDefaultBg from "@/assets/Products/HeropBG.png";
 
@@ -182,17 +182,12 @@ const Generators = () => {
   return (
     <>
       <Header />
-      <Helmet>
-        <title>Kirloskar Generators Distributor | Kumar Power</title>
-        <meta
-          name="description"
-          content="Explore Kirloskar-certified generators from Kumar Power, engineered for superior performance, reliability, and full compliance with CPCB norms."
-        />
-        <link
-          rel="canonical"
-          href="https://www.kumarpower.com/products/generators"
-        />
-      </Helmet>
+      <SEO
+        pageSlug="generators"
+        title="Kirloskar Generators Distributor | Kumar Power"
+        description="Explore Kirloskar-certified generators from Kumar Power, engineered for superior performance, reliability, and full compliance with CPCB norms."
+        canonical="https://www.kumarpower.com/products/generators"
+      />
 
       <main className="bg-black min-h-screen">
         {/* Hero Section */}
