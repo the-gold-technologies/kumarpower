@@ -1,0 +1,57 @@
+import React from "react";
+import { LinkText } from "@/components/ui/LinkText";
+import { ServoCard } from "./ServoCard";
+import { ServoProduct } from "../types";
+
+interface ServoGridProps {
+  title: string;
+  description: string;
+  servos: ServoProduct[];
+  onViewSpecs: (product: ServoProduct) => void;
+  onGetQuote: (product: ServoProduct) => void;
+}
+
+export const ServoGrid: React.FC<ServoGridProps> = ({
+  title,
+  description,
+  servos,
+  onViewSpecs,
+  onGetQuote,
+}) => {
+  return (
+    <div className="max-w-7xl mx-auto px-2 sm:px-4 py-6 sm:py-8">
+      <div className="flex-1">
+        {(title || description) && (
+          <div className="mb-6">
+            {title && <h2 className="text-xl font-bold text-white">{title}</h2>}
+            {description && (
+              <p className="text-gray-400 mt-1 text-sm">
+                <LinkText
+                  text={description}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
+              </p>
+            )}
+          </div>
+        )}
+
+        {servos.length === 0 ? (
+          <div className="py-12 text-center text-gray-500 italic">
+            No servo stabilizers currently listed.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {servos.map((product) => (
+              <ServoCard
+                key={product.id || product.name}
+                product={product}
+                onViewSpecs={onViewSpecs}
+                onGetQuote={onGetQuote}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};

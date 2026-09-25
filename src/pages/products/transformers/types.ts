@@ -1,0 +1,46 @@
+export interface TransformerProduct {
+  id?: string;
+  name: string;
+  image: string;
+  range?: string;
+  cooling?: string;
+  phase?: string;
+  rating?: number | string;
+  ratingCount?: number | string;
+  description?: string;
+  technicalSpecs?: string;
+  category?: string;
+  fuelType?: string;
+  cpcbNorm?: string;
+  brochurePdf?: string;
+}
+
+export interface TransformersCMSData {
+  transformers?: TransformerProduct[];
+  heroHeadingPart1?: string;
+  heroHeadingPart2?: string;
+  heroSub?: string;
+  heroBg?: string;
+  sectionTitle?: string;
+  sectionDesc?: string;
+  whyChooseTitle?: string;
+  whyChooseCard1Title?: string;
+  whyChooseCard1Desc?: string;
+  whyChooseCard2Title?: string;
+  whyChooseCard2Desc?: string;
+  whyChooseCard3Title?: string;
+  whyChooseCard3Desc?: string;
+  whyChooseCard4Title?: string;
+  whyChooseCard4Desc?: string;
+  whyChooseCard5Title?: string;
+  whyChooseCard5Desc?: string;
+  whyChooseCard6Title?: string;
+  whyChooseCard6Desc?: string;
+  certTitle?: string;
+  cert1Title?: string;
+  cert2Title?: string;
+  cert3Title?: string;
+  helpTitle?: string;
+  helpSub?: string;
+  helpBtnText?: string;
+}

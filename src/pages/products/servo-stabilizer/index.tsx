@@ -4,9 +4,11 @@ import Footer from "@/components/landing/Footer";
 import { Helmet } from "react-helmet-async";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import heroDefaultBg from "@/assets/Products/HeropBG.png";
+import servo1 from "@/assets/servo/servo1.png";
+import servo2 from "@/assets/servo/servo2.png";
 
-import { PanelHero } from "./components/PanelHero";
-import { PanelGrid } from "./components/PanelGrid";
+import { ServoHero } from "./components/ServoHero";
+import { ServoGrid } from "./components/ServoGrid";
 import {
   WhyChooseSection,
   WhyChooseCardItem,
@@ -15,38 +17,42 @@ import { CertificationsSection } from "./components/CertificationsSection";
 import { NeedHelpSection } from "./components/NeedHelpSection";
 import { SpecsModal } from "./components/SpecsModal";
 import { QuoteModal } from "./components/QuoteModal";
-import { PanelProduct, PanelsCMSData } from "./types";
+import { ServoProduct, ServoCMSData } from "./types";
 
-const Panels = () => {
-  const HeadingTag = usePageHeadingTag("panels");
-  const { data: rawCMSData } = useSectionData<PanelsCMSData>("panels");
+const ServoStabilizer = () => {
+  const HeadingTag = usePageHeadingTag("servo-stabilizer");
+  const { data: rawCMSData } = useSectionData<ServoCMSData>("servo-stabilizer");
   const cmsData = rawCMSData || {};
 
   // Modals state
   const [showSpecsModal, setShowSpecsModal] = useState(false);
   const [selectedProductForSpecs, setSelectedProductForSpecs] =
-    useState<PanelProduct | null>(null);
+    useState<ServoProduct | null>(null);
 
   const [showQuoteModal, setShowQuoteModal] = useState(false);
-  const [quoteProduct, setQuoteProduct] = useState<PanelProduct | null>(null);
+  const [quoteProduct, setQuoteProduct] = useState<ServoProduct | null>(null);
 
-  const openSpecsModal = (product: PanelProduct) => {
-    setSelectedProductForSpecs({
-      ...product,
-      category: product.category || "electrical",
-    });
+  const openSpecsModal = (product: ServoProduct) => {
+    setSelectedProductForSpecs(product);
     setShowSpecsModal(true);
   };
 
-  const openQuoteModal = (product: PanelProduct) => {
+  const openQuoteModal = (product: ServoProduct) => {
     setQuoteProduct(product);
     setShowQuoteModal(true);
   };
 
   // Products Data from CMS
-  const electricalPanels: PanelProduct[] = Array.isArray(cmsData.panels)
-    ? cmsData.panels
-    : [];
+  const defaultImages = [servo1, servo2];
+  const servoStabilizers: ServoProduct[] = (
+    Array.isArray(cmsData.servos) ? cmsData.servos : []
+  ).map((s: any, idx: number) => ({
+    ...s,
+    image:
+      (s.image && s.image.trim()) ||
+      defaultImages[idx % defaultImages.length] ||
+      servo1,
+  }));
 
   // Hero Data
   const heroHeadingPart1 = cmsData.heroHeadingPart1 || "";
@@ -159,20 +165,20 @@ const Panels = () => {
       <Header />
 
       <Helmet>
-        <title>Electrical Control Panels Dealer in Delhi | Kumar Power</title>
+        <title>Servo Stabilizers Dealer in Delhi | Kumar Power</title>
         <meta
           name="description"
-          content="Explore our range of high-quality electrical control panels for power distribution, control, and protection of electrical systems trusted by industries"
+          content="Explore Kirloskar-certified servo stabilizers from Kumar Power, engineered for high performance, reliability, and full compliance with latest CPCB norms."
         />
         <link
           rel="canonical"
-          href="https://www.kumarpower.com/products/panels"
+          href="https://www.kumarpower.com/products/servo-stabilizer"
         />
       </Helmet>
 
       <main className="bg-black min-h-screen">
         {/* Hero Section */}
-        <PanelHero
+        <ServoHero
           HeadingTag={HeadingTag}
           headingPart1={heroHeadingPart1}
           headingPart2={heroHeadingPart2}
@@ -181,10 +187,10 @@ const Panels = () => {
         />
 
         {/* Product Grid */}
-        <PanelGrid
+        <ServoGrid
           title={sectionTitle}
           description={sectionDesc}
-          panels={electricalPanels}
+          servos={servoStabilizers}
           onViewSpecs={openSpecsModal}
           onGetQuote={openQuoteModal}
         />
@@ -230,4 +236,4 @@ const Panels = () => {
   );
 };
 
-export default Panels;
+export default ServoStabilizer;

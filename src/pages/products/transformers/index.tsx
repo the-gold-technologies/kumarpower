@@ -4,9 +4,13 @@ import Footer from "@/components/landing/Footer";
 import { Helmet } from "react-helmet-async";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import heroDefaultBg from "@/assets/Products/HeropBG.png";
+import trans1 from "@/assets/transformer/Trans1.png";
+import trans2 from "@/assets/transformer/trans2.png";
+import trans3 from "@/assets/transformer/trans3.png";
+import panel4 from "@/assets/Panel/Unitised_package_substation 1.png";
 
-import { PanelHero } from "./components/PanelHero";
-import { PanelGrid } from "./components/PanelGrid";
+import { TransformerHero } from "./components/TransformerHero";
+import { TransformerGrid } from "./components/TransformerGrid";
 import {
   WhyChooseSection,
   WhyChooseCardItem,
@@ -15,38 +19,45 @@ import { CertificationsSection } from "./components/CertificationsSection";
 import { NeedHelpSection } from "./components/NeedHelpSection";
 import { SpecsModal } from "./components/SpecsModal";
 import { QuoteModal } from "./components/QuoteModal";
-import { PanelProduct, PanelsCMSData } from "./types";
+import { TransformerProduct, TransformersCMSData } from "./types";
 
-const Panels = () => {
-  const HeadingTag = usePageHeadingTag("panels");
-  const { data: rawCMSData } = useSectionData<PanelsCMSData>("panels");
+const Transformers = () => {
+  const HeadingTag = usePageHeadingTag("transformers");
+  const { data: rawCMSData } =
+    useSectionData<TransformersCMSData>("transformers");
   const cmsData = rawCMSData || {};
 
   // Modals state
   const [showSpecsModal, setShowSpecsModal] = useState(false);
   const [selectedProductForSpecs, setSelectedProductForSpecs] =
-    useState<PanelProduct | null>(null);
+    useState<TransformerProduct | null>(null);
 
   const [showQuoteModal, setShowQuoteModal] = useState(false);
-  const [quoteProduct, setQuoteProduct] = useState<PanelProduct | null>(null);
+  const [quoteProduct, setQuoteProduct] = useState<TransformerProduct | null>(
+    null,
+  );
 
-  const openSpecsModal = (product: PanelProduct) => {
-    setSelectedProductForSpecs({
-      ...product,
-      category: product.category || "electrical",
-    });
+  const openSpecsModal = (product: TransformerProduct) => {
+    setSelectedProductForSpecs(product);
     setShowSpecsModal(true);
   };
 
-  const openQuoteModal = (product: PanelProduct) => {
+  const openQuoteModal = (product: TransformerProduct) => {
     setQuoteProduct(product);
     setShowQuoteModal(true);
   };
 
   // Products Data from CMS
-  const electricalPanels: PanelProduct[] = Array.isArray(cmsData.panels)
-    ? cmsData.panels
-    : [];
+  const defaultImages = [trans1, trans2, trans3, panel4];
+  const transformerList: TransformerProduct[] = (
+    Array.isArray(cmsData.transformers) ? cmsData.transformers : []
+  ).map((t: any, idx: number) => ({
+    ...t,
+    image:
+      (t.image && t.image.trim()) ||
+      defaultImages[idx % defaultImages.length] ||
+      trans1,
+  }));
 
   // Hero Data
   const heroHeadingPart1 = cmsData.heroHeadingPart1 || "";
@@ -159,20 +170,20 @@ const Panels = () => {
       <Header />
 
       <Helmet>
-        <title>Electrical Control Panels Dealer in Delhi | Kumar Power</title>
+        <title>Transformers Dealer in Delhi - Kumar Power</title>
         <meta
           name="description"
-          content="Explore our range of high-quality electrical control panels for power distribution, control, and protection of electrical systems trusted by industries"
+          content="Explore Kumar Power’s transformer range: Distribution, Power, Cast Resin, and Unitized Package Substations, built for efficiency, safety, and reliability"
         />
         <link
           rel="canonical"
-          href="https://www.kumarpower.com/products/panels"
+          href="https://www.kumarpower.com/products/transformers"
         />
       </Helmet>
 
       <main className="bg-black min-h-screen">
         {/* Hero Section */}
-        <PanelHero
+        <TransformerHero
           HeadingTag={HeadingTag}
           headingPart1={heroHeadingPart1}
           headingPart2={heroHeadingPart2}
@@ -181,10 +192,10 @@ const Panels = () => {
         />
 
         {/* Product Grid */}
-        <PanelGrid
+        <TransformerGrid
           title={sectionTitle}
           description={sectionDesc}
-          panels={electricalPanels}
+          transformers={transformerList}
           onViewSpecs={openSpecsModal}
           onGetQuote={openQuoteModal}
         />
@@ -230,4 +241,4 @@ const Panels = () => {
   );
 };
 
-export default Panels;
+export default Transformers;
