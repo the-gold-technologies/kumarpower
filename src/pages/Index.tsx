@@ -40,35 +40,35 @@ const Index: React.FC = () => {
         {/* 3. Complete electrical ecosystem graphic (High-Tech Dark Navy Contrast) */}
         <ElectricalEcosystem />
 
-        {/* 4. Core solution portfolio (Clean White) */}
+        {/* 4. DG Load & Sizing Calculator (Interactive Sizing Tool) */}
+        <DGCalculator />
+
+        {/* 5. Core solution portfolio (Clean White) */}
         <SolutionPortfolio />
 
-        {/* 5. Featured solutions (Light Cool Slate) */}
+        {/* 6. Featured solutions (Light Cool Slate) */}
         <FeaturedSolutions />
 
-        {/* 6. Industries served (Clean White) */}
+        {/* 7. Industries served (Clean White) */}
         <IndustriesServed />
 
-        {/* 7. Why Kumar Power (Light Cool Slate) */}
+        {/* 8. Why Kumar Power (Light Cool Slate) */}
         <WhyKumarPower />
 
-        {/* 8. Numbers and credibility (Deep Navy High Impact Stat Band) */}
+        {/* 9. Numbers and credibility (Deep Navy High Impact Stat Band) */}
         <NumbersCredibility />
 
-        {/* 9. Selected projects and case studies (Clean White) */}
+        {/* 10. Selected projects and case studies (Clean White) */}
         <SelectedProjects />
 
-        {/* 10. Partner and certification section (Light Cool Slate) */}
+        {/* 11. Partner and certification section (Light Cool Slate) */}
         <PartnerCertifications />
 
-        {/* 11. Knowledge centre / Power Insights (Clean White) */}
+        {/* 12. Knowledge centre / Power Insights (Clean White) */}
         <KnowledgeCenter />
 
-        {/* 12. Real Stories. Real Power. (Customer Testimonials) */}
+        {/* 13. Real Stories. Real Power. (Customer Testimonials) */}
         <LandingTestimonials />
-
-        {/* 13. DG Load & Sizing Calculator (Interactive Sizing Tool) */}
-        <DGCalculator />
 
         {/* 14. Consultation section (High-Impact Navy Conversion Card) */}
         <ConsultationForm />

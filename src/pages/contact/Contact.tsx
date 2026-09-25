@@ -7,10 +7,76 @@ import contact from "@/assets/Contact/contact.jpeg";
 import SEO from "@/components/SEO";
 import { useSectionData } from "@/store/useCMSStore";
 
+const renderPerkIcon = (index: number) => {
+  if (index % 3 === 0) {
+    return (
+      <svg
+        className="w-5 h-5 text-white"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+        />
+      </svg>
+    );
+  }
+  if (index % 3 === 1) {
+    return (
+      <svg
+        className="w-5 h-5 text-white"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+        />
+      </svg>
+    );
+  }
+  return (
+    <svg
+      className="w-5 h-5 text-white"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+      />
+    </svg>
+  );
+};
+
 const Contact = () => {
   const { data: rawCMSData } = useSectionData<any>("contact");
   const cmsData = rawCMSData || {};
-  console.log(cmsData);
+
+  const resumeSection = cmsData?.resume || {};
+  const perks: Array<{ title: string; description: string }> = Array.isArray(
+    resumeSection?.perks,
+  )
+    ? resumeSection.perks
+    : [];
+
+  const mapData = cmsData?.map || {};
+  const mapEmbedUrl = mapData?.embedUrl || "";
+  const mapCardTitle = mapData?.cardTitle || "";
+  const mapAddress = mapData?.address || "";
   // Form state for the main contact form
   const [formData, setFormData] = useState({
     name: "",
@@ -686,87 +752,22 @@ const Contact = () => {
                   </p>
 
                   <div className="space-y-6">
-                    {/* Feature Points */}
-                    <div className="flex items-start">
-                      <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg
-                          className="w-5 h-5 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                          />
-                        </svg>
+                    {/* Feature Points from CMS */}
+                    {perks.map((perk, idx) => (
+                      <div key={idx} className="flex items-start">
+                        <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                          {renderPerkIcon(idx)}
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-white">
+                            {perk.title}
+                          </h3>
+                          <p className="text-gray-400 text-sm">
+                            {perk.description}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-white">
-                          Industry Leading Company
-                        </h3>
-                        <p className="text-gray-400 text-sm">
-                          One of India's most respected power generation brands
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start">
-                      <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg
-                          className="w-5 h-5 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-white">
-                          Career Growth
-                        </h3>
-                        <p className="text-gray-400 text-sm">
-                          Continuous learning and advancement opportunities
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start">
-                      <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                        <svg
-                          className="w-5 h-5 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-white">
-                          Comprehensive Benefits
-                        </h3>
-                        <p className="text-gray-400 text-sm">
-                          Sales incentives, PF, and more
-                        </p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
 
@@ -986,44 +987,52 @@ const Contact = () => {
               </div>
 
               {/* Map Section */}
-              {/* Full-width Map Section */}
-              <div className="relative w-screen mt-10 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-64 sm:h-80 md:h-96 lg:h-[500px] overflow-hidden">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.002710082035!2d77.07707537557323!3d28.629680875666285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d04bf7f6ae361%3A0x88c15da012435142!2sWestend%20Mall%20Janakpuri%20West%20Delhi!5e0!3m2!1sen!2sin!4v1756473543698!5m2!1sen!2sin"
-                  className="absolute inset-0 w-full h-full"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Kumar Power Office Location"
-                />
+              {/* Map Section */}
+              {mapEmbedUrl && (
+                <div className="relative w-screen mt-10 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-64 sm:h-80 md:h-96 lg:h-[500px] overflow-hidden">
+                  <iframe
+                    src={mapEmbedUrl}
+                    className="absolute inset-0 w-full h-full"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Kumar Power Office Location"
+                  />
 
-                {/* Overlay info card */}
-                <div className="absolute left-4 md:left-12 bottom-4 md:bottom-8 bg-black/80 text-white rounded-lg shadow-lg py-4 px-5 md:py-6 md:px-8 max-w-xs flex flex-col gap-2">
-                  <div className="flex items-center gap-2 mb-1">
-                    <svg
-                      className="w-5 h-5 text-[#2D6FBA]"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <circle cx="12" cy="11" r="3" fill="currentColor" />
-                    </svg>
-                    <span className="font-semibold text-lg">Our Office</span>
-                  </div>
-                  <div className="text-sm font-extralight leading-snug tracking-tighter">
-                    New Address: 904, 9th Floor, Westend Mall,
-                    <br />
-                    Janakpuri, New Delhi - 110058
-                  </div>
+                  {/* Overlay info card */}
+                  {(mapCardTitle || mapAddress) && (
+                    <div className="absolute left-4 md:left-12 bottom-4 md:bottom-8 bg-black/80 text-white rounded-lg shadow-lg py-4 px-5 md:py-6 md:px-8 max-w-xs flex flex-col gap-2">
+                      {mapCardTitle && (
+                        <div className="flex items-center gap-2 mb-1">
+                          <svg
+                            className="w-5 h-5 text-[#2D6FBA]"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                            />
+                            <circle cx="12" cy="11" r="3" fill="currentColor" />
+                          </svg>
+                          <span className="font-semibold text-lg">
+                            {mapCardTitle}
+                          </span>
+                        </div>
+                      )}
+                      {mapAddress && (
+                        <div className="text-sm font-extralight leading-snug tracking-tighter whitespace-pre-line">
+                          {mapAddress}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </section>

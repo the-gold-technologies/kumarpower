@@ -32,9 +32,7 @@ export const DGCalculator: React.FC = () => {
       : 0.8;
 
   const surgeMarginPercent =
-    typeof cms.surgeMarginPercent === "number"
-      ? cms.surgeMarginPercent
-      : 20;
+    typeof cms.surgeMarginPercent === "number" ? cms.surgeMarginPercent : 30;
 
   const complianceBadge = cms.complianceBadge || "";
   const ctaButtonText = cms.ctaButtonText || "Get Instant Quote for {kva} kVA";
@@ -48,13 +46,15 @@ export const DGCalculator: React.FC = () => {
   const requiredKVA = baseKVA * (1 + surgeMarginPercent / 100);
 
   // 3. Find closest available rating >= requiredKVA and previous rating for range context
-  const recIndex = availableRatings.findIndex((rating) => rating >= requiredKVA);
+  const recIndex = availableRatings.findIndex(
+    (rating) => rating >= requiredKVA,
+  );
   const recommendedGenset =
     recIndex !== -1
       ? availableRatings[recIndex]
       : availableRatings.length > 0
-      ? availableRatings[availableRatings.length - 1]
-      : Math.ceil(requiredKVA);
+        ? availableRatings[availableRatings.length - 1]
+        : Math.ceil(requiredKVA);
   const prevRating = recIndex > 0 ? availableRatings[recIndex - 1] : null;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +80,7 @@ export const DGCalculator: React.FC = () => {
     if (formEl) {
       formEl.scrollIntoView({ behavior: "smooth" });
       const reqInput = document.querySelector(
-        'input[name="requirement"], select[name="requirement"], textarea[name="message"]'
+        'input[name="requirement"], select[name="requirement"], textarea[name="message"]',
       ) as HTMLInputElement | HTMLTextAreaElement | null;
       if (reqInput) {
         reqInput.value = `Enquiry for ${recommendedGenset} kVA DG Set (Total Load: ${loadKW} kW, Required Sizing: ${requiredKVA.toFixed(0)} kVA)`;
@@ -89,7 +89,10 @@ export const DGCalculator: React.FC = () => {
     }
   };
 
-  const formattedCta = ctaButtonText.replace("{kva}", recommendedGenset.toString());
+  const formattedCta = ctaButtonText.replace(
+    "{kva}",
+    recommendedGenset.toString(),
+  );
 
   return (
     <section
@@ -231,13 +234,20 @@ export const DGCalculator: React.FC = () => {
                 {/* Concise explanation */}
                 <div className="mt-3 p-3 rounded-lg bg-white border border-slate-200 text-xs text-slate-600 leading-relaxed">
                   <span>
-                    Your required load is <strong className="text-slate-900 font-bold">{requiredKVA.toFixed(0)} kVA</strong>{" "}
+                    Your required load is{" "}
+                    <strong className="text-slate-900 font-bold">
+                      {requiredKVA.toFixed(0)} kVA
+                    </strong>{" "}
                     (based on {loadKW} kW load + {surgeMarginPercent}% margin).
                   </span>
                   {prevRating && prevRating !== recommendedGenset && (
                     <span className="block mt-1">
-                      In the available Kirloskar range ({prevRating} kVA and {recommendedGenset} kVA), the{" "}
-                      <strong className="text-[#1A6AA2] font-bold">{recommendedGenset} kVA DG Set</strong> is the most apt choice.
+                      In the available Kirloskar range ({prevRating} kVA and{" "}
+                      {recommendedGenset} kVA), the{" "}
+                      <strong className="text-[#1A6AA2] font-bold">
+                        {recommendedGenset} kVA DG Set
+                      </strong>{" "}
+                      is the most apt choice.
                     </span>
                   )}
                 </div>
@@ -270,7 +280,8 @@ export const DGCalculator: React.FC = () => {
                 className="py-5 text-center rounded-xl bg-slate-50 border border-dashed border-slate-200 px-4"
               >
                 <p className="text-xs text-slate-500 font-medium">
-                  Enter your total load in kW above or click a preset to see the recommended genset capacity.
+                  Enter your total load in kW above or click a preset to see the
+                  recommended genset capacity.
                 </p>
               </motion.div>
             )}
