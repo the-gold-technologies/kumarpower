@@ -21,19 +21,32 @@ export interface NavLinkItem {
   isActive: boolean;
 }
 
+export interface SocialLinksData {
+  connectTitle: string;
+  linkedinUrl: string;
+  youtubeUrl: string;
+  instagramUrl: string;
+  facebookUrl: string;
+}
+
 interface CMSState {
   pages: Record<string, PageState>;
   globalSEO: any;
   navLinks: NavLinkItem[];
+  socialLinks: SocialLinksData | null;
+  socialLinksFetched: boolean;
   fetchPage: (slug: string) => Promise<void>;
   fetchGlobalSEO: () => Promise<void>;
   fetchNavLinks: () => Promise<void>;
+  fetchSocialLinks: () => Promise<void>;
 }
 
 export const useCMSStore = create<CMSState>((set, get) => ({
   pages: {},
   globalSEO: null,
   navLinks: [],
+  socialLinks: null,
+  socialLinksFetched: false,
   fetchNavLinks: async () => {
     if (get().navLinks.length > 0) return;
     try {
@@ -46,6 +59,20 @@ export const useCMSStore = create<CMSState>((set, get) => ({
       }
     } catch (err) {
       console.warn("Error fetching nav links:", err);
+    }
+  },
+  fetchSocialLinks: async () => {
+    if (get().socialLinksFetched) return;
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/social-links`);
+      if (response.ok) {
+        const json = await response.json();
+        if (json.success && json.data) {
+          set({ socialLinks: json.data, socialLinksFetched: true });
+        }
+      }
+    } catch (err) {
+      console.warn("Error fetching social links:", err);
     }
   },
   fetchGlobalSEO: async () => {
@@ -202,4 +229,21 @@ export function useNavLinks(): NavLinkItem[] {
   }, [fetchNavLinks]);
 
   return navLinks;
+}
+
+export function useSocialLinks(): SocialLinksData {
+  const socialLinks = useCMSStore((state) => state.socialLinks);
+  const fetchSocialLinks = useCMSStore((state) => state.fetchSocialLinks);
+
+  useEffect(() => {
+    fetchSocialLinks();
+  }, [fetchSocialLinks]);
+
+  return socialLinks || {
+    connectTitle: "",
+    linkedinUrl: "",
+    youtubeUrl: "",
+    instagramUrl: "",
+    facebookUrl: "",
+  };
 }

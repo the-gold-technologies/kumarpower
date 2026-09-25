@@ -11,12 +11,13 @@ import {
   Instagram,
   MessageSquare,
 } from "lucide-react";
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, useSocialLinks } from "@/store/useCMSStore";
 import kumarLogoDark from "@/assets/kumar_power_logo_dark.svg";
 
 export const Footer: React.FC = () => {
   const { data: homeData } = useSectionData<any>("home");
   const data = homeData?.footer || {};
+  const social = useSocialLinks();
 
   const address = data.address || "";
   const aboutBio = data.aboutBio || "";
@@ -26,10 +27,13 @@ export const Footer: React.FC = () => {
   const salesEmail = data.salesEmail || "";
   const supportEmail = data.supportEmail || "";
   const accountsEmail = data.accountsEmail || "";
-  const facebookUrl = data.facebookUrl || "";
-  const linkedinUrl = data.linkedinUrl || "";
-  const instagramUrl = data.instagramUrl || "";
   const copyrightText = data.copyrightText || "";
+
+  // Social links — from global Social Media tab (single source of truth)
+  const facebookUrl = social.facebookUrl || "";
+  const linkedinUrl = social.linkedinUrl || "";
+  const instagramUrl = social.instagramUrl || "";
+  const youtubeUrl = social.youtubeUrl || "";
 
   const whatsappPhone = (mainPhone || "919773851767").replace(/[^+\d]/g, "");
 
