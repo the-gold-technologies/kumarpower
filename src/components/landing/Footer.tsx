@@ -392,19 +392,32 @@ export const Footer: React.FC = () => {
             )}
           </div>
 
-          <div className="flex flex-wrap items-center gap-6">
-            <Link
-              to="/privacy-policy"
-              className="hover:text-white transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              to="/terms-and-conditions"
-              className="hover:text-white transition-colors"
-            >
-              Terms & Conditions
-            </Link>
+          <div className="flex flex-col items-center md:items-end gap-1.5">
+            <div className="flex flex-wrap items-center gap-6">
+              <Link
+                to="/privacy-policy"
+                className="hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                to="/terms-and-conditions"
+                className="hover:text-white transition-colors"
+              >
+                Terms & Conditions
+              </Link>
+            </div>
+            <p className="text-[8px] text-slate-400">
+              Designed & developed by{" "}
+              <a
+                href="https://thegoldtechnologies.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-white transition-colors"
+              >
+                TGT
+              </a>
+            </p>
           </div>
         </div>
       </div>
