@@ -1,20 +1,25 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const cmsApiUrl = process.env.VITE_CMS_API_URL || 'http://localhost:3000';
+  const cmsApiUrl = process.env.VITE_CMS_API_URL;
+  const baseUrl = cmsApiUrl?.trim().replace(/\/+$/, "");
   try {
-    const response = await fetch(`${cmsApiUrl}/api/seo/robots`);
+    const response = await fetch(`${baseUrl}/api/seo/robots`);
     if (!response.ok) {
-      res.setHeader('Content-Type', 'text/plain');
-      return res.status(response.status).send('Robots config not found');
+      res.setHeader("Content-Type", "text/plain");
+      return res.status(response.status).send("Robots config not found");
     }
     const text = await response.text();
-    res.setHeader('Content-Type', 'text/plain');
-    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
+    res.setHeader("Content-Type", "text/plain");
+    res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate=300");
     return res.status(200).send(text);
   } catch (error) {
-    console.error('Error fetching robots.txt:', error);
-    res.setHeader('Content-Type', 'text/plain');
-    return res.status(200).send('User-agent: *\nAllow: /');
+    console.error("Error fetching robots.txt:", error);
+    res.setHeader("Content-Type", "text/plain");
+    return res
+      .status(200)
+      .send(
+        "User-agent: *\nAllow: /\n\nSitemap: https://www.kumarpower.com/sitemap.xml",
+      );
   }
 }
