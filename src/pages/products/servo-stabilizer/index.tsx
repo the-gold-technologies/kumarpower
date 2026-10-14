@@ -168,7 +168,6 @@ const ServoStabilizer = () => {
         pageSlug="servo-stabilizer"
         title="Servo Stabilizers Dealer in Delhi | Kumar Power"
         description="Explore Kirloskar-certified servo stabilizers from Kumar Power, engineered for high performance, reliability, and full compliance with latest CPCB norms."
-        canonical="https://www.kumarpower.com/products/servo-stabilizer"
       />
 
       <main className="bg-black min-h-screen">

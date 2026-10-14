@@ -34,7 +34,6 @@ export default function PrivacyPolicy() {
         pageSlug="privacy-policy"
         title={title ? `${title} | Kumar Power Solutions` : undefined}
         description={subtitle}
-        canonical="https://www.kumarpower.com/privacy-policy"
       />
       <Header />
 

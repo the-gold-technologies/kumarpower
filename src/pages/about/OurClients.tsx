@@ -481,7 +481,6 @@ const OurClients = () => {
         pageSlug="our-clients"
         title="Our Clients - Trusted by Leading Brands & Businesses"
         description="Kumar Power partners with top brands and industries. Discover our client list and the trust we’ve built through quality power solutions."
-        canonical="https://www.kumarpower.com/about/OurClients"
       />
       {/* <SEOJsonLD /> */}
       <Header />

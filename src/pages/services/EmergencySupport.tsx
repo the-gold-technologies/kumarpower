@@ -199,7 +199,6 @@ const EmergencySupportService = () => {
         pageSlug="emergency-support"
         title="Reliable Emergency Support - Kumar Power"
         description="Kumar Power's emergency response team is available 24 hours a day, 7 days a week, 365 days a year to ensure your operations can continue without disruption"
-        canonical="https://www.kumarpower.com/services/emergency-support"
       />
 
       <main>

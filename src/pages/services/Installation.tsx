@@ -121,7 +121,6 @@ const InstallationService = () => {
         pageSlug="installation"
         title="Installation Services - Kumar Power"
         description="Expert installation and commissioning services for power generators."
-        canonical="https://kumarpower.com/services/installation"
       />
 
       <main>

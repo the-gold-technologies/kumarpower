@@ -18,7 +18,6 @@ const Blogs = () => {
       <SEO
         title={heroData.heroHeading || "Blogs | Kumar Power"}
         description={heroData.heroSub || "Expert Insights on Industrial Power Generation"}
-        canonical="https://www.kumarpower.com/blogs"
         robots="index, follow"
       />
 

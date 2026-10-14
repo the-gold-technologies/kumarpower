@@ -81,7 +81,6 @@ const Testimonials = () => {
         pageSlug="testimonials"
         title="Why Kumar Power? | Customer Feedback & Testimonials"
         description="Discover what customers say about Kumar Power. Real reviews and experience highlighting our service quality, product reliability, and trusted power solutions."
-        canonical="https://kumarpower.com/about/Testimonials"
       />
       <Header />
 

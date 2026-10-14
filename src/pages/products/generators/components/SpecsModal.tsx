@@ -18,17 +18,6 @@ interface SpecsModalProps {
   product: any;
 }
 
-const getBrochure = (product: any) => {
-  if (
-    product?.brochurePdf &&
-    typeof product.brochurePdf === "string" &&
-    product.brochurePdf.trim() !== ""
-  ) {
-    return product.brochurePdf;
-  }
-  return Brochure;
-};
-
 export const SpecsModal: React.FC<SpecsModalProps> = ({
   open,
   onOpenChange,
@@ -41,7 +30,7 @@ export const SpecsModal: React.FC<SpecsModalProps> = ({
       <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-lg sm:text-xl">
-            {product.name} Specifications
+            {product.name ? `${product.name} Specifications` : "Specifications"}
           </DialogTitle>
           {product.description && (
             <DialogDescription className="text-gray-500">
@@ -74,24 +63,24 @@ export const SpecsModal: React.FC<SpecsModalProps> = ({
             size="sm"
             variant="default"
             className="bg-[#2D6FBA] hover:bg-[#225488] w-full sm:w-auto"
+            asChild
           >
             <Link to="/contact">Request Quote</Link>
           </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            className="flex items-center gap-1 w-full sm:w-auto"
-          >
-            <Download className="w-4 h-4" />
-            <a
-              href={getBrochure(product)}
-              download={`Kirloskar ${product.range || "Generator"} Brochure.pdf`}
-              target="_blank"
-              rel="noopener noreferrer"
+          {product.brochurePdf && (
+            <Button
+              size="sm"
+              variant="outline"
+              className="flex items-center gap-1 w-full sm:w-auto cursor-pointer"
+              onClick={() => {
+                const filename = `${product.name || "Kirloskar Generator"} Brochure.pdf`;
+                downloadPdf(product.brochurePdf, filename);
+              }}
             >
+              <Download className="w-4 h-4" />
               Download Brochure
-            </a>
-          </Button>
+            </Button>
+          )}
         </div>
       </DialogContent>
     </Dialog>

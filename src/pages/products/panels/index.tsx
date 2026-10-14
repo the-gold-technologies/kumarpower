@@ -162,7 +162,6 @@ const Panels = () => {
         pageSlug="panels"
         title="Electrical Control Panels Dealer in Delhi | Kumar Power"
         description="Explore our range of high-quality electrical control panels for power distribution, control, and protection of electrical systems trusted by industries"
-        canonical="https://www.kumarpower.com/products/panels"
       />
 
       <main className="bg-black min-h-screen">

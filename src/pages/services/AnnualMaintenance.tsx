@@ -88,7 +88,6 @@ const AnnualMaintenanceService = () => {
         pageSlug="annual-maintenance"
         title="Annual Maintainence Contracts- Kumar Power"
         description="Our Annual Maintenance Contracts (AMC) provide scheduled preventive maintenance, prompt repairs, and emergency support to ensure your power generation equipment operates reliably year-round."
-        canonical="https://www.kumarpower.com/services/annual-maintenance"
       />
 
       <main>

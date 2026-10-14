@@ -554,7 +554,6 @@ const PhotoGallery = () => {
         pageSlug="photo-gallery"
         title="Kumar Power - Photo Gallery | Explore Our Legacy"
         description="Explore our legacy in action through real project images. View Kumar Power’s photo gallery showcasing installations, on-site work, and power solutions in action."
-        canonical="https://kumarpower.com/about/PhotoGallery"
       />
       <Header />
 

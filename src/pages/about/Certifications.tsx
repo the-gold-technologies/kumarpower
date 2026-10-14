@@ -92,7 +92,6 @@ const Certifications = () => {
           pageSlug="certifications"
           title="Kumar Power – Our Certifications & Quality Standards"
           description="Explore certifications that make Kumar Power a trusted name in power solutions industry. Our compliance ensures safety, reliability, and professional service."
-          canonical="https://www.kumarpower.com/about/certifications"
         />
 
         {/* Certificate Slider Section */}

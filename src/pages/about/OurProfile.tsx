@@ -82,7 +82,6 @@ const About = () => {
         pageSlug="our-profile"
         title="About Us | Kumar Power - Trusted Name in Power Solutions"
         description="Learn about Kumar Power, Delhi’s trusted kirloskar generator and power solutions provider. Know more about our expertise, commitment and service support."
-        canonical="https://www.kumarpower.com/about/OurProfile"
       />
 
       <div className="min-h-screen bg-background">

@@ -361,7 +361,6 @@ const Contact = () => {
       <SEO
         title="Kumar Power | Contact us for Your Power Queries in Delhi"
         description="Get in touch with Kumar Power today. Whether you need generator assistance, installation info, or pricing details, our experts team are always ready to help."
-        canonical="https://kumarpower.com/contact"
       />
       {/* <SEOJsonLD /> */}
       <Header />

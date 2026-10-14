@@ -76,7 +76,6 @@ const RepairOverhaulService = () => {
         pageSlug="repair-overhaul"
         title="Repair & Overhaul Services - Kumar Power"
         description="From emergency repairs to rebuilds, Kumar Power’s certified technicians diagnose and fix equipment issues, minimizing downtime and extending service life."
-        canonical="https://www.kumarpower.com/services/repair-overhaul"
       />
 
       <main>

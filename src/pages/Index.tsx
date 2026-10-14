@@ -24,7 +24,6 @@ const Index: React.FC = () => {
       <SEO
         title="Complete Electrical Power Solutions Provider | Kumar Power"
         description="Kumar Power designs, supplies, integrates & supports complete electrical power systems—from grid entry to final load. Authorised Kirloskar Channel Partner."
-        canonical="https://www.kumarpower.com/"
       />
 
       {/* Header with MegaMenu */}

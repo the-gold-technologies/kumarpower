@@ -186,7 +186,6 @@ const Generators = () => {
         pageSlug="generators"
         title="Kirloskar Generators Distributor | Kumar Power"
         description="Explore Kirloskar-certified generators from Kumar Power, engineered for superior performance, reliability, and full compliance with CPCB norms."
-        canonical="https://www.kumarpower.com/products/generators"
       />
 
       <main className="bg-black min-h-screen">

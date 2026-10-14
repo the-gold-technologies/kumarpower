@@ -13,6 +13,11 @@ import PhotoGallery from "./pages/about/PhotoGallery";
 import OurClients from "./pages/about/OurClients";
 import Testimonials from "./pages/about/Testimonials";
 // Product category pages
+import Products from "./pages/Products";
+import KirloskarDiesel from "./pages/products/Kirloskar-diesel-generator";
+import KirloskarGas from "./pages/products/kirloskar-gas-generator";
+import KirloskarPortable from "./pages/products/kirloskar-portable-generator";
+import Optiprime from "./pages/products/Optiprime";
 import Generators from "./pages/products/generators";
 import Panels from "./pages/products/panels";
 import Servo from "./pages/products/servo-stabilizer";
@@ -76,6 +81,20 @@ const App = () => (
           <Route path="/about/PhotoGallery" element={<PhotoGallery />} />
           <Route path="/about/Certifications" element={<Certifications />} />
           {/* Product Routes */}
+          <Route path="/products" element={<Products />} />
+          <Route
+            path="/products/kirloskar-diesel-generator"
+            element={<KirloskarDiesel />}
+          />
+          <Route
+            path="/products/kirloskar-gas-generator"
+            element={<KirloskarGas />}
+          />
+          <Route
+            path="/products/kirloskar-portable-generator"
+            element={<KirloskarPortable />}
+          />
+          <Route path="/products/optiprime" element={<Optiprime />} />
           <Route path="/products/generators" element={<Generators />} />
           <Route path="/products/panels" element={<Panels />} />
           <Route path="/products/bess" element={<BESS />} />

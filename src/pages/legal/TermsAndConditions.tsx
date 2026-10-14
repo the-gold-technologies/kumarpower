@@ -36,7 +36,6 @@ export default function TermsAndConditions() {
         pageSlug="terms-and-conditions"
         title={title ? `${title} | Kumar Power Solutions` : undefined}
         description={subtitle}
-        canonical="https://www.kumarpower.com/terms-and-conditions"
       />
       <Header />
 

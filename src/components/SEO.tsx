@@ -77,7 +77,7 @@ export default function SEO({
 
   const finalKeywords = seoData?.keywords || keywords;
   const finalOgImage = seoData?.ogImage || ogImage;
-  const finalCanonical = seoData?.canonicalUrl || canonical;
+  const finalCanonical = seoData?.canonicalUrl;
   const finalRobots = seoData?.noIndex ? "noindex, nofollow" : robots;
 
   return (

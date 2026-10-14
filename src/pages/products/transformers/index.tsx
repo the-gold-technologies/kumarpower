@@ -173,7 +173,6 @@ const Transformers = () => {
         pageSlug="transformers"
         title="Transformers Dealer in Delhi - Kumar Power"
         description="Explore Kumar Power’s transformer range: Distribution, Power, Cast Resin, and Unitized Package Substations, built for efficiency, safety, and reliability"
-        canonical="https://www.kumarpower.com/products/transformers"
       />
 
       <main className="bg-black min-h-screen">

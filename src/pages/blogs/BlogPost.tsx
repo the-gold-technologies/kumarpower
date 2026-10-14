@@ -31,7 +31,6 @@ export default function BlogPost() {
         pageSlug="blogs"
         title={`${post.title} | Kumar Power Blogs`}
         description={post.excerpt || post.summary}
-        canonical={`https://www.kumarpower.com/blog/${post.slug}`}
       />
       <Header />
 

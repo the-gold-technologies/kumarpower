@@ -94,7 +94,6 @@ const InstallationService = () => {
               title="Installation "
               description="Kumar Power Installation ensure high-quality power solutions, compliance standards, and trusted electrical services across India."
               keywords="power certifications, electrical certification, Kumar Power"
-              canonical="https://www.kumarpower.com/about/certifications"
             />
       <div className="min-h-screen bg-background">
         <Header />
