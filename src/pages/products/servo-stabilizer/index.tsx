@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEO from "@/components/SEO";
+import SEOJsonLD from "@/components/SEOJsonLD";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import heroDefaultBg from "@/assets/Products/HeropBG.png";
 import servo1 from "@/assets/servo/servo1.png";
@@ -169,6 +170,7 @@ const ServoStabilizer = () => {
         title="Servo Stabilizers Dealer in Delhi | Kumar Power"
         description="Explore Kirloskar-certified servo stabilizers from Kumar Power, engineered for high performance, reliability, and full compliance with latest CPCB norms."
       />
+      <SEOJsonLD />
 
       <main className="bg-black min-h-screen">
         {/* Hero Section */}

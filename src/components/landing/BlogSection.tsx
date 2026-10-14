@@ -6,11 +6,11 @@ import { useSectionData } from "@/store/useCMSStore";
 import { downloadPdf } from "@/lib/utils";
 
 interface BlogPost {
-  id: number;
+  id: string | number;
   slug: string;
   title: string;
-  img: string;
-  summary: string;
+  image?: string;
+  excerpt?: string;
 }
 
 const BlogCard = ({ blog, index }: { blog: BlogPost; index: number }) => (
@@ -43,7 +43,7 @@ const BlogCard = ({ blog, index }: { blog: BlogPost; index: number }) => (
   >
     <motion.div className="overflow-hidden h-auto w-full">
       <motion.img
-        src={blog.img}
+        src={blog.image}
         alt={blog.title}
         className="w-full object-contain transition-all duration-300"
         loading="lazy"
@@ -76,7 +76,7 @@ const BlogCard = ({ blog, index }: { blog: BlogPost; index: number }) => (
         }}
       >
         <LinkText
-          text={blog.summary}
+          text={blog.excerpt || ""}
           linkClassName="text-[#2D6FBA] hover:underline font-bold"
         />
       </motion.p>
@@ -165,8 +165,8 @@ const BlogSection = ({ limit }: { limit?: number }) => {
                 id: blog.id || index + 1,
                 slug: blog.slug || "",
                 title: blog.title || "",
-                img: blog.img || blog.image || "",
-                summary: blog.summary || blog.excerpt || blog.description || "",
+                image: blog.image || blog.img || "",
+                excerpt: blog.excerpt || blog.summary || blog.description || "",
               }}
               index={index}
             />

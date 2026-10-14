@@ -10,7 +10,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { LinkText } from "@/components/ui/LinkText";
-import Brochure from "@/assets/Brochure.pdf";
+import { downloadPdf } from "@/lib/utils";
 
 interface SpecsModalProps {
   open: boolean;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEO from "@/components/SEO";
+import SEOJsonLD from "@/components/SEOJsonLD";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import { LinkText } from "@/components/ui/LinkText";
 import { Button } from "@/components/ui/button";
@@ -149,6 +150,7 @@ const Products = () => {
     <>
       <Header />
       <SEO pageSlug={pageSlug} />
+      <SEOJsonLD />
 
       <main className="bg-black min-h-screen">
         {/* Hero Section */}

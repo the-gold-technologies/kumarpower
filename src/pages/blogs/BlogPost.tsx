@@ -3,6 +3,7 @@ import { useSectionData } from "@/store/useCMSStore";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEO from "@/components/SEO";
+import SEOJsonLD from "@/components/SEOJsonLD";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import Loader from "@/components/ui/Loader";
@@ -31,6 +32,11 @@ export default function BlogPost() {
         pageSlug="blogs"
         title={`${post.title} | Kumar Power Blogs`}
         description={post.excerpt || post.summary}
+      />
+      <SEOJsonLD
+        title={`${post.title} | Kumar Power Blogs`}
+        description={post.excerpt || post.summary}
+        imageUrl={post.image || post.img}
       />
       <Header />
 

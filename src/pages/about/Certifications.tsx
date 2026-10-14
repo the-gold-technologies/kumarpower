@@ -93,6 +93,7 @@ const Certifications = () => {
           title="Kumar Power – Our Certifications & Quality Standards"
           description="Explore certifications that make Kumar Power a trusted name in power solutions industry. Our compliance ensures safety, reliability, and professional service."
         />
+        <SEOJsonLD />
 
         {/* Certificate Slider Section */}
         <section className="py-20 bg-black text-white">

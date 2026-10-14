@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEO from "@/components/SEO";
+import SEOJsonLD from "@/components/SEOJsonLD";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 
 import { SolarHero } from "./components/SolarHero";
@@ -158,6 +159,7 @@ const Solar: React.FC = () => {
         description="High-efficiency Tier-1 Mono PERC & TOPCon Bifacial solar panels from Kumar Power. Complete turnkey commercial & industrial rooftop solar systems in Delhi NCR & North India."
         keywords="Solar Panels, Mono PERC Solar Panel, TOPCon Bifacial Solar, Rooftop Solar, Commercial Solar, Solar DG Synchronization, Kumar Power"
       />
+      <SEOJsonLD />
 
       <Header />
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEO from "@/components/SEO";
+import SEOJsonLD from "@/components/SEOJsonLD";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import heroDefaultBg from "@/assets/Products/HeropBG.png";
 
@@ -163,6 +164,7 @@ const Panels = () => {
         title="Electrical Control Panels Dealer in Delhi | Kumar Power"
         description="Explore our range of high-quality electrical control panels for power distribution, control, and protection of electrical systems trusted by industries"
       />
+      <SEOJsonLD />
 
       <main className="bg-black min-h-screen">
         {/* Hero Section */}

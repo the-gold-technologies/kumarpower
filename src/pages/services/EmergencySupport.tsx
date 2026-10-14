@@ -188,12 +188,7 @@ const EmergencySupportService = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      {/* <SEOJsonLD
-        title="24/7 Emergency Generator Support | Kumar Power"
-        description="Round-the-clock emergency response services for generator breakdowns and power failures. Rapid deployment, mobile service units, and temporary power solutions."
-        url="https://kumarpower.com/services/emergency-support"
-        imageUrl="https://kumarpower.com/images/emergency-service.jpg"
-      /> */}
+      <SEOJsonLD />
 
       <SEO
         pageSlug="emergency-support"

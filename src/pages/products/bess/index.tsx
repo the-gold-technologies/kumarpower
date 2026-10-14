@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEO from "@/components/SEO";
+import SEOJsonLD from "@/components/SEOJsonLD";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 
 import { BESSHero } from "./components/BESSHero";
@@ -159,6 +160,7 @@ const BESS: React.FC = () => {
         description="Explore Kumar Power Battery Energy Storage Systems (BESS) from 5 kW to 1 MW+ containerized solutions. Tier-1 LFP chemistry for commercial and industrial clean energy backup."
         keywords="BESS, Battery Energy Storage System, Lithium Iron Phosphate, LFP, Kumar Power, Solar BESS, Commercial Energy Storage"
       />
+      <SEOJsonLD />
 
       <Header />
 

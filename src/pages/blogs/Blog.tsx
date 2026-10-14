@@ -1,13 +1,15 @@
 import { LinkText } from "@/components/ui/LinkText";
 import BlogSection from "@/components/landing/BlogSection";
 import SEO from "@/components/SEO";
+import SEOJsonLD from "@/components/SEOJsonLD";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import Loader from "@/components/ui/Loader";
 
 const Blogs = () => {
   const { data: heroData, loading } = useSectionData<any>("blogs", "blogs");
+  const HeadingTag = usePageHeadingTag("blogs");
 
   if (loading) {
     return <Loader />;
@@ -16,10 +18,14 @@ const Blogs = () => {
   return (
     <>
       <SEO
+        pageSlug="blogs"
         title={heroData.heroHeading || "Blogs | Kumar Power"}
-        description={heroData.heroSub || "Expert Insights on Industrial Power Generation"}
+        description={
+          heroData.heroSub || "Expert Insights on Industrial Power Generation"
+        }
         robots="index, follow"
       />
+      <SEOJsonLD />
 
       <Header />
 
@@ -39,10 +45,15 @@ const Blogs = () => {
               {heroData.heroTagline}
             </span>
           )}
-          <h1 className="text-2xl md:text-4xl font-bold leading-tight">
+          <HeadingTag className="text-2xl md:text-4xl font-bold leading-tight">
             {heroData.heroHeading}
-          </h1>
-          <p className="text-sm sm:text-base md:text-lg mt-3 max-w-4xl text-justify"><LinkText text={heroData.heroSub} linkClassName="text-[#2D6FBA] hover:underline font-bold" /></p>
+          </HeadingTag>
+          <p className="text-sm sm:text-base md:text-lg mt-3 max-w-4xl text-justify">
+            <LinkText
+              text={heroData.heroSub}
+              linkClassName="text-[#2D6FBA] hover:underline font-bold"
+            />
+          </p>
         </div>
       </div>
       <BlogSection />
@@ -52,4 +63,3 @@ const Blogs = () => {
 };
 
 export default Blogs;
-

@@ -3,7 +3,7 @@ import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
 import { useState, useEffect, useLayoutEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion"; // Import framer-motion
+import { motion, AnimatePresence, Variants } from "framer-motion"; // Import framer-motion
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import gallery from "@/assets/Gallery1.png";
 import gallery2 from "@/assets/gallery2.png";
@@ -155,7 +155,7 @@ interface GalleryImage {
 
 const Masonry = ({ images }: { images: GalleryImage[] }) => {
   // Animation variants for the container
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -166,7 +166,7 @@ const Masonry = ({ images }: { images: GalleryImage[] }) => {
   };
 
   // Animation variants for individual images - sliding from right to left
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, x: 50 }, // Start from the right
     visible: {
       opacity: 1,
@@ -549,7 +549,7 @@ const PhotoGallery = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* <SEOJsonLD /> */}
+      <SEOJsonLD />
       <SEO
         pageSlug="photo-gallery"
         title="Kumar Power - Photo Gallery | Explore Our Legacy"

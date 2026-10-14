@@ -34,7 +34,6 @@ import asset2 from "@/assets/Kumar Assets/new750.png";
 
 // Icon Mapper for CMS string icons
 const renderIcon = (iconName: string, className: string) => {
-  const HeadingTag = usePageHeadingTag("repair-overhaul");
   const icons: Record<string, any> = {
     AlertTriangle,
     Wrench,
@@ -51,6 +50,7 @@ const renderIcon = (iconName: string, className: string) => {
 };
 
 const RepairOverhaulService = () => {
+  const HeadingTag = usePageHeadingTag("repair-overhaul");
   const { data: rawCMSData } = useSectionData<any>("repair-overhaul");
   const cmsData = rawCMSData?.services || rawCMSData || {};
 
@@ -77,6 +77,7 @@ const RepairOverhaulService = () => {
         title="Repair & Overhaul Services - Kumar Power"
         description="From emergency repairs to rebuilds, Kumar Power’s certified technicians diagnose and fix equipment issues, minimizing downtime and extending service life."
       />
+      <SEOJsonLD />
 
       <main>
         {/* Hero Banner */}

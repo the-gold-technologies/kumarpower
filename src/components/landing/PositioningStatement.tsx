@@ -2,7 +2,7 @@ import React from "react";
 import * as LucideIcons from "lucide-react";
 import { Compass, PackageCheck, Wrench, ShieldAlert } from "lucide-react";
 import { motion } from "framer-motion";
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Compass,
@@ -12,7 +12,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 const getIcon = (iconName: string | any) => {
-  if (typeof iconName === "function" || typeof iconName === "object") return iconName;
+  if (typeof iconName === "function" || typeof iconName === "object")
+    return iconName;
   if (typeof iconName === "string") {
     if (iconMap[iconName]) return iconMap[iconName];
     if ((LucideIcons as any)[iconName]) return (LucideIcons as any)[iconName];
@@ -21,13 +22,16 @@ const getIcon = (iconName: string | any) => {
 };
 
 export const PositioningStatement: React.FC = () => {
+  const HeadingTag = usePageHeadingTag("home");
   const { data: homeData } = useSectionData<any>("home");
   const data = homeData?.positioningStatement || {};
 
   const badge = data.badge || "";
   const heading = data.heading || "";
   const description = data.description || "";
-  const capabilities = Array.isArray(data.capabilities) ? data.capabilities : [];
+  const capabilities = Array.isArray(data.capabilities)
+    ? data.capabilities
+    : [];
 
   return (
     <section className="py-20 bg-white text-slate-900 border-b border-slate-200 overflow-hidden">
@@ -47,9 +51,9 @@ export const PositioningStatement: React.FC = () => {
           )}
 
           {heading && (
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
+            <HeadingTag className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight">
               {heading}
-            </h2>
+            </HeadingTag>
           )}
 
           {description && (

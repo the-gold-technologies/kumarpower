@@ -3,9 +3,8 @@ import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
 import { useState } from "react";
-import contact from "@/assets/Contact/contact.jpeg";
 import SEO from "@/components/SEO";
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 
 const renderPerkIcon = (index: number) => {
   if (index % 3 === 0) {
@@ -63,6 +62,7 @@ const renderPerkIcon = (index: number) => {
 };
 
 const Contact = () => {
+  const HeadingTag = usePageHeadingTag("contact");
   const { data: rawCMSData } = useSectionData<any>("contact");
   const cmsData = rawCMSData || {};
 
@@ -359,10 +359,11 @@ const Contact = () => {
   return (
     <>
       <SEO
-        title="Kumar Power | Contact us for Your Power Queries in Delhi"
-        description="Get in touch with Kumar Power today. Whether you need generator assistance, installation info, or pricing details, our experts team are always ready to help."
+        pageSlug="contact"
+        title="Contact Us - Kumar Power"
+        description="Get in touch with Kumar Power today. Reach out for generator quotes, support, or site visits."
       />
-      {/* <SEOJsonLD /> */}
+      <SEOJsonLD />
       <Header />
 
       <main>
@@ -392,9 +393,10 @@ const Contact = () => {
 
               {/* Content with improved contrast */}
               <div className="relative z-10">
-                <h2 className="text-3xl md:text-4xl font-bold mb-2 text-white drop-shadow-md">
-                  {cmsData?.hero?.bannerHeading}
-                </h2>
+                <HeadingTag className="text-3xl md:text-4xl font-bold mb-2 text-white drop-shadow-md">
+                  {cmsData?.hero?.bannerHeading ||
+                    "Powering Connections That Matter"}
+                </HeadingTag>
                 <p className="text-base text-white tracking-tighter font-extralight mb-8 drop-shadow">
                   {cmsData?.hero?.bannerSubtitle}
                 </p>

@@ -22,9 +22,11 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white">
       <SEO
+        pageSlug="home"
         title="Complete Electrical Power Solutions Provider | Kumar Power"
         description="Kumar Power designs, supplies, integrates & supports complete electrical power systems—from grid entry to final load. Authorised Kirloskar Channel Partner."
       />
+      <SEOJsonLD />
 
       {/* Header with MegaMenu */}
       <Header />

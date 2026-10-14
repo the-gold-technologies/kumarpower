@@ -4,6 +4,7 @@ import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEO from "@/components/SEO";
+import SEOJsonLD from "@/components/SEOJsonLD";
 import Loader from "@/components/ui/Loader";
 import { Calendar, Clock, Mail, Phone, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -37,6 +38,7 @@ export default function TermsAndConditions() {
         title={title ? `${title} | Kumar Power Solutions` : undefined}
         description={subtitle}
       />
+      <SEOJsonLD />
       <Header />
 
       <main className="bg-gray-50 min-h-screen pb-24">

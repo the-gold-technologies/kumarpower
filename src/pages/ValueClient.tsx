@@ -123,12 +123,7 @@ const ValueClient = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      {/* <SEOJsonLD
-        title="Our Valued Clients | Kumar Power"
-        description="Kumar Power is trusted by leading organizations across industries. View our client portfolio and success stories."
-        url="https://kumarpower.com/value-client"
-        imageUrl="https://kumarpower.com/images/clients-showcase.jpg"
-      /> */}
+      <SEOJsonLD />
 
       <SEO
         pageSlug="our-clients"

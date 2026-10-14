@@ -77,12 +77,7 @@ const AnnualMaintenanceService = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      {/* <SEOJsonLD
-        title="Annual Maintenance Contracts | Kumar Power"
-        description="Comprehensive annual maintenance contracts for power generators and equipment. Keep your power systems running at peak efficiency with our expert maintenance services."
-        url="https://kumarpower.com/services/annual-maintenance"
-        imageUrl="https://kumarpower.com/images/maintenance-service.jpg"
-      /> */}
+      <SEOJsonLD />
 
       <SEO
         pageSlug="annual-maintenance"

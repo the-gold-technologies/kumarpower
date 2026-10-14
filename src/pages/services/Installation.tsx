@@ -110,12 +110,7 @@ const InstallationService = () => {
       `}</style>
 
       <Header />
-      {/* <SEOJsonLD
-        title="Generator Installation & Commissioning Services | Kumar Power"
-        description="Expert installation and commissioning services for power generators and equipment. Professional setup, testing, and training for optimal system performance."
-        url="https://kumarpower.com/services/installation"
-        imageUrl="https://kumarpower.com/images/installation-service.jpg"
-      /> */}
+      <SEOJsonLD />
 
       <SEO
         pageSlug="installation"

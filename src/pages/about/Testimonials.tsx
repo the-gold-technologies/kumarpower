@@ -3,11 +3,12 @@ import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEOJsonLD from "@/components/SEOJsonLD";
 import { useState, useEffect } from "react";
-import { useSectionData } from "@/store/useCMSStore";
+import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import { downloadPdf } from "@/lib/utils";
 import SEO from "@/components/SEO";
 
 const Testimonials = () => {
+  const HeadingTag = usePageHeadingTag("testimonials");
   const { data: rawCMSData } = useSectionData<any>("testimonials");
   const cmsData = rawCMSData || {};
 
@@ -76,7 +77,7 @@ const Testimonials = () => {
         }
       `}</style>
 
-      {/* <SEOJsonLD /> */}
+      <SEOJsonLD />
       <SEO
         pageSlug="testimonials"
         title="Why Kumar Power? | Customer Feedback & Testimonials"
@@ -98,11 +99,11 @@ const Testimonials = () => {
         <div className="relative max-w-7xl mx-auto px-8">
           <div className="mb-6">
             <div className="border-l-4 border-[#2D6FBA] pl-4">
-              <h2 className="text-4xl font-bold leading-tight">
+              <HeadingTag className="text-4xl font-bold leading-tight">
                 {heroHeadingLine1}
                 <br />
                 {heroHeadingLine2}
-              </h2>
+              </HeadingTag>
               <p className="mt-2 text-gray-200">
                 <LinkText
                   text={heroSubtitle}

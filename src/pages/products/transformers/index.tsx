@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEO from "@/components/SEO";
+import SEOJsonLD from "@/components/SEOJsonLD";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import heroDefaultBg from "@/assets/Products/HeropBG.png";
 import trans1 from "@/assets/transformer/Trans1.png";
@@ -174,6 +175,7 @@ const Transformers = () => {
         title="Transformers Dealer in Delhi - Kumar Power"
         description="Explore Kumar Power’s transformer range: Distribution, Power, Cast Resin, and Unitized Package Substations, built for efficiency, safety, and reliability"
       />
+      <SEOJsonLD />
 
       <main className="bg-black min-h-screen">
         {/* Hero Section */}
