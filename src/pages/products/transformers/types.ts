@@ -43,4 +43,6 @@ export interface TransformersCMSData {
   helpTitle?: string;
   helpSub?: string;
   helpBtnText?: string;
+  whyChoosePara1?: string;
+  whyChoosePara2?: string;
 }

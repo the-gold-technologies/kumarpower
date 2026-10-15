@@ -7,9 +7,15 @@ import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
 import heroDefaultBg from "@/assets/Products/HeropBG.png";
 
 import { GeneratorHero } from "./components/GeneratorHero";
-import { GeneratorFilterBar, FilterCategory } from "./components/GeneratorFilterBar";
+import {
+  GeneratorFilterBar,
+  FilterCategory,
+} from "./components/GeneratorFilterBar";
 import { GeneratorSection } from "./components/GeneratorSection";
-import { WhyChooseSection, WhyChooseCardData } from "./components/WhyChooseSection";
+import {
+  WhyChooseSection,
+  WhyChooseCardData,
+} from "./components/WhyChooseSection";
 import { CertificationsSection } from "./components/CertificationsSection";
 import { NeedHelpSection } from "./components/NeedHelpSection";
 import { SpecsModal } from "./components/SpecsModal";
@@ -22,7 +28,8 @@ const Generators = () => {
 
   // Modals state
   const [showSpecsModal, setShowSpecsModal] = useState(false);
-  const [selectedProductForSpecs, setSelectedProductForSpecs] = useState<any>(null);
+  const [selectedProductForSpecs, setSelectedProductForSpecs] =
+    useState<any>(null);
 
   const [showQuoteModal, setShowQuoteModal] = useState(false);
   const [quoteProduct, setQuoteProduct] = useState<any>(null);
@@ -47,10 +54,14 @@ const Generators = () => {
   const displayedGasGenerators: any[] = Array.isArray(cmsData.gasGensets)
     ? cmsData.gasGensets
     : [];
-  const displayedPortableGenerators: any[] = Array.isArray(cmsData.portableGensets)
+  const displayedPortableGenerators: any[] = Array.isArray(
+    cmsData.portableGensets,
+  )
     ? cmsData.portableGensets
     : [];
-  const displayedOptiprimeGenerators: any[] = Array.isArray(cmsData.optiprimeGensets)
+  const displayedOptiprimeGenerators: any[] = Array.isArray(
+    cmsData.optiprimeGensets,
+  )
     ? cmsData.optiprimeGensets
     : [];
 
@@ -236,7 +247,9 @@ const Generators = () => {
           {/* 4. OptiPrime Generators */}
           <GeneratorSection
             id="optiprime-generators"
-            title={cmsData.optiprimeSectionTitle || "OptiPrime Heavy Duty Generators"}
+            title={
+              cmsData.optiprimeSectionTitle || "OptiPrime Heavy Duty Generators"
+            }
             description={cmsData.optiprimeSectionDesc}
             products={displayedOptiprimeGenerators}
             onViewDetails={openSpecsModal}
@@ -246,7 +259,9 @@ const Generators = () => {
 
         {/* Why Choose Section */}
         <WhyChooseSection
-          title={cmsData.whyChooseTitle || ""}
+          title={cmsData.whyChooseTitle}
+          para1={cmsData.whyChoosePara1}
+          para2={cmsData.whyChoosePara2}
           cards={whyChooseCards}
         />
 

@@ -193,7 +193,9 @@ const ServoStabilizer = () => {
 
         {/* Why Choose Section */}
         <WhyChooseSection
-          title={cmsData.whyChooseTitle || ""}
+          title={cmsData.whyChooseTitle}
+          para1={cmsData.whyChoosePara1}
+          para2={cmsData.whyChoosePara2}
           cards={whyChooseCards}
         />
 

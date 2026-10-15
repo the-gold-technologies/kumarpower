@@ -41,5 +41,7 @@ export interface PanelsCMSData {
   cert3Title?: string;
   helpTitle?: string;
   helpSub?: string;
+  whyChoosePara2?: string;
+  whyChoosePara1?: string;
   helpBtnText?: string;
 }

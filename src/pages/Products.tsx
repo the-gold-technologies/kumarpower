@@ -13,6 +13,28 @@ import { downloadPdf } from "@/lib/utils";
 import { SpecsModal } from "./products/generators/components/SpecsModal";
 import { QuoteModal } from "./products/generators/components/QuoteModal";
 
+// Renders **bold** segments and keeps LinkText behavior for the rest
+const RichText: React.FC<{ text: string }> = ({ text }) => {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean);
+  return (
+    <>
+      {parts.map((part, i) =>
+        part.startsWith("**") && part.endsWith("**") ? (
+          <strong key={i} className="font-bold text-gray-900">
+            {part.slice(2, -2)}
+          </strong>
+        ) : (
+          <LinkText
+            key={i}
+            text={part}
+            linkClassName="text-[#2D6FBA] hover:underline font-bold"
+          />
+        ),
+      )}
+    </>
+  );
+};
+
 const Products = () => {
   const pageSlug = "products";
   const HeadingTag = usePageHeadingTag(pageSlug);
@@ -139,6 +161,10 @@ const Products = () => {
       ),
     },
   ].filter((c) => Boolean(c.title));
+
+  const hasWhyChooseParas = Boolean(
+    cmsData.whyChoosePara1 || cmsData.whyChoosePara2,
+  );
 
   const certifications = [
     cmsData.cert1Title,
@@ -329,7 +355,7 @@ const Products = () => {
         </div>
 
         {/* Why Choose Section */}
-        {whyChooseCards.length > 0 && (
+        {(whyChooseCards.length > 0 || hasWhyChooseParas) && (
           <section className="bg-[#E5E7EB] text-gray-800 py-12">
             <div className="max-w-7xl mx-auto px-4">
               {cmsData.whyChooseTitle && (
@@ -337,6 +363,23 @@ const Products = () => {
                   {cmsData.whyChooseTitle}
                 </h2>
               )}
+
+              {/* Two intro paragraphs */}
+              {hasWhyChooseParas && (
+                <div className="mb-8 space-y-4 text-sm sm:text-base text-gray-800 leading-relaxed">
+                  {cmsData.whyChoosePara1 && (
+                    <p>
+                      <RichText text={cmsData.whyChoosePara1} />
+                    </p>
+                  )}
+                  {cmsData.whyChoosePara2 && (
+                    <p>
+                      <RichText text={cmsData.whyChoosePara2} />
+                    </p>
+                  )}
+                </div>
+              )}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {whyChooseCards.map((card, idx) => (
                   <div key={idx} className="bg-white p-6 rounded-md shadow-sm">

@@ -187,8 +187,12 @@ const BESS: React.FC = () => {
         </div>
 
         {/* 3. Why Choose BESS Section */}
-        <WhyChooseSection title={whyChooseTitle} cards={whyChooseCards} />
-
+        <WhyChooseSection
+          title={cmsData.whyChooseTitle}
+          para1={cmsData.whyChoosePara1}
+          para2={cmsData.whyChoosePara2}
+          cards={whyChooseCards}
+        />
         {/* 4. Certifications Section */}
         <CertificationsSection
           title={cmsData.certTitle}

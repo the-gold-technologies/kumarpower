@@ -186,8 +186,12 @@ const Solar: React.FC = () => {
         </div>
 
         {/* 3. Why Choose Solar Section */}
-        <WhyChooseSection title={whyChooseTitle} cards={whyChooseCards} />
-
+        <WhyChooseSection
+          title={cmsData.whyChooseTitle}
+          para1={cmsData.whyChoosePara1}
+          para2={cmsData.whyChoosePara2}
+          cards={whyChooseCards}
+        />
         {/* 4. Certifications Section */}
         <CertificationsSection
           title="Quality Certifications & Safety Standards"
