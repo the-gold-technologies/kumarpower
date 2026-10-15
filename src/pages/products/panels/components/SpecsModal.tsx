@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Download } from "lucide-react";
 import { LinkText } from "@/components/ui/LinkText";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +11,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { PanelProduct } from "../types";
+import { downloadPdf } from "@/lib/utils";
 
 interface SpecsModalProps {
   open: boolean;
@@ -68,6 +70,21 @@ export const SpecsModal: React.FC<SpecsModalProps> = ({
           >
             <Link to="/contact">Request Quote</Link>
           </Button>
+
+          {product.brochurePdf && (
+            <Button
+              size="sm"
+              variant="outline"
+              className="flex items-center gap-1 w-full sm:w-auto cursor-pointer"
+              onClick={() => {
+                const filename = `${product.name || "Panel"} Brochure.pdf`;
+                downloadPdf(product.brochurePdf!, filename);
+              }}
+            >
+              <Download className="w-4 h-4" />
+              Download Brochure
+            </Button>
+          )}
         </div>
       </DialogContent>
     </Dialog>

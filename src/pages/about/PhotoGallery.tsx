@@ -129,6 +129,7 @@ import award3 from "@/assets/award 3.png";
 import award4 from "@/assets/award 4.png";
 import ps from "@/assets/ps2.png";
 import Portfolio from "@/assets/Brochure/PortfolioProfile.pdf";
+import { downloadPdf } from "@/lib/utils";
 
 // Diwali Party images (all in 'events' category)
 
@@ -711,16 +712,16 @@ const PhotoGallery = () => {
                   </a>
                 )}
                 {experienceBtn2Text && (
-                  <a
-                    href={experienceBtn2Link || Portfolio}
-                    download={
-                      experienceBtn2Link === Portfolio ||
-                      experienceBtn2Link === ""
-                    }
-                    className="border border-white text-white text-sm px-6 py-2 rounded hover:bg-white hover:text-black transition-colors"
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const targetUrl = experienceBtn2Link || Portfolio;
+                      downloadPdf(targetUrl, "Kumar Power Company Profile.pdf");
+                    }}
+                    className="border border-white text-white text-sm px-6 py-2 rounded hover:bg-white hover:text-black transition-colors cursor-pointer"
                   >
                     {experienceBtn2Text}
-                  </a>
+                  </button>
                 )}
               </div>
             </div>

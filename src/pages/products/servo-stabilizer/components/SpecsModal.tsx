@@ -11,6 +11,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { ServoProduct } from "../types";
+import { downloadPdf } from "@/lib/utils";
 
 interface SpecsModalProps {
   open: boolean;
@@ -72,18 +73,14 @@ export const SpecsModal: React.FC<SpecsModalProps> = ({
             <Button
               size="sm"
               variant="outline"
-              className="flex items-center gap-1 w-full sm:w-auto"
-              asChild
+              className="flex items-center gap-1 w-full sm:w-auto cursor-pointer"
+              onClick={() => {
+                const filename = `${product.name || "Servo Stabilizer"} Brochure.pdf`;
+                downloadPdf(product.brochurePdf!, filename);
+              }}
             >
-              <a
-                href={product.brochurePdf}
-                target="_blank"
-                rel="noreferrer"
-                download
-              >
-                <Download className="w-4 h-4 mr-1" />
-                Brochure
-              </a>
+              <Download className="w-4 h-4 mr-1" />
+              Download Brochure
             </Button>
           )}
         </div>

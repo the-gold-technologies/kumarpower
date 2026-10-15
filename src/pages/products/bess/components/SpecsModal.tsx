@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { LinkText } from "@/components/ui/LinkText";
 import { BESSProduct } from "./BESSCard";
-import Portfolio from "@/assets/Brochure/Portfolio.pdf";
+import { downloadPdf } from "@/lib/utils";
 
 interface SpecsModalProps {
   open: boolean;
@@ -81,20 +81,21 @@ export const SpecsModal: React.FC<SpecsModalProps> = ({
           >
             Request Quote
           </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            className="flex items-center gap-1 w-full sm:w-auto"
-            onClick={() => {
-              const link = document.createElement("a");
-              link.href = product.brochurePdf || Portfolio;
-              link.download = `${product.name} Brochure.pdf`;
-              link.click();
-            }}
-          >
-            <Download className="w-4 h-4" />
-            Download Brochure
-          </Button>
+          {product.brochurePdf && (
+            <Button
+              size="sm"
+              variant="outline"
+              className="flex items-center gap-1 w-full sm:w-auto cursor-pointer"
+              onClick={() => {
+                const targetUrl = product.brochurePdf;
+                const filename = `${product.name || "BESS"} Brochure.pdf`;
+                downloadPdf(targetUrl, filename);
+              }}
+            >
+              <Download className="w-4 h-4" />
+              Download Brochure
+            </Button>
+          )}
         </div>
       </DialogContent>
     </Dialog>

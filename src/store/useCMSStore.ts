@@ -215,6 +215,16 @@ export function usePageHeadingTag(
 ): keyof JSX.IntrinsicElements {
   const pageState = useCMSStore((state) => state.pages[pageSlug]);
   const globalSEO = useCMSStore((state) => state.globalSEO);
+  const fetchGlobalSEO = useCMSStore((state) => state.fetchGlobalSEO);
+
+  useEffect(() => {
+    fetchGlobalSEO();
+  }, [fetchGlobalSEO]);
+
+  if (pageSlug === "home") {
+    return (globalSEO?.headingOptions || "h1") as keyof JSX.IntrinsicElements;
+  }
+
   return (pageState?.seo?.headingOptions ||
     globalSEO?.headingOptions ||
     "h1") as keyof JSX.IntrinsicElements;

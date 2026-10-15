@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { LinkText } from "@/components/ui/LinkText";
 import { SolarProduct } from "./SolarCard";
-import Portfolio from "@/assets/Brochure/Portfolio.pdf";
+import { downloadPdf } from "@/lib/utils";
 
 interface SpecsModalProps {
   open: boolean;
@@ -76,20 +76,21 @@ export const SpecsModal: React.FC<SpecsModalProps> = ({
 
         {/* Modal Actions */}
         <div className="mt-6 flex flex-col sm:flex-row justify-between items-center gap-3 pt-3 border-t">
-          <a
-            href={Portfolio}
-            download="Kumar Power Solar Portfolio.pdf"
-            className="w-full sm:w-auto"
-          >
+          {product.brochurePdf && (
             <Button
               variant="outline"
               size="sm"
-              className="w-full sm:w-auto flex items-center gap-1 text-xs"
+              className="w-full sm:w-auto flex items-center gap-1 text-xs cursor-pointer"
+              onClick={() => {
+                const targetUrl = product.brochurePdf;
+                const filename = `${product.name || "Solar Panel"} Brochure.pdf`;
+                downloadPdf(targetUrl, filename);
+              }}
             >
               <Download className="w-3.5 h-3.5 mr-1" />
               Download Brochure
             </Button>
-          </a>
+          )}
 
           <div className="flex gap-2 w-full sm:w-auto">
             <Button
