@@ -36,7 +36,7 @@ const AnnualMaintenanceService: React.FC = () => {
   const HeadingTag = usePageHeadingTag("annual-maintenance");
   const { data: cmsData = {} } = useSectionData<any>(
     "annual-maintenance",
-    "annual-maintenance"
+    "annual-maintenance",
   );
 
   const heroHeadingPart1 = cmsData.heroHeadingPart1 || "";
@@ -92,7 +92,7 @@ const AnnualMaintenanceService: React.FC = () => {
       <main>
         {/* Hero Banner */}
         <div className="bg-black py-16 md:py-24 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://res.cloudinary.com/dinhcaf2c/image/upload/v1755014000/maintenance_service_detailed_vfgm3h.jpg')] opacity-20 bg-cover bg-center" />
+          <div className="absolute inset-0 bg-[url('https://res.cloudinary.com/dinhcaf2c/image/upload/c_limit,f_auto,q_auto,w_1600/v1755014000/maintenance_service_detailed_vfgm3h.jpg')] opacity-20 bg-cover bg-center" />
           <div className="container mx-auto text-center px-4 relative z-10">
             {heroHeadingPart1 && (
               <div className="flex items-center justify-center mb-4">

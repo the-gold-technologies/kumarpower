@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { useEffect } from "react";
+import { deepOptimizeCloudinaryUrls } from "@/lib/cloudinary";
 
 const API_BASE_URL = import.meta.env.VITE_CMS_API_URL || "";
 
@@ -54,7 +55,7 @@ export const useCMSStore = create<CMSState>((set, get) => ({
       if (response.ok) {
         const json = await response.json();
         if (json.success && Array.isArray(json.data)) {
-          set({ navLinks: json.data });
+          set({ navLinks: deepOptimizeCloudinaryUrls(json.data) });
         }
       }
     } catch (err) {
@@ -68,7 +69,7 @@ export const useCMSStore = create<CMSState>((set, get) => ({
       if (response.ok) {
         const json = await response.json();
         if (json.success && json.data) {
-          set({ socialLinks: json.data, socialLinksFetched: true });
+          set({ socialLinks: deepOptimizeCloudinaryUrls(json.data), socialLinksFetched: true });
         }
       }
     } catch (err) {
@@ -82,7 +83,7 @@ export const useCMSStore = create<CMSState>((set, get) => ({
       if (response.ok) {
         const json = await response.json();
         if (json.success && json.data) {
-          set({ globalSEO: json.data });
+          set({ globalSEO: deepOptimizeCloudinaryUrls(json.data) });
         }
       }
     } catch (err) {
@@ -133,11 +134,14 @@ export const useCMSStore = create<CMSState>((set, get) => ({
         Object.assign(sectionsMap, json.data);
       }
 
-      const pageData =
+      const rawPageData =
         json.page ||
         (typeof json.data === "object" && !Array.isArray(json.data)
           ? json.data
           : {});
+
+      const optimizedSections = deepOptimizeCloudinaryUrls(sectionsMap);
+      const pageData = deepOptimizeCloudinaryUrls(rawPageData);
 
       set((state) => ({
         pages: {
@@ -145,7 +149,7 @@ export const useCMSStore = create<CMSState>((set, get) => ({
           [slug]: {
             loading: false,
             error: null,
-            sections: sectionsMap,
+            sections: optimizedSections,
             seo: {
               metaTitle: pageData.metaTitle,
               metaDescription: pageData.metaDescription,

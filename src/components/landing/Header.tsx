@@ -9,7 +9,8 @@ const Header = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const [scrolledPastHero, setScrolledPastHero] = useState(
-    !isHomePage && (typeof window !== "undefined" ? window.scrollY > 100 : true)
+    !isHomePage &&
+      (typeof window !== "undefined" ? window.scrollY > 100 : true),
   );
 
   // Dynamic Navigation Links from CMS
@@ -135,7 +136,7 @@ const Header = () => {
         <div className="hidden md:flex items-center gap-3">
           <a href="#consultation-form" className="flex items-center">
             <img
-              src="https://res.cloudinary.com/dinhcaf2c/image/upload/v1755014410/Screenshot_2025-06-02_at_12.44.43_PM_lxdedo.png"
+              src="https://res.cloudinary.com/dinhcaf2c/image/upload/c_limit,f_auto,q_auto,w_500/v1755014410/Screenshot_2025-06-02_at_12.44.43_PM_lxdedo.png"
               alt="Kumar Power Profile Logo"
               className="h-12 w-auto"
             />
