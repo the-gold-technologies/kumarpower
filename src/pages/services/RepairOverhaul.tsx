@@ -9,8 +9,6 @@ import {
   Clock,
   FileText,
   Zap,
-  ArrowRight,
-  Tool,
   Shield,
   Activity,
 } from "lucide-react";
@@ -29,8 +27,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import SEO from "@/components/SEO";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
-
-import asset2 from "@/assets/Kumar Assets/new750.png";
 
 // Icon Mapper for CMS string icons
 const renderIcon = (iconName: string, className: string) => {
@@ -51,23 +47,42 @@ const renderIcon = (iconName: string, className: string) => {
 
 const RepairOverhaulService = () => {
   const HeadingTag = usePageHeadingTag("repair-overhaul");
-  const { data: rawCMSData } = useSectionData<any>("repair-overhaul");
-  const cmsData = rawCMSData?.services || rawCMSData || {};
+  const { data: cmsData = {} } = useSectionData<any>(
+    "repair-overhaul",
+    "repair-overhaul"
+  );
 
+  const heroBadge = cmsData.heroBadge || "";
   const heroHeading = cmsData.heroHeading || "";
   const heroSub = cmsData.heroSub || "";
+  const heroCtaLabel = cmsData.heroCtaLabel || "";
+  const heroCtaLink = cmsData.heroCtaLink || "";
 
   const introTitle = cmsData.introTitle || "";
-  const introDesc1 = cmsData.introDesc1 || "";
+  const introDesc = cmsData.introDesc || "";
+  const introBtn1Label = cmsData.introBtn1Label || "";
+  const introBtn1Link = cmsData.introBtn1Link || "";
+  const introBtn2Label = cmsData.introBtn2Label || "";
+  const introBtn2Link = cmsData.introBtn2Link || "";
 
-  const repairServices = cmsData.services || [];
+  const repairServices = Array.isArray(cmsData.services) ? cmsData.services : [];
 
-  const benefitsList = cmsData.benefits || [];
+  const benefitsList = Array.isArray(cmsData.benefits) ? cmsData.benefits : [];
 
-  const faqItems = cmsData.faqs || [];
+  const benefitsCtaLabel = cmsData.benefitsCtaLabel || "";
+  const benefitsCtaLink = cmsData.benefitsCtaLink || "";
+
+  const faqItems = Array.isArray(cmsData.faqs) ? cmsData.faqs : [];
+
+  const helpTitle = cmsData.helpTitle || "";
+  const helpSub = cmsData.helpSub || "";
+  const helpBtnLabel = cmsData.helpBtnLabel || "";
+  const helpBtnLink = cmsData.helpBtnLink || "";
+  const hotlineLabel = cmsData.hotlineLabel || "";
+  const hotlineLink = cmsData.hotlineLink || "";
 
   // Process Steps
-  const processSteps = cmsData.processSteps || [];
+  const processSteps = Array.isArray(cmsData.processSteps) ? cmsData.processSteps : [];
 
   return (
     <div className="min-h-screen bg-background">
@@ -83,8 +98,8 @@ const RepairOverhaulService = () => {
         {/* Hero Banner */}
         <div className="bg-black py-12 md:py-16">
           <div className="container mx-auto text-center px-4">
-            <Badge className="mb-4 bg-custom-blue text-white hover:bg-[#225488]">
-              {cmsData.heroBadge}
+            <Badge className="mb-4 bg-[#2D6FBA] text-white hover:bg-[#225488]">
+              {heroBadge}
             </Badge>
             <HeadingTag className="text-4xl md:text-5xl font-bold text-white mb-6">
               {heroHeading}
@@ -95,13 +110,20 @@ const RepairOverhaulService = () => {
                 linkClassName="text-[#2D6FBA] hover:underline font-bold"
               />
             </p>
-            <Button
-              asChild
-              size="lg"
-              className="bg-custom-blue hover:bg-[#225488]"
-            >
-              <Link to="/contact">{cmsData.heroCtaLabel}</Link>
-            </Button>
+            {heroCtaLabel && (
+              <Button
+                asChild
+                size="lg"
+                className="bg-[#2D6FBA] hover:bg-[#225488]"
+              >
+                {heroCtaLink.startsWith("http") ||
+                heroCtaLink.startsWith("tel:") ? (
+                  <a href={heroCtaLink}>{heroCtaLabel}</a>
+                ) : (
+                  <Link to={heroCtaLink}>{heroCtaLabel}</Link>
+                )}
+              </Button>
+            )}
           </div>
         </div>
 
@@ -112,8 +134,8 @@ const RepairOverhaulService = () => {
               <div>
                 <div className="inline-block mb-4">
                   <div className="flex items-center">
-                    <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
-                    <span className="text-custom-blue font-semibold tracking-wider">
+                    <span className="block h-1 w-10 bg-[#2D6FBA] mr-3"></span>
+                    <span className="text-[#2D6FBA] font-semibold tracking-wider">
                       {cmsData.introTagline}
                     </span>
                   </div>
@@ -121,47 +143,52 @@ const RepairOverhaulService = () => {
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
                   {introTitle}
                 </h2>
-                <p className="text-lg text-muted-foreground mb-6">
-                  <LinkText
-                    text={introDesc1}
-                    linkClassName="text-[#2D6FBA] hover:underline font-bold"
-                  />
-                </p>
                 <p className="text-lg text-muted-foreground mb-8">
                   <LinkText
-                    text={cmsData.introDesc2}
+                    text={introDesc}
                     linkClassName="text-[#2D6FBA] hover:underline font-bold"
                   />
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-custom-blue hover:bg-[#225488]"
-                  >
-                    <Link to="/contact">{cmsData.introBtn1Label}</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    size="lg"
-                    variant="outline"
-                    className="border-custom-blue text-custom-blue bg-white hover:bg-custom-blue hover:text-white hover:border-[#225488] transition-colors duration-200"
-                  >
-                    <a
-                      href="tel:+919773851767"
-                      className="flex items-center gap-2"
+                  {introBtn1Label && (
+                    <Button
+                      asChild
+                      size="lg"
+                      className="bg-[#2D6FBA] hover:bg-[#225488]"
                     >
-                      <Zap size={18} /> {cmsData.introBtn2Label}
-                    </a>
-                  </Button>
+                      {introBtn1Link.startsWith("http") ||
+                      introBtn1Link.startsWith("tel:") ? (
+                        <a href={introBtn1Link}>{introBtn1Label}</a>
+                      ) : (
+                        <Link to={introBtn1Link}>{introBtn1Label}</Link>
+                      )}
+                    </Button>
+                  )}
+                  {introBtn2Label && (
+                    <Button
+                      asChild
+                      size="lg"
+                      variant="outline"
+                      className="border-[#2D6FBA] text-[#2D6FBA] bg-white hover:bg-[#2D6FBA] hover:text-white hover:border-[#225488] transition-colors duration-200"
+                    >
+                      <a
+                        href={introBtn2Link}
+                        className="flex items-center gap-2"
+                      >
+                        <Zap size={18} /> {introBtn2Label}
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </div>
               <div className="rounded-lg overflow-hidden shadow-xl">
-                <img
-                  src={cmsData.introImage || asset2}
-                  alt="Technician repairing generator"
-                  className="w-full h-auto"
-                />
+                {cmsData.introImage && (
+                  <img
+                    src={cmsData.introImage}
+                    alt="Technician repairing generator"
+                    className="w-full h-auto"
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -173,11 +200,11 @@ const RepairOverhaulService = () => {
             <div className="text-center mb-16">
               <div className="inline-block mb-4">
                 <div className="flex items-center justify-center">
-                  <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
+                  <span className="block h-1 w-10 bg-[#2D6FBA] mr-3"></span>
                   <span className="text-blue-400 font-semibold tracking-wider">
                     {cmsData.diffTagline}
                   </span>
-                  <span className="block h-1 w-10 bg-custom-blue ml-3"></span>
+                  <span className="block h-1 w-10 bg-[#2D6FBA] ml-3"></span>
                 </div>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -196,15 +223,15 @@ const RepairOverhaulService = () => {
                 <TabsList className="grid grid-cols-2 bg-gray-800">
                   <TabsTrigger
                     value="repair"
-                    className="data-[state=active]:bg-custom-blue data-[state=active]:text-white"
+                    className="data-[state=active]:bg-[#2D6FBA] data-[state=active]:text-white"
                   >
-                    {cmsData.repairTabLabel || "Repair Services"}
+                    {cmsData.repairTabLabel}
                   </TabsTrigger>
                   <TabsTrigger
                     value="overhaul"
-                    className="data-[state=active]:bg-custom-blue data-[state=active]:text-white"
+                    className="data-[state=active]:bg-[#2D6FBA] data-[state=active]:text-white"
                   >
-                    {cmsData.overhaulTabLabel || "Overhaul Services"}
+                    {cmsData.overhaulTabLabel}
                   </TabsTrigger>
                 </TabsList>
                 <TabsContent value="repair" className="mt-6">
@@ -276,11 +303,11 @@ const RepairOverhaulService = () => {
             <div className="text-center mb-16">
               <div className="inline-block mb-4">
                 <div className="flex items-center justify-center">
-                  <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
+                  <span className="block h-1 w-10 bg-[#2D6FBA] mr-3"></span>
                   <span className="text-[#2D6FBA] font-semibold tracking-wider">
                     {cmsData.servicesTagline}
                   </span>
-                  <span className="block h-1 w-10 bg-custom-blue ml-3"></span>
+                  <span className="block h-1 w-10 bg-[#2D6FBA] ml-3"></span>
                 </div>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -298,7 +325,7 @@ const RepairOverhaulService = () => {
               {repairServices.map((service, index) => (
                 <Card
                   key={index}
-                  className="overflow-hidden border-2 hover:border-custom-blue transition-all duration-300"
+                  className="overflow-hidden border-2 hover:border-[#2D6FBA] transition-all duration-300"
                 >
                   <div className="p-8">
                     <div className="mb-6">
@@ -337,11 +364,11 @@ const RepairOverhaulService = () => {
             <div className="text-center mb-16">
               <div className="inline-block mb-4">
                 <div className="flex items-center justify-center">
-                  <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
+                  <span className="block h-1 w-10 bg-[#2D6FBA] mr-3"></span>
                   <span className="text-blue-400 font-semibold tracking-wider">
                     {cmsData.benefitsTagline}
                   </span>
-                  <span className="block h-1 w-10 bg-custom-blue ml-3"></span>
+                  <span className="block h-1 w-10 bg-[#2D6FBA] ml-3"></span>
                 </div>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -359,7 +386,7 @@ const RepairOverhaulService = () => {
               {benefitsList.map((benefit: any, index: number) => (
                 <div
                   key={index}
-                  className="p-6 bg-gray-900 rounded-lg border border-gray-800 hover:border-custom-blue transition-all duration-300"
+                  className="p-6 bg-gray-900 rounded-lg border border-gray-800 hover:border-[#2D6FBA] transition-all duration-300"
                 >
                   <div className="mb-4">{benefit.icon}</div>
                   <h3 className="text-xl font-bold mb-3 text-blue-400">
@@ -375,15 +402,22 @@ const RepairOverhaulService = () => {
               ))}
             </div>
 
-            <div className="mt-12 text-center">
-              <Button
-                asChild
-                size="lg"
-                className="bg-custom-blue hover:bg-[#225488]"
-              >
-                <Link to="/contact">{cmsData.benefitsCtaLabel}</Link>
-              </Button>
-            </div>
+            {benefitsCtaLabel && (
+              <div className="mt-12 text-center">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-[#2D6FBA] hover:bg-[#225488]"
+                >
+                  {benefitsCtaLink.startsWith("http") ||
+                  benefitsCtaLink.startsWith("tel:") ? (
+                    <a href={benefitsCtaLink}>{benefitsCtaLabel}</a>
+                  ) : (
+                    <Link to={benefitsCtaLink}>{benefitsCtaLabel}</Link>
+                  )}
+                </Button>
+              </div>
+            )}
           </div>
         </section>
 
@@ -393,11 +427,11 @@ const RepairOverhaulService = () => {
             <div className="text-center mb-16">
               <div className="inline-block mb-4">
                 <div className="flex items-center justify-center">
-                  <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
+                  <span className="block h-1 w-10 bg-[#2D6FBA] mr-3"></span>
                   <span className="text-[#2D6FBA] font-semibold tracking-wider">
                     {cmsData.processTagline}
                   </span>
-                  <span className="block h-1 w-10 bg-custom-blue ml-3"></span>
+                  <span className="block h-1 w-10 bg-[#2D6FBA] ml-3"></span>
                 </div>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -405,10 +439,7 @@ const RepairOverhaulService = () => {
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 <LinkText
-                  text={
-                    cmsData.processDesc ||
-                    "A systematic approach to efficiently diagnose and resolve power system issues"
-                  }
+                  text={cmsData.processDesc}
                   linkClassName="text-[#2D6FBA] hover:underline font-bold"
                 />
               </p>
@@ -417,13 +448,13 @@ const RepairOverhaulService = () => {
             <div className="max-w-4xl mx-auto">
               <div className="relative">
                 {/* Timeline line */}
-                <div className="absolute left-4 md:left-8 top-0 bottom-0 w-0.5 bg-custom-blue"></div>
+                <div className="absolute left-4 md:left-8 top-0 bottom-0 w-0.5 bg-[#2D6FBA]"></div>
 
                 {/* Timeline items */}
                 <div className="space-y-16">
                   {processSteps.map((step: any, index: number) => (
                     <div key={index} className="relative pl-12 md:pl-20">
-                      <div className="absolute left-0 md:left-4 top-0 w-8 h-8 bg-custom-blue rounded-full flex items-center justify-center text-white font-bold">
+                      <div className="absolute left-0 md:left-4 top-0 w-8 h-8 bg-[#2D6FBA] rounded-full flex items-center justify-center text-white font-bold">
                         {index + 1}
                       </div>
                       <h3 className="text-2xl font-bold mb-3 text-[#2D6FBA]">
@@ -463,11 +494,11 @@ const RepairOverhaulService = () => {
             <div className="text-center mb-16">
               <div className="inline-block mb-4">
                 <div className="flex items-center justify-center">
-                  <span className="block h-1 w-10 bg-custom-blue mr-3"></span>
+                  <span className="block h-1 w-10 bg-[#2D6FBA] mr-3"></span>
                   <span className="text-[#2D6FBA] font-semibold tracking-wider">
                     {cmsData.faqTagline}
                   </span>
-                  <span className="block h-1 w-10 bg-custom-blue ml-3"></span>
+                  <span className="block h-1 w-10 bg-[#2D6FBA] ml-3"></span>
                 </div>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -517,54 +548,41 @@ const RepairOverhaulService = () => {
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 {/* Primary Button */}
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-[#2D6FBA] text-white border border-[#2D6FBA] hover:bg-[#225488] hover:border-[#225488] px-6 py-3 text-base min-w-[220px] rounded-lg font-medium transition-colors duration-200"
-                >
-                  <Link to="/contact">{cmsData.helpBtnLabel}</Link>
-                </Button>
+                {helpBtnLabel && (
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-[#2D6FBA] text-white border border-[#2D6FBA] hover:bg-[#225488] hover:border-[#225488] px-6 py-3 text-base min-w-[220px] rounded-lg font-medium transition-colors duration-200"
+                  >
+                    {helpBtnLink.startsWith("http") ||
+                    helpBtnLink.startsWith("tel:") ? (
+                      <a href={helpBtnLink}>{helpBtnLabel}</a>
+                    ) : (
+                      <Link to={helpBtnLink}>{helpBtnLabel}</Link>
+                    )}
+                  </Button>
+                )}
 
                 {/* Secondary Button */}
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="bg-transparent border border-white text-white hover:bg-white hover:text-[#2D6FBA] hover:border-[#2D6FBA] px-6 py-3 text-base min-w-[220px] rounded-lg font-medium flex items-center justify-center gap-2 transition-colors duration-200"
-                >
-                  <a
-                    href="tel:+919773851767"
-                    className="flex items-center gap-2"
+                {hotlineLabel && (
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="bg-transparent border border-white text-white hover:bg-white hover:text-[#2D6FBA] hover:border-[#2D6FBA] px-6 py-3 text-base min-w-[220px] rounded-lg font-medium flex items-center justify-center gap-2 transition-colors duration-200"
                   >
-                    <Zap size={18} /> Emergency Repair Hotline
-                  </a>
-                </Button>
+                    <a href={hotlineLink} className="flex items-center gap-2">
+                      <Zap size={18} /> {hotlineLabel}
+                    </a>
+                  </Button>
+                )}
               </div>
             </div>
           </div>
         </section>
       </main>
       <Footer />
-      <style jsx global>{`
-        .bg-custom-blue {
-          background-color: #2d6fba !important;
-        }
-        .text-custom-blue {
-          color: #2d6fba !important;
-        }
-        .border-custom-blue {
-          border-color: #2d6fba !important;
-        }
-        .hover\:bg-custom-blue:hover {
-          background-color: #225488 !important;
-        }
-        .hover\:border-custom-blue:hover {
-          border-color: #225488 !important;
-        }
-        .hover\:text-custom-blue:hover {
-          color: #225488 !important;
-        }
-      `}</style>
+      
     </div>
   );
 };
