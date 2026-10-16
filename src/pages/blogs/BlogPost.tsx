@@ -71,7 +71,7 @@ export default function BlogPost() {
               </h1>
 
               {(post.excerpt || post.summary || post.description) && (
-                <p className="text-white/90 text-base md:text-lg max-w-5xl leading-relaxed font-medium">
+                <p className="text-white/90 text-base md:text-lg max-w-5xl leading-relaxed font-medium whitespace-pre-line">
                   {post.excerpt || post.summary || post.description}
                 </p>
               )}

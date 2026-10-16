@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { useSectionData } from "@/store/useCMSStore";
+import { LinkText } from "@/components/ui/LinkText";
 
 export const ConsultationForm: React.FC = () => {
   const { data: homeData } = useSectionData<any>("home");
@@ -138,7 +139,7 @@ export const ConsultationForm: React.FC = () => {
 
               {description && (
                 <blockquote className="text-slate-600 text-sm sm:text-base font-normal leading-relaxed border-l-2 border-[#1A6AA2] pl-4 italic py-1">
-                  {description}
+                  <LinkText text={description} />
                 </blockquote>
               )}
             </div>

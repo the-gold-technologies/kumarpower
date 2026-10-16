@@ -106,7 +106,7 @@ const App = () => (
             path="/services/annual-maintenance"
             element={<AnnualMaintenance />}
           />
-          <Route path="/leads" element={<Submissions />} />
+          {/* <Route path="/leads" element={<Submissions />} /> */}
           <Route path="/services/installation" element={<Installation />} />
           <Route
             path="/services/repair-overhaul"
@@ -116,8 +116,6 @@ const App = () => (
             path="/services/emergency-support"
             element={<EmergencySupport />}
           />
-          {/* Installation Route */}
-          <Route path="/installation" element={<Installation />} />
           {/* Our Clients Route */}
           <Route path="/our-clients" element={<Industries />} />
           {/* Contact Route */}
@@ -126,12 +124,10 @@ const App = () => (
           <Route path="/blog/:slug" element={<BlogPost />} />
           {/* Legal Pages */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route
             path="/terms-and-conditions"
             element={<TermsAndConditions />}
           />
-          <Route path="/terms" element={<TermsAndConditions />} />
 
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

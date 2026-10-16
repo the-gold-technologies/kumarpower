@@ -14,32 +14,41 @@ export function LinkText({
   if (!text) return null;
 
   const parts: React.ReactNode[] = [];
-  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  // Matches markdown links [label](url) or bold **bold text**
+  const regex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
   let lastIndex = 0;
   let match;
 
   while ((match = regex.exec(text)) !== null) {
     const matchIndex = match.index;
-    const [fullMatch, linkText, linkUrl] = match;
+    const [fullMatch, linkText, linkUrl, boldText] = match;
 
     // Append preceding text
     if (matchIndex > lastIndex) {
       parts.push(text.substring(lastIndex, matchIndex));
     }
 
-    // Append link
-    const isExternal = linkUrl.startsWith("http://") || linkUrl.startsWith("https://");
-    parts.push(
-      <a
-        key={matchIndex}
-        href={linkUrl}
-        target={isExternal ? "_blank" : undefined}
-        rel={isExternal ? "noopener noreferrer" : undefined}
-        className={linkClassName}
-      >
-        {linkText}
-      </a>
-    );
+    // Append link or bold text
+    if (linkText !== undefined && linkUrl !== undefined) {
+      const isExternal = linkUrl.startsWith("http://") || linkUrl.startsWith("https://");
+      parts.push(
+        <a
+          key={`link-${matchIndex}`}
+          href={linkUrl}
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "noopener noreferrer" : undefined}
+          className={linkClassName}
+        >
+          {linkText}
+        </a>
+      );
+    } else if (boldText !== undefined) {
+      parts.push(
+        <strong key={`bold-${matchIndex}`} className="font-bold text-inherit">
+          {boldText}
+        </strong>
+      );
+    }
 
     lastIndex = regex.lastIndex;
   }
@@ -50,7 +59,7 @@ export function LinkText({
   }
 
   return (
-    <span className={className}>
+    <span className={`whitespace-pre-line ${className}`.trim()}>
       {parts.length > 0 ? parts : text}
     </span>
   );

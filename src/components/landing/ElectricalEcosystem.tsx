@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSectionData } from "@/store/useCMSStore";
+import { LinkText } from "@/components/ui/LinkText";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Zap,
@@ -96,7 +97,7 @@ export const ElectricalEcosystem: React.FC = () => {
           )}
           {description && (
             <p className="text-slate-600 text-base sm:text-lg font-normal">
-              {description}
+              <LinkText text={description} />
             </p>
           )}
         </div>
@@ -290,7 +291,10 @@ export const ElectricalEcosystem: React.FC = () => {
 
                   {current.description && (
                     <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
-                      {current.description}
+                      <LinkText
+                        text={current.description}
+                        linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                      />
                     </p>
                   )}
                 </div>

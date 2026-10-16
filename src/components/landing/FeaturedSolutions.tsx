@@ -9,6 +9,7 @@ import {
   Check,
 } from "lucide-react";
 import { useSectionData } from "@/store/useCMSStore";
+import { LinkText } from "@/components/ui/LinkText";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   BatteryCharging,
@@ -78,7 +79,7 @@ export const FeaturedSolutions: React.FC = () => {
             )}
             {description && (
               <p className="text-slate-600 text-lg font-normal">
-                {description}
+                <LinkText text={description} />
               </p>
             )}
           </div>
@@ -129,7 +130,10 @@ export const FeaturedSolutions: React.FC = () => {
 
                 {scenario.description && (
                   <p className="text-slate-600 text-base md:text-lg leading-relaxed">
-                    {scenario.description}
+                    <LinkText
+                      text={scenario.description}
+                      linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                    />
                   </p>
                 )}
 

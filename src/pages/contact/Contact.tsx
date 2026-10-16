@@ -780,7 +780,10 @@ const Contact = () => {
                             {perk.title}
                           </h3>
                           <p className="text-gray-400 text-sm">
-                            {perk.description}
+                            <LinkText
+                              text={perk.description}
+                              linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                            />
                           </p>
                         </div>
                       </div>

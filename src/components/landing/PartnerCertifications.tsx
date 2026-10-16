@@ -1,5 +1,6 @@
 import React from "react";
 import { useSectionData } from "@/store/useCMSStore";
+import { LinkText } from "@/components/ui/LinkText";
 
 export const PartnerCertifications: React.FC = () => {
   const { data: homeCMS } = useSectionData<any>("home");
@@ -35,7 +36,7 @@ export const PartnerCertifications: React.FC = () => {
           )}
           {description && (
             <p className="text-slate-400 text-base sm:text-lg mt-4 max-w-3xl mx-auto font-normal">
-              {description}
+              <LinkText text={description} />
             </p>
           )}
         </div>

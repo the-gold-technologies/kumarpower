@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSectionData } from "@/store/useCMSStore";
+import { LinkText } from "@/components/ui/LinkText";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   ShieldCheck,
@@ -76,7 +77,7 @@ export const WhyKumarPower: React.FC = () => {
               )}
               {description && (
                 <p className="text-slate-600 text-base sm:text-lg font-normal max-w-2xl">
-                  {description}
+                  <LinkText text={description} />
                 </p>
               )}
             </div>
@@ -121,7 +122,7 @@ export const WhyKumarPower: React.FC = () => {
                   </div>
                   {item.desc && (
                     <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                      {item.desc}
+                      <LinkText text={item.desc} />
                     </p>
                   )}
                 </motion.div>

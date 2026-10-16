@@ -1,6 +1,7 @@
 import React from "react";
 import { Quote } from "lucide-react";
 import { useSectionData } from "@/store/useCMSStore";
+import { LinkText } from "@/components/ui/LinkText";
 
 export interface TestimonialItem {
   id?: string;
@@ -37,7 +38,7 @@ export const LandingTestimonials: React.FC = () => {
           </h2>
           {subtitle && (
             <p className="mt-4 text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
-              {subtitle}
+              <LinkText text={subtitle} />
             </p>
           )}
         </div>
@@ -93,7 +94,7 @@ export const LandingTestimonials: React.FC = () => {
 
                     {/* Testimonial Quote */}
                     <p className="text-slate-700 text-[13.5px] sm:text-[14px] leading-relaxed font-normal text-justify">
-                      {item.quote}
+                      <LinkText text={item.quote} />
                     </p>
                   </div>
 

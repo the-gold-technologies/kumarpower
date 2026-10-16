@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSectionData } from "@/store/useCMSStore";
+import { LinkText } from "@/components/ui/LinkText";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Factory,
@@ -87,7 +88,7 @@ export const IndustriesServed: React.FC = () => {
             )}
             {description && (
               <p className="text-slate-400 text-base sm:text-lg">
-                {description}
+                <LinkText text={description} />
               </p>
             )}
           </motion.div>

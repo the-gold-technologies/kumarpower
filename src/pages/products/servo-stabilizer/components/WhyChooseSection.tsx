@@ -14,27 +14,7 @@ interface WhyChooseSectionProps {
   cards: WhyChooseCardItem[];
 }
 
-// Renders **bold** segments and keeps LinkText behavior for the rest
-const RichText: React.FC<{ text: string }> = ({ text }) => {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean);
-  return (
-    <>
-      {parts.map((part, i) =>
-        part.startsWith("**") && part.endsWith("**") ? (
-          <strong key={i} className="font-bold text-gray-900">
-            {part.slice(2, -2)}
-          </strong>
-        ) : (
-          <LinkText
-            key={i}
-            text={part}
-            linkClassName="text-[#2D6FBA] hover:underline font-bold"
-          />
-        ),
-      )}
-    </>
-  );
-};
+
 
 export const WhyChooseSection: React.FC<WhyChooseSectionProps> = ({
   title,
@@ -59,12 +39,18 @@ export const WhyChooseSection: React.FC<WhyChooseSectionProps> = ({
           <div className="mb-6 sm:mb-10 space-y-4 text-sm sm:text-base text-gray-800 leading-relaxed">
             {para1 && (
               <p>
-                <RichText text={para1} />
+                <LinkText
+                  text={para1}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
               </p>
             )}
             {para2 && (
               <p>
-                <RichText text={para2} />
+                <LinkText
+                  text={para2}
+                  linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                />
               </p>
             )}
           </div>

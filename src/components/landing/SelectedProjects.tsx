@@ -14,6 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSectionData } from "@/store/useCMSStore";
+import { LinkText } from "@/components/ui/LinkText";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Plane,
@@ -78,7 +79,7 @@ export const SelectedProjects: React.FC = () => {
             )}
             {description && (
               <p className="text-slate-600 text-base sm:text-lg font-normal">
-                {description}
+                <LinkText text={description} />
               </p>
             )}
           </motion.div>
@@ -150,7 +151,7 @@ export const SelectedProjects: React.FC = () => {
                               Challenge
                             </div>
                             <p className="text-xs text-amber-950 leading-relaxed font-normal">
-                              {project.challenge}
+                              <LinkText text={project.challenge} />
                             </p>
                           </div>
                         )}
@@ -162,7 +163,7 @@ export const SelectedProjects: React.FC = () => {
                               Solution
                             </div>
                             <p className="text-xs text-slate-700 leading-relaxed font-normal">
-                              {project.solution}
+                              <LinkText text={project.solution} />
                             </p>
                           </div>
                         )}
@@ -177,7 +178,7 @@ export const SelectedProjects: React.FC = () => {
                               Outcome:{" "}
                             </span>
                             <span className="font-normal">
-                              {project.outcome}
+                              <LinkText text={project.outcome} />
                             </span>
                           </div>
                         </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSectionData } from "@/store/useCMSStore";
+import { LinkText } from "@/components/ui/LinkText";
 
 export const SolutionPortfolio: React.FC = () => {
   const { data: homeData } = useSectionData<any>("home");
@@ -38,7 +39,7 @@ export const SolutionPortfolio: React.FC = () => {
             )}
             {description && (
               <p className="text-slate-600 text-lg font-normal">
-                {description}
+                <LinkText text={description} />
               </p>
             )}
           </div>

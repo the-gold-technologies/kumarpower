@@ -13,27 +13,6 @@ import { downloadPdf } from "@/lib/utils";
 import { SpecsModal } from "./products/generators/components/SpecsModal";
 import { QuoteModal } from "./products/generators/components/QuoteModal";
 
-// Renders **bold** segments and keeps LinkText behavior for the rest
-const RichText: React.FC<{ text: string }> = ({ text }) => {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean);
-  return (
-    <>
-      {parts.map((part, i) =>
-        part.startsWith("**") && part.endsWith("**") ? (
-          <strong key={i} className="font-bold text-gray-900">
-            {part.slice(2, -2)}
-          </strong>
-        ) : (
-          <LinkText
-            key={i}
-            text={part}
-            linkClassName="text-[#2D6FBA] hover:underline font-bold"
-          />
-        ),
-      )}
-    </>
-  );
-};
 
 const Products = () => {
   const pageSlug = "products";
@@ -326,7 +305,10 @@ const Products = () => {
                     </h3>
                     {cat.description && (
                       <p className="text-xs text-gray-300 mt-2 line-clamp-3">
-                        {cat.description}
+                        <LinkText
+                          text={cat.description}
+                          linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                        />
                       </p>
                     )}
                   </div>
@@ -369,12 +351,18 @@ const Products = () => {
                 <div className="mb-8 space-y-4 text-sm sm:text-base text-gray-800 leading-relaxed">
                   {cmsData.whyChoosePara1 && (
                     <p>
-                      <RichText text={cmsData.whyChoosePara1} />
+                      <LinkText
+                        text={cmsData.whyChoosePara1}
+                        linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                      />
                     </p>
                   )}
                   {cmsData.whyChoosePara2 && (
                     <p>
-                      <RichText text={cmsData.whyChoosePara2} />
+                      <LinkText
+                        text={cmsData.whyChoosePara2}
+                        linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                      />
                     </p>
                   )}
                 </div>

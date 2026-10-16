@@ -58,7 +58,7 @@ export const KnowledgeCenter: React.FC = () => {
             )}
             {description && (
               <p className="text-slate-600 text-base font-normal">
-                {description}
+                <LinkText text={description} />
               </p>
             )}
           </div>

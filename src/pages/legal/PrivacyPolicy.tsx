@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
+import { LinkText } from "@/components/ui/LinkText";
 import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 import SEO from "@/components/SEO";
@@ -66,7 +67,7 @@ export default function PrivacyPolicy() {
 
             {subtitle && (
               <p className="text-sm sm:text-base md:text-lg mt-3 max-w-3xl text-gray-300 mx-auto leading-relaxed">
-                {subtitle}
+                <LinkText text={subtitle} />
               </p>
             )}
           </div>

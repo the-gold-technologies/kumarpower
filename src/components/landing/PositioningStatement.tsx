@@ -3,6 +3,7 @@ import * as LucideIcons from "lucide-react";
 import { Compass, PackageCheck, Wrench, ShieldAlert } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSectionData, usePageHeadingTag } from "@/store/useCMSStore";
+import { LinkText } from "@/components/ui/LinkText";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Compass,
@@ -58,7 +59,7 @@ export const PositioningStatement: React.FC = () => {
 
           {description && (
             <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-3xl mx-auto">
-              {description}
+              <LinkText text={description} />
             </p>
           )}
         </motion.div>
@@ -86,7 +87,10 @@ export const PositioningStatement: React.FC = () => {
                   </h3>
 
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {cap.description}
+                    <LinkText
+                      text={cap.description}
+                      linkClassName="text-[#2D6FBA] hover:underline font-bold"
+                    />
                   </p>
                 </div>
               </motion.div>

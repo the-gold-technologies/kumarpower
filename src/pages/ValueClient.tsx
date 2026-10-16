@@ -269,7 +269,7 @@ const ValueClient = () => {
 
             <div className="mt-12 text-center">
               <Button asChild size="lg" className="bg-[#2D6FBA] hover:bg-[#2D6FBA]">
-                <Link to="/installation">Industrial Power Solutions</Link>
+                <Link to="/services/installation">Industrial Power Solutions</Link>
               </Button>
             </div>
           </div>
