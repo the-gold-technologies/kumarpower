@@ -49,16 +49,17 @@ export default function SEO({
   const globalSEO = useCMSStore((state) => state.globalSEO);
   const fetchGlobalSEO = useCMSStore((state) => state.fetchGlobalSEO);
   const fetchPage = useCMSStore((state) => state.fetchPage);
+  const slugToFetch = rawSlug?.startsWith("blog/") ? rawSlug : resolvedSlug;
   const pageState = useCMSStore(
-    (state) => state.pages[resolvedSlug] || state.pages[rawSlug],
+    (state) => state.pages[slugToFetch] || state.pages[resolvedSlug] || state.pages[rawSlug],
   );
 
   useEffect(() => {
     fetchGlobalSEO();
-    if (resolvedSlug && !pageState) {
-      fetchPage(resolvedSlug);
+    if (slugToFetch && !pageState) {
+      fetchPage(slugToFetch);
     }
-  }, [fetchGlobalSEO, resolvedSlug, pageState, fetchPage]);
+  }, [fetchGlobalSEO, slugToFetch, pageState, fetchPage]);
 
   const seoData = pageState?.seo;
 
@@ -77,7 +78,7 @@ export default function SEO({
 
   const finalKeywords = seoData?.keywords || keywords;
   const finalOgImage = seoData?.ogImage || ogImage;
-  const finalCanonical = seoData?.canonicalUrl;
+  const finalCanonical = seoData?.canonicalUrl || canonical;
   const finalRobots = seoData?.noIndex ? "noindex, nofollow" : robots;
 
   return (

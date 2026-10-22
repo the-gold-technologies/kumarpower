@@ -29,9 +29,10 @@ export default function BlogPost() {
   return (
     <>
       <SEO
-        pageSlug="blogs"
-        title={`${post.title} | Kumar Power Blogs`}
+        pageSlug={`blog/${post.slug || slug}`}
+        title={`${post.title} | Kumar Power`}
         description={post.excerpt || post.summary}
+        ogImage={post.image || post.img}
       />
       <SEOJsonLD
         title={`${post.title} | Kumar Power Blogs`}

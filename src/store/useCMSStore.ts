@@ -69,7 +69,10 @@ export const useCMSStore = create<CMSState>((set, get) => ({
       if (response.ok) {
         const json = await response.json();
         if (json.success && json.data) {
-          set({ socialLinks: deepOptimizeCloudinaryUrls(json.data), socialLinksFetched: true });
+          set({
+            socialLinks: deepOptimizeCloudinaryUrls(json.data),
+            socialLinksFetched: true,
+          });
         }
       }
     } catch (err) {
@@ -107,13 +110,18 @@ export const useCMSStore = create<CMSState>((set, get) => ({
     }));
 
     try {
-      // Try dedicated page route first (/api/home, /api/our-profile, etc), fallback to /api/pages/:slug
-      let response = await fetch(`${API_BASE_URL}/api/${slug}`);
-      if (!response.ok) {
-        response = await fetch(`${API_BASE_URL}/api/pages/${slug}`);
-      }
-      if (!response.ok) {
+      let response: Response;
+      if (slug.startsWith("blog/")) {
         response = await fetch(`${API_BASE_URL}/api/seo/pages/${slug}`);
+      } else {
+        // Try dedicated page route first (/api/home, /api/our-profile, etc), fallback to /api/pages/:slug
+        response = await fetch(`${API_BASE_URL}/api/${slug}`);
+        if (!response.ok) {
+          response = await fetch(`${API_BASE_URL}/api/pages/${slug}`);
+        }
+        if (!response.ok) {
+          response = await fetch(`${API_BASE_URL}/api/seo/pages/${slug}`);
+        }
       }
 
       if (!response.ok) {
@@ -253,11 +261,13 @@ export function useSocialLinks(): SocialLinksData {
     fetchSocialLinks();
   }, [fetchSocialLinks]);
 
-  return socialLinks || {
-    connectTitle: "",
-    linkedinUrl: "",
-    youtubeUrl: "",
-    instagramUrl: "",
-    facebookUrl: "",
-  };
+  return (
+    socialLinks || {
+      connectTitle: "",
+      linkedinUrl: "",
+      youtubeUrl: "",
+      instagramUrl: "",
+      facebookUrl: "",
+    }
+  );
 }
