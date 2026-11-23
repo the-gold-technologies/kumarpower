@@ -671,24 +671,28 @@ const Contact = () => {
                     </div>
                     <h3 className="mt-3 text-lg font-bold">Phone</h3>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-300">
-                    <span className="text-white/60 w-20">Main: </span>
-                    <a
-                      href={`tel:${cmsData?.info?.phoneMain}`}
-                      className="hover:text-blue-300 transition-colors font-medium"
-                    >
-                      {cmsData?.info?.phoneMain}
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-300 mt-1">
-                    <span className="text-white/60 w-20">Support: </span>
-                    <a
-                      href={`tel:${cmsData?.info?.phoneSupport}`}
-                      className="hover:text-blue-300 transition-colors"
-                    >
-                      {cmsData?.info?.phoneSupport}
-                    </a>
-                  </div>
+                  {cmsData?.info?.phoneMain && (
+                    <div className="flex items-center gap-2 text-sm text-gray-300">
+                      <span className="text-white/60 w-20">Call us: </span>
+                      <a
+                        href={`tel:${cmsData?.info?.phoneMain}`}
+                        className="hover:text-blue-300 transition-colors font-medium"
+                      >
+                        {cmsData?.info?.phoneMain}
+                      </a>
+                    </div>
+                  )}
+                  {cmsData?.info?.phoneSupport && (
+                    <div className="flex items-center gap-2 text-sm text-gray-300 mt-1">
+                      <span className="text-white/60 w-20">Support: </span>
+                      <a
+                        href={`tel:${cmsData?.info?.phoneSupport}`}
+                        className="hover:text-blue-300 transition-colors"
+                      >
+                        {cmsData?.info?.phoneSupport}
+                      </a>
+                    </div>
+                  )}
                 </div>
 
                 {/* Email */}
